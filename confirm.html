@@ -1,93 +1,94 @@
 ﻿<!DOCTYPE html>
 <html lang="ko">
 
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-        
-        <title>스마트오피스 예약시스템</title>
+<head>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
-        <link rel="stylesheet" type="text/css" href="./css/mobile_a/fonts.css" />
-        <link rel="stylesheet" type="text/css" href="./css/mobile_a/base.css" />
-        <link rel="stylesheet" type="text/css" href="./css/mobile_a/icons.css" />
-        <link rel="stylesheet" type="text/css" href="./css/mobile_a/layout.css" />
-        <link rel="stylesheet" type="text/css" href="./css/mobile_a/colorStyle.css" />
+    <title>스마트오피스 예약시스템</title>
 
-        <!-- jquery mobile alert -->
-        <link rel="stylesheet" href="./css/mobile_a/jquery.modal.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/base.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/icons.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/layout.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/colorStyle.css" />
 
-        <script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
-    </head>
+    <!-- jquery mobile alert -->
+    <link rel="stylesheet" href="./css/mobile_a/jquery.modal.css" />
 
-    <body>
-        <form>
-            <!-- wrap -->
-            <div id="wrap">
-                <header>
-                    <div class="gnb">
-                        <div class="left">
-                            <a href="javascript:history.back()"><i class="ico angle-left"></i></a>
-                            <a href="/mbl/home.do"><i class="ico home"></i></a>
-                        </div>
-                        <h1>회의실예약</h1><!-- 회의실 예약 -->
-                        <div class="right"> <a href="#" class="total_nav btn-layer"><i class="ico menu">메뉴</i></a></div>
+    <script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+    <form>
+        <!-- wrap -->
+        <div id="wrap">
+            <header>
+                <div class="gnb">
+                    <div class="left">
+                        <a href="javascript:history.back()"><i class="ico angle-left"></i></a>
+                        <a href="./menu_versions.html"><i class="ico home"></i></a>
                     </div>
-                </header>
-                <hr>
-                <!-- contents -->
-                <div id="contents">
-                    <section>
-                        <div class="footerBtn">
-                            <ul class="btnArea">
-                                <li> <a href="javascript:;" class="btn medium pri">예약하기<!-- 예약하기 --></a> </li>
-                            </ul>
-                        </div>
-                    </section>
+                    <h1>회의실예약</h1><!-- 회의실 예약 -->
+                    <div class="right"> <a href="#" class="total_nav btn-layer"><i class="ico menu">메뉴</i></a></div>
                 </div>
-
-            </div>
-            <!-- //wrap -->
-        </form>
-
-        <div id="modal-window">
-            <div class="modal-box modal-size-normal">
-                <div class="modal-inner">
-                    <p class="modal-title">알림</p>
-                    <div class="modal-pop">
-                        <p class="modal-text">등록하시겠습니까?</p>
-                        <div class="hr"></div>
-                        <ul class="modal-buttons">
-                            <a class="modal-btn btn medium sec btn-layerClose">취소</a>
-                            <a class="modal-btn btn medium pri btn-layerClose">확인</a>
+            </header>
+            <hr>
+            <!-- contents -->
+            <div id="contents">
+                <section>
+                    <div class="footerBtn">
+                        <ul class="btnArea">
+                            <li> <a href="javascript:;" class="btn medium pri">예약하기<!-- 예약하기 --></a> </li>
                         </ul>
                     </div>
+                </section>
+            </div>
+
+        </div>
+        <!-- //wrap -->
+    </form>
+
+    <div id="modal-window">
+        <div class="modal-box modal-size-normal">
+            <div class="modal-inner">
+                <p class="modal-title">알림</p>
+                <div class="modal-pop">
+                    <p class="modal-text">등록하시겠습니까?</p>
+                    <div class="hr"></div>
+                    <ul class="modal-buttons">
+                        <a class="modal-btn btn medium sec btn-layerClose">취소</a>
+                        <a class="modal-btn btn medium pri btn-layerClose">확인</a>
+                    </ul>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script>
-            $(function () {
-                openModal();
-                closeModal();
+    <script>
+        $(function () {
+            openModal();
+            closeModal();
+        });
+
+        $('#modal-window').hide();
+
+        function openModal() {
+            var btn = $('.footerBtn .btn');
+
+            btn.on('click', function () {
+                $('#modal-window').fadeIn(200);
             });
+        };
 
-            $('#modal-window').hide();
+        function closeModal() {
+            var btn = $('.modal-btn.btn-layerClose');
 
-            function openModal() {
-                var btn = $('.footerBtn .btn');
-
-                btn.on('click', function () {
-                    $('#modal-window').fadeIn(200);
-                });
-            };
-
-            function closeModal() {
-                var btn = $('.modal-btn.btn-layerClose');
-
-                btn.on('click', function () {
-                    $('#modal-window').fadeOut(200)
-                });
-            };
-        </script>
-    </body>
+            btn.on('click', function () {
+                $('#modal-window').fadeOut(200)
+            });
+        };
+    </script>
+</body>
 
 </html>
