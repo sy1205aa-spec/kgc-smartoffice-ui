@@ -1,4 +1,14 @@
 @charset "utf-8";
+/* ── 스크롤바 숨김 (스크롤 동작은 유지) ── */
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 html, body { font-family: 'Pretendard-Medium', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', '돋움', 'dotum', sans-serif; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; -webkit-text-size-adjust: antialiased; -moz-osx-font-smoothing: grayscale; position: relative; height: 100%; min-height: 100%; }
 body { height: calc(var(--vh, 1vh) * 100); min-height: 100vh; margin: 0; padding: 0; font-weight: normal; overflow-x: hidden; position: relative; background-color: #fff; word-wrap: break-word; word-break: break-all; -webkit-user-select: none; -webkit-text-size-adjust: none; color: #232B33; }
