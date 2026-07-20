@@ -1,5 +1,5 @@
 @charset "utf-8";
-/* ── 스크롤바 숨김 (스크롤 동작은 유지) ── */
+/* ── 스크롤바 숨김 (스크롤 동작은 유지)  ── */
 * {
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
