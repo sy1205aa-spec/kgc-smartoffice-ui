@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face { font-family: 'Pretendard-Bold'; font-style: normal; font-weight: normal; src: local(☺), url(../../fonts/Pretendard-Bold.woff) format('woff'); }
+@font-face { font-family: 'Pretendard-Medium'; font-style: normal; font-weight: normal; src: local(☺), url(../../fonts/Pretendard-Medium.woff) format('woff'); }
+@font-face { font-family: 'Pretendard-Light'; font-style: normal; font-weight: normal; src: local(☺), url(../../fonts/Pretendard-Light.woff) format('woff'); }
+/*폰트적용*/
+.loginBox fieldset > div.title { font-family: 'Pretendard-Bold' }
+.top_select h1 strong { font-family: 'Pretendard-Bold' }
+.select_con .con > .date { }
+.select_con .con strong { font-family: 'Pretendard-Bold' }
+.mInfor_sect .mInfor_con .time { font-family: 'Pretendard-Bold' }
+.mInfor_sect .mInfor_con .tag .light { font-family: 'Pretendard-Bold' }
+.mInfor_sect .mInfor_con .time { font-family: 'Pretendard-Bold' }
+.mInfor_sect .mInfor_con .title { font-family: 'Pretendard-Bold' }
+.mInfor_con.noData strong em { font-family: 'Pretendard-Bold' }
+.title-area .date { font-family: 'Pretendard-Bold' }
+.title-area .week { font-family: 'Pretendard-Bold' }
+header nav .navCon > ul li dl dt span { font-family: 'Pretendard-Bold' }
+.alarmBox > .form > dl dt { font-family: 'Pretendard-Bold' }
+.flick_wrap dl.thisDay_Reserv > dt > span { font-family: 'Pretendard-Bold' }
+.flick_wrap dl.thisDay_Reserv > dt > span > em { font-family: 'Pretendard-Medium' }
+.flick_wrap .thisDay { font-family: 'Pretendard-Bold' }
+.flick_wrap dl.dayInfo > dt > span { font-family: 'Pretendard-Bold' }
+.flick_wrap dl.dayInfo.comm > dd dl dd em { font-family: 'Pretendard-Light' }
+header nav .navCon > ul li dl dt span.ver { font-family: 'Pretendard-Medium' }
+header nav .navCon > ul > li .doc > span { font-family: 'Pretendard-Medium' }
+.cal-input.noback input { font-family: 'Pretendard-Bold' }
+.comm-Area ul.board-list li button > div.title span > strong { font-family: 'Pretendard-Bold' }
+.section.food .food-menu > ul li > p > em > strong { font-family: 'Pretendard-Medium' }
+section.main h4 { font-family: 'Pretendard-Bold' }
+.noData p:nth-of-type(1) { font-family: 'Pretendard-Bold' }
+.seat-info .seatData p span { font-family: 'Pretendard-Bold' }
+.meet-data-head>p>em { font-family: 'Pretendard-Medium' }
+.meet-data-head>.meet-state { font-family: 'Pretendard-Medium' }
+.meet-data p em:first-child { font-family: 'Pretendard-Bold' }
+.meet-data div { font-family: 'Pretendard-Bold' }
+.timetableBody .reserv_list .reserv .reserv_cont .title { font-family: 'Pretendard-Bold' }
+.position_abs > a { font-family: 'Pretendard-Bold' }
+.map_box div.room { font-family: 'Pretendard-Bold' }

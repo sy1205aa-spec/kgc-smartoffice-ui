@@ -1,0 +1,331 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+        <title>스마트오피스 예약시스템</title>
+
+        <link rel="stylesheet" type="text/css" href="./css/mobile_a/fonts.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/mobile_a/base.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/mobile_a/icons.css"/> 
+        <link rel="stylesheet" type="text/css" href="./css/mobile_a/layout.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/mobile_a/common.css" />
+        <link rel="stylesheet" type="text/css" href="./css/mobile_a/contents.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/mobile_a/styleLayout.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/mobile_a/colorStyle.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/xeicon/xeicon.min.css"/> 
+
+        <script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
+    </head>
+    <body>
+        <form>
+            <!-- wrap --> 
+            <div id="wrap">
+                <header>
+                    <div class="gnb">
+                        <div class="left">
+                            <a href="javascript:history.back()"><i class="ico angle-left"></i></a>
+                            <a href="/mbl/home.do"><i class="ico home"></i></a>
+                        </div>
+                        <h1>회의실예약</h1><!-- 회의실 예약 -->
+                        <div class="right"> <a href="#" class="total_nav btn-layer"><i class="ico menu">메뉴</i></a></div>
+                    </div>
+                </header>
+                <hr>
+                <!-- contents -->
+                <div id="contents">
+                    <section>
+                        <article class="section table_list">
+                            <div class="row" id="reptitYn">
+                                <div class="col col-3 title">반복설정<!-- 반복설정 --></div>
+                                <div class="col col-9 cont"> <a onclick="javascript:;" class="btn small sec-weak btn-repeat btn-layer js-click-modal"><i class="ico cal"></i><!-- 반복설정 -->반복설정</a>
+                                </div>
+                            </div>
+                        </article>
+                    </section>
+                </div>
+
+                <!-- 모달창 -->  
+                <div class="modal seat">
+                    <div class="bg js-close-modal btn-layerClose"> 
+                    <!-- Don't put here any content --></div>
+                
+                    <!-- 반복예약  -->
+                    <div id="mw_reptit" class="popupSeat-box repeat-area">
+                        <p class="popTitle">
+                            <span>반복설정<!-- 반복설정 --> </span>
+                            <a onclick="javascript:;" class="btn-close js-close-modal btn-layerClose" title="닫기"><i class="xi-close"></i></a>
+                        </p>
+                        <section class="popup-commonInfor"> 
+                        <!-- -->
+                        <div class="user-addArea">
+                            <div class="table_list viewpage">
+                            <div class="row">
+                                <div class="col col-3 title">빈도<!-- 빈도 --></div>
+                                <div class="col col-4 cont">
+                                <select id="reptitTy" name="reptitTy" class="select select02">
+                                    <option value="D" selected="selected">매일<!-- 매일 --></option>
+                                    <option value="W">매주<!-- 매주 --></option>
+                                    <option value="M">매월<!-- 매월 --></option>
+                                </select>
+                                </div>
+                                <div class="col col-5 cont">
+                                <input type="text" id="reptitCycle" name="reptitCycle" value="1" title="일" style="width:60px; position:relative;" />
+                                <span id="dayCycle">일마다<!-- 일마다 --></span><span id="weekCycle" style="display:none">주마다<!-- 주마다 --></span><span id="monthCycle" style="display:none">개월마다<!-- 개월마다 --></span></div>
+                                <div class="col col-12 cont" id="reptitTyWeek" style="display:none">
+                                <p class="pop_roll sentence">
+                                    <input id="weekDay1" name="weekDay1" value="1" type="checkbox" />
+                                    <label for="weekDay1">일 </label>
+                                    <input id="weekDay2" name="weekDay2" value="2" type="checkbox" />
+                                    <label for="weekDay2">월 </label>
+                                    <input id="weekDay3" name="weekDay3" value="3" type="checkbox" />
+                                    <label for="weekDay3">화 </label>
+                                    <input id="weekDay4" name="weekDay4" value="4" type="checkbox" />
+                                    <label for="weekDay4">수 </label>
+                                    <input id="weekDay5" name="weekDay5" value="5" type="checkbox" />
+                                    <label for="weekDay5">목 </label>
+                                    <input id="weekDay6" name="weekDay6" value="6" type="checkbox" />
+                                    <label for="weekDay6">금 </label>
+                                    <input id="weekDay7" name="weekDay7" value="7" type="checkbox" />
+                                    <label for="weekDay7">토 </label>
+                                </p>
+                                </div>
+                                <div class="col col-12 cont" id="reptitTyMonth" style="display:none">
+                                <p class="pop_roll">
+                                    <input id="ra_01" name="monthTy" type="radio" value="D" checked="checked" />
+                                    <input type="hidden" id="monthDay" name="monthDay" value="" />
+                                    <label id="monthDayView" for="ra_01">X일</label>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <input id="ra_02" name="monthTy" type="radio" value="W" />
+                                    <input type="hidden" id="monthWeek" name="monthWeek" value="" />
+                                    <input type="hidden" id="monthWeekDay" name="monthWeekDay" value="" />
+                                    <label id="monthWeekDayView" for="ra_02">X번째 X요일</label>
+                                </p>
+                                </div>
+                            </div>
+                            <div class="hr"></div>
+                            <div class="row">
+                                <div class="col col-3 title">시작일<!-- 시작일 --></div>
+                                <div class="col col-8">
+                                    <span class="cal-input">
+                                        <input type="text" name="reptitBeginDe" id="reptitBeginDe" class="cal hasDatepicker" value="2026.07.07" readonly="readonly">
+                                        <img class="ui-datepicker-trigger" src="./images/mobile_a/ico/ico_cal.svg" alt="달력" title="달력">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="hr"></div>
+                            <div class="row">
+                            <div class="col col-3 title">종료일<!-- 종료일 --></div>
+                                <div class="col col-8">
+                                    <span class="cal-input">
+                                        <input type="text" name="reptitBeginDe" id="reptitBeginDe" class="cal hasDatepicker" value="2026.07.07" readonly="readonly">
+                                        <img class="ui-datepicker-trigger" src="./images/mobile_a/ico/ico_cal.svg" alt="달력" title="달력">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="hr"></div>
+                            <div class="row">
+                                <div class="col col-3 title">시간<!-- 시간 --></div>
+                                <div class="col col-4">
+                                <select id="resveBeginTime" name="resveBeginTime" title="예약시작시간" class="select select02" >
+                                    
+                                    <option value="0600" >06:00</option>
+                                    
+                                    <option value="0630" >06:30</option>
+                                    
+                                    <option value="0700" >07:00</option>
+                                    
+                                    <option value="0730" >07:30</option>
+                                    
+                                    <option value="0800" >08:00</option>
+                                    
+                                    <option value="0830" >08:30</option>
+                                    
+                                    <option value="0900" >09:00</option>
+                                    
+                                    <option value="0930" >09:30</option>
+                                    
+                                    <option value="1000"  selected="selected" >10:00</option>
+                                    
+                                    <option value="1030" >10:30</option>
+                                    
+                                    <option value="1100" >11:00</option>
+                                    
+                                    <option value="1130" >11:30</option>
+                                    
+                                    <option value="1200" >12:00</option>
+                                    
+                                    <option value="1230" >12:30</option>
+                                    
+                                    <option value="1300" >13:00</option>
+                                    
+                                    <option value="1330" >13:30</option>
+                                    
+                                    <option value="1400" >14:00</option>
+                                    
+                                    <option value="1430" >14:30</option>
+                                    
+                                    <option value="1500" >15:00</option>
+                                    
+                                    <option value="1530" >15:30</option>
+                                    
+                                    <option value="1600" >16:00</option>
+                                    
+                                    <option value="1630" >16:30</option>
+                                    
+                                    <option value="1700" >17:00</option>
+                                    
+                                    <option value="1730" >17:30</option>
+                                    
+                                    <option value="1800" >18:00</option>
+                                    
+                                    <option value="1830" >18:30</option>
+                                    
+                                    <option value="1900" >19:00</option>
+                                    
+                                    <option value="1930" >19:30</option>
+                                    
+                                    <option value="2000" >20:00</option>
+                                    
+                                    <option value="2030" >20:30</option>
+                                    
+                                    <option value="2100" >21:00</option>
+                                    
+                                    <option value="2130" >21:30</option>
+                                    
+                                    <option value="2200" >22:00</option>
+                                    
+                                    <option value="2230" >22:30</option>
+                                            
+                                </select>
+                                </div>
+                                <div class="col col-4">
+                                <select id="resveEndTime" name="resveEndTime" title="예약종료시간" class="select select02">
+                                    
+                                    <option value="0630" >06:30</option>
+                                    
+                                    <option value="0700" >07:00</option>
+                                    
+                                    <option value="0730" >07:30</option>
+                                    
+                                    <option value="0800" >08:00</option>
+                                    
+                                    <option value="0830" >08:30</option>
+                                    
+                                    <option value="0900" >09:00</option>
+                                    
+                                    <option value="0930" >09:30</option>
+                                    
+                                    <option value="1000" >10:00</option>
+                                    
+                                    <option value="1030"  selected="selected" >10:30</option>
+                                    
+                                    <option value="1100" >11:00</option>
+                                    
+                                    <option value="1130" >11:30</option>
+                                    
+                                    <option value="1200" >12:00</option>
+                                    
+                                    <option value="1230" >12:30</option>
+                                    
+                                    <option value="1300" >13:00</option>
+                                    
+                                    <option value="1330" >13:30</option>
+                                    
+                                    <option value="1400" >14:00</option>
+                                    
+                                    <option value="1430" >14:30</option>
+                                    
+                                    <option value="1500" >15:00</option>
+                                    
+                                    <option value="1530" >15:30</option>
+                                    
+                                    <option value="1600" >16:00</option>
+                                    
+                                    <option value="1630" >16:30</option>
+                                    
+                                    <option value="1700" >17:00</option>
+                                    
+                                    <option value="1730" >17:30</option>
+                                    
+                                    <option value="1800" >18:00</option>
+                                    
+                                    <option value="1830" >18:30</option>
+                                    
+                                    <option value="1900" >19:00</option>
+                                    
+                                    <option value="1930" >19:30</option>
+                                    
+                                    <option value="2000" >20:00</option>
+                                    
+                                    <option value="2030" >20:30</option>
+                                    
+                                    <option value="2100" >21:00</option>
+                                    
+                                    <option value="2130" >21:30</option>
+                                    
+                                    <option value="2200" >22:00</option>
+                                    
+                                    <option value="2230" >22:30</option>
+                                    
+                                    <option value="2300" >23:00</option>
+                                            
+                                </select>
+                                </div>
+                            </div>
+                            <div class="hr"></div>
+                            <div class="row">
+                                <div class="col col-12">
+                                    <p class="preview" id="preview"><strong>2026.07.07</strong> 부터&nbsp;&nbsp;<strong>2026.07.07</strong> 까지
+                                        [1일마다]<br>10:00 - 10:30 (0시간 30분)</p>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="margin10"></div>
+                            <ul class="btnArea">
+                            <li class="">
+                                <div class="btn medium sec btn-layerClose"><span>닫기<!-- 닫기 --></span></div>
+                            </li>
+                            <li class="">
+                                <div class="btn medium pri btn-layerClose"><span>확인<!-- 확인 --></span></div>
+                            </li>
+                            </ul>
+                        </div>
+                        </section>
+                    </div>
+                    <!-- 반복예약 팝업 -->
+                </div> 
+                <!-- //modal seat -->  
+            </div>  
+            <!-- //wrap -->
+        </form>
+
+        <script>
+            $(function () {
+                layerPopup();
+                layerClose();
+            });
+
+            function layerPopup() {
+                var btn = $('.js-click-modal');
+
+                btn.on('click', function () {
+                    $('#wrap').addClass('modal-open');
+
+                    if(btn.hasClass('btn-repeat')) {
+                        $('.repeat-area').addClass('on');
+                    }
+                });
+            };
+
+            function layerClose() {
+                var btn = $('.modal .btn-layerClose');
+
+                btn.on('click', function () {
+                    $('#wrap').removeClass('modal-open');
+                    $(this).closest('.modal > .popupSeat-box').removeClass('on');
+                });
+            }
+        </script>
+    </body>
+</html>

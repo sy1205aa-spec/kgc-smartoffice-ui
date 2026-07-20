@@ -1,0 +1,340 @@
+<html lang="ko">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <title>스마트오피스 예약시스템</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/base.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/icons.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/common.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/layout.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/styleLayout.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/colorStyle.css" />
+
+    <!-- jquery mobile alert -->
+    <link rel="stylesheet" href="./css/mobile_a/jquery.modal.css" />
+    
+    <script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+
+    <!-- wrap -->
+    <div id="wrap">
+        <header>
+            <div class="gnb">
+                <div class="left"><a href="javascript:;"><i class="ico angle-left"></i></a><a href="/mbl/home.do"><i class="ico home"></i></a></div>
+                <h1>셔틀 탑승 신청<!-- 셔틀 탑승 신청 --></h1>
+                <div class="right"> <a href="#" class="total_nav btn-layer"><i class="ico menu">메뉴</i></a></div>
+            </div>
+        </header>
+        <hr>
+
+        <!-- contents -->
+        <div id="contents">
+            <!-- content -->
+            <article class="section table_list parking">
+                <div class="panel_tab">
+                    <div class="row">
+                        <div class="col col-3 title">예약일<!-- 예약일 --></div>
+                        <div class="col col-9">
+                            <input type="text" id="booking-date" value="2026.07.12" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-3 title">구분<!-- 구분 --><i class="point"></i></div>
+                        <div class="col col-9">
+                            <select id="type-select" class="select select02" onchange="updateBusStatus()">
+                                <option value="work">출근</option>
+                                <option value="home">퇴근</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-3 title">차량 선택<!-- 차량 선택 --><i class="point"></i></div>
+                        <div class="col col-9">
+                            <select id="bus-select" class="select select02" onchange="updateBusStatus()">
+                                <option value="bus1">1호차</option>
+                                <option value="bus2" selected>2호차</option>
+                                <option value="bus3">3호차</option>
+                                <option value="bus4">4호차</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-3 title">예약 신청 현황<!-- 예약 신청 현황 --></div>
+                        <div class="col col-9">
+                            <div class="seat_num_area">
+                                <span class="seat_num"><strong id="current-seats">12</strong> / <span id="total-seats">40</span>석</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-12">
+                            <a href="javascript:;" class="btn medium pri" onclick="requestReservation()">예약 신청하기</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reserv_list_area" id="res-list-section">
+                    <div class="sub_title_area">
+                        <div class="left">
+                            <h2 class="sub_title">나의 예약 내역</h2>
+                        </div>
+                        <div class="right"></div>
+                    </div>
+
+                    <ul class="reserv_list" id="reservation-cards-container">
+                        <!-- 동적으로 추가되는 예약 내역 카드 영역 -->
+                    </ul>
+                </div>
+
+                <div class="comment">
+                    <p class="title">이용 안내 및 주의 사항</p>
+                    <ul class="desc_list">
+                        <li>셔틀버스 예약은 탑승 하루 전에만 신청이 가능합니다.</li>
+                        <li>각 차량별 정원을 초과할 경우 예약이 제한되므로, 잔여 좌석을 사전에 꼭 확인해 주세요.</li>
+                        <li>예약 취소는 탑승 전까지 모바일 앱에서 자유롭게 가능합니다.</li>
+                    </ul>
+                </div>
+
+                <div class="margin30">&nbsp;</div>
+
+            </article>
+
+
+        </div>
+        <!-- //contents -->
+    </div>
+    <!-- //wrap -->
+
+    <div id="modal-window" style="display: none;">
+        <div class="modal-box modal-size-normal">
+            <div class="modal-inner">
+                <p class="modal-title" id="modal-title">안내</p>
+                <div class="modal-pop">
+                    <p class="modal-text" id="modal-message">이미 <strong>2026.07.12</strong>에 예약된 버스 <strong>출근</strong> 탑승 내역이 있습니다.</p>
+                    <div class="hr"></div>
+                    <ul class="modal-buttons">
+                        <a class="modal-btn btn medium sec" id="btn-cancel-modal" onclick="closeCustomModal()">취소</a>
+                        <a class="modal-btn btn medium pri" id="btn-confirm-modal">확인</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2026-07-16 수정: 셔틀 예약 시뮬레이터 JavaScript 추가 -->
+    <script>
+        const busData = {
+            work: {
+                bus1: { current: 27, total: 40, name: "1호차" },
+                bus2: { current: 12, total: 40, name: "2호차" },
+                bus3: { current: 40, total: 40, name: "3호차" },
+                bus4: { current: 5, total: 40, name: "4호차" }
+            },
+            home: {
+                bus1: { current: 15, total: 40, name: "1호차" },
+                bus2: { current: 30, total: 40, name: "2호차" },
+                bus3: { current: 22, total: 40, name: "3호차" },
+                bus4: { current: 40, total: 40, name: "4호차" }
+            }
+        };
+
+        // 내 예약 상태
+        let myReservations = {
+            work: null,
+            home: null
+        };
+
+        let tomorrowStrGlobal = "";
+        let tomorrowDayOfWeekGlobal = "";
+
+        $(function () {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(today.getDate() + 1);
+
+            const yyyy = tomorrow.getFullYear();
+            const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+            const dd = String(tomorrow.getDate()).padStart(2, '0');
+
+            tomorrowStrGlobal = `${yyyy}.${mm}.${dd}`;
+            $('#booking-date').val(tomorrowStrGlobal);
+
+            const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
+            tomorrowDayOfWeekGlobal = weekDays[tomorrow.getDay()];
+
+            // 퍼블리셔 가이드 시안처럼 디폴트 예약 내역 2건을 내일 날짜 기준으로 주입
+            myReservations.work = {
+                busKey: 'bus2',
+                date: tomorrowStrGlobal,
+                busName: '2호차'
+            };
+            myReservations.home = {
+                busKey: 'bus2',
+                date: tomorrowStrGlobal,
+                busName: '2호차'
+            };
+
+            updateBusStatus();
+            renderReservations();
+        });
+
+        function updateBusStatus() {
+            const typeKey = $('#type-select').val();
+            const busKey = $('#bus-select').val();
+            const bus = busData[typeKey][busKey];
+
+            let currentSeats = bus.current;
+
+            $('#current-seats').text(currentSeats);
+            $('#total-seats').text(bus.total);
+        }
+
+        function showCustomModal(title, message, isConfirm, onConfirm) {
+            $('#modal-title').text(title);
+            $('#modal-message').html(message);
+
+            const buttonsContainer = $('.modal-buttons');
+            buttonsContainer.empty();
+
+            if (isConfirm) {
+                buttonsContainer.append('<a class="modal-btn btn medium sec" id="btn-cancel-modal" onclick="closeCustomModal()">취소</a>');
+                const confirmBtn = $('<a class="modal-btn btn medium pri" id="btn-confirm-modal">확인</a>');
+                confirmBtn.on('click', function () {
+                    closeCustomModal();
+                    if (onConfirm) onConfirm();
+                });
+                buttonsContainer.append(confirmBtn);
+            } else {
+                const confirmBtn = $('<a class="modal-btn btn medium pri" id="btn-confirm-modal">확인</a>');
+                confirmBtn.on('click', function () {
+                    closeCustomModal();
+                    if (onConfirm) onConfirm();
+                });
+                buttonsContainer.append(confirmBtn);
+            }
+            $('#modal-window').fadeIn(200);
+        }
+
+        function closeCustomModal() {
+            $('#modal-window').fadeOut(200);
+        }
+
+        function renderReservations() {
+            const container = $('#reservation-cards-container');
+            container.empty();
+
+            let hasReservations = false;
+
+            if (myReservations.work) {
+                hasReservations = true;
+                const card = `
+                    <li>
+                        <div class="left">
+                            <div class="date_commute_area">
+                                <span class="date">${myReservations.work.date}(${tomorrowDayOfWeekGlobal})</span>
+                                <span class="commute work">출근</span>
+                            </div>
+                            <div class="status_car_area">
+                                <span class="status">확정</span>
+                                <span class="car">${myReservations.work.busName}</span>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <button type="button" class="btn_cancel" onclick="requestCancel('work')">예약취소</button>
+                        </div>
+                    </li>
+                `;
+                container.append(card);
+            }
+
+            if (myReservations.home) {
+                hasReservations = true;
+                const card = `
+                    <li>
+                        <div class="left">
+                            <div class="date_commute_area">
+                                <span class="date">${myReservations.home.date}(${tomorrowDayOfWeekGlobal})</span>
+                                <span class="commute leave">퇴근</span>
+                            </div>
+                            <div class="status_car_area">
+                                <span class="status">확정</span>
+                                <span class="car">${myReservations.home.busName}</span>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <button type="button" class="btn_cancel" onclick="requestCancel('home')">예약취소</button>
+                        </div>
+                    </li>
+                `;
+                container.append(card);
+            }
+
+            if (hasReservations) {
+                $('#res-list-section').show();
+            } else {
+                $('#res-list-section').hide();
+            }
+        }
+
+        function requestReservation() {
+            const typeKey = $('#type-select').val();
+            const busKey = $('#bus-select').val();
+            const bus = busData[typeKey][busKey];
+            const dateStr = $('#booking-date').val();
+            const typeName = typeKey === 'work' ? '출근' : '퇴근';
+
+            if (myReservations[typeKey]) {
+                showCustomModal("안내", `이미 <strong>${myReservations[typeKey].date}</strong>에 예약된 버스 <strong>${typeName}</strong> 탑승 내역이 있습니다.`, false);
+                return;
+            }
+
+            if (bus.current >= bus.total) {
+                showCustomModal("예약 불가", "선택하신 차량의 정원이 다 찼습니다.", false);
+                return;
+            }
+
+            showCustomModal("예약 확인", `선택하신 <strong>${bus.name}</strong> 차량으로 <strong>${typeName}</strong> 예약을 진행하시겠습니까?`, true, function () {
+                bus.current += 1;
+                myReservations[typeKey] = {
+                    busKey: busKey,
+                    date: dateStr,
+                    busName: bus.name
+                };
+
+                renderReservations();
+                updateBusStatus();
+
+                setTimeout(() => {
+                    showCustomModal("예약 성공", `${typeName} 예약이 완료되었습니다.`, false);
+                }, 300);
+            });
+        }
+
+        function requestCancel(typeKey) {
+            const reservation = myReservations[typeKey];
+            if (!reservation) return;
+
+            const reservedBus = busData[typeKey][reservation.busKey];
+            const typeName = typeKey === 'work' ? '출근' : '퇴근';
+
+            showCustomModal("예약 취소", `${typeName} 탑승 예약을 취소하시겠습니까?`, true, function () {
+                reservedBus.current = Math.max(0, reservedBus.current - 1);
+                myReservations[typeKey] = null;
+
+                renderReservations();
+                updateBusStatus();
+
+                setTimeout(() => {
+                    showCustomModal("취소 완료", `${typeName} 예약이 취소되었습니다.`, false);
+                }, 300);
+            });
+        }
+    </script>
+</body>
+
+</html>

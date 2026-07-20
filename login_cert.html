@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+        <title>스마트오피스 예약시스템</title>
+
+        <link rel="stylesheet" type="text/css" href="./css/mobile_a/fonts.css" />
+        <link rel="stylesheet" type="text/css" href="./css/mobile_a/base.css" />
+        <link rel="stylesheet" type="text/css" href="./css/mobile_a/common.css" />
+        <link rel="stylesheet" type="text/css" href="./css/mobile_a/layout.css" />
+        <link rel="stylesheet" type="text/css" href="./css/mobile_a/colorStyle.css" />
+        <link rel="stylesheet" type="text/css" href="./css/mobile_a/styleLayout.css" />
+    </head>
+
+    <body>
+        <form>
+            <!-- wrap -->
+            <div id="wrap">
+                <!-- contents -->
+                <section id="contents">
+                    <div>
+                        <!--  -->
+                        <section class="loginArea">
+                            <div class="loginBox">
+                                <fieldset>
+                                    <div class="title"> <img src="./images/mobile_a/common/logo.svg" alt="로고" />
+                                        <p class="title">스마트오피스 예약시스템</p>
+                                    </div>
+                                    <legend class="blind">로그인 영역</legend>
+                                    <p>
+                                        <input type="text" name="id" id="id" class="medium" placeholder="아이디를 입력하세요. (kgc + 사번)" autocapitalize="off" />
+                                    </p>
+                                    <p>
+                                        <input type="password" name="password" id="password" class="medium" placeholder="비밀번호를 입력하세요." />
+                                    </p>
+                                    <p class="id_save">
+                                        <input type="checkbox" id="autoLogin" name="autoLogin" />
+                                        <label for="autoLogin" id="autoLoginLabel">자동 로그인</label>
+                                        <input type="checkbox" id="checkId" name="checkId" />
+                                        <label for="checkId">아이디저장<!-- 아이디 저장 --></label>
+                                    </p>
+                                </fieldset>
+                                <div class="login_btn">
+                                    <a href="javascript:;" id="loginBtn" class="btn pri btn_f" disabled>로그인<!-- 로그인 --></a>
+                                </div>
+                                <article id="auth_view">
+                                    <ul class="auth">
+                                        <li>
+                                            <input type="text" class="medium" placeholder="인증번호 입력">
+                                            <a href="javascript:;" class="btn medium pri"><span>인증키 재발송</span></a>
+                                        </li>
+                                        <li><a href="javascript:;" class="btn medium pri"><span>인증</span></a> </li>
+                                    </ul>
+                                    <!--             <p class="comment"> <em class="non-match">인증번호를 다시 확인해 주세요.</em> </p> -->
+                                    <p class="comment check-time">남은시간 : <em class="non-match" id="remainTime">02:39</em>초</p>
+                                </article>
+                                <div class="login_btn">
+                                    <a href="javascript:;" class="btn btn_f bio"><span>생체인증으로 로그인</span><!-- 생체인증으로 로그인 --></a>
+                                </div>
+                                <div class="descArea">
+                                    <p class="desc">다음 로그인부터 지문으로<br>더 빠르게 접속할 수 있어요.</p>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- // -->
+                    </div>
+                </section>
+                <!-- //contents -->
+            </div>
+            <!-- //wrap -->
+        </form>
+
+    </body>
+
+</html>

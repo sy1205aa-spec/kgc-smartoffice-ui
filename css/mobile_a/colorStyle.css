@@ -1,0 +1,215 @@
+@charset "utf-8";
+/* 네이밍 : 형태-의미-순서-상태 */
+:root { --primary-default-color: #D71635;
+--primary-hover-color: #c21532;
+--primary-pressed-color: #c01733;
+--primary-disable-color: #f9f9f9;
+/*2뎁스컬러*/
+--second-default-color: #fff;
+--second-hover-color: #F6F7F8;
+--second-pressed-color: #E9ECEE;
+/*3뎁스컬러- 포인트컬러*/
+--infor-default-color: #232B33;
+--infor-hover-color: #000;
+--infor-pressed-color: #000;
+--accent-default-color: #46C5FC;
+--accent-hover-color: #339BD8;
+--accent-pressed-color: #2375B5;
+--warning-default-color: #E4514E;
+--warning-hover-color: #D14140;
+--warning-pressed-color: #B93433;
+--success-default-color: #0CB66E;
+--success-hover-color: #00A469;
+--success-pressed-color: #00905C;
+--secWeak-default-color: #F6F7F8;
+--secWeak-hover-color: #E9ECEE;
+--secWeak-pressed-color: #E0E0E0;
+--accWeak-default-color: #EFF5FF;
+--accWeak-hover-color: #D2E4FF;
+--accWeak-pressed-color: #B6D3FF;
+--warWeak-default-color: #FDF3F2;
+--warWeak-hover-color: #FBE6E6;
+--warWeak-pressed-color: #F7CBCA;
+--secGhost-default-color: transparent;
+--secGhost-hover-color: #f6f7f8;
+--secGhost-pressed-color: #e9ecee;
+--accGhost-default-color: transparent;
+--accGhost-hover-color: #EFF5FF;
+--accGhost-pressed-color: #D2E4FF;
+--warGhost-default-color: transparent;
+--warGhost-hover-color: #FDF3F2;
+--warGhost-pressed-color: #FBE6E6;
+--greyscale-black-color: #232B33;
+--greyscale-neutral-color: #000;
+--greyscale-white-color: #fff;
+--greyscale-dimm-color: #f9f9f9;
+--text-white01-color: #fff;
+--text-black01-color: #232B33;
+--text-black02-color: #5E6977;
+--text-black03-color: #9199A3;
+--text-light01-color: #A2A5AD;
+--text-light02-color: #BDBFC7;
+--text-accent01-color: #6d3eff;
+--text-warning01-color: #E4514E;
+--input-def-border-color: #E4E7EB;
+--input-hover-border-color: #E4E7EB;
+--input-active-border-color: #E4E7EB;
+--input-focus-border-color: #E4E7EB;
+--input-solid-color: #F6F7F8;
+--input-solid-txt-color: #5E6977;
+--input-def-txt-color: #fff;
+--input-success-border-color: #0CB66E;
+--input-error-border-color: #E4514E;
+--input-bg-color: #fff;
+--input-dis-bg-color: #F9F9F9;
+--line-bg01-color:#E4E7EB;
+--line-bg02-color:#F0F1F2;
+--line-bg03-color:#F3F5F6;
+--primary-bg01-color: #FDC52E;
+--greyscale-bg01-color:#FAFBFC;
+--greyscale-bg02-color:rgba(33,57,82,.04);
+--greyscale-bg03-color:rgba(33,57,82,.1);
+--ui-bg01-color: #DFE1E6;
+--ui-bg02-color: #D3D6DD;
+--ui-bg03-color: #B0B6C3;
+--ui-bg04-color: #9DA2AD;
+--ui-bg05-color: #5E6977;
+}
+:root {  --safe-top: env(safe-area-inset-top);
+ --safe-bottom: env(safe-area-inset-bottom);
+}
+/*
+:root {  --bg-color: #fff;
+--text-color: #343434;
+--input-color: #333;
+--input-bgColor: #fff;
+--input-border: #e8e8e8;
+}
+:root.light {  --bg-color: #fff;
+--text-color: #343434;
+--input-color: #333;
+--input-bgColor: #fff;
+--input-border: #e8e8e8;
+}
+:root.dark {  --bg-color: #121212;
+--text-color: #fff;
+--input-color: #fff;
+--input-bgColor: #444;
+--input-border: #666;
+}
+@media (prefers-color-scheme: dark) {
+:root {  --bg-color: #121212;
+--text-color: #fff;
+--input-color: #fff;
+--input-bgColor: #444;
+--input-border: #666;
+}
+}
+*/
+
+header .gnb > a { color: #333 }
+header .gnb > a i { color: #333 }
+header .right a i { color: #333 }
+/*header .right a i.xi-close { color: #d15454 }*/
+header .gnb > a.exit i { color: #d15454 }
+header .right > a.exit i { color: #d15454 }
+.rs-left { background: #fbf7f8; color: #333 }
+.rs-main { background: #f0f2f5 }
+.rs-right { background: #f0f2f5 }
+.jmc-header { display: block; overflow: hidden; position: relative; width: 100%; background: #8dc63f; background-size: 100%; color: #fff; -webkit-background-size: 100%; outline: 0 !important }
+.jmc-title { border-bottom: 0; box-shadow: 1px 1px 3px rgba(0, 0, 0, .1); -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, .1) }
+.jmc-header i { color: #fff; }
+.jmc-header i.xi-angle-left { position: relative; top: 2px }
+.nav_title .myinfor .bell i { padding: 0; font-size: 1.4em; color: #fff; }
+.jmc-header .logo img { max-width: 80%; max-height: 20px }
+.jmc-title .logo { overflow: hidden; padding: 10px 0; font-size: 1.4em; color: #fff; text-align: center; }
+.table_list .row .title { color: var(--text-black03-color); display: inline-flex; align-items: center; padding: 6px 0; }
+.table_list .row.document { padding: 12px 0 0 }
+.table_list .row.document .title { padding: 6px 0 0 }
+.rs-contentArea { padding: 0 }
+.rs-contentArea .title_bar { margin: 0; padding: 10px 30px; border-bottom: 0; background: #333; font-weight: normal; color: #fff }
+.rs-contentArea .side_mnb { float: left; width: 100%; margin-bottom: 20px }
+.rs-contentArea .side_mnb li:first-child { border-top: 1px solid #dedede }
+.rs-contentArea .side_mnb li { float: left; width: 100%; margin: 0; padding: 14px 30px 10px; border-bottom: 1px solid #dedede; text-align: left; }
+.rs-contentArea .side_mnb li .btn_app { display: inline-block; float: left; width: 26px; height: 26px; margin: 0 auto; margin-right: 10px; border: 0; background: 0; text-align: center }
+.rs-contentArea .side_mnb li .btn_app img { float: left; width: 100%; height: 100%; text-align: center }
+.rs-contentArea .side_mnb li .btn_app i { position: relative; top: 2px; width: 100%; height: 100%; border: 0; border-radius: none; line-height: 120%; font-size: 1.5em; color: #5c5d5f; }
+.rs-contentArea .side_mnb li span { display: inline-block; float: left; position: relative; top: 3px; width: auto; font-size: 1.3em; color: #000 }
+.jmc-content .side_mnb { float: left; width: 100%; padding: 20px; }
+.jmc-content .side_mnb li { float: left; width: 100%; margin-bottom: 10px; padding: 20px 24px 20px 10px; border-radius: 10px; border: 1px solid #31a2d3; background: rgba(59, 175, 218, .6); color: #fff; text-align: center; text-shadow: 0 0 3px rgba(0, 0, 0, .5); box-shadow: 1px 1px 3px rgba(0, 0, 0, .2) }
+.jmc-content .side_mnb li .btn_app { display: inline-block; width: 40px; height: 30px; margin: 0 auto; border: 0; background: 0; text-align: center }
+.jmc-content .side_mnb li .btn_app i { position: relative; top: 2px; width: 100%; height: 100%; border: 0; border-radius: none; line-height: 120%; font-size: 1.6em; color: #fff; text-shadow: 0 0 3px rgba(0, 0, 0, .5); }
+.jmc-content .side_mnb li span { display: inline-block; position: relative; top: -1px; width: auto; font-size: 1.2em }
+.f_copy { display: inline-block; width: 100%; font-size: 10px; color: #31a2d3; text-align: center }
+.window > .head { background-color: #9ad16b; color: #fff }
+.window > .head { background-color: #9ad16b; background-image: -moz-linear-gradient(top, #9ad16b 0, #7fb339 100%); background-image: linear-gradient(top, #9ad16b 0, #7fb339 100%); background-image: -webkit-linear-gradient(top, #9ad16b 0, #7fb339 100%); background-image: -o-linear-gradient(top, #9ad16b 0, #7fb339 100%); background-image: -ms-linear-gradient(top, #9ad16b 0, #7fb339 100%); color: #fff }
+.window02 > .head { background-color: #9ad16b; color: #fff }
+.window02 > .head { background-color: #9ad16b; background-image: -moz-linear-gradient(top, #9ad16b 0, #7fb339 100%); background-image: linear-gradient(top, #9ad16b 0, #7fb339 100%); background-image: -webkit-linear-gradient(top, #9ad16b 0, #7fb339 100%); background-image: -o-linear-gradient(top, #9ad16b 0, #7fb339 100%); background-image: -ms-linear-gradient(top, #9ad16b 0, #7fb339 100%); color: #fff }
+.seat_box { overflow: auto; height: 100%; margin: 0 auto; border-top: 1px solid #e5e5e5; background: #fff; padding: 0 20px 20px }
+.popCont02 > .seat_box { height: calc(100% - 70px); }
+.popCont02 > .cal_height { height: calc(100% - 110px); }
+.table_list > .panel_tab > .row { }
+.table_list > .panel_tab > .cont { position: relative; top: .2em; font-size: 1.1em; color: #333 }
+.window > .foot { padding: 10px }
+.step_title span { color: #ffb400 }
+.info4 span { color: #333 }
+.info4 time { color: #3bafda }
+.info4 .tel { float: right; margin-right: .5em; color: #3bafda }
+.info4 .email { float: right; margin: .5em .5em 0 0; color: #3bafda }
+.table-simple td.darkGreen { background: #9ec863; text-indent: -9999px }
+.table-simple td.green { background: #bcdd8e; text-indent: -9999px }
+.table-simple td.end { background: #ccc; text-indent: -9999px }
+.table-simple td.red { background: #ff2f36; text-indent: -9999px }
+.table-simple td.wait { background: #ddeec6 url(../../images/mobile_a/common/ico_fix_day.png) left 50% no-repeat; text-indent: -9999px }
+.table-simple td.myWait { background: #ffc5c7 url(../../images/mobile_a/common/ico_fix_day.png) left 50% no-repeat; text-indent: -9999px }
+.table-simple td.blue { background: #7bc1fd; text-indent: -9999px }
+.table-simple td.darkblue { background: #aec6e5; text-indent: -9999px }
+.table-simple td.none { background: #aec6e5; text-indent: -9999px; background: url(../../images/mobile_a/common/ico_fix_day.png) left 5% no-repeat !important }
+/* 20201110*/
+.fColor0 { color: #404041 !important }
+.fColor1 { color: #3992dc !important }/* burgundy */
+.fColor2 { color: #004098 !important }/* yellow */
+.fColor3 { color: #ffb600 !important }/* orange */
+.top_select h1 { color: #666; font-weight: normal }
+.top_select h1 strong { color: #222; }
+.select_con .titDep1 > span { color: #BDBFC7 }
+.select_con .titDep1 { color: #5E6977; }
+.select_con .con > .date { color: #232B33; }
+.select_con .con.noData strong { color: #232B33; }
+.select_con .history .hTxt { color: #acb3bb; }
+.select_con .con strong { color: #003a6f; }
+.mInforArea { background-color: #5E6977 }
+.mInforArea .mHeader .count { color: rgb(255 255 255 / 70%); }
+.mInforArea .mHeader .count em { color: #ffcc00; text-shadow: 0 0 3px rgba(0,0,0,.2) }
+.mInforArea .mHeader .dateInfor .title { color: rgb(255 255 255 / 70%); }
+.mInforArea .mHeader .dateInfor .date { color: #fff; text-shadow: 0 0 3px rgba(0,0,0,.2) }
+.mInforArea .mHeader .dateInfor .date a { color: rgba(255,255,255,.5); }
+.mInfor_con .history .reservOk > em { background-color: #1C77FF; }
+.mInfor_sect .mInfor_con .tag .light.host { background: #f04982; }
+.mInfor_sect .mInfor_con .loc a { background-color: #acb3bb; }
+.mInfor_sect .mInfor_con .tag .light.attend { background: #ff7a00; }
+.popSeatArea .btn.btnBasic { color: var(--text-black01-color); background-color: var(--second-default-color); }
+.popSeatArea .btn.btnConfirm { background: #004098; color: #fff; }
+.popup-seatInfor .btn.reserv { background-color: var(--primary-default-color); color: var(--text-white01-color); }
+.popup-seatInfor .btn.btnBasic { color: #fff; background: #8892a0; }
+.popup-seatInfor.noData p.comment strong { color: #ff7a00 }
+.popup-seatInfor.noData p.comment em { color: #da1c5c }
+.sbtn01.btnBasic { color: var(--text-black01-color); background-color: var(--second-default-color); }
+.sbtn01.btnConfirm { background-color: var(--primary-default-color); color: var(--text-white01-color); }
+.btn-confirm { background-color: var(--primary-default-color) !important; color: #fff !important; }
+.btn-confirm:hover { background-color: var(--primary-hover-color) }
+.btn-confirm:active { background-color: var(--primary-pressed-color); color: #fff; }
+.btn-point { background-color: #004098 !important; color: #fff !important; border: 1px solid rgba(0,0,0,.1) !important }
+.btn-point:active { background-color: #004098 !important; color: #fff !important; }
+.btn-basic { background-color: #fff !important; color: #fff !important; border: 1px solid #fff !important }
+.btn-basic:active { background-color: #fff !important; color: #fff !important; }
+.loginBox .btn-confirm { color: var(--text-white01-color); background-color: var(--primary-default-color) !important }
+.loginBox .btn-confirm:hover { color: var(--text-white01-color); background-color: var(--primary-hover-color) !important }
+.loginBox .btn-confirm:active { color: var(--text-white01-color); background-color: var(--primary-pressed-color) !important; }
+/*예약상태별컬러*/
+.itemList .info-left > span.reserv { background-color: #ffb84c } /* 예약완료 */
+.itemList .info-left > span.ing { background-color: #ff7a00 } /* 진행중 */
+.itemList .info-left > span.end { background-color: #eee; } /* 종료 */
+.itemList .info-left > span.wait { background-color: #ffdca8 } /* 승인대기 */
+.itemList .info-left > span.myAttend { background-color: #5f578e }  /* 나의참여 */
+.itemList .info-left > span.myResev { background-color: #ff375d } /* 나의예약 */

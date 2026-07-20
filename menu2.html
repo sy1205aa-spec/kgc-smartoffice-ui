@@ -1,0 +1,296 @@
+﻿<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+
+  <title>스마트오피스 예약시스템</title>
+
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/fonts.css" />
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/base.css" />
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/icons.css" />
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/layout.css" />
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/colorStyle.css" />
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/common.css" />
+
+  <!-- 기본 스크립트 -->
+  <script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
+  <script type="text/javascript" src="./js/mobile/common.js"></script>
+</head>
+
+<body class="bg03">
+  <form>
+    <!-- wrap -->
+    <div id="wrap">
+      <header>
+        <div class="gnb">
+          <h1>
+            <a href="https://works.kgc.co.kr/mbl/home.do">
+              <img src="./images/mobile_a/common/logo.svg" alt="">
+            </a>
+          </h1>
+          <div class="right">
+            <a href="#" class="total_nav btn-layer"><i class="ico menu">메뉴</i></a>
+          </div>
+        </div>
+
+        <!-- total menu -->
+        <nav style="display: none">
+          <div class="navCon">
+            <div class="uTile">
+              <ul>
+                <li>
+                  <a href="#" class="btn_ico btn_close btn-layerClose rotateIn"><i class="ico close">닫기</i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="myinfor">
+              <ul class="infor">
+                <li class="nm">
+                  <span>최범규<em>관리자</em></span>
+
+                  <span class="group"><em>GSITM</em></span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="clear"></div>
+
+            <ul>
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><img src="./images/mobile_a/common/ic_dashboard.svg" alt="" />대시보드<!-- 대시보드 --></span>
+                    </a>
+                  </dt>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><img src="./images/mobile_a/common/ic_chair.svg" alt="" />좌석예약<!-- 좌석예약 --></span>
+                    </a>
+                    <button type="button" class="btn_menu_toggle">접고 펼치기</button>
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li>
+                        <a href="javascript:;"><span>좌석예약<!-- 좌석 예약 --></span></a>
+                      </li>
+                      <li>
+                        <a href="javascript:;"><span>직원검색<!-- 직원 검색 --></span></a>
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><img src="./images/mobile_a/common/ic_office.svg" alt="" />회의실예약<!-- 회의실 예약 --></span>
+                    </a>
+                    <button type="button" class="btn_menu_toggle">접고 펼치기</button>
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li>
+                        <a href="javascript:;"><span>시간 검색 예약<!-- 시간 검색 예약 --></span></a>
+                      </li>
+                      <li>
+                        <a href="javascript:;"><span>회의실 검색 예약<!-- 회의실 검색 예약 --></span></a>
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><img src="./images/mobile_a/common/ic_locker.svg" alt="" />사물함예약<!-- 사물함예약 --></span>
+                    </a>
+                  </dt>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><img src="./images/mobile_a/common/ic_parking.svg" alt="" />주차관리<!-- 주차 관리 --></span>
+                    </a>
+                    <button type="button" class="btn_menu_toggle">접고 펼치기</button>
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li>
+                        <a href="javascript:;"><span>차량등록<!-- 차량 등록 --></span></a>
+                      </li>
+                      <li>
+                        <a href="javascript:;"><span>주차정산<!-- 주차권 발급 --></span></a>
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><img src="./images/mobile_a/common/ic_bus.svg" alt="" />출퇴근 버스<!-- 출퇴근 버스 --></span>
+                    </a>
+                    <button type="button" class="btn_menu_toggle">접고 펼치기</button>
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li>
+                        <a href="javascript:;"><span>QR 인증<!-- QR 인증 --></span></a>
+                      </li>
+                      <li>
+                        <a href="javascript:;"><span>셔틀탑승 신청<!-- 셔틀탑승 신청 --></span></a>
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><img src="./images/mobile_a/common/ic_calendar.svg" alt="" />나의예약<!-- 나의 예약 --></span>
+                    </a>
+                    <button type="button" class="btn_menu_toggle">접고 펼치기</button>
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li>
+                        <a href="javascript:;"><span>나의 좌석 이용현황</span></a>
+                      </li>
+
+                      <li>
+                        <a href="javascript:;"><span>나의 회의실 예약현황</span></a>
+                      </li>
+
+                      <li>
+                        <a href="javascript:;"><span>나의 사물함 예약현황</span></a>
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><img src="./images/mobile_a/common/ic_biometrics.svg" alt="" />생체인증
+                        설정<!-- 생체인증 설정 --></span>
+                    </a>
+                  </dt>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><img src="./images/mobile_a/common/ic_logout.svg" alt="" />로그아웃<!-- 로그아웃 --></span>
+                    </a>
+                  </dt>
+                </dl>
+              </li>
+            </ul>
+          </div>
+          <div class="dimmed btn-layerClose"></div>
+        </nav>
+      </header>
+      <hr />
+      <!-- contents -->
+      <div id="contents">
+        <section class="main">
+
+        </section>
+
+        <div class="footerNav">
+          <ul class="btnArea">
+            <li>
+              <a href="javascript:;" class="cancleReserv">
+                <span>예약취소<!-- 예약취소 --></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="javascript:;" class="myQr">
+                <span>QR 인증<!-- QR 인증 --></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="javascript:;" class="meet">
+                <span>회의실 예약<!-- 회의실 예약 --></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://works.kgc.co.kr/mbl/myList.do" class="myReserv">
+                <span>나의예약<!-- 나의 예약 --></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="./parking_search.html" class="parking">
+                <span>주차관리<!-- 주차관리 --></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- //contents -->
+    </div>
+    <!-- //wrap -->
+  </form>
+
+  <script>
+    $(function () {
+      accordion();
+      menuOpen();
+    });
+
+    function menuOpen() {
+      var nav = $('header nav');
+
+      $('.total_nav.btn-layer').on('click', function () {
+        nav.show();
+      });
+      $('.btn-layerClose').on('click', function () {
+        nav.hide();
+        $('header nav li.on').removeClass('on').find('dl > dd').slideUp(200);
+      });
+    };
+
+    function accordion() {
+      var btn = $('.btn_menu_toggle');
+
+      btn.on('click', function () {
+        var li = $(this).closest('li');
+
+        if (li.hasClass('on')) {
+          li.removeClass('on').find('dl > dd').slideUp(200);
+        } else {
+          li.addClass('on').find('dl > dd').slideDown(200);
+        }
+      });
+    };
+  </script>
+</body>
+
+</html>

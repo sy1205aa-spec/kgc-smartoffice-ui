@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <!-- 2026-07-06 수정 : S -->
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+
+  <title>스마트오피스 예약시스템</title>
+
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/fonts.css" />
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/base.css" />
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/icons.css" />
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/layout.css" />
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/colorStyle.css" />
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/common.css" /> <!-- 2026-07-07 추가 -->
+
+  <!-- 2026-07-15 수정: 가운데 QR 인증 버튼 커스텀 스타일 (KGC 프리미엄 브랜드 포인트 디자인 - 3안 적용) -->
+  <style>
+    .footerNav {
+      overflow: visible !important;
+    }
+
+    .footerNav ul.btnArea {
+      overflow: visible !important;
+      display: flex !important;
+      align-items: flex-end !important;
+    }
+
+    .footerNav ul.btnArea li {
+      float: none !important;
+      flex: 1 !important;
+      overflow: visible !important;
+    }
+
+    .footerNav ul.btnArea li.center-qr-li {
+      overflow: visible !important;
+    }
+
+    .footerNav ul.btnArea li a.center-qr-btn {
+      position: relative !important;
+      height: 56px !important;
+      /* 타 버튼과 동일한 고정 높이 */
+      background: none !important;
+      display: inline-block !important;
+      width: 100% !important;
+      overflow: visible !important;
+    }
+
+    .footerNav ul.btnArea li a.center-qr-btn .qr-circle {
+      position: absolute;
+      left: 50%;
+      top: -24px;
+      /* 중앙 탭 바 라인을 침범하여 위로 오버랩되도록 오프셋 */
+      transform: translateX(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: #ffffff !important;
+      /* 깨끗한 흰색 서클 */
+      border: 1.5px solid #e1e4e6 !important;
+      /* 미니멀한 라이트 그레이 테두리 */
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.06);
+      /* 부드럽고 미니멀한 그림자 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+      box-sizing: content-box;
+    }
+
+    .footerNav ul.btnArea li a.center-qr-btn:active .qr-circle {
+      background-color: #f1f3f5 !important;
+      /* 클릭 시 연한 회색 */
+      border-color: #d1d5db !important;
+      transform: translateX(-50%) scale(0.95);
+    }
+
+    .footerNav ul.btnArea li a.center-qr-btn .qr-circle::before {
+      content: "";
+      width: 24px;
+      height: 24px;
+      display: block;
+      background: url('./images/mobile_a/common/ico_qr.svg') no-repeat center center;
+      /* 기본 회색 QR 아이콘 적용 */
+      background-size: 100% 100%;
+    }
+
+    .footerNav ul.btnArea li a.center-qr-btn:active .qr-circle::before {
+      background: url('./images/mobile_a/common/ico_qr_.svg') no-repeat center center;
+      /* 클릭 시만 활성(레드) QR 아이콘 */
+      background-size: 100% 100%;
+    }
+
+    .footerNav ul.btnArea li a.center-qr-btn span {
+      position: absolute !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      text-align: center !important;
+      font-size: 13px !important;
+      /* 타 버튼과 폰트 사이즈 및 베이스라인 통일 */
+      color: var(--text-black03-color) !important;
+      line-height: normal !important;
+    }
+  </style>
+
+  <!-- 기본 스크립트 -->
+  <script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
+  <script type="text/javascript" src="./js/mobile/common.js"></script>
+  <!-- 2026-07-06 수정 : E -->
+</head>
+
+<body class="bg03">
+  <form>
+    <!-- wrap -->
+    <div id="wrap">
+      <header>
+        <div class="gnb">
+          <h1>
+            <a href="https://works.kgc.co.kr/mbl/home.do">
+              <img src="./images/mobile_a/common/logo.svg" alt=""> <!-- 2026-07-06 수정 -->
+            </a>
+          </h1>
+          <div class="right">
+            <a href="#" class="total_nav btn-layer"><i class="ico menu">메뉴</i></a>
+          </div>
+        </div>
+
+        <!-- total menu -->
+        <nav style="display: none">
+          <div class="navCon">
+            <div class="uTile">
+              <ul>
+                <li>
+                  <a href="#" class="btn_ico btn_close btn-layerClose rotateIn"><i class="ico close">닫기</i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="myinfor">
+              <ul class="infor">
+                <li class="nm">
+                  <span>최범규<em>관리자</em></span>
+
+                  <span class="group"><em>GSITM</em></span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="clear"></div>
+
+            <ul>
+              <!-- 2026-06-19 추가: S -->
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><img src="./images/mobile_a/common/ic_dashboard.svg" alt="" />대시보드<!-- 대시보드 --></span>
+                      <!-- 2026-07-06 수정 -->
+                    </a>
+                  </dt>
+                </dl>
+              </li>
+              <!-- 2026-06-19 추가: E -->
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><img src="./images/mobile_a/common/ic_chair.svg" alt="" />좌석예약<!-- 좌석예약 --></span>
+                      <!-- 2026-07-06 수정 -->
+                    </a>
+                    <!--
+                        2026-06-19 추가
+                        2뎁스가 있는 경우 btn_menu_toggle 버튼 추가 
+                      -->
+                    <button type="button" class="btn_menu_toggle">접고 펼치기</button> <!-- 2026-07-06 수정 -->
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li>
+                        <a href="javascript:;"><span>좌석예약<!-- 좌석 예약 --></span></a>
+                      </li>
+                      <li>
+                        <a href="javascript:;"><span>직원검색<!-- 직원 검색 --></span></a>
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><img src="./images/mobile_a/common/ic_office.svg" alt="" />회의실예약<!-- 회의실 예약 --></span>
+                      <!-- 2026-07-06 수정 -->
+                    </a>
+                    <!--
+                        2026-06-19 추가
+                        2뎁스가 있는 경우 btn_menu_toggle 버튼 추가 
+                      -->
+                    <button type="button" class="btn_menu_toggle">접고 펼치기</button> <!-- 2026-07-06 수정 -->
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li>
+                        <a href="javascript:;"><span>시간 검색 예약<!-- 시간 검색 예약 --></span></a>
+                      </li>
+                      <li>
+                        <a href="javascript:;"><span>회의실 검색 예약<!-- 회의실 검색 예약 --></span></a>
+                      </li>
+                      <!-- 2026-06-19 삭제
+                        <li>
+                          <a href="https://works.kgc.co.kr/mbl/mtgResveList.do"><span>예약현황 조회</span></a>
+                        </li> -->
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><img src="./images/mobile_a/common/ic_locker.svg" alt="" />사물함예약<!-- 사물함예약 --></span>
+                      <!-- 2026-07-06 수정 -->
+                    </a>
+                  </dt>
+                  <!-- 2026-06-19 삭제
+                    <dd>
+                      <ul>
+                        <li>
+                          <a href="https://works.kgc.co.kr/mbl/lockerZoneView.do">
+                            <span>사물함 조회</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </dd> -->
+                </dl>
+              </li>
+
+              <!-- 2026-06-19 추가: S -->
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <!-- 2026-07-14 수정: 주차관리 -> 주차정산 명칭 변경 -->
+                      <span><img src="./images/mobile_a/common/ic_parking.svg" alt="" />주차정산<!-- 주차정산 --></span>
+                      <!-- 2026-07-06 수정 -->
+                    </a>
+                    <!--
+                        2026-06-19 추가
+                        2뎁스가 있는 경우 btn_menu_toggle 버튼 추가 
+                      -->
+                    <button type="button" class="btn_menu_toggle">접고 펼치기</button> <!-- 2026-07-06 수정 -->
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li>
+                        <a href="javascript:;"><span>차량등록<!-- 차량 등록 --></span></a>
+                      </li>
+                      <li>
+                        <a href="javascript:;"><span>주차정산<!-- 주차권 발급 --></span></a>
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+              <!-- 2026-06-19 추가: E -->
+
+              <!-- 2026-06-19 추가: S -->
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><img src="./images/mobile_a/common/ic_bus.svg" alt="" />출퇴근 버스<!-- 출퇴근 버스 --></span>
+                      <!-- 2026-07-06 수정 -->
+                    </a>
+                    <!--
+                        2026-06-19 추가
+                        2뎁스가 있는 경우 btn_menu_toggle 버튼 추가 
+                      -->
+                    <button type="button" class="btn_menu_toggle">접고 펼치기</button> <!-- 2026-07-06 수정 -->
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li>
+                        <a href="javascript:;"><span>QR 인증<!-- QR 인증 --></span></a>
+                      </li>
+                      <li>
+                        <!-- 2026-07-14 수정: 셔틀탑승 신청 로컬 링크 연동 -->
+                        <a href="./shuttle_request.html"><span>셔틀탑승 신청<!-- 셔틀탑승 신청 --></span></a>
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+              <!-- 2026-06-19 추가: E -->
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><img src="./images/mobile_a/common/ic_calendar.svg" alt="" />나의예약<!-- 나의 예약 --></span>
+                      <!-- 2026-07-06 수정 -->
+                    </a>
+                    <!--
+                        2026-06-19 추가
+                        2뎁스가 있는 경우 btn_menu_toggle 버튼 추가 
+                      -->
+                    <button type="button" class="btn_menu_toggle">접고 펼치기</button> <!-- 2026-07-06 수정 -->
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li>
+                        <a href="javascript:;"><span>나의 좌석 이용현황</span></a>
+                      </li>
+
+                      <li>
+                        <a href="javascript:;"><span>나의 회의실 예약현황</span></a>
+                      </li>
+
+                      <li>
+                        <a href="javascript:;"><span>나의 사물함 예약현황</span></a>
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><img src="./images/mobile_a/common/ic_biometrics.svg" alt="" />생체인증
+                        설정<!-- 생체인증 설정 --></span> <!-- 2026-07-06 수정 -->
+                    </a>
+                  </dt>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><img src="./images/mobile_a/common/ic_logout.svg" alt="" />로그아웃<!-- 로그아웃 --></span>
+                      <!-- 2026-07-06 수정 -->
+                    </a>
+                  </dt>
+                </dl>
+              </li>
+            </ul>
+          </div>
+          <div class="dimmed btn-layerClose"></div>
+        </nav>
+      </header>
+      <hr />
+      <!-- contents -->
+      <div id="contents">
+        <section class="main">
+
+        </section>
+
+        <!-- 2026-07-15 수정: 하단 5개 탭 바 재배치 (가운데 평면형 무색 QR 배치) 및 주차정산 명칭 변경 -->
+        <div class="footerNav">
+          <ul class="btnArea">
+            <!-- 1. 좌석예약 / 퇴실하기 / 예약취소 -->
+            <li>
+              <c:choose>
+                <c:when test="${resveYn eq 'N'}">
+                  <a href="javascript:;" class="seat"><span>좌석예약<!-- 좌석예약 --></span></a>
+                </c:when>
+                <c:when test="${resveYn eq 'Y'}">
+                  <c:choose>
+                    <c:when test="${resveSttus eq 'ST03'}">
+                      <a href="javascript:;" class="checkOut"><span>퇴실하기<!-- 퇴실하기 --></span></a>
+                    </c:when>
+                    <c:when test="${resveSttus eq 'ST01'}">
+                      <a href="javascript:;" class="checkOut"><span>예약취소<!-- 예약취소 --></span></a>
+                    </c:when>
+                  </c:choose>
+                </c:when>
+              </c:choose>
+            </li>
+
+            <!-- 2. 회의실예약 -->
+            <li>
+              <a href="https://works.kgc.co.kr/mbl/mtgSearch.do" class="meet"><span>회의실예약<!-- 회의실예약 --></span></a>
+            </li>
+
+            <!-- 3. QR 인증 (가운데 센터 버튼) -->
+            <li class="center-qr-li">
+              <a href="javascript:;" class="myQr center-qr-btn">
+                <div class="qr-circle"></div>
+                <span>QR 인증</span>
+              </a>
+            </li>
+
+            <!-- 4. 나의예약 -->
+            <li>
+              <a href="https://works.kgc.co.kr/mbl/myList.do" class="myReserv"><span>나의예약<!-- 나의 예약 --></span></a>
+            </li>
+
+            <!-- 5. 주차정산 -->
+            <li>
+              <a href="./parking_search.html" class="parking"><span>주차정산<!-- 주차정산 --></span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- //contents -->
+    </div>
+    <!-- //wrap -->
+  </form>
+
+  <!-- 2026-07-06 수정: 메뉴 아코디언 스크립트 -->
+  <!-- 2026-07-06 추가: nav open/close 스크립트 -->
+  <script>
+    $(function () {
+      accordion();
+      menuOpen();
+    });
+
+    function menuOpen() {
+      var nav = $('header nav');
+
+      $('.total_nav.btn-layer').on('click', function () {
+        nav.show();
+      });
+      $('.btn-layerClose').on('click', function () {
+        nav.hide();
+        $('header nav li.on').removeClass('on').find('dl > dd').slideUp(200);
+      });
+    };
+
+    function accordion() {
+      var btn = $('.btn_menu_toggle');
+
+      btn.on('click', function () {
+        var li = $(this).closest('li');
+
+        if (li.hasClass('on')) {
+          li.removeClass('on').find('dl > dd').slideUp(200);
+        } else {
+          li.addClass('on').find('dl > dd').slideDown(200);
+        }
+      });
+    };
+  </script>
+
+  <!-- 2026-07-14 수정: 정적 HTML 내 JSTL 분기 구동용 시뮬레이션 스크립트 추가 -->
+  <script>
+    function simulateJstlForStaticHtml() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const resveYn = urlParams.get('resveYn') || 'N';
+      const resveSttus = urlParams.get('resveSttus') || 'ST01';
+
+      if ($('c\\:choose, c\\:if').length > 0 || $('.footerNav a.seat, .footerNav a.checkOut').length > 1) {
+        $('.footerNav .btnArea a.seat, .footerNav .btnArea a.checkOut').hide();
+
+        if (resveYn === 'N') {
+          $('.footerNav .btnArea a.seat').show();
+        } else if (resveYn === 'Y') {
+          if (resveSttus === 'ST03') {
+            $('.footerNav .btnArea a.checkOut').filter(function () {
+              return $(this).text().includes('퇴실하기');
+            }).show();
+          } else if (resveSttus === 'ST01') {
+            $('.footerNav .btnArea a.checkOut').filter(function () {
+              return $(this).text().includes('예약취소');
+            }).show();
+          }
+        }
+      }
+    }
+
+    $(function () {
+      simulateJstlForStaticHtml();
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KGC 스마트오피스 퍼블리싱 뷰어 (0715 수정본)</title>
+  <link rel="stylesheet" href="./index.css">
+  <link rel="shortcut icon" href="./images/mobile_a/common/logo.svg" type="image/svg+xml">
+</head>
+
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-logo">K</div>
+        <div class="brand-info">
+          <h1>스마트오피스 예약</h1>
+          <span>Publishing Viewer (07.15)</span>
+        </div>
+      </div>
+
+      <!-- Search -->
+      <div class="search-box">
+        <div class="search-input-wrapper">
+          <input type="text" id="search-input" placeholder="화면명, 파일명 검색..." oninput="filterPages()">
+          <i>🔍</i>
+        </div>
+      </div>
+
+      <!-- Menu List -->
+      <div class="menu-container" id="menu-container">
+        <!-- 신규 시안 비교 -->
+        <div class="category">
+          <div class="category-title">화면 확정 필요</div>
+          <ul class="page-list">
+            <li class="page-item active" data-name="메인 화면 시안 비교 menu_versions.html">
+              <a href="#" class="page-link highlight" onclick="loadPage('./menu_versions.html', this)">
+                <div class="name-desc">
+                  <span class="name">메인 화면 시안 비교 (1NEW)</span>
+                  <span class="desc">menu_versions.html</span>
+                </div>
+                <i class="arrow">★</i>
+              </a>
+            </li>
+            <li class="page-item" data-name="셔틀탑승 신청 shuttle_request.html">
+              <a href="#" class="page-link" onclick="loadPage('./shuttle_request.html', this)">
+                <div class="name-desc">
+                  <span class="name">셔틀탑승 신청</span>
+                  <span class="desc">shuttle_request.html</span>
+                </div>
+                <i class="arrow">➔</i>
+              </a>
+            </li>
+            <!-- <li class="page-item" data-name="QR 인증 카메라 화면 qr_scan.html">
+              <a href="#" class="page-link highlight" onclick="loadPage('./qr_scan.html', this)">
+                <div class="name-desc">
+                  <span class="name">QR인증 카메라 화면 (NEW)</span>
+                  <span class="desc">qr_scan.html</span>
+                </div>
+                <i class="arrow">★</i>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+
+        <!-- 로그인 및 본인인증 -->
+        <div class="category">
+          <div class="category-title">로그인 및 인증</div>
+          <ul class="page-list">
+            <li class="page-item" data-name="로그인 화면 login.html">
+              <a href="#" class="page-link" onclick="loadPage('./login.html', this)">
+                <div class="name-desc">
+                  <span class="name">로그인 화면</span>
+                  <span class="desc">login.html</span>
+                </div>
+                <i class="arrow">➔</i>
+              </a>
+            </li>
+            <li class="page-item" data-name="로그인 본인인증 login_cert.html">
+              <a href="#" class="page-link" onclick="loadPage('./login_cert.html', this)">
+                <div class="name-desc">
+                  <span class="name">본인 인증</span>
+                  <span class="desc">login_cert.html</span>
+                </div>
+                <i class="arrow">➔</i>
+              </a>
+            </li>
+            <li class="page-item" data-name="로그인 알림 login_alert.html">
+              <a href="#" class="page-link" onclick="loadPage('./login_alert.html', this)">
+                <div class="name-desc">
+                  <span class="name">로그인 알림</span>
+                  <span class="desc">login_alert.html</span>
+                </div>
+                <i class="arrow">➔</i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 메인 및 메뉴 -->
+        <div class="category">
+          <div class="category-title">메인 및 네비게이션</div>
+          <ul class="page-list">
+            <li class="page-item" data-name="기존 메뉴 목록 menu.html">
+              <a href="#" class="page-link" onclick="loadPage('./menu.html', this)">
+                <div class="name-desc">
+                  <span class="name">기존 메뉴 목록 (프레임)</span>
+                  <span class="desc">menu.html</span>
+                </div>
+                <i class="arrow">➔</i>
+              </a>
+            </li>
+            <li class="page-item" data-name="메뉴 목록 2 menu2.html">
+              <a href="#" class="page-link" onclick="loadPage('./menu2.html', this)">
+                <div class="name-desc">
+                  <span class="name">메뉴 목록 2</span>
+                  <span class="desc">menu2.html</span>
+                </div>
+                <i class="arrow">➔</i>
+              </a>
+            </li>
+            <li class="page-item" data-name="공통 레이어 팝업 layer_popup.html">
+              <a href="#" class="page-link" onclick="loadPage('./layer_popup.html', this)">
+                <div class="name-desc">
+                  <span class="name">레이어 팝업</span>
+                  <span class="desc">layer_popup.html</span>
+                </div>
+                <i class="arrow">➔</i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 주차 관리 -->
+        <div class="category">
+          <div class="category-title">주차 관리</div>
+          <ul class="page-list">
+            <li class="page-item" data-name="주차 공간 검색 parking_search.html">
+              <a href="#" class="page-link" onclick="loadPage('./parking_search.html', this)">
+                <div class="name-desc">
+                  <span class="name">주차정산 조회</span>
+                  <span class="desc">parking_search.html</span>
+                </div>
+                <i class="arrow">➔</i>
+              </a>
+            </li>
+            <li class="page-item" data-name="주차정산 상세 보기 parking_detail.html">
+              <a href="#" class="page-link" onclick="loadPage('./parking_detail.html', this)">
+                <div class="name-desc">
+                  <span class="name">주차정산 상세 보기</span>
+                  <span class="desc">parking_detail.html</span>
+                </div>
+                <i class="arrow">➔</i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 셔틀 버스 -->
+        <div class="category">
+          <div class="category-title">셔틀 버스</div>
+          <ul class="page-list">
+            <li class="page-item" data-name="셔틀탑승 신청 shuttle_request.html">
+              <a href="#" class="page-link" onclick="loadPage('./shuttle_request.html', this)">
+                <div class="name-desc">
+                  <span class="name">셔틀탑승 신청</span>
+                  <span class="desc">shuttle_request.html</span>
+                </div>
+                <i class="arrow">➔</i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 알림 및 에러 -->
+        <div class="category">
+          <div class="category-title">공통 모달 및 안내</div>
+          <ul class="page-list">
+            <li class="page-item" data-name="공통 알럿 alert.html">
+              <a href="#" class="page-link" onclick="loadPage('./alert.html', this)">
+                <div class="name-desc">
+                  <span class="name">알럿 모달 (Alert)</span>
+                  <span class="desc">alert.html</span>
+                </div>
+                <i class="arrow">➔</i>
+              </a>
+            </li>
+            <li class="page-item" data-name="공통 컨펌 confirm.html">
+              <a href="#" class="page-link" onclick="loadPage('./confirm.html', this)">
+                <div class="name-desc">
+                  <span class="name">컨펌 모달 (Confirm)</span>
+                  <span class="desc">confirm.html</span>
+                </div>
+                <i class="arrow">➔</i>
+              </a>
+            </li>
+            <li class="page-item" data-name="시스템 에러 모바일 sys_error_mobile.html">
+              <a href="#" class="page-link" onclick="loadPage('./sys_error_mobile.html', this)">
+                <div class="name-desc">
+                  <span class="name">모바일 에러 페이지</span>
+                  <span class="desc">sys_error_mobile.html</span>
+                </div>
+                <i class="arrow">➔</i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Preview Area -->
+    <main class="main-view">
+      <!-- Control Bar -->
+      <div class="control-bar">
+        <div class="current-path" id="current-path">
+          호스트 주소: <strong id="simulated-url">loading...</strong>
+        </div>
+
+        <div class="actions">
+          <!-- Device Type Selectors -->
+          <div class="device-selectors">
+            <button class="device-btn active" onclick="setDevice('iphone-15', this)">
+              <i>📱</i> iPhone 15 Pro
+            </button>
+            <button class="device-btn" onclick="setDevice('galaxy-s23', this)">
+              <i>📱</i> Galaxy S23
+            </button>
+            <button class="device-btn" onclick="setDevice('ipad', this)">
+              <i>平板</i> iPad
+            </button>
+          </div>
+
+          <button class="btn" onclick="refreshIframe()">
+            <i>🔄</i> 새로고침
+          </button>
+          <button class="btn btn-primary" onclick="openNewTab()">
+            <i>🔗</i> 새 창에서 열기
+          </button>
+        </div>
+      </div>
+
+      <!-- Simulator Viewer -->
+      <div class="viewer-container">
+        <div class="device-mockup iphone-15" id="device-mockup">
+          <div class="device-notch">
+            <div class="camera-lens"></div>
+            <div class="speaker-grill"></div>
+          </div>
+          <div class="device-screen">
+            <iframe class="preview-iframe" id="preview-iframe" src="./menu_versions.html"></iframe>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    let currentUrl = './menu_versions.html';
+
+    function loadPage(url, element) {
+      const iframe = document.getElementById('preview-iframe');
+      iframe.src = url;
+      currentUrl = url;
+
+      // Update simulated address bar
+      const filename = url.substring(url.lastIndexOf('/') + 1);
+      const port = window.location.port ? `:${window.location.port}` : '';
+      const fullSimulatedUrl = `${window.location.protocol}//${window.location.hostname}${port}/${filename}`;
+      document.getElementById('simulated-url').innerText = fullSimulatedUrl;
+
+      // Update active class in menu list
+      document.querySelectorAll('.page-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      element.closest('.page-item').classList.add('active');
+    }
+
+    function setDevice(deviceClass, btnElement) {
+      const mockup = document.getElementById('device-mockup');
+
+      mockup.classList.remove('iphone-15', 'galaxy-s23', 'ipad');
+      mockup.classList.add(deviceClass);
+
+      document.querySelectorAll('.device-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      btnElement.classList.add('active');
+    }
+
+    function refreshIframe() {
+      const iframe = document.getElementById('preview-iframe');
+      if (currentUrl) {
+        iframe.src = currentUrl;
+      }
+    }
+
+    function openNewTab() {
+      if (currentUrl) {
+        window.open(currentUrl, '_blank');
+      }
+    }
+
+    function filterPages() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      document.querySelectorAll('.page-item').forEach(item => {
+        const text = item.getAttribute('data-name').toLowerCase();
+        if (text.includes(query)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      document.querySelectorAll('.category').forEach(cat => {
+        const visibleItems = cat.querySelectorAll('.page-item[style="display: block;"], .page-item:not([style*="display: none"])');
+        if (visibleItems.length === 0) {
+          cat.style.display = 'none';
+        } else {
+          cat.style.display = 'block';
+        }
+      });
+    }
+
+    // Set initial address
+    window.addEventListener('DOMContentLoaded', () => {
+      const port = window.location.port ? `:${window.location.port}` : '';
+      const fullSimulatedUrl = `${window.location.protocol}//${window.location.hostname}${port}/menu_versions.html`;
+      document.getElementById('simulated-url').innerText = fullSimulatedUrl;
+    });
+  </script>
+</body>
+
+</html>

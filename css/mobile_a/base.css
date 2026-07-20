@@ -1,0 +1,539 @@
+@charset "utf-8";
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+html, body { font-family: 'Pretendard-Medium', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', '돋움', 'dotum', sans-serif; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; -webkit-text-size-adjust: antialiased; -moz-osx-font-smoothing: grayscale; position: relative; height: 100%; min-height: 100%; }
+body { height: calc(var(--vh, 1vh) * 100); min-height: 100vh; margin: 0; padding: 0; font-weight: normal; overflow-x: hidden; position: relative; background-color: #fff; word-wrap: break-word; word-break: break-all; -webkit-user-select: none; -webkit-text-size-adjust: none; color: #232B33; }
+body, input, select, button, table { font-size: 14px; font-family: inherit; }
+/*input, select { touch-action: none } 스크롤문제*/
+p, ul, li, table, th, td, fieldset, legend, input, button, select, form, div, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, ol, li { margin: 0; padding: 0; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; word-break: keep-all; }
+form, fieldset, img { border: 0 none }
+h1, h2, h3, h4, h5, h6 { font-weight: normal }
+form { display: contents; }
+table { width: 100%; border-collapse: collapse; border: 0; border-spacing: 0 }
+th, td { border: 0; padding: 0 }
+hr { display: none }
+em, var, address { font-style: normal }
+abbr { border: 0 none; text-decoration: none }
+caption { overflow: hidden; width: 0; height: 0; text-indent: -99999px; font-size: 0; line-height: 0; }
+legend { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0 }
+img, fieldset, button { border: 0 none }
+ul li { list-style: none outside }
+img { vertical-align: middle }
+button { background-color: #f1f1f1; font-size: 1em; color: #606060; overflow: visible; margin: 0; padding: 0; border: none; background: 0; font: normal 1em; vertical-align: middle; cursor: pointer }
+fieldset { margin: 0; padding: 0; border: none }
+legend { visibility: hidden; position: absolute; top: -1000px; left: -1000px; height: 0; font-size: 0; line-height: 0 }
+label { display: inline-flex; width: auto; height: auto; align-items: center; }
+button, html input[type="button"], input[type="reset"], input[type="submit"] { -webkit-appearance: button; cursor: pointer; }
+button[disabled], html input[disabled] { cursor: default; }
+button::-moz-focus-inner, input::-moz-focus-inner {
+border: 0;
+padding: 0
+}
+pre {
+font-size: .9rem; line-height: 170%; font-family: inherit; white-space: pre-wrap; word-break: break-all; overflow: auto }
+table { width: 100%; border-collapse: collapse; border: 0; border-spacing: 0; table-layout: fixed; }
+th { border: 0; text-align: center }
+td { border: 0 }
+a { text-decoration: none; color: #404041; }
+a:focus { outline: thin dotted; }
+a:active, a:hover { outline: 0; }
+*, *:before, *:after { }
+a { background-color: transparent }
+a:active, a:hover { outline: 0 }
+a:link { color: var(--text-black01-color); ; text-decoration: none }
+a:visited { color: var(--text-black01-color); text-decoration: none }
+a:hover { color: var(--primary-hover-color); text-decoration: none }
+a:active { color: var(--primary-pressed-color); text-decoration: none; outline: none !important; }
+input, select, textarea, button, a, label { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+button, input, optgroup, select, textarea { margin: 0; font: inherit; color: inherit }
+button { overflow: visible }
+button, select { text-transform: none }
+/*깜빡임현상제거*/
+button, html input[type=button], input[type=reset], input[type=submit] { -webkit-appearance: button; cursor: pointer }
+button[disabled], html input[disabled] { cursor: default }
+button::-moz-focus-inner, input::-moz-focus-inner {
+padding:0;
+border:0
+}
+iframe, object, video, embed { position: relative; top: 0; left: 0; max-width: 100% }
+input { line-height: normal; }
+button:focus { outline: 0 }
+section { position: relative; width: 100% }
+/************************** 인풋박스포커싱컬러 ***************************/
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
+-webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+-webkit-text-fill-color: #333 !important;
+transition: background-color 5000s ease-in-out 0s
+}
+/********************************* select box **********************************************/
+select:only-child { width: 100%; }
+select { background-image: url("../../images/mobile_a/ico/ico_sel_angle_down.svg"); background-repeat: no-repeat; background-position: right center; appearance: none; transition: .1s ease-in-out; -webkit-appearance: none; -moz-appearance: none; }
+select::-ms-expand {
+display:none
+}
+select { position: relative; height: 32px; padding: 0 32px 0 16px; border: 1px solid var(--input-def-border-color); border-radius: 6px; background-color: var(--input-bg-color); text-align: left; color: var(--text-black01-color) }
+select.solid { border: 1px solid var(--input-solid-color); background-color: var(--input-solid-color); color: var(--input-solid-txt-color) }
+select.success { border: 2px solid var(--input-success-border-color) !important; background-color: var(--input-bg-color) !important; color: var(--text-black01-color) }
+select.error { border: 2px solid var(--input-error-border-color) !important; background-color: var(--input-bg-color) !important; color: var(--text-black01-color) }
+select.medium { position: relative; height: 44px; padding: 0 36px 0 16px; border: 1px solid var(--input-def-border-color); border-radius: 10px; background-color: var(--input-bg-color); color: var(--text-black01-color); text-align: left; font-size: 15px }
+select.large { position: relative; height: 60px; padding: 0 42px 0 24px; border: 1px solid var(--input-def-border-color); border-radius: 12px; background-color: var(--input-bg-color); color: var(--text-black01-color); text-align: left; font-size: 16px }
+select[multiple] { background: none; appearance: button; padding: 0 16px; -webkit-appearance: button; -moz-appearance: button; }
+select[multiple] option { padding: 4px 0 }
+select:hover { border: 1px solid rgba(0,0,0,.5); cursor: pointer }
+select:focus { border: 1px solid rgba(0,0,0,.9); outline: none; color: var(--text-black01-color); }
+select:disabled { border: 1px solid var(--input-def-border-color); outline: none; background: var(--input-dis-bg-color); color: rgb(35 43 51 / 25%) }
+select[multiple] option:hover { background-color: #F6F7F8 }
+select[multiple] option:checked { background-color: #E9ECEE }
+/*******************************************************************************/
+textarea { width: 100%; height: 84px; padding: 12px 12px 12px 16px; overflow: auto; border: 1px solid var(--input-def-border-color); border-radius: 6px; background-color: var(--input-bg-color); text-align: left; resize: none; color: var(--text-black01-color) }
+textarea:hover { border: 1px solid rgba(0,0,0,.5); }
+textarea.solid { width: 100%; height: 84px; padding: 12px 12px 12px 16px; overflow: auto; border: 1px solid var(--input-def-border-color); border-radius: 6px; background-color: var(--input-bg-color); text-align: left; resize: none; color: var(--text-black01-color) }
+textarea.medium { width: 100%; height: 100px; padding: 12px 12px 8px 16px; overflow: auto; border: 1px solid var(--input-def-border-color); border-radius: 10px; background-color: var(--input-bg-color); color: var(--text-black01-color); text-align: left; resize: none; font-size: 15px }
+textarea.medium:hover { border: 1px solid rgba(0,0,0,.5); }
+textarea.large { width: 100%; height: 100px; padding: 16px 16px 12px 22px; overflow: auto; border: 1px solid var(--input-def-border-color); border-radius: 12px; background-color: var(--input-bg-color); color: var(--text-black01-color); text-align: left; resize: none; font-size: 16px }
+/*************************************** input Text / h32/ *****************************************/
+input[type=text], input[type=password], input[type=file], input[type=search], input[type=date], input[type=time] { position: relative; width: 100%; height: 32px; padding: 0 16px; border: 1px solid rgba(0,0,0,.1); border: 1px solid var(--input-def-border-color); border-radius: 6px; background-color: var(--input-bg-color); text-align: left; color: var(--text-black01-color) }
+input[type=text].solid, input[type=password].solid, input[type=file].solid, input[type=search].solid, input[type=date].solid, textarea.solid, input[type=time].solid { border: 1px solid var(--input-solid-color); background-color: var(--input-solid-color); color: var(--input-solid-txt-color) }
+input[type=text].success, input[type=password].success, input[type=file].success, input[type=search].success, input[type=date].success, textarea.success, input[type=time].success { border: 2px solid var(--input-success-border-color) !important; background-color: var(--input-bg-color) !important; color: var(--text-black01-color) }
+input[type=text].error, input[type=password].error, input[type=file].error, input[type=search].error, input[type=date].error, textarea.error, input[type=time].error { border: 2px solid var(--input-error-border-color) !important; background-color: var(--input-bg-color) !important; color: var(--text-black01-color) }
+input[type=time] { padding: 0 10px 0 16px; }
+/*************************************** input medium text / h44/ *****************************************/
+input[type=text].medium, input[type=password].medium, input[type=file].medium, input[type=search].medium, input[type=date].medium, input[type=time].medium { position: relative; width: 100%; height: 44px; padding: 0 16px; border: 1px solid var(--input-def-border-color); border-radius: 10px; background-color: var(--input-bg-color); color: var(--text-black01-color); text-align: left; font-size: 15px }
+input[type=text].medium.solid, input[type=password].medium.solid, input[type=file].medium.solid, input[type=search].medium.solid, input[type=date].medium.solid, input[type=time].medium.solid { border: 1px solid var(--input-solid-color); background-color: var(--input-solid-color); color: var(--input-solid-txt-color); }
+input[type=text].medium.success, input[type=password].medium.success, input[type=file].medium.success, input[type=search].medium.success, input[type=date].medium.success, input[type=time].medium.success { border: 2px solid var(--input-success-border-color); background-color: var(--input-bg-color); color: var(--input-solid-txt-color); }
+input[type=text].medium.error, input[type=password].medium.error, input[type=file].medium.error, input[type=search].medium.error, input[type=date].medium.error, input[type=time].medium.error { border: 2px solid var(--input-error-border-color); background-color: var(--input-bg-color); color: var(--input-solid-txt-color); }
+/*************************************** input medium text / h72/ *****************************************/
+input[type=text].large, input[type=password].large, input[type=file].large, input[type=search].large, input[type=date].large, input[type=time].large { position: relative; width: 100%; height: 72px; padding: 0 22px; border: 1px solid var(--input-def-border-color); border-radius: 14px; background-color: var(--input-bg-color); color: var(--text-black01-color); text-align: left; font-size: 22px }
+input[type=text].large.solid, input[type=password].large.solid, input[type=file].large.solid, input[type=search].large.solid, input[type=date].large.solid input[type=time].large.solid { border: 1px solid var(--input-solid-color); background-color: var(--input-solid-color); color: var(--input-solid-txt-color); }
+input[type=text].large.success, input[type=password].large.success, input[type=file].large.success, input[type=search].large.success, input[type=date].large.success, input[type=time].large.success { border: 2px solid var(--input-success-border-color); background-color: var(--input-bg-color); color: var(--input-solid-txt-color); }
+input[type=text].large.error, input[type=password].large.error, input[type=file].large.error, input[type=search].large.error, input[type=date].large.error, input[type=time].large.error { border: 2px solid var(--input-error-border-color); background-color: var(--input-bg-color); color: var(--input-solid-txt-color); }
+/*******************************************************************************/
+input[type=text]:hover, input[type=password]:hover, input[type=file]:hover, input[type=search]:hover, input[type=date]:hover, input[type=time]:hover { border: 1px solid rgba(0,0,0,.5); }
+input[type=text]:focus, input[type=password]:focus, input[type=file]:focus, input[type=search]:focus, input[type=date]:focus, textarea:focus, input[type=time]:focus { border: 1px solid rgba(0,0,0,.9); outline: none; color: var(--text-black01-color) }
+input[type=text]::placeholder, input[type=password]::placeholder, input[type=file]::placeholder, input[type=search]::placeholder, input[type=time]::placeholder {
+color:var(--input-solid-txt-color)
+}
+input[type=text]:read-only, input[type=password]:read-only, input[type=file]:read-only, input[type=search]:read-only, textarea:read-only, input[type=time]:read-only {
+background:var(--input-dis-bg-color);
+color:var(--input-solid-txt-color)
+}
+input[type=text]:read-only:hover, input[type=password]:read-only:hover, input[type=file]:read-only:hover, input[type=search]:read-only:hoverr, input[type=time]:read-only:hover {
+border:1px solid var(--input-def-border-color);
+}
+input[type=text]:read-only:focus, input[type=password]:read-only:focus, input[type=file]:read-only:focus, input[type=search]:read-only:focus, textarea:read-only:focus, input[type=time]:read-only:focus {
+border:1px solid var(--input-def-border-color);
+outline:none;
+background:var(--input-dis-bg-color);
+}
+input[type=text]:disabled, input[type=password]:disabled, input[type=file]:disabled, input[type=search]:disabled, input[type=date]:disabled, textarea:disabled, input[type=time]:disabled { border: 1px solid var(--input-def-border-color); outline: none; background: var(--input-dis-bg-color); color: rgb(35 43 51 / 25%) }
+input[type=text]:disabled::placeholder, input[type=password]:disabled::placeholder, input[type=file]:disabled::placeholder, input[type=search]:disabled::placeholder, input[type=time]:disabled::placeholder {
+color:rgb(35 43 51 / 25%)
+}
+/*******************************************************************************/
+input[type=text].solid:hover, input[type=password].solid:hover, input[type=file].solid:hover, input[type=search].solid:hover, input[type=date].solid:hover, textarea.solid:hover, input[type=time].solid:hover { border: 1px solid #E9ECEE; background: #E9ECEE }
+input[type=text].solid:focus, input[type=password].solid:focus, input[type=file].solid:focus, input[type=search].solid:focus, input[type=date].solid:focus, textarea.solid:focusinput[type=time].solid:focus {
+border: 1px solid rgba(0,0,0,.9);
+outline: none;
+background: var(--input-bg-color);
+color: var(--text-black01-color);
+}
+input[type=text].solid::placeholder, input[type=password].solid::placeholder, input[type=file].solid::placeholder {
+color:var(--input-solid-txt-color)
+}
+input[type=text].solid:disabled, input[type=password].solid:disabled, input[type=file].solid:disabled, textarea.solid:disabled, input[type=time].solid:disabled { border: 1px solid var(--input-dis-bg-color); outline: none; background: var(--input-dis-bg-color); color: rgb(35 43 51 / 25%) }
+input[type=text].solid:disabled::placeholder, input[type=password].solid:disabled::placeholder, input[type=file].solid:disabled::placeholder {
+color:rgb(35 43 51 / 25%)
+}
+input[type=text].solid:read-only, input[type=password].solid:read-only, input[type=file].solid:read-only, input[type=search].solid:read-only, textarea.solid:read-only, input[type=time].solid:read-only {
+background:var(--input-dis-bg-color);
+color:var(--input-solid-txt-color)
+}
+input[type=text].solid:read-only:hover, input[type=password].solid:read-only:hover, input[type=file].solid:read-only:hover, input[type=search].solid:read-only:hover, input[type=time].solid:read-only:hover {
+border:1px solid var(--input-dis-bg-color);
+}
+input[type=text].solid:read-only:focus, input[type=password].solid:read-only:focus, input[type=file].solid:read-only:focus, input[type=search].solid:read-only:focus, textarea.solid:read-only:focus, input[type=time].solid:read-only:focus {
+border:1px solid var(--input-dis-bg-color);
+outline:none;
+background:var(--input-dis-bg-color);
+}
+/************************************ search input *******************************************/
+[type=search]::-webkit-search-cancel-input, [type=search]::-webkit-search-decoration {
+-webkit-appearance:none;
+display: none;
+}
+input[type=search]::-ms-clear, input[type=search]::-ms-reveal {
+display:none;
+width:0;
+height:0;
+}
+input[type=search]::-webkit-search-decoration, input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-results-button, input[type=search]::-webkit-search-results-decoration {
+width:20px;
+height:20px;
+background:url("../../images/mobile_a/ico/ico_close_circle.svg") center center no-repeat;
+cursor:pointer;
+-webkit-appearance:none;
+}
+.search-area { position: relative; width: 100% }
+.search-area > a.btn-search { position: absolute; z-index: 9; top: 6px; left: 16px; width: 20px; height: 20px; background: url("../../images/mobile_a/ico/ico_search.svg") center center no-repeat; background-size: 100% 100%; text-indent: -9999px }
+.search-area input[type=search] { position: relative; padding-left: 42px; }
+.search-area > a.btn-search.disabled { opacity: .4 }
+/*************************************** search medium  / h44/ *****************************************/
+.search-area.medium > a.btn-search { top: 10px; left: 16px; width: 24px; height: 24px; }
+.search-area.medium input[type=search] { padding-left: 48px; }
+/*************************************** search large  / h60/ *****************************************/
+.search-area.large > a.btn-search { top: 10px; left: 16px; width: 30px; height: 30px; }
+.search-area.large input[type=search] { padding-left: 52px; }
+/*******************************************************************************/
+input[type=file] { width: 98%; padding: 0; line-height: normal }
+input[type=text]:focus, input[type=password]:focus, input[type=file]:focus, textarea:focus { background-color: var(--input-bg-color) }
+input[type=checkbox], input[type=radio] { position: relative; padding: 0; }
+input[type=number]::-webkit-inner-spin-input[type=number]::-webkit-outer-spin- {
+height:auto
+}
+input[type=submit] { }
+input[type=button] { -box-webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content; }
+input[type=button]::-moz-focus-inner {
+padding:0;
+border:0 none
+}
+input[type=button]:focus { outline: auto 0px Highlight; outline: auto 0px -webkit-focus-ring-color; }
+input[type=submit] { background-color: var(--secWeak-default-color); color: var(--text-black02-color); }
+input[type=submit]:hover { background-color: var(--secWeak-hover-color); }
+input[type=submit]:active { background-color: var(--secWeak-pressed-color); }
+input[type=button] { background-color: var(--secWeak-default-color); color: var(--text-black02-color); }
+input[type=button]:hover { background-color: var(--secWeak-hover-color); }
+input[type=button]:active { background-color: var(--secWeak-pressed-color); }
+/****************************** input checkbox radio /  *****************************************/
+input[type=checkbox], input[type=radio] { margin: 0; border: 0; vertical-align: middle; }
+input[type=checkbox]:hover, input[type=radio]:hover { border: 2px solid #B0B6C3; }
+input[type=checkbox]:focus, input[type=radio]:focus { outline: auto 2px rgb(28 119 255 / 20%); }
+input[type=checkbox] { position: relative; width: 20px; height: 20px; margin-right: 6px; border: 2px solid #DFE1E6; border-radius: 4px; background: var(--input-bg-color); background-size: 100% auto; -webkit-background-size: 100% auto; -webkit-appearance: none; }
+input[type=checkbox]:checked { background: var(--primary-default-color) url(../../images/mobile_a/ico/checkbox_checked.svg) no-repeat center center; background-size: 100% auto; border: none; -webkit-background-size: 100% auto; }
+input[type=checkbox]:checked:hover { background: var(--primary-hover-color) url(../../images/mobile_a/ico/checkbox_checked.svg) no-repeat center center; background-size: 100% auto; border: none; -webkit-background-size: 100% auto; }
+/*****************************************************/
+input[type=checkbox].accent { position: relative; width: 20px; height: 20px; margin-right: 4px; border: 2px solid #DFE1E6; border-radius: 4px; background: var(--input-bg-color); top: -2px; -webkit-background-size: 100% auto; -webkit-appearance: none; }
+input[type=checkbox]:checked.accent { background: var(--accent-default-color) url(../../images/mobile_a/ico/checkbox_checked.svg) no-repeat center center; border: none; -webkit-background-size: 100% auto; }
+input[type=checkbox]:checked:hover.accent { background: var(--accent-hover-color) url(../../images/mobile_a/ico/checkbox_checked.svg) no-repeat center center; border: none; -webkit-background-size: 100% auto; }
+/*****************************************************/
+input[type=radio] { position: relative; width: 20px; height: 20px; margin-right: 6px; border: 2px solid #DFE1E6; border-radius: 100%; background: var(--input-bg-color); top: -1px; -webkit-background-size: 100% auto; -webkit-appearance: none; }
+input[type=radio]:checked { background: var(--primary-default-color) url(../../images/mobile_a/ico/radio_checked.svg) no-repeat center center; border: none; -webkit-background-size: 100% auto; }
+input[type=radio]:checked:hover { background: var(--primary-hover-color) url(../../images/mobile_a/ico/radio_checked.svg) no-repeat center center; border: none; -webkit-background-size: 100% auto; }
+/*****************************************************/
+input[type=radio].accent { position: relative; width: 20px; height: 20px; margin-right: 6px; border: 2px solid #DFE1E6; border-radius: 100%; background: var(--input-bg-color); top: -1px; -webkit-background-size: 100% auto; -webkit-appearance: none; }
+input[type=radio]:checked.accent { background: var(--accent-default-color) url(../../images/mobile_a/ico/radio_checked.svg) no-repeat center center; border: none; -webkit-background-size: 100% auto; }
+input[type=radio]:checked:hover.accent { background: var(--accent-hover-color) url(../../images/mobile_a/ico/radio_checked.svg) no-repeat center center; border: none; -webkit-background-size: 100% auto; }
+input:disabled[type=checkbox], input:disabled[type=radio] { border: 0px solid #ddd; background: #eee; -webkit-appearance: none }
+input:disabled[type=checkbox] + span, input:disabled[type=radio] + span { color: #ccc }
+/********************** 토글버튼 - 일반32/18  *******************************/
+.toggle-switch input[type=checkbox] { display: none; }
+.toggle-switch .toggle-track { display: inline-block; position: relative; width: 32px; height: 18px; border-radius: 60px; background: #DFE1E6; }
+.toggle-switch .toggle-track:before { display: block; position: absolute; top: -2px; left: -1px; width: 12px; height: 12px; margin: 5px; border-radius: 100%; background: var(--input-bg-color); box-shadow: 1px 1px 2px rgba(0,0,0,.1); content: ''; transition: left 0.1s; }
+.toggle-switch > label { display: inline-block; line-height: 0 }
+.toggle-switch input[type=checkbox] + label:hover .toggle-track { background: #B0B6C3; }
+.toggle-switch input[type=checkbox]:checked + label .toggle-track { background: var(--primary-default-color); }
+.toggle-switch input[type=checkbox]:checked:hover + label .toggle-track { background: var(--primary-hover-color); ; }
+.toggle-switch input[type=checkbox]:checked + label .toggle-track:before { left: 11px; }
+.toggle-switch em { position: relative; margin-left: 4px; top: -3px }
+/**************************** 토글버튼 - disable 32/18 ************************/
+.toggle-switch.disable .toggle-track { background: #F5F6F8; }
+.toggle-switch input:disabled[type=checkbox] { border: 0px solid #ddd; background: #eee; }
+.toggle-switch input:disabled[type=checkbox] .toggle-track { background: #F5F6F8; }
+.toggle-switch input:disabled[type=checkbox] + label:hover .toggle-track { background: #F5F6F8; }
+.toggle-switch input:disabled[type=checkbox]:checked + label .toggle-track { background: var(--primary-default-color); opacity: .5; }
+.toggle-switch input:disabled[type=checkbox]:checked:hover + label .toggle-track { background: var(--primary-default-color); opacity: .5; }
+.toggle-switch input:disabled[type=checkbox]:checked + label .toggle-track:before { left: 11px; }
+/************************** 토글버튼 - Accent 32/18 ***************************/
+.toggle-switch.accent .toggle-track { background: #DFE1E6; }
+.toggle-switch.accent input[type=checkbox] + label:hover .toggle-track { background: #B0B6C3; }
+.toggle-switch.accent input[type=checkbox]:checked + label .toggle-track { background: var(--accent-default-color); }
+.toggle-switch.accent input[type=checkbox]:checked:hover + label .toggle-track { background: var(--accent-hover-color); }
+/**************************** 토글버튼 - Accent disable 32/18 *************************/
+.toggle-switch.accent.disable .toggle-track { background: #F5F6F8; }
+.toggle-switch.accent input:disabled[type=checkbox] { border: 0px solid #ddd; background: #eee; }
+.toggle-switch.accent input:disabled[type=checkbox] .toggle-track { background: #F5F6F8; }
+.toggle-switch.accent input:disabled[type=checkbox] + label:hover .toggle-track { background: #F5F6F8; }
+.toggle-switch.accent input:disabled[type=checkbox]:checked + label .toggle-track { background: var(--primary-default-color); opacity: .5; }
+.toggle-switch.accent input:disabled[type=checkbox]:checked:hover + label .toggle-track { background: var(--primary-default-color); opacity: .5; }
+.toggle-switch.accent input:disabled[type=checkbox]:checked + label .toggle-track:before { left: 11px; }
+/***************************** 토글버튼 - medium 32/18 ************************/
+.toggle-switch.medium .toggle-track { display: inline-block; position: relative; width: 56px; height: 24px; border-radius: 60px; }
+.toggle-switch.medium .toggle-track:before { display: block; position: absolute; top: -2px; left: -1px; width: 18px; height: 18px; margin: 5px; border-radius: 100%; background: var(--input-bg-color); box-shadow: 1px 1px 2px rgba(0,0,0,.1); content: ''; transition: left 0.1s; }
+.toggle-switch.medium input[type=checkbox]:checked + label .toggle-track:before { left: 29px; }
+.toggle-switch.medium em { position: relative; margin-left: 4px; top: -3px }
+.toggle-switch.medium input[type=checkbox] + label .toggle-track:after { display: inline-block; position: absolute; top: 12px; right: 9px; content: 'OFF'; color: var(--input-bg-color); font-size: 11px; line-height: 1px; }
+.toggle-switch.medium input[type=checkbox]:checked + label .toggle-track:after { left: 10px; content: 'ON'; color: var(--input-def-txt-color); }
+.toggle-switch.medium em { position: relative; margin-left: 6px; top: -6px }
+.toggle-switch.medium input:disabled[type=checkbox]:checked + label .toggle-track:after { color: rgba(0,0,0,.2); }
+/********************** datepicker *******************************/
+.cal-input { position: relative; display: inline-block; width: 100% }
+.cal-input input[type=text] { position: relative; width: 100% }
+.cal-input .ui-datepicker-trigger { position: absolute; top: 6px; right: 12px }
+.cal-input.disable .ui-datepicker-trigger { pointer-events: none; cursor: default; opacity: .4 }
+.cal-input.medium input[type=text] { position: relative; }
+.cal-input.medium .ui-datepicker-trigger { width: 24px; height: 24px; top: 5px; right: 12px }
+.cal-input.medium .ui-datepicker-trigger { width: 24px; height: 24px; top: 6px; right: 12px }
+.cal-input.medium input[type=text] { height: 44px; font-size: 15px }
+.cal-input .ui-datepicker-trigger { margin: 1px 2px 0 3px; width: 20px; height: 20px; }
+.cal-input.medium .ui-datepicker-trigger { margin: 1px 2px 0 3px; width: 30px; height: 30px; }
+/**************************** 버튼정의 ********************************/
+.btn { display: inline-flex; height: 32px; width: 100%; padding: 0 14px; border: 1px solid rgba(0,0,0,.1); border-radius: 6px; font-size: 14px; align-items: center; justify-content: center; transition: .1s ease-in-out; cursor: pointer; color: #fff }
+.btn > span { display: flex; align-items: center; justify-content: center; text-underline-position: under }
+.btn > span > i { margin-right: 4px; font-size: 11px; opacity: .8 }
+.btn.large { height: 60px; padding: 0 24px; border-radius: 10px; font-size: 17px; }
+.btn.medium { height: 44px; padding: 0 20px; border-radius: 10px; font-size: 15px; }
+.btn.small { height: 32px; padding: 0 14px; border-radius: 6px; font-size: 13px; }
+.btn.fixed { width: 100% }
+/************************************************************/
+.btn.floating { display: inline-flex; width: 54px; height: 54px; padding: 0; border: none; border-radius: 30px; box-shadow: 0 0 20px rgba(0,0,0,.2); font-size: 13px; align-items: center; justify-content: center; flex-direction: column; transition: .1s ease-in-out; white-space: nowrap }
+.btn.floating.pri { }
+.btn.floating.pri:hover { }
+.btn.floating.pri:active { box-shadow: none; }
+.btn.floating.black { color: var(--text-white01-color); background-color: var(--greyscale-black-color) }
+.btn.floating.black:hover { background-color: var(--greyscale-neutral-color); }
+.btn.floating.black:active { background-color: var(--greyscale-neutral-color); box-shadow: none; }
+.btn.floating.white { }
+.btn.floating.white { color: var(--text-black01-color); background-color: var(--greyscale-white-color) }
+.btn.floating.white:hover { background-color: var(--greyscale-dimm-color) }
+.btn.floating.white:active { background-color: var(--greyscale-dimm-color); box-shadow: none; }
+/************************************************************/
+.btn.pri { color: var(--text-white01-color); background-color: var(--primary-default-color); }
+.btn.pri:hover { background-color: var(--primary-hover-color) }
+.btn.pri:active { background-color: var(--primary-pressed-color); }
+.btn.sec-accent { color: var(--text-white01-color); background-color: var(--infor-default-color) }
+.btn.sec-accent:hover { background-color: var(--infor-hover-color) }
+.btn.sec-accent:active { background-color: var(--infor-pressed-color) }
+.btn.sec { color: var(--text-black01-color); background-color: var(--second-default-color) }
+.btn.sec:hover { background-color: var(--second-hover-color) }
+.btn.sec:active { background-color: var(--second-pressed-color) }
+.btn.accent { color: var(--text-white01-color); background-color: var(--accent-default-color) }
+.btn.accent:hover { background-color: var(--accent-hover-color) }
+.btn.accent:active { background-color: var(--accent-pressed-color) }
+.btn.warning { color: var(--text-white01-color); background-color: var(--warning-default-color) }
+.btn.warning:hover { background-color: var(--warning-hover-color) }
+.btn.warning:active { background-color: var(--warning-pressed-color) }
+.btn.sec-weak { background-color: var(--secWeak-default-color); color: var(--text-black02-color); }
+.btn.sec-weak:hover { background-color: var(--secWeak-hover-color) }
+.btn.sec-weak:active { background-color: var(--secWeak-pressed-color) }
+.btn.accent-weak { background-color: var(--accWeak-default-color); color: var(--text-accent01-color); }
+.btn.accent-weak:hover { background-color: var(--accWeak-hover-color) }
+.btn.accent-weak:active { background-color: var(--accWeak-pressed-color) }
+.btn.warning-weak { background-color: var(--warWeak-default-color); color: var(--text-warning01-color); }
+.btn.warning-weak:hover { background-color: var(--warWeak-hover-color) }
+.btn.warning-weak:active { background-color: var(--warWeak-pressed-color) }
+.btn.sec-ghost { border: none; background-color: var(--secGhost-default-color); color: var(--text-black02-color); }
+.btn.sec-ghost:hover { background-color: var(--secGhost-hover-color) }
+.btn.sec-ghost:active { background-color: var(--secGhost-pressed-color) }
+.btn.accent-ghost { border: none; background-color: var(--accGhost-default-color); color: var(--text-accent01-color); }
+.btn.accent-ghost:hover { background-color: var(--accGhost-hover-color) }
+.btn.accent-ghost:active { background-color: var(--accGhost-pressed-color) }
+.btn.warning-ghost { border: none; background-color: var(--warGhost-default-color); color: var(--text-warning01-color); }
+.btn.warning-ghost:hover { background-color: var(--warGhost-hover-color) }
+.btn.warning-ghost:active { background-color: var(--warGhost-pressed-color) }
+.btn.disable { background-color: var(--primary-disable-color); color: #bbb; pointer-events: none; user-select: none; }
+.btn.disable span i.icm { opacity: .3 }
+.btn.txt { height: 26px; padding: 0 4px; border-radius: 4px; font-size: 15px; }
+.btn.txt.disable { background-color: var(--secGhost-disable-color); color: #bbb; pointer-events: none; user-select: none; }
+.btn.txt.disable span i.icm { opacity: .3 }
+.btn.txt-underline { height: 26px; padding: 0 4px; border-radius: 4px; font-size: 15px; text-decoration: underline; text-underline-position: under }
+.btn.txt-underline.disable { background-color: var(--secGhost-disable-color); color: #bbb; pointer-events: none; user-select: none; }
+.btn.txt-underline.disable span i.icm { opacity: .3 }
+.btn.ico { position: static; width: 26px; height: 26px; padding: 0 4px; border-radius: 4px; }
+.btn.ico i { margin: 0; opacity: 1; font-size: 12px; }
+.btn.ico:hover i { color: #000 }
+/*************************** 토글버튼맵컬러위치 **************************/
+/*토글버튼*/
+.switch { }
+.switch.mapColor-Change { position: absolute; right: 20px; top: 20px; z-index: 100 }
+.switch.mapColor-Change > span { float: left; display: inline-block; margin-right: 10px; color: #333; font-size: 14px; position: relative; top: 4px; }
+.switch.mapColor-Change > span::before { content: "·"; position: absolute; top: 0; left: -10px; color: #999 }
+.switch.mapColor-Change > .toggle-switch { float: left }
+.switch.mapColor-Change .toggle-switch input[type=checkbox] { display: none; }
+.switch.mapColor-Change .toggle-track { display: inline-block; position: relative; width: 70px; height: 26px; border-radius: 60px; background: var(--ui-bg01-color); }
+.switch.mapColor-Change .toggle-track:before { content: ''; display: block; position: absolute; top: -1px; left: -1px; width: 18px; height: 18px; margin: 5px; background: var(--input-bg-color); border-radius: 100%; transition: left 0.1s; box-shadow: 1px 1px 2px rgba(0,0,0,.1); }
+.switch.mapColor-Change .toggle-switch > label { display: inline-block; line-height: 0 }
+.switch.mapColor-Change .toggle-switch input[type=checkbox] + label:hover .toggle-track { background: #B0B6C3; }
+.switch.mapColor-Change .toggle-switch input[type=checkbox] + label .toggle-track:after { content: 'Color'; display: inline-block; position: absolute; right: 12px; top: 14px; color: #fff; font-size: 11px; }
+.switch.mapColor-Change .toggle-switch input[type=checkbox]:checked + label .toggle-track { background: #D71635; }
+.switch.mapColor-Change .toggle-switch input[type=checkbox]:checked + label .toggle-track:before { left: 42px; }
+.switch.mapColor-Change .toggle-switch input[type=checkbox]:checked + label .toggle-track:after { content: 'Color'; left: 12px; color: #fff; }
+.switch.mapColor-Change .toggle-switch input[type=checkbox]:checked:hover + label .toggle-track { background: var(--primary-default-color); }
+.map_box #mapColor { filter: gray; -webkit-filter: grayscale(1); opacity: .5 }
+.map_box #mapColor.color_off { filter: none; -webkit-filter: grayscale(0); opacity: 1 }
+/*토글버튼*/
+.pdHack #mapColor { filter: url('../../js/mobile_a/filters.svg#grayscale'); filter: gray; -webkit-filter: grayscale(1); opacity: .5 }
+.pdHack #mapColor.color_off { filter: none; -webkit-filter: grayscale(0); opacity: 1 }
+/*.rest_area .toggle-switch input[type=checkbox] + label .toggle-track:after { content: 'Map Color'; display: inline-block; position: absolute; right: 12px; top: 13px; color: #666; font-size: 11px; }*/
+.pdHack .toggle-switch input[type=checkbox] { display: none; }
+.pdHack .toggle-switch .toggle-track { display: inline-block; position: relative; width: 94px; height: 26px; border-radius: 60px; }
+.pdHack .toggle-switch .toggle-track:before { content: ''; display: block; position: absolute; top: -1px; left: -1px; width: 18px; height: 18px; margin: 5px; background: var(--input-bg-color); border-radius: 100%; transition: left 0.1s; box-shadow: 1px 1px 2px rgba(0,0,0,.1); }
+.pdHack .toggle-switch > label { display: inline-block; line-height: 0 }
+.pdHack .toggle-switch input[type=checkbox] + label .toggle-track:after { content: 'Map Color'; display: inline-block; position: absolute; right: 12px; top: 14px; font-size: 11px; color: var(--input-bg-color); }
+.pdHack .toggle-switch input[type=checkbox]:checked + label .toggle-track:before { left: 65px; }
+.pdHack .toggle-switch input[type=checkbox]:checked + label .toggle-track:after { content: 'Map Color'; left: 12px; color: var(--input-black01-color); }
+.pdHack .toggle-switch input:disabled[type=checkbox]:checked + label .toggle-track:after { color: rgba(0,0,0,.2); }
+/********************** datepicker 캘린더 *******************************/
+.ui-widget-content { margin: 6px 20px 0; }
+.ui-datepicker { display: none; min-width: 264px; padding: 20px 28px; border: 0px solid #ccc !important; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, .1); background: #fff; z-index: 99999 !important; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; left: auto !important }
+.ui-datepicker-header { position: relative; margin: 0 0 12px; color: var(--text-black01-color); font-weight: 500; text-align: center; font-size: 18px; height: 32px }
+.ui-datepicker-header .ui-corner-all { position: absolute; top: 8px; width: 20px; height: 20px; border-radius: 6px; text-indent: -9999px; cursor: pointer; z-index: 999 }
+.ui-datepicker-header .ui-corner-all:hover { }
+.ui-datepicker-prev { left: 8px; margin-top: -6px; padding: 16px; border-radius: 3px; background: url("../../images/mobile_a/ico/ico_cal_prev.svg") center center no-repeat; background-size: 20px auto; }
+.ui-datepicker-prev:hover { background: #F6F7F8 url("../../images/mobile_a/ico/ico_cal_prev.svg") center center no-repeat; background-size: 20px auto; }
+.ui-datepicker-prev:active { background: #E0E0E0 url("../../images/mobile_a/ico/ico_cal_prev.svg") center center no-repeat; background-size: 20px auto; }
+.ui-datepicker-next { right: 8px; margin-top: -6px; padding: 16px; border-radius: 3px; background: url("../../images/mobile_a/ico/ico_cal_next.svg") center center no-repeat; background-size: 20px auto; }
+.ui-datepicker-next:hover { background: #F6F7F8 url("../../images/mobile_a/ico/ico_cal_next.svg") center center no-repeat; background-size: 20px auto; }
+.ui-datepicker-next:active { background: #E0E0E0 url("../../images/mobile_a/ico/ico_cal_next.svg") center center no-repeat; background-size: 20px auto; }
+.ui-datepicker-calendar { width: 100% }
+.ui-datepicker-calendar { border-collapse: separate; border-spacing: 0 3px }
+.ui-datepicker-calendar th, .ui-datepicker-calendar td { width: 14.2%; height: 36px; font-size: 16px; text-align: center; }
+.ui-datepicker-calendar tr:last-child th, .ui-datepicker-calendar tr:last-child td { border-bottom: 0 none; }
+.ui-datepicker-calendar td span, .ui-datepicker-calendar th a, .ui-datepicker-calendar td a { display: inline-block; width: 36px; height: 36px; border-radius: 100%; line-height: 36px; color: #232B33; position: relative }
+.ui-datepicker-calendar th span, .ui-datepicker-calendar th a { color: #A2A5AD }
+.ui-state-default { width: 36px; height: 36px; border-radius: 100%; margin: 0 auto }
+.ui-state-default:active { background: #05141F !important; color: #fff !important; }
+.ui-datepicker-calendar td a:hover { border-radius: 100%; background: #E9ECEE; margin: 0 auto }
+.ui-datepicker-calendar td a:active { border-radius: 100%; background: #05141F !important; color: #fff !important; margin: 0 auto }
+td.ui-state-disabled span { width: 36px; height: 36px; margin: 0 auto; border-radius: 100%; color: #BDC0C2; line-height: 36px; background: #fff !important; cursor: pointer }
+td.ui-state-disabled span:active { }
+.btn_list .ui-datepicker-trigger { margin-left: 10px; padding: 12px; border: 1px solid #ccc; border-radius: 4px; vertical-align: top; background: #f8f8f8 }
+.btn_list .ui-datepicker-trigger:active { background: #f5f5f5; box-shadow: 0 0 5px rgba(0, 0, 0, 0.2) inset }
+.ui-widget-content { float: left; background: #fff; color: #222222; }
+.ui-datepicker-calendar .holiday a { color: #E4514E; text-decoration: underline; }
+.ui-datepicker-calendar .holiday span { color: #E4514E; text-decoration: underline; }
+.ui-datepicker-calendar .saturday a { color: #9199A3; }
+.ui-datepicker-calendar .saturday span { color: #9199A3; }
+.ui-datepicker-week-end:first-child { color: #E4514E; }
+.ui-datepicker-week-end:last-child { color: #9199A3; }
+.ui-datepicker-calendar > tbody td:first-child a { color: #E4514E; }
+.ui-datepicker-calendar > tbody td:last-child a { color: #9199A3; }
+.ui-datepicker select.ui-datepicker-month-year { width: 100%; }
+.ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year { width: 72px; }
+.ui-datepicker .ui-datepicker-buttonpane { padding: 0 .2em; border-right: 0; border-bottom: 0; border-left: 0; background-image: none; }
+.ui-datepicker-current-day .ui-state-active { width: 36px; height: 36px; margin: 0 auto; border-radius: 100%; line-height: 36px; }
+.ui-datepicker .ui-datepicker-title { text-align: center; width: 100%; margin: 0 auto; height: 32px; position: relative; top: 2px; line-height: 100% }
+.ui-datepicker .ui-datepicker-title select { line-height: 100%; padding: 0 10px 0 10px; border: none; background-color: #fff; font: inherit; background-position: right center }
+.ui-datepicker .ui-datepicker-title select:hover { }
+.ui-datepicker select.ui-datepicker-month-year { width: 100%; }
+.ui-datepicker .ui-datepicker-year { display: inline-block; height: 31px; }
+.ui-datepicker select.ui-datepicker-month { width: 60px; height: 30px; background-image: none }
+.ui-datepicker select.ui-datepicker-year { width: 80px; height: 31px; background-image: none }
+.ui-datepicker .ui-datepicker-buttonpane { width: 100%; margin: .7em 0 0 0; padding: 0 .2em; border-right: 0; border-bottom: 0; border-left: 0; background-image: none; }
+.ui-datepicker .ui-datepicker-buttonpane button { display: inline-flex; float: right; width: auto; height: 36px; padding: 0 14px; border: 1px solid rgba(0,0,0,.1); border-radius: 6px; font-size: 13px; cursor: pointer; flex-grow: 0; align-items: center; justify-content: center; transition: .1s ease-in-out; }
+.ui-datepicker .ui-datepicker-buttonpane button { background-color: var(--secWeak-default-color); color: var(--text-black02-color); border: none }
+.ui-datepicker .ui-datepicker-buttonpane button:hover { background-color: var(--secWeak-hover-color); }
+.ui-datepicker .ui-datepicker-buttonpane button:active { background-color: var(--secWeak-pressed-color); }
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current { float: left; }
+.ui-datepicker-trigger { cursor: pointer }
+/*오늘*/
+.ui-datepicker-today { position: relative; }
+.ui-datepicker-today::before { display: block; position: absolute; top: 0; left: 50%; width: 33px; height: 33px; border-radius: 100%; content: ''; color: #C41230; cursor: pointer; transform: translateX(-50%); border: 1px solid rgb(0 0 0 / 30%) }
+/*.ui-datepicker-today .ui-state-default.ui-state-highlight { background: #E9ECEE; color: #232B33; }*/
+.ui-state-default.ui-state-active { background: #05141F; color: #fff; }
+.ui-state-default.ui-state-active.ui-state-hover { background: #05141F; color: #fff; }
+/* 멀티셀렉트 */
+.ui-datepicker .ui-datepicker-year { display: inline-block; height: 32px; }
+.ui-datepicker .ui-datepicker-year:hover { height: 32px !important; }
+/** 내예약 **/
+.ui-state-disabled.cal-resved-my > span { background-color: #C41230 !important; color: #fff !important }
+.ui-state-disabled.cal-resved-my > span:active { background-color: #C41230 !important; color: #fff !important }
+.ui-state-disabled.cal-resved-my > a { background-color: #C41230 !important; color: #fff !important }
+.ui-state-disabled.cal-resved-my > a:active { background-color: #C41230 !important; color: #fff !important }
+/* 예약된날선택했을때 */
+.ui-state-disabled.cal-resved-selected > span::before { display: block; position: absolute; top: 0; left: 50%; width: 33px; height: 33px; border-radius: 100%; content: ''; color: #232B33; cursor: pointer; transform: translateX(-50%); border: 2px solid #232B33 }
+.ui-state-disabled.cal-resved-selected > a::before { display: block; position: absolute; top: 0; left: 50%; width: 33px; height: 33px; border-radius: 100%; content: ''; color: #232B33; cursor: pointer; transform: translateX(-50%); border: 2px solid #232B33 }
+.ui-state-disabled:active > span::before { display: block; position: absolute; top: 0; left: 50%; width: 33px; height: 33px; border-radius: 100%; content: ''; color: #232B33; cursor: pointer; transform: translateX(-50%); border: 2px solid #232B33 }
+.ui-state-disabled:active > a::before { display: block; position: absolute; top: 0; left: 50%; width: 33px; height: 33px; border-radius: 100%; content: ''; color: #232B33; cursor: pointer; transform: translateX(-50%); border: 2px solid #232B33 }
+/** 다른사람예약된날 **/
+.ui-state-disabled.cal-resved > span { color: #232B33 !important; background-color: #E9ECEE !important }
+.ui-state-disabled.cal-resved > a { color: #232B33 !important; background-color: #E9ECEE !important }
+.ui-state-disabled.cal-resved:active > span { color: #232B33 !important; background-color: #E9ECEE !important }
+.ui-state-disabled.cal-resved:active > a { color: #232B33 !important; background-color: #E9ECEE !important }
+/* 예약가능한날선택 */
+.datepicker-multi .cal-selected > span { color: #fff !important; background-color: #05141F !important }
+.datepicker-multi .cal-selected > a { color: #fff !important; background-color: #05141F !important }
+/* 예약가능한날선택취소 */
+.datepicker-multi .ui-state-default.ui-state-active { background: #fff; color: #232B33; }
+/*****************************************************/
+.blind { display: none }
+.clear { clear: both }
+.clearfix:after { display: block; visibility: hidden; clear: both; width: 0; height: 0; font-size: 0; line-height: 0; content: '.' }
+.unselectable { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+/*파일찾기*/
+.filebox { float: left; width: 100%; }
+.filebox input[type="file"] { float: left; position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+.filebox .upload-name { float: left; width: 100%; margin-right: 3px; display: inline-block; vertical-align: middle; height: 32px; padding: 0 10px; border: 1px solid #e4e7eb; border-radius: 6px; background-color: #fbfbfb; text-align: left; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+.filebox > label { float: left; display: inline-flex; flex-grow: 0; align-items: center; justify-content: center; height: 32px; padding: 0 14px; border-radius: 6px; font-size: 13px; border: 1px solid rgba(0,0,0,.1); transition: .1s ease-in-out; cursor: pointer }
+.filebox > label { display: inline-flex; font-size: 14px; margin-right: 0px; color: var(--text-black02-color); background-color: var(--secWeak-default-color); border: none }
+.filebox > label:hover { background-color: var(--secWeak-hover-color); }
+.filebox > label:active { background-color: var(--secWeak-pressed-color); }
+.filebox > label i { margin-right: 4px; font-size: 11px; opacity: .8; }
+.filebox .upload-display { float: left; width: 100%; display: inline-block; margin: 0 5px 5px 0 }
+.filebox .upload-thumb-wrap { /* 추가될 이미지를 감싸는 요소 */ display: inline-block; padding: 2px; vertical-align: middle; border: 1px solid var(--input-def-border-color); background-color: #fff; }
+.filebox .upload-display img { /* 추가될 이미지 */ display: block; max-width: 150px; min-width: 16px; max-height: 50px; width: 100% \9; height: auto; }
+.fileUrl { float: left; width: 100%; margin-bottom: 3px }
+.fileArea { float: left; }
+.fileComment { float: left; margin: 8px 0 0 10px }
+/*****************************************************/
+.groupListBtn { position: relative; float: left; width: 100%; margin-top: 10px; margin-bottom: 20px }
+.leftblockButton { float: left }
+.leftblockButton ul li { display: inline; float: left; margin-right: 5px }
+.leftblockButton ul li.margin { padding: 8px 0 0 12px }
+.rightblockButton { float: right }
+.rightblockButton ul li { display: inline; float: left; margin-left: 10px }
+/*****************************************************/
+.sBtn_03 { display: inline-block; margin: 0; padding: 1px 10px; border: 1px solid #e2e1e1; background: #f5f5f5; border-radius: 4px; font-size: 12px; line-height: 160%; cursor: pointer; position: relative; top: -2px }
+.sBtn_03 i { display: inline-block; margin: 5px 4px 0 0; font-size: 11px; color: #666; }
+.sBtn_03:hover { border: 1px solid #0076c2; background: #0076c2; color: #fff }
+.sBtn_03:hover i { color: #fff }
+/*
+.button { display: inline-flex; flex-grow: 0; align-items: center; justify-content: center; height: 32px; padding: 0 14px; border-radius: 6px; font-size: 13px; border: 1px solid rgba(0,0,0,.1); transition: .1s ease-in-out; cursor: pointer }
+.button:hover { background-color: #fff; background-image: none; color: #333 }
+.button:active { background-color: #fff; background-image: none; color: #000 }
+.button i { margin-right: 4px; font-size: 11px; opacity: .8; }
+*/
+/*****************************************************/
+/*
+.confirm.button { color: var(--text-black01-color); background-color: var(--primary-default-color) }
+.confirm.button:hover { background-color: var(--primary-hover-color) !important }
+.confirm.button:visited { background-color: var(--primary-default-color) }
+.confirm.button:active { background-color: var(--primary-pressed-color) !important; }
+*/
+/*****************************************************/
+/*
+.gray.button { border: 1px solid #dddcdc; background: #f5f5f5; color: #555!important }
+.gray.button:hover { border-color: #ccc; background-color: #fff; background-image: none; color: #333!important }
+.gray.button:active { border-color: #ccc; background-color: #fff; background-image: none; color: #000!important }
+.small.button { height: 32px; padding: 0 14px; border-radius: 6px; font-size: 13px; }
+.large.button { height: 44px; padding: 0 20px; border-radius: 10px; font-size: 15px; }
+.right.button { float: right }
+.black.button { color: var(--text-black01-color); background-color: var(--second-default-color) }
+.black.button:hover { background-color: var(--second-hover-color) !important }
+.black.button:visited { background-color: var(--second-default-color) }
+.black.button:active { background-color: var(--second-pressed-color) !important }
+*/
+/*****************************************************/
+.sfont { font-size: 11px }
+/*****************************************************/
+/*
+.sBtn_01 a { display: inline-flex; flex-grow: 0; align-items: center; justify-content: center; height: 32px; padding: 0 14px; border-radius: 6px; font-size: 13px; transition: .1s ease-in-out; cursor: pointer; color: var(--text-black02-color); background-color: var(--secWeak-default-color); border: 1px solid rgba(0,0,0,.1); }
+.sBtn_01 a:hover { background-color: var(--secWeak-hover-color) !important }
+.sBtn_01 a:visited { background-color: var(--secWeak-default-color) }
+.sBtn_01 a:active { background-color: var(--secWeak-pressed-color) !important }
+.sBtn_01 i { display: inline-block; font-size: 11px; margin: 0 4px 0 0 }
+*/
+/*****************************************************/
+.margin05 { float: left; margin: 2px 0; width: 100% }
+.margin10 { float: left; margin: 5px 0; width: 100% }
+.margin20 { float: left; margin: 10px 0; width: 100% }
+.margin30 { float: left; margin: 30px 0; width: 100% }
+.margin40 { float: left; margin: 40px 0; width: 100% }
+.margin50 { float: left; margin: 50px 0; width: 100% }
+.margin60 { float: left; margin: 60px 0; width: 100% }
+/*****************************************************/
+.seat_cal { height: auto !important; font-weight: 600; color: #666; text-align: center !important; width: 100px; border: none !important; background: #fff !important; font-size: 18px; line-height: 20px; }
+/*캘린더깜빡임패치*/
+#icon_cal { cursor: pointer; width: 30px; height: 30px; position: relative; top: 0 }
+.input_cal { width: 100%; border: 1px solid #e8e8e8; border-radius: 6px; background: #fff; display: inline-flex; position: relative; top: 2px; }
+.input_cal input[type=text] { background: #fff; color: #666666; border: none; height: 34px; }
+.input_cal .ui-datepicker-trigger { position: relative; top: 2px; margin: 0 4px 0 0; }
+.input_cal.nonBorder { border: none; background: none; }
+.input_cal.nonBorder input[type=text] { background: none; }
