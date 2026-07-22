@@ -15,7 +15,7 @@
   <link rel="stylesheet" type="text/css" href="./css/mobile_a/colorStyle.css" />
   <link rel="stylesheet" type="text/css" href="./css/mobile_a/common.css" /> <!-- 2026-07-07 추가 -->
 
-  <!-- [final_260722] 2026-07-22 수정: 가운데 QR 인증 버튼 커스텀 스타일 (최종 확정 메인 시안 1 - 무색 적용) -->
+  <!-- 2026-07-22 수정: 가운데 QR 인증 버튼 커스텀 스타일 (최종 확정 메인 시안 1 - 무색 적용) -->
   <style>
     .footerNav {
       overflow: visible !important;
@@ -70,8 +70,8 @@
     }
 
     .footerNav ul.btnArea li a.center-qr-btn:active .qr-circle {
-      /* [final_260722] 시안 1 클릭 시 테두리 레드 변경 */
       background-color: #ffffff !important;
+      /* 클릭 시 테두리 레드 변경 */
       border-color: #D71635 !important;
       transform: translateX(-50%) scale(0.95);
     }
@@ -245,7 +245,7 @@
                 <dl>
                   <dt>
                     <a href="javascript:;">
-                      <!-- [final_260722] 2026-07-14 수정: 주차관리 -> 주차정산 명칭 변경 -->
+                      <!-- 2026-07-14 수정: 주차관리 -> 주차정산 명칭 변경 -->
                       <span><img src="./images/mobile_a/common/ic_parking.svg" alt="" />주차정산<!-- 주차정산 --></span>
                       <!-- 2026-07-06 수정 -->
                     </a>
@@ -258,7 +258,6 @@
                   <dd>
                     <ul>
                       <li>
-                        <!-- [final_260722] 주차권 발급 -> 주차정산 명칭 변경 -->
                         <a href="javascript:;"><span>주차정산<!-- 주차권 발급 --></span></a>
                       </li>
                     </ul>
@@ -287,7 +286,7 @@
                         <a href="javascript:;"><span>QR 인증<!-- QR 인증 --></span></a>
                       </li>
                       <li>
-                        <!-- [final_260722] 2026-07-14 수정: 셔틀탑승 신청 로컬 링크 연동 -->
+                        <!-- 2026-07-14 수정: 셔틀탑승 신청 로컬 링크 연동 -->
                         <a href="./shuttle_request.html"><span>셔틀탑승 신청<!-- 셔틀탑승 신청 --></span></a>
                       </li>
                     </ul>
@@ -447,7 +446,7 @@
     };
   </script>
 
-  <!-- [final_260722] 2026-07-14 수정: 정적 HTML 내 JSTL 분기 구동용 시뮬레이션 스크립트 추가 -->
+  <!-- 2026-07-14 수정: 정적 HTML 내 JSTL 분기 구동용 시뮬레이션 스크립트 추가 -->
   <script>
     function simulateJstlForStaticHtml() {
       const urlParams = new URLSearchParams(window.location.search);
