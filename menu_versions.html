@@ -4,7 +4,7 @@
 <head>
   <meta name="viewport"
     content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>스마트오피스 예약시스템 - 메인 대시보드</title>
+  <title>스마트오피스 예약시스템 - 시안 비교 </title>
 
   <link rel="stylesheet" type="text/css" href="./css/mobile_a/fonts.css" />
   <link rel="stylesheet" type="text/css" href="./css/mobile_a/base.css" />
@@ -175,9 +175,8 @@
       }
     }
 
-    /* --- 시안 선택기 스타일 (최종 시안 확정으로 숨김 처리) --- */
+    /* --- 시안 선택기 스타일 (KGC 모바일 오피스 테마화) --- */
     .version-switcher-card {
-      display: none !important;
       margin: 16px;
       background: #ffffff;
       border-radius: 12px;
@@ -1016,8 +1015,8 @@
         }
       }
 
-      // 초기 실행 (시안 1로 확정 반영)
-      applyVersionStyle(1);
+      // 초기 실행
+      applyVersionStyle(3);
 
       // QR 버튼 모바일 터치 피드백 (Active 상태 수동 시뮬레이션)
       const qrBtn = $('.center-qr-btn');
