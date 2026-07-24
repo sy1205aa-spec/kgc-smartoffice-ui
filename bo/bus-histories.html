@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>탑승자관리이력 - Smart Office Back Office</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Noto+Sans+KR:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+</head>
+<body class="admin-page">
+
+<main class="admin-content">
+  <div class="page-heading">
+    <div><p class="eyebrow">COMMUTE BUS</p><h1>탑승자관리이력</h1><p>탑승권 등록, 수정, 삭제 이력을 조회합니다.</p></div>
+  </div>
+
+  <section class="panel">
+    <div class="toolbar">
+      <div class="toolbar__group">
+        <input type="date" value="2025-07-01">
+        <span>~</span>
+        <input type="date" value="2025-07-24">
+        <select aria-label="작업 유형">
+          <option value="">전체 작업 (등록/수정/삭제)</option>
+          <option value="INSERT">등록</option>
+          <option value="UPDATE">수정</option>
+          <option value="DELETE">삭제</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <input type="search" placeholder="사번, 작업자 검색">
+        <button type="button" onclick="BOLayout.showToast('조회 완료')">검색</button>
+      </div>
+    </div>
+
+    <div class="list-summary">총 <strong>42</strong>건</div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>변경 일시</th><th>대상 사번</th><th>대상자명</th><th>작업 유형</th><th>변경 내용</th><th>작업자</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2025-07-24 09:15:22</td>
+            <td>KGC202408</td>
+            <td>박선영</td>
+            <td><span class="pill pill--green">등록</span></td>
+            <td>1호차 일일권(출근) 신청 등록</td>
+            <td>admin (관리자)</td>
+          </tr>
+          <tr>
+            <td>2025-07-23 14:30:10</td>
+            <td>KGC202241</td>
+            <td>최동수</td>
+            <td><span class="pill pill--blue">수정</span></td>
+            <td>3호차 정기권 기간 연장 (2025-07-31)</td>
+            <td>admin (관리자)</td>
+          </tr>
+          <tr>
+            <td>2025-07-22 11:05:44</td>
+            <td>KGC202102</td>
+            <td>강수진</td>
+            <td><span class="pill pill--amber">삭제</span></td>
+            <td>2호차 정기권 해지 처리</td>
+            <td>admin (관리자)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination">
+      <button class="pagination__button" disabled>&lt;</button>
+      <button class="pagination__button is-active">1</button>
+      <button class="pagination__button" disabled>&gt;</button>
+    </div>
+  </section>
+</main>
+
+<script src="common.js"></script>
+<script src="layout.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>권한 상세/등록 - Smart Office Back Office</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Noto+Sans+KR:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+</head>
+<body class="admin-page">
+
+<main class="admin-content">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">ROLE DETAIL</p>
+      <h1 id="role-detail-title">권한 그룹 등록</h1>
+      <p>시스템 접근 역할(Role) 및 접근 가능 메뉴를 매핑합니다.</p>
+    </div>
+    <a class="button button--ghost button--list" href="roles.html">목록</a>
+  </div>
+
+  <section class="panel">
+    <form id="role-detail-form" onsubmit="handleSave(event)">
+      <div class="form-grid form-grid--two">
+        <div class="form-field">
+          <label for="roleCode">권한 코드</label>
+          <input id="roleCode" maxlength="50" placeholder="예: ROLE_BUS_ADMIN" required>
+        </div>
+        <div class="form-field">
+          <label for="roleName">권한 그룹명</label>
+          <input id="roleName" maxlength="100" placeholder="예: 통근버스 관리자" required>
+        </div>
+        <div class="form-field form-field--span-2">
+          <label for="roleDesc">권한 설명</label>
+          <input id="roleDesc" maxlength="200" placeholder="권한 설명 입력">
+        </div>
+      </div>
+
+      <h3 style="margin:24px 0 12px;font-size:16px;">접근 허용 메뉴 매핑</h3>
+      <div class="checkbox-grid">
+        <label class="checkbox-item"><input type="checkbox" checked> <span>운영 대시보드</span></label>
+        <label class="checkbox-item"><input type="checkbox" checked> <span>통근버스 - 버스관리</span></label>
+        <label class="checkbox-item"><input type="checkbox" checked> <span>통근버스 - 탑승자관리</span></label>
+        <label class="checkbox-item"><input type="checkbox"> <span>주차관리 - 주차할인현황</span></label>
+        <label class="checkbox-item"><input type="checkbox"> <span>공통관리 - 계정관리</span></label>
+      </div>
+
+      <div class="form-actions form-actions--spaced" style="margin-top:24px;">
+        <button class="button button--danger" type="button" id="deleteBtn" onclick="handleDelete()" style="display:none;">삭제</button>
+        <button class="button button--primary" type="submit">저장</button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<script src="common.js"></script>
+<script src="layout.js"></script>
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get('id');
+  const titleEl = document.getElementById('role-detail-title');
+  const deleteBtn = document.getElementById('deleteBtn');
+
+  if (id) {
+    titleEl.textContent = `권한 그룹 수정 (${id})`;
+    deleteBtn.style.display = 'inline-flex';
+    document.getElementById('roleCode').value = id;
+    if (id === 'ROLE_ADMIN') {
+      document.getElementById('roleName').value = '시스템 최고관리자';
+      document.getElementById('roleDesc').value = '모든 관리 기능 및 메뉴 제어 권한';
+    } else if (id === 'ROLE_BUS_ADMIN') {
+      document.getElementById('roleName').value = '통근버스 관리자';
+      document.getElementById('roleDesc').value = '통근버스 노선 및 탑승자 관리 권한';
+    }
+  }
+
+  function handleSave(e) {
+    e.preventDefault();
+    BOLayout.showToast('권한 설정이 저장되었습니다.');
+    setTimeout(() => { location.href = 'roles.html'; }, 1000);
+  }
+
+  function handleDelete() {
+    if (confirm('해당 권한 그룹을 삭제하시겠습니까?')) {
+      BOLayout.showToast('삭제 처리되었습니다.');
+      setTimeout(() => { location.href = 'roles.html'; }, 1000);
+    }
+  }
+</script>
+</body>
+</html>

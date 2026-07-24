@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>계정관리 - Smart Office Back Office</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Noto+Sans+KR:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+</head>
+<body class="admin-page">
+
+<main class="admin-content">
+  <div class="page-heading">
+    <div><p class="eyebrow">COMMON MANAGEMENT</p><h1>계정관리</h1><p>백오피스 시스템 접근 권한을 가진 관리자 계정을 관리합니다.</p></div>
+    <a class="button button--primary" href="account-detail.html">계정 추가</a>
+  </div>
+
+  <section class="panel">
+    <div class="toolbar">
+      <div class="toolbar__group">
+        <select id="account-role-filter" aria-label="권한" onchange="BOLayout.showToast('권한 필터 변경')">
+          <option value="">전체 권한</option>
+          <option value="ROLE_ADMIN">SUPER ADMIN</option>
+          <option value="ROLE_BUS_ADMIN">BUS OPERATOR</option>
+          <option value="ROLE_PARKING_ADMIN">PARKING OPERATOR</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <input id="account-keyword" type="search" placeholder="아이디, 관리자명 검색">
+        <button type="button" onclick="BOLayout.showToast('검색 완료')">검색</button>
+      </div>
+    </div>
+
+    <div class="list-summary">총 <strong id="accountCount">3</strong>명</div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>ID</th><th>관리자명</th><th>이메일</th><th>권한그룹</th><th>최종 로그인</th><th>상태</th><th>관리</th></tr>
+        </thead>
+        <tbody id="accountTableBody">
+          <tr>
+            <td><strong>admin</strong></td>
+            <td>최고관리자</td>
+            <td>admin@kgc.co.kr</td>
+            <td><span class="pill pill--green">SUPER ADMIN</span></td>
+            <td>2025-07-24 10:30:15</td>
+            <td><span class="pill pill--green">활성</span></td>
+            <td><a class="button table-action" href="account-detail.html?id=admin">수정</a></td>
+          </tr>
+          <tr>
+            <td><strong>oper_bus</strong></td>
+            <td>버스담당자</td>
+            <td>bus_admin@kgc.co.kr</td>
+            <td><span class="pill pill--blue">BUS OPERATOR</span></td>
+            <td>2025-07-24 08:12:00</td>
+            <td><span class="pill pill--green">활성</span></td>
+            <td><a class="button table-action" href="account-detail.html?id=oper_bus">수정</a></td>
+          </tr>
+          <tr>
+            <td><strong>oper_parking</strong></td>
+            <td>주차담당자</td>
+            <td>parking_admin@kgc.co.kr</td>
+            <td><span class="pill pill--blue">PARKING OPERATOR</span></td>
+            <td>2025-07-23 17:50:22</td>
+            <td><span class="pill pill--green">활성</span></td>
+            <td><a class="button table-action" href="account-detail.html?id=oper_parking">수정</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination">
+      <button class="pagination__button" disabled>&lt;</button>
+      <button class="pagination__button is-active">1</button>
+      <button class="pagination__button" disabled>&gt;</button>
+    </div>
+  </section>
+</main>
+
+<script src="common.js"></script>
+<script src="layout.js"></script>
+</body>
+</html>

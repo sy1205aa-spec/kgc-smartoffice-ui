@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>로그인 - Smart Office Back Office</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Noto+Sans+KR:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+</head>
+<body>
+<div class="login-shell">
+  <div class="login-intro">
+    <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="52" height="52" rx="14" fill="#087b5b"/>
+      <text x="26" y="35" text-anchor="middle" fill="white" font-size="22" font-weight="900" font-family="Inter,sans-serif">SO</text>
+    </svg>
+    <h1>Smart<br>Office</h1>
+    <p>KGC 스마트오피스 운영 백오피스<br>관리자 전용 시스템입니다.</p>
+  </div>
+  <div class="login-panel panel">
+    <p class="eyebrow">BACK OFFICE</p>
+    <h2 style="margin:0 0 8px;font-size:24px;letter-spacing:-.03em;">관리자 로그인</h2>
+    <p style="margin:0 0 28px;color:#6d7782;font-size:14px;">계정 정보를 입력하세요.</p>
+
+    <label for="userId">아이디</label>
+    <input type="text" id="userId" placeholder="관리자 아이디" autocomplete="username">
+
+    <label for="password">비밀번호</label>
+    <input type="password" id="password" placeholder="비밀번호" autocomplete="current-password">
+
+    <div class="form-error" id="loginError" style="min-height:20px;"></div>
+
+    <button class="button button--primary button--block" type="button" id="loginBtn" onclick="doLogin()">로그인</button>
+  </div>
+</div>
+
+<script>
+function doLogin() {
+  const userId = document.getElementById('userId').value.trim();
+  const password = document.getElementById('password').value.trim();
+  const errorEl = document.getElementById('loginError');
+  const btn = document.getElementById('loginBtn');
+
+  if (!userId || !password) {
+    errorEl.textContent = '아이디와 비밀번호를 입력하세요.';
+    return;
+  }
+
+  // 시연용: admin / 0000 또는 admin / admin 허용
+  if ((userId === 'admin' && (password === '0000' || password === 'admin' || password === '1234'))) {
+    btn.textContent = '로그인 중...';
+    btn.disabled = true;
+    errorEl.textContent = '';
+    setTimeout(() => { location.href = 'main.html'; }, 800);
+  } else {
+    errorEl.textContent = '아이디 또는 비밀번호가 올바르지 않습니다.';
+  }
+}
+
+// Enter 키 로그인
+document.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>차량관리 - Smart Office Back Office</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Noto+Sans+KR:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+</head>
+<body class="admin-page">
+
+<main class="admin-content">
+  <div class="page-heading">
+    <div><p class="eyebrow">PARKING</p><h1>차량관리</h1><p>주차 할인을 받을 임직원의 차량 번호를 등록하고 관리합니다.</p></div>
+    <a class="button button--primary" href="parking-vehicle-detail.html">차량 등록</a>
+  </div>
+
+  <section class="panel">
+    <div class="toolbar">
+      <div class="toolbar__group">
+        <select aria-label="검색 조건">
+          <option value="all">전체 조건</option>
+          <option value="carNo">차량번호</option>
+          <option value="userName">임직원명</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <input type="search" placeholder="차량번호 또는 사번/성명 검색">
+        <button type="button" onclick="BOLayout.showToast('조회 완료')">검색</button>
+      </div>
+    </div>
+
+    <div class="list-summary">총 <strong id="vehicleCount">3</strong>대</div>
+    <div class="table-wrap">
+      <table class="data-table data-table--parking-vehicle">
+        <thead>
+          <tr><th class="parking-vehicle-column--user">사번</th><th class="parking-vehicle-column--user-name">성명 / 부서</th><th class="parking-vehicle-column--number">차량번호</th><th class="parking-vehicle-column--created">등록일시</th><th class="parking-vehicle-column--updated">수정일시</th><th class="parking-vehicle-column--action">관리</th></tr>
+        </thead>
+        <tbody id="vehicleTableBody">
+          <tr>
+            <td>KGC202401</td>
+            <td><strong>김철수</strong> (경영지원)</td>
+            <td>12가 3456</td>
+            <td>2025-01-10 10:20:00</td>
+            <td>2025-07-24 09:42:10</td>
+            <td><a class="button table-action" href="parking-vehicle-detail.html?id=KGC202401">수정</a></td>
+          </tr>
+          <tr>
+            <td>KGC202408</td>
+            <td><strong>박선영</strong> (IT개발)</td>
+            <td>56나 7890</td>
+            <td>2025-03-15 14:05:22</td>
+            <td>2025-07-24 09:15:33</td>
+            <td><a class="button table-action" href="parking-vehicle-detail.html?id=KGC202408">수정</a></td>
+          </tr>
+          <tr>
+            <td>KGC202315</td>
+            <td><strong>이영희</strong> (마케팅)</td>
+            <td>34다 1122</td>
+            <td>2025-04-01 11:30:45</td>
+            <td>2025-07-20 16:22:00</td>
+            <td><a class="button table-action" href="parking-vehicle-detail.html?id=KGC202315">수정</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination">
+      <button class="pagination__button" disabled>&lt;</button>
+      <button class="pagination__button is-active">1</button>
+      <button class="pagination__button" disabled>&gt;</button>
+    </div>
+  </section>
+</main>
+
+<script src="common.js"></script>
+<script src="layout.js"></script>
+</body>
+</html>

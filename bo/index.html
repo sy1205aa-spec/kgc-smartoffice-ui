@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KGC 스마트오피스 백오피스 시안 리스트 & 시연 메뉴</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Noto+Sans+KR:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+<style>
+  .hub-container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+  .hub-header { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 2px solid var(--line); }
+  .hub-header h1 { font-size: 32px; margin: 0 0 10px; color: var(--ink); }
+  .hub-header p { margin: 0; color: var(--muted); font-size: 15px; }
+  .hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; }
+  .hub-card { padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.03); transition: transform 0.2s, box-shadow 0.2s; }
+  .hub-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(8, 123, 91, 0.12); border-color: var(--primary); }
+  .hub-card__category { font-size: 11px; font-weight: 900; color: var(--primary); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+  .hub-card__title { font-size: 18px; font-weight: 800; margin: 0 0 8px; display: flex; align-items: center; justify-content: space-between; }
+  .hub-card__desc { font-size: 13px; color: #68737d; margin: 0 0 16px; line-height: 1.5; }
+  .hub-card__actions { display: flex; gap: 8px; }
+  .tag { font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; background: #e8f5f1; color: #087b5b; }
+</style>
+</head>
+<body style="background:#f4f7f8;">
+
+<div class="hub-container">
+  <div class="hub-header">
+    <div class="status-badge" style="margin-bottom:12px;"><i></i> <span>시연용 모킹 백오피스 환경 구축 완료</span></div>
+    <h1>KGC 스마트오피스 백오피스 시안 리스트</h1>
+    <p>실제 백오피스 시스템(http://192.168.1.61:8081)의 UI/UX 및 디자인 시스템을 100% 모사한 독립형 시연 페이지 목록입니다.</p>
+  </div>
+
+  <div class="hub-grid">
+    <!-- 로그인 -->
+    <div class="hub-card">
+      <div class="hub-card__category">AUTHENTICATION</div>
+      <div class="hub-card__title"><span>로그인 화면</span> <span class="tag">인증</span></div>
+      <div class="hub-card__desc">백오피스 관리자 로그인 화면입니다. (시연용 계정: admin / 0000 지원)</div>
+      <div class="hub-card__actions">
+        <a class="button button--primary button--small" href="login.html" target="_blank">페이지 바로가기</a>
+      </div>
+    </div>
+
+    <!-- 대시보드 -->
+    <div class="hub-card">
+      <div class="hub-card__category">MAIN / DASHBOARD</div>
+      <div class="hub-card__title"><span>운영 대시보드</span> <span class="tag">메인</span></div>
+      <div class="hub-card__desc">오늘의 유효 탑승권, 탑승 정원 현황, 버스별 탑승률, 주차 등록 현황, 운영 알림 지표.</div>
+      <div class="hub-card__actions">
+        <a class="button button--primary button--small" href="main.html" target="_blank">페이지 바로가기</a>
+      </div>
+    </div>
+
+    <!-- 통근버스 - 버스관리 -->
+    <div class="hub-card">
+      <div class="hub-card__category">COMMUTE BUS</div>
+      <div class="hub-card__title"><span>버스관리</span> <span class="tag">통근버스</span></div>
+      <div class="hub-card__desc">통근버스 노선별 정보 조회, 사용 여부 필터링 및 등록/수정 모달 동작.</div>
+      <div class="hub-card__actions">
+        <a class="button button--primary button--small" href="bus-list.html" target="_blank">페이지 바로가기</a>
+      </div>
+    </div>
+
+    <!-- 통근버스 - 탑승자관리 -->
+    <div class="hub-card">
+      <div class="hub-card__category">COMMUTE BUS</div>
+      <div class="hub-card__title"><span>탑승자관리</span> <span class="tag">통근버스</span></div>
+      <div class="hub-card__desc">정기권 및 일일권 탑승 신청 임직원 리스트, 엑셀 템플릿 다운로드 및 일괄 등록.</div>
+      <div class="hub-card__actions">
+        <a class="button button--primary button--small" href="bus-passengers.html" target="_blank">페이지 바로가기</a>
+      </div>
+    </div>
+
+    <!-- 통근버스 - 탑승자관리이력 -->
+    <div class="hub-card">
+      <div class="hub-card__category">COMMUTE BUS</div>
+      <div class="hub-card__title"><span>탑승자관리이력</span> <span class="tag">통근버스</span></div>
+      <div class="hub-card__desc">탑승권 신규 등록, 연장, 해지 변경 이력 및 작업자 조회.</div>
+      <div class="hub-card__actions">
+        <a class="button button--primary button--small" href="bus-histories.html" target="_blank">페이지 바로가기</a>
+      </div>
+    </div>
+
+    <!-- 통근버스 - 탑승이력 -->
+    <div class="hub-card">
+      <div class="hub-card__category">COMMUTE BUS</div>
+      <div class="hub-card__title"><span>탑승이력</span> <span class="tag">통근버스</span></div>
+      <div class="hub-card__desc">버스 단말기 태깅 및 QR 스캔을 통한 실제 승차 이력 및 등록 승객 매칭 여부.</div>
+      <div class="hub-card__actions">
+        <a class="button button--primary button--small" href="bus-boarding-history.html" target="_blank">페이지 바로가기</a>
+      </div>
+    </div>
+
+    <!-- 주차관리 - 주차할인현황 -->
+    <div class="hub-card">
+      <div class="hub-card__category">PARKING</div>
+      <div class="hub-card__title"><span>주차할인현황</span> <span class="tag">주차관리</span></div>
+      <div class="hub-card__desc">웹할인 사용 내역, 빠른 날짜 구간 필터(오늘, 7일, 1개월), 차종별 할인 지표.</div>
+      <div class="hub-card__actions">
+        <a class="button button--primary button--small" href="parking.html" target="_blank">페이지 바로가기</a>
+      </div>
+    </div>
+
+    <!-- 주차관리 - 차량관리 -->
+    <div class="hub-card">
+      <div class="hub-card__category">PARKING</div>
+      <div class="hub-card__title"><span>차량관리</span> <span class="tag">주차관리</span></div>
+      <div class="hub-card__desc">임직원별 주차 등록 차량 조회 및 등록/수정 모달 기능.</div>
+      <div class="hub-card__actions">
+        <a class="button button--primary button--small" href="parking-vehicles.html" target="_blank">페이지 바로가기</a>
+      </div>
+    </div>
+
+    <!-- 공통관리 - 계정관리 -->
+    <div class="hub-card">
+      <div class="hub-card__category">COMMON</div>
+      <div class="hub-card__title"><span>계정관리</span> <span class="tag">공통관리</span></div>
+      <div class="hub-card__desc">백오피스 시스템 접근 관리자 계정 목록 및 권한 부여.</div>
+      <div class="hub-card__actions">
+        <a class="button button--primary button--small" href="accounts.html" target="_blank">페이지 바로가기</a>
+      </div>
+    </div>
+
+    <!-- 공통관리 - 권한관리 -->
+    <div class="hub-card">
+      <div class="hub-card__category">COMMON</div>
+      <div class="hub-card__title"><span>권한관리</span> <span class="tag">공통관리</span></div>
+      <div class="hub-card__desc">ROLE 기반 시스템 권한 그룹 및 메뉴별 접근 권한 매핑.</div>
+      <div class="hub-card__actions">
+        <a class="button button--primary button--small" href="roles.html" target="_blank">페이지 바로가기</a>
+      </div>
+    </div>
+
+    <!-- 공통관리 - 메뉴관리 -->
+    <div class="hub-card">
+      <div class="hub-card__category">COMMON</div>
+      <div class="hub-card__title"><span>메뉴관리</span> <span class="tag">공통관리</span></div>
+      <div class="hub-card__desc">백오피스 사이드바 메뉴 구조, 라우팅 URL 설정.</div>
+      <div class="hub-card__actions">
+        <a class="button button--primary button--small" href="menus.html" target="_blank">페이지 바로가기</a>
+      </div>
+    </div>
+
+    <!-- 공통관리 - 공통코드관리 -->
+    <div class="hub-card">
+      <div class="hub-card__category">COMMON</div>
+      <div class="hub-card__title"><span>공통코드관리</span> <span class="tag">공통관리</span></div>
+      <div class="hub-card__desc">시스템 마스터 코드 그룹별 칩 필터링 및 공통코드 관리.</div>
+      <div class="hub-card__actions">
+        <a class="button button--primary button--small" href="codes.html" target="_blank">페이지 바로가기</a>
+      </div>
+    </div>
+
+    <!-- 등록 / 상세 폼 화면 (FORM PAGES) -->
+    <div class="hub-card">
+      <div class="hub-card__category">FORM / DETAIL</div>
+      <div class="hub-card__title"><span>버스 등록/상세</span> <span class="tag">등록·수정</span></div>
+      <div class="hub-card__desc">통근버스 노선, 차량번호, 정원, 운행 기간 설정 폼.</div>
+      <div class="hub-card__actions">
+        <a class="button button--secondary button--small" href="bus-detail.html?id=BUS_01" target="_blank">수정 폼</a>
+        <a class="button button--primary button--small" href="bus-detail.html" target="_blank">신규 폼</a>
+      </div>
+    </div>
+
+    <div class="hub-card">
+      <div class="hub-card__category">FORM / DETAIL</div>
+      <div class="hub-card__title"><span>탑승권 등록/상세</span> <span class="tag">등록·수정</span></div>
+      <div class="hub-card__desc">정기권/일일권 임직원 탑승권 등록 및 수정 폼.</div>
+      <div class="hub-card__actions">
+        <a class="button button--secondary button--small" href="bus-passenger-detail.html?id=KGC202401" target="_blank">수정 폼</a>
+        <a class="button button--primary button--small" href="bus-passenger-detail.html" target="_blank">신규 폼</a>
+      </div>
+    </div>
+
+    <div class="hub-card">
+      <div class="hub-card__category">FORM / DETAIL</div>
+      <div class="hub-card__title"><span>차량 등록/상세</span> <span class="tag">등록·수정</span></div>
+      <div class="hub-card__desc">임직원 주차 차량번호 및 소유자 설정 폼.</div>
+      <div class="hub-card__actions">
+        <a class="button button--secondary button--small" href="parking-vehicle-detail.html?id=KGC202401" target="_blank">수정 폼</a>
+        <a class="button button--primary button--small" href="parking-vehicle-detail.html" target="_blank">신규 폼</a>
+      </div>
+    </div>
+
+    <div class="hub-card">
+      <div class="hub-card__category">FORM / DETAIL</div>
+      <div class="hub-card__title"><span>계정 등록/상세</span> <span class="tag">등록·수정</span></div>
+      <div class="hub-card__desc">관리자 계정 ID, 비밀번호, 권한, 상태 설정 폼.</div>
+      <div class="hub-card__actions">
+        <a class="button button--secondary button--small" href="account-detail.html?id=admin" target="_blank">수정 폼</a>
+        <a class="button button--primary button--small" href="account-detail.html" target="_blank">신규 폼</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

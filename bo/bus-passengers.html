@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>탑승자관리 - Smart Office Back Office</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Noto+Sans+KR:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+</head>
+<body class="admin-page">
+
+<main class="admin-content">
+  <div class="page-heading">
+    <div><p class="eyebrow">COMMUTE BUS</p><h1>탑승자관리</h1><p>통근버스 정기권 및 일일권 탑승 신청자를 관리합니다.</p></div>
+    <div class="excel-actions">
+      <button class="button button--ghost button--small" type="button" onclick="BOLayout.showToast('엑셀 업로드 템플릿 다운로드 완료')">엑셀 템플릿</button>
+      <a class="button button--primary button--small" href="bus-passenger-detail.html">탑승권 등록</a>
+    </div>
+  </div>
+
+  <section class="panel">
+    <div class="toolbar">
+      <div class="toolbar__group">
+        <select aria-label="노선 구분">
+          <option value="">전체 버스 노선</option>
+          <option value="1">1호차 (서울역)</option>
+          <option value="2">2호차 (수원역)</option>
+          <option value="3">3호차 (강남역)</option>
+        </select>
+        <select aria-label="권한 구분">
+          <option value="">전체 구분 (정기권/일일권)</option>
+          <option value="REGULAR">정기권</option>
+          <option value="DAILY">일일권</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <input type="search" placeholder="사번, 이름, 부서 검색">
+        <button type="button" onclick="BOLayout.showToast('조회 완료')">검색</button>
+      </div>
+    </div>
+
+    <div class="list-summary">총 <strong id="passenger-count">4</strong>명</div>
+    <div class="table-wrap">
+      <table class="data-table data-table--passenger">
+        <thead>
+          <tr><th>사번</th><th>성명</th><th>버스 ID</th><th>노선명</th><th>이용구분</th><th>출퇴근</th><th>이용 기간</th><th>상태</th><th>관리</th></tr>
+        </thead>
+        <tbody id="passengerTableBody">
+          <tr>
+            <td>KGC202401</td>
+            <td><strong>김철수</strong> (경영지원)</td>
+            <td>BUS_01</td>
+            <td>1호차 (서울역 → 본사)</td>
+            <td><span class="pill pill--green">정기권</span></td>
+            <td>출근/퇴근</td>
+            <td>2025-01-01 ~ 2025-12-31</td>
+            <td><span class="pill pill--green">정상</span></td>
+            <td><a class="button table-action" href="bus-passenger-detail.html?id=KGC202401">상세</a></td>
+          </tr>
+          <tr>
+            <td>KGC202408</td>
+            <td><strong>박선영</strong> (IT개발)</td>
+            <td>BUS_01</td>
+            <td>1호차 (서울역 → 본사)</td>
+            <td><span class="pill pill--blue">일일권</span></td>
+            <td>출근</td>
+            <td>2025-07-24 ~ 2025-07-24</td>
+            <td><span class="pill pill--green">정상</span></td>
+            <td><a class="button table-action" href="bus-passenger-detail.html?id=KGC202408">상세</a></td>
+          </tr>
+          <tr>
+            <td>KGC202315</td>
+            <td><strong>이영희</strong> (마케팅)</td>
+            <td>BUS_02</td>
+            <td>2호차 (수원역 → 본사)</td>
+            <td><span class="pill pill--green">정기권</span></td>
+            <td>출근/퇴근</td>
+            <td>2025-01-01 ~ 2025-12-31</td>
+            <td><span class="pill pill--green">정상</span></td>
+            <td><a class="button table-action" href="bus-passenger-detail.html?id=KGC202315">상세</a></td>
+          </tr>
+          <tr>
+            <td>KGC202241</td>
+            <td><strong>최동수</strong> (생산기술)</td>
+            <td>BUS_03</td>
+            <td>3호차 (강남역 → 본사)</td>
+            <td><span class="pill pill--amber">만료예정</span></td>
+            <td>퇴근</td>
+            <td>2025-02-01 ~ 2025-07-31</td>
+            <td><span class="pill pill--amber">7일전</span></td>
+            <td><a class="button table-action" href="bus-passenger-detail.html?id=KGC202241">상세</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination">
+      <button class="pagination__button" disabled>&lt;</button>
+      <button class="pagination__button is-active">1</button>
+      <button class="pagination__button" disabled>&gt;</button>
+    </div>
+  </section>
+</main>
+
+<script src="common.js"></script>
+<script src="layout.js"></script>
+</body>
+</html>

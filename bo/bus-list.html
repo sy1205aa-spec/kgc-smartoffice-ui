@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>버스관리 - Smart Office Back Office</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Noto+Sans+KR:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+</head>
+<body class="admin-page">
+
+<main class="admin-content">
+  <div class="page-heading">
+    <div><p class="eyebrow">COMMUTE BUS</p><h1>버스관리</h1><p>통근버스 운행 정보를 조회하고 관리합니다.</p></div>
+    <a class="button button--primary" href="bus-detail.html">버스 등록</a>
+  </div>
+
+  <section class="panel">
+    <div class="toolbar">
+      <div class="toolbar__group">
+        <select id="bus-use-filter" aria-label="사용 여부" onchange="filterBuses()">
+          <option value="">전체</option>
+          <option value="Y">사용</option>
+          <option value="N">미사용</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <input id="bus-keyword" type="search" placeholder="호차, 차량번호, 경로 검색" onkeydown="if(event.key==='Enter') filterBuses()">
+        <button id="bus-search" type="button" onclick="filterBuses()">검색</button>
+      </div>
+    </div>
+    <div class="list-summary">총 <strong id="bus-total-count">5</strong>건</div>
+    <div class="table-wrap">
+      <table class="data-table data-table--roomy data-table--bus">
+        <colgroup>
+          <col class="bus-column--id">
+          <col class="bus-column--number">
+          <col class="bus-column--vehicle-number">
+          <col class="bus-column--route">
+          <col class="bus-column--passengers">
+          <col class="bus-column--period">
+          <col class="bus-column--use">
+          <col class="bus-column--action">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>버스 ID</th>
+            <th>호차</th>
+            <th>차량번호</th>
+            <th>버스 경로</th>
+            <th>탑승권</th>
+            <th>운행 기간</th>
+            <th>사용여부</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="bus-table-body">
+          <!-- 동적 바인딩 -->
+        </tbody>
+      </table>
+    </div>
+    <div class="pagination" id="bus-pagination" aria-label="버스 목록 페이지">
+      <button class="pagination__button" disabled>&lt;</button>
+      <button class="pagination__button is-active">1</button>
+      <button class="pagination__button" disabled>&gt;</button>
+    </div>
+  </section>
+</main>
+
+<script src="common.js"></script>
+<script src="layout.js"></script>
+<script>
+  // 기본 버스 시드 목록
+  const initialBuses = [
+    { busId: 'BUS_01', number: '1호차', vehicle: '31가 1234', route: '서울역 → 이천 KGC 본사', passengers: '출근 35 / 45명 · 퇴근 38 / 45명', start: '2025-01-01', end: '2025-12-31', useYn: 'Y' },
+    { busId: 'BUS_02', number: '2호차', vehicle: '32나 5678', route: '수원역 → 이천 KGC 본사', passengers: '출근 38 / 45명 · 퇴근 40 / 45명', start: '2025-01-01', end: '2025-12-31', useYn: 'Y' },
+    { busId: 'BUS_03', number: '3호차', vehicle: '33다 9012', route: '강남역 → 이천 KGC 본사', passengers: '출근 30 / 40명 · 퇴근 33 / 40명', start: '2025-01-01', end: '2025-12-31', useYn: 'Y' },
+    { busId: 'BUS_04', number: '4호차', vehicle: '34라 3456', route: '야탑역 → 이천 KGC 본사', passengers: '출근 28 / 45명 · 퇴근 31 / 45명', start: '2025-03-01', end: '2025-11-30', useYn: 'Y' },
+    { busId: 'BUS_05', number: '5호차', vehicle: '35마 7890', route: '부평역 → 이천 KGC 본사', passengers: '출근 18 / 45명 · 퇴근 20 / 45명', start: '2025-06-01', end: '2025-12-31', useYn: 'N' }
+  ];
+
+  function getMergedBuses() {
+    const custom = JSON.parse(sessionStorage.getItem('custom_buses') || '{}');
+    let list = [...initialBuses];
+
+    // 병합 및 수정/삭제 반영
+    Object.keys(custom).forEach(id => {
+      const item = custom[id];
+      const idx = list.findIndex(b => b.busId === id);
+      if (item.deleted) {
+        if (idx !== -1) list.splice(idx, 1);
+      } else {
+        const busObj = {
+          busId: id,
+          number: item.number || id,
+          vehicle: item.vehicle || '-',
+          route: item.route || '-',
+          passengers: `출근 0 / ${item.capacity||45}명 · 퇴근 0 / ${item.capacity||45}명`,
+          start: item.start || '2025-01-01',
+          end: item.end || '2025-12-31',
+          useYn: item.useYn || 'Y'
+        };
+        if (idx !== -1) {
+          list[idx] = { ...list[idx], ...busObj };
+        } else {
+          list.push(busObj);
+        }
+      }
+    });
+
+    return list;
+  }
+
+  function renderBusList() {
+    const buses = getMergedBuses();
+    const useFilter = document.getElementById('bus-use-filter').value;
+    const keyword = document.getElementById('bus-keyword').value.trim().toLowerCase();
+
+    const filtered = buses.filter(b => {
+      if (useFilter && b.useYn !== useFilter) return false;
+      if (keyword) {
+        const text = `${b.busId} ${b.number} ${b.vehicle} ${b.route}`.toLowerCase();
+        if (!text.includes(keyword)) return false;
+      }
+      return true;
+    });
+
+    const tbody = document.getElementById('bus-table-body');
+    tbody.innerHTML = '';
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="8" class="empty-row">등록된 버스가 없거나 검색 결과가 없습니다.</td></tr>';
+      document.getElementById('bus-total-count').textContent = '0';
+      return;
+    }
+
+    filtered.forEach(bus => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td class="table-cell--nowrap"><strong>${bus.busId}</strong></td>
+        <td class="table-cell--nowrap">${bus.number}</td>
+        <td class="table-cell--nowrap">${bus.vehicle}</td>
+        <td title="${bus.route}">${bus.route}</td>
+        <td class="table-cell--nowrap">${bus.passengers}</td>
+        <td class="table-cell--nowrap">${bus.start} ~ ${bus.end}</td>
+        <td class="table-cell--nowrap"><span class="pill ${bus.useYn === 'Y' ? 'pill--green' : 'pill--gray'}">${bus.useYn === 'Y' ? '사용' : '미사용'}</span></td>
+        <td class="table-cell--nowrap"><a class="table-action" href="bus-detail.html?busId=${encodeURIComponent(bus.busId)}">상세</a></td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    document.getElementById('bus-total-count').textContent = filtered.length;
+  }
+
+  function filterBuses() {
+    renderBusList();
+    const kw = document.getElementById('bus-keyword').value.trim();
+    BOLayout.showToast(kw ? `'${kw}' 검색 완료` : '목록 조회 완료');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => renderBusList());
+</script>
+</body>
+</html>

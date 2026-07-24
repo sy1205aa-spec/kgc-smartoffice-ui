@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>권한관리 - Smart Office Back Office</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Noto+Sans+KR:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+</head>
+<body class="admin-page">
+
+<main class="admin-content">
+  <div class="page-heading">
+    <div><p class="eyebrow">COMMON MANAGEMENT</p><h1>권한관리</h1><p>시스템 접근 역할(Role) 및 메뉴별 권한 매핑을 관리합니다.</p></div>
+    <a class="button button--primary" href="role-detail.html">권한 추가</a>
+  </div>
+
+  <section class="panel">
+    <div class="list-summary">총 <strong id="roleCount">4</strong>개 그룹</div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>권한 코드</th><th>권한 그룹명</th><th>설명</th><th>접근 매핑 메뉴</th><th>상태</th><th>관리</th></tr>
+        </thead>
+        <tbody id="roleTableBody">
+          <tr>
+            <td><strong>ROLE_ADMIN</strong></td>
+            <td><strong>시스템 최고관리자</strong></td>
+            <td>모든 관리 기능 및 메뉴 제어 권한</td>
+            <td>전체 메뉴 (12개)</td>
+            <td><span class="pill pill--green">사용</span></td>
+            <td><a class="button table-action" href="role-detail.html?id=ROLE_ADMIN">수정</a></td>
+          </tr>
+          <tr>
+            <td><strong>ROLE_BUS_ADMIN</strong></td>
+            <td><strong>통근버스 관리자</strong></td>
+            <td>통근버스 노선 및 탑승자 관리 권한</td>
+            <td>통근버스 메뉴 (4개)</td>
+            <td><span class="pill pill--green">사용</span></td>
+            <td><a class="button table-action" href="role-detail.html?id=ROLE_BUS_ADMIN">수정</a></td>
+          </tr>
+          <tr>
+            <td><strong>ROLE_PARKING_ADMIN</strong></td>
+            <td><strong>주차 관리자</strong></td>
+            <td>주차 할인 및 차량 등록 관리 권한</td>
+            <td>주차관리 메뉴 (2개)</td>
+            <td><span class="pill pill--green">사용</span></td>
+            <td><a class="button table-action" href="role-detail.html?id=ROLE_PARKING_ADMIN">수정</a></td>
+          </tr>
+          <tr>
+            <td><strong>ROLE_VIEWER</strong></td>
+            <td><strong>조회전용 사용자</strong></td>
+            <td>대시보드 및 리포트 조회 전용 권한</td>
+            <td>대시보드</td>
+            <td><span class="pill pill--gray">미사용</span></td>
+            <td><a class="button table-action" href="role-detail.html?id=ROLE_VIEWER">수정</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script src="common.js"></script>
+<script src="layout.js"></script>
+</body>
+</html>

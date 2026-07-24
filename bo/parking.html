@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>주차할인현황 - Smart Office Back Office</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Noto+Sans+KR:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+</head>
+<body class="admin-page">
+
+<main class="admin-content">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">PARKING DISCOUNT STATUS</p>
+      <h1>주차할인현황</h1>
+      <p>주차 시스템에 등록된 웹할인 사용 내역을 기간과 차량번호로 조회합니다.</p>
+    </div>
+    <button class="button button--ghost button--small" type="button" onclick="BOLayout.showToast('새로고침 완료')">새로고침</button>
+  </div>
+
+  <section class="panel parking-discount-search-panel">
+    <div class="parking-discount-filters">
+      <div class="form-field">
+        <label for="parking-discount-start-date">조회 시작일</label>
+        <input id="parking-discount-start-date" type="date" value="2025-07-01">
+      </div>
+      <div class="form-field">
+        <label for="parking-discount-end-date">조회 종료일</label>
+        <input id="parking-discount-end-date" type="date" value="2025-07-24">
+      </div>
+      <div class="form-field parking-discount-car-filter">
+        <label for="parking-discount-car-no">차량번호</label>
+        <input id="parking-discount-car-no" type="search" placeholder="미입력 시 연동 계정 전체 조회">
+      </div>
+      <button class="button button--primary parking-discount-search-button" type="button" onclick="BOLayout.showToast('주차할인 내역 조회 성공')">검색</button>
+    </div>
+    <div class="parking-discount-search-footer">
+      <div class="parking-discount-quick-ranges" aria-label="빠른 조회기간 선택">
+        <span>빠른 기간</span>
+        <button type="button" onclick="setQuickRange('today')">오늘</button>
+        <button type="button" onclick="setQuickRange('week')">최근 7일</button>
+        <button type="button" onclick="setQuickRange('month')">최근 1개월</button>
+      </div>
+      <p class="field-hint">조회 기간은 최대 1개월이며, 조건을 변경한 뒤 검색 버튼을 눌러 적용합니다.</p>
+    </div>
+  </section>
+
+  <div class="parking-discount-scope">
+    <span>주차장 <strong>이천 KGC 본사 주차장</strong></span>
+    <span>조회 계정 <strong>admin_kgc</strong></span>
+    <span>마지막 조회 <strong id="lastQueriedAt">2025-07-24 10:30:15</strong></span>
+  </div>
+
+  <section class="metric-grid parking-discount-metrics">
+    <article class="metric-card metric-card--green">
+      <span>할인 사용</span>
+      <strong><span>128</span><small>건</small></strong>
+      <p>조회 기간의 할인 등록 내역</p>
+    </article>
+    <article class="metric-card metric-card--blue">
+      <span>할인 차량</span>
+      <strong><span>64</span><small>대</small></strong>
+      <p>차량번호 기준 중복 제외</p>
+    </article>
+    <article class="metric-card metric-card--amber">
+      <span>할인 유형</span>
+      <strong><span>3</span><small>종</small></strong>
+      <p>할인코드 기준 중복 제외</p>
+    </article>
+    <article class="metric-card">
+      <span>최근 할인 등록</span>
+      <strong class="parking-discount-latest">2025-07-24 09:42</strong>
+      <p>조회 결과의 가장 최근 등록시각</p>
+    </article>
+  </section>
+
+  <section class="panel">
+    <div class="list-tools">
+      <div>
+        <p class="eyebrow">DISCOUNT HISTORY</p>
+        <div class="list-summary">총 <strong>128</strong>건</div>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table data-table--roomy data-table--parking-discount">
+        <thead>
+          <tr>
+            <th class="parking-discount-column--registered">할인 등록일시</th>
+            <th class="parking-discount-column--car">차량번호</th>
+            <th class="parking-discount-column--discount">할인명</th>
+            <th class="parking-discount-column--user">등록계정</th>
+            <th class="parking-discount-column--entered">입차일시</th>
+            <th class="parking-discount-column--transaction">주차 거래번호</th>
+            <th class="parking-discount-column--id">할인 등록번호</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2025-07-24 09:42:10</td>
+            <td class="parking-discount-car-cell">12가 3456</td>
+            <td><span class="pill pill--green">전일 무료</span></td>
+            <td>admin_kgc</td>
+            <td>2025-07-24 08:10:00</td>
+            <td>TX2025072401</td>
+            <td class="parking-discount-id-cell">DISC_9901</td>
+          </tr>
+          <tr>
+            <td>2025-07-24 09:15:33</td>
+            <td class="parking-discount-car-cell">56나 7890</td>
+            <td><span class="pill pill--blue">4시간 할인</span></td>
+            <td>user_park</td>
+            <td>2025-07-24 08:45:12</td>
+            <td>TX2025072402</td>
+            <td class="parking-discount-id-cell">DISC_9902</td>
+          </tr>
+          <tr>
+            <td>2025-07-24 08:50:04</td>
+            <td class="parking-discount-car-cell">34다 1122</td>
+            <td><span class="pill pill--green">전일 무료</span></td>
+            <td>admin_kgc</td>
+            <td>2025-07-24 07:55:40</td>
+            <td>TX2025072403</td>
+            <td class="parking-discount-id-cell">DISC_9903</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pagination">
+      <button class="pagination__button" disabled>&lt;</button>
+      <button class="pagination__button is-active">1</button>
+      <button class="pagination__button">2</button>
+      <button class="pagination__button">&gt;</button>
+    </div>
+  </section>
+</main>
+
+<script src="common.js"></script>
+<script src="layout.js"></script>
+<script>
+function setQuickRange(range) {
+  const end = new Date();
+  const start = new Date();
+  if (range === 'today') {
+    // start is today
+  } else if (range === 'week') {
+    start.setDate(end.getDate() - 7);
+  } else if (range === 'month') {
+    start.setMonth(end.getMonth() - 1);
+  }
+  document.getElementById('parking-discount-start-date').value = start.toISOString().split('T')[0];
+  document.getElementById('parking-discount-end-date').value = end.toISOString().split('T')[0];
+  BOLayout.showToast(`기간 적용: ${range}`);
+}
+</script>
+</body>
+</html>

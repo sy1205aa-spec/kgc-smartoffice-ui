@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>메뉴관리 - Smart Office Back Office</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Noto+Sans+KR:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+</head>
+<body class="admin-page">
+
+<main class="admin-content">
+  <div class="page-heading">
+    <div><p class="eyebrow">COMMON MANAGEMENT</p><h1>메뉴관리</h1><p>백오피스 사이드바 메뉴 트리 구조 및 접근 URL을 관리합니다.</p></div>
+    <a class="button button--primary" href="menu-detail.html">메뉴 추가</a>
+  </div>
+
+  <section class="panel">
+    <div class="list-summary">총 <strong id="menuCount">4</strong>개 메뉴</div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>메뉴 ID</th><th>상위 메뉴</th><th>메뉴명</th><th>URL 경로</th><th>순서</th><th>사용여부</th><th>관리</th></tr>
+        </thead>
+        <tbody id="menuTableBody">
+          <tr>
+            <td><strong>DASHBOARD</strong></td>
+            <td>-</td>
+            <td><strong>대시보드</strong></td>
+            <td>/main</td>
+            <td>1</td>
+            <td><span class="pill pill--green">사용</span></td>
+            <td><a class="button table-action" href="menu-detail.html?id=DASHBOARD">수정</a></td>
+          </tr>
+          <tr>
+            <td><strong>BUS_MANAGEMENT</strong></td>
+            <td>통근버스</td>
+            <td>버스관리</td>
+            <td>/bus</td>
+            <td>2</td>
+            <td><span class="pill pill--green">사용</span></td>
+            <td><a class="button table-action" href="menu-detail.html?id=BUS_MANAGEMENT">수정</a></td>
+          </tr>
+          <tr>
+            <td><strong>BUS_PASSENGERS</strong></td>
+            <td>통근버스</td>
+            <td>탑승자관리</td>
+            <td>/bus/passengers</td>
+            <td>3</td>
+            <td><span class="pill pill--green">사용</span></td>
+            <td><a class="button table-action" href="menu-detail.html?id=BUS_PASSENGERS">수정</a></td>
+          </tr>
+          <tr>
+            <td><strong>PARKING_STATUS</strong></td>
+            <td>주차관리</td>
+            <td>주차할인현황</td>
+            <td>/parking</td>
+            <td>6</td>
+            <td><span class="pill pill--green">사용</span></td>
+            <td><a class="button table-action" href="menu-detail.html?id=PARKING_STATUS">수정</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script src="common.js"></script>
+<script src="layout.js"></script>
+</body>
+</html>

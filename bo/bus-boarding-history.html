@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>탑승이력 - Smart Office Back Office</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Noto+Sans+KR:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+</head>
+<body class="admin-page">
+
+<main class="admin-content">
+  <div class="page-heading">
+    <div><p class="eyebrow">COMMUTE BUS</p><h1>탑승이력</h1><p>태그 및 스캔을 통한 통근버스 승차 태깅 이력을 조회합니다.</p></div>
+    <button class="button button--ghost button--small" type="button" onclick="BOLayout.showToast('엑셀 다운로드 시작')">엑셀 다운로드</button>
+  </div>
+
+  <section class="panel">
+    <div class="boarding-history-filters">
+      <div class="boarding-history-filter-row">
+        <div class="boarding-history-filter-selects">
+          <select aria-label="노선">
+            <option value="">전체 노선</option>
+            <option value="1">1호차 (서울역)</option>
+            <option value="2">2호차 (수원역)</option>
+            <option value="3">3호차 (강남역)</option>
+          </select>
+          <select aria-label="매칭 여부">
+            <option value="">전체 (일치/불일치)</option>
+            <option value="Y">일치 (등록 승객)</option>
+            <option value="N">불일치 (미등록 승객)</option>
+          </select>
+        </div>
+        <div class="search-field">
+          <input type="search" placeholder="사번, 승객명 검색">
+          <button type="button" onclick="BOLayout.showToast('조회 완료')">검색</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-summary">총 <strong>157</strong>건</div>
+    <div class="table-wrap">
+      <table class="data-table data-table--boarding-history">
+        <thead>
+          <tr><th class="boarding-history-column--time">태깅 일시</th><th class="boarding-history-column--user-id">사번</th><th class="boarding-history-column--user-name">승객명</th><th>노선</th><th class="boarding-history-column--code">구분</th><th class="boarding-history-column--match">매칭 여부</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="history-time-cell">2025-07-24 07:42:15</td>
+            <td class="history-user-id-cell">KGC202401</td>
+            <td class="history-user-name-cell">김철수</td>
+            <td>1호차 (서울역 → 본사)</td>
+            <td>출근</td>
+            <td><span class="history-match-badge">일치 (정기권)</span></td>
+          </tr>
+          <tr>
+            <td class="history-time-cell">2025-07-24 07:45:08</td>
+            <td class="history-user-id-cell">KGC202408</td>
+            <td class="history-user-name-cell">박선영</td>
+            <td>1호차 (서울역 → 본사)</td>
+            <td>출근</td>
+            <td><span class="history-match-badge">일치 (일일권)</span></td>
+          </tr>
+          <tr>
+            <td class="history-time-cell">2025-07-24 07:51:30</td>
+            <td class="history-user-id-cell">UNKNOWN_99</td>
+            <td class="history-user-name-cell">미등록 태그</td>
+            <td>2호차 (수원역 → 본사)</td>
+            <td>출근</td>
+            <td><span class="history-match-badge is-unmatched">불일치</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination">
+      <button class="pagination__button" disabled>&lt;</button>
+      <button class="pagination__button is-active">1</button>
+      <button class="pagination__button" disabled>&gt;</button>
+    </div>
+  </section>
+</main>
+
+<script src="common.js"></script>
+<script src="layout.js"></script>
+</body>
+</html>
