@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>사물함 예약 - 스마트오피스</title>
+
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/fonts.css" />
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/base.css" />
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/icons.css" />
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/layout.css" />
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/colorStyle.css" />
+  <link rel="stylesheet" type="text/css" href="./css/mobile_a/common.css" />
+
+  <style>
+    .footerNav {
+      overflow: visible !important;
+    }
+    .footerNav ul.btnArea {
+      overflow: visible !important;
+      display: flex !important;
+      align-items: flex-end !important;
+    }
+    .footerNav ul.btnArea li {
+      float: none !important;
+      flex: 1 !important;
+      overflow: visible !important;
+    }
+    .footerNav ul.btnArea li.center-qr-li {
+      overflow: visible !important;
+    }
+    .footerNav ul.btnArea li a.center-qr-btn {
+      position: relative !important;
+      height: 56px !important;
+      background: none !important;
+      display: inline-block !important;
+      width: 100% !important;
+      overflow: visible !important;
+    }
+    .footerNav ul.btnArea li a.center-qr-btn .qr-circle {
+      position: absolute;
+      left: 50%;
+      top: -24px;
+      transform: translateX(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FF3B30 0%, #D71635 100%) !important;
+      border: 1.5px solid #ffffff !important;
+      box-shadow: 0 4px 10px rgba(215, 22, 53, 0.35), 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      box-sizing: content-box;
+    }
+    .footerNav ul.btnArea li a.center-qr-btn span {
+      position: absolute !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      text-align: center !important;
+      font-size: 13px !important;
+      color: var(--text-black03-color) !important;
+      line-height: normal !important;
+    }
+    .footerNav ul.btnArea li a.center-qr-btn .qr-circle::before {
+      content: "";
+      width: 24px;
+      height: 24px;
+      display: block;
+      background: url('./images/mobile_a/common/ico_qr_white.svg') no-repeat center center;
+      background-size: 100% 100%;
+    }
+
+    /* 사물함 예약 추가 스타일 */
+    .locker-container {
+      padding: 16px 12px 100px;
+      background-color: #ffffff;
+    }
+    .section-title-desc {
+      margin-bottom: 16px;
+    }
+    .section-title-desc h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+    .section-title-desc p {
+      font-size: 13px;
+      color: #7f8c8d;
+    }
+    .stats-card {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .stats-card .floor {
+      font-size: 18px;
+      font-weight: bold;
+      color: #1a1a1a;
+    }
+    .stats-card .count {
+      font-size: 13.5px;
+      color: #64748b;
+    }
+    .stats-card .count strong {
+      color: #D71635;
+    }
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .filter-row select {
+      flex: 1;
+      height: 38px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 0 8px;
+      font-size: 13px;
+      background-color: #ffffff;
+    }
+    .map-area-card {
+      position: relative;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      background-color: #f8fafc;
+      overflow: hidden;
+      margin-bottom: 16px;
+      text-align: center;
+      padding: 20px 8px;
+    }
+    .map-img {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      margin: 0 auto;
+      display: block;
+    }
+    .map-badge {
+      position: absolute;
+      background-color: #4caf50;
+      color: #ffffff;
+      font-size: 10.5px;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+    .badge-a {
+      top: 38%;
+      left: 36%;
+    }
+    .badge-b {
+      top: 34%;
+      left: 56%;
+    }
+    .map-controls-panel {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .map-controls-panel button {
+      width: 28px;
+      height: 28px;
+      font-size: 14px;
+      font-weight: bold;
+      background: none;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn-reserve-locker {
+      background-color: #D71635;
+      color: #ffffff;
+      border: none;
+      width: 100%;
+      height: 42px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+      line-height: 42px;
+    }
+  </style>
+
+  <script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
+  <script type="text/javascript" src="./js/mobile/common.js"></script>
+</head>
+
+<body class="bg03">
+  <form>
+    <div id="wrap">
+      <header>
+        <div class="gnb">
+          <div class="left">
+            <a href="javascript:history.back();"><i class="ico angle-left"></i></a>
+            <a href="./menu_versions.html"><i class="ico home"></i></a>
+          </div>
+          <h1>사물함 예약</h1>
+          <div class="right">
+            <a href="#" class="total_nav btn-layer"><i class="ico menu">메뉴</i></a>
+          </div>
+        </div>
+
+        <!-- total menu -->
+        <nav style="display: none">
+          <div class="navCon">
+            <div class="uTile">
+              <ul>
+                <li>
+                  <a href="#" class="btn_ico btn_close btn-layerClose rotateIn"><i class="ico close">닫기</i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="myinfor">
+              <ul class="infor">
+                <li class="nm">
+                  <span>최범규<em>관리자</em></span>
+                  <span class="group"><em>GSITM</em></span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="clear"></div>
+
+            <ul>
+              <li>
+                <dl>
+                  <dt>
+                    <a href="./menu_versions.html">
+                      <span><img src="./images/mobile_a/common/ic_dashboard.svg" alt="" />대시보드</span>
+                    </a>
+                  </dt>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="./menu.html?resveYn=N">
+                      <span><img src="./images/mobile_a/common/ic_chair.svg" alt="" />좌석예약</span>
+                    </a>
+                    <button type="button" class="btn_menu_toggle">접고 펼치기</button>
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li>
+                        <a href="./menu.html?resveYn=N"><span>좌석예약</span></a>
+                      </li>
+                      <li>
+                        <a href="./employee_search.html"><span>직원검색</span></a>
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="./meeting_search.html">
+                      <span><img src="./images/mobile_a/common/ic_office.svg" alt="" />회의실예약</span>
+                    </a>
+                    <button type="button" class="btn_menu_toggle">접고 펼치기</button>
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li>
+                        <a href="./meeting_search.html"><span>시간 검색 예약</span></a>
+                      </li>
+                      <li>
+                        <a href="./meeting_search.html"><span>회의실 검색 예약</span></a>
+                      </li>
+                      <li>
+                        <a href="./my_reservations.html"><span>예약현황 조회</span></a>
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="./locker_search.html">
+                      <span><img src="./images/mobile_a/common/ic_locker.svg" alt="" />사물함예약</span>
+                    </a>
+                  </dt>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="./parking_search.html">
+                      <span><img src="./images/mobile_a/common/ic_parking.svg" alt="" />주차정산</span>
+                    </a>
+                    <button type="button" class="btn_menu_toggle">접고 펼치기</button>
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li>
+                        <a href="./parking_search.html"><span>주차정산</span></a>
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="./shuttle_request.html">
+                      <span><img src="./images/mobile_a/common/ic_bus.svg" alt="" />출퇴근 버스</span>
+                    </a>
+                    <button type="button" class="btn_menu_toggle">접고 펼치기</button>
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li>
+                        <a href="./qr_scan.html"><span>QR 인증</span></a>
+                      </li>
+                      <li>
+                        <a href="./shuttle_request.html"><span>셔틀탑승 신청</span></a>
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="./my_reservations.html">
+                      <span><img src="./images/mobile_a/common/ic_calendar.svg" alt="" />나의예약</span>
+                    </a>
+                    <button type="button" class="btn_menu_toggle">접고 펼치기</button>
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li>
+                        <a href="./my_reservations.html"><span>나의 좌석 이용현황</span></a>
+                      </li>
+                      <li>
+                        <a href="./my_reservations.html"><span>나의 회의실 예약현황</span></a>
+                      </li>
+                      <li>
+                        <a href="./my_reservations.html"><span>나의 사물함 예약현황</span></a>
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:alert('생체인증 설정 기능은 시연 준비중입니다.');">
+                      <span><img src="./images/mobile_a/common/ic_biometrics.svg" alt="" />생체인증 설정</span>
+                    </a>
+                  </dt>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="./login.html">
+                      <span><img src="./images/mobile_a/common/ic_logout.svg" alt="" />로그아웃</span>
+                    </a>
+                  </dt>
+                </dl>
+              </li>
+            </ul>
+          </div>
+          <div class="dimmed btn-layerClose"></div>
+        </nav>
+      </header>
+      <hr>
+
+      <!-- contents -->
+      <div id="contents" class="locker-container">
+        <div class="section-title-desc">
+          <h2>사물함 예약</h2>
+          <p>예약하실 사물함의 구역을 선택하신 후 사물함을 예약합니다.</p>
+        </div>
+
+        <div class="stats-card">
+          <span class="floor">7F 사물함예약</span>
+          <span class="count"><strong>2</strong>개 사용가능 / 총 78개</span>
+        </div>
+
+        <div class="filter-row">
+          <select><option>과천본사</option></select>
+          <select><option>7F</option></select>
+        </div>
+
+        <!-- 3D 맵 영역 -->
+        <div class="map-area-card">
+          <img src="./images/mobile_a/common/img_map3d.png" class="map-img" onerror="this.src='./images/mobile_a/common/img_map.png'" alt="사물함 배치도" />
+          
+          <div class="map-badge badge-a" onclick="selectLockerArea('사물함 A구역')">사물함 A</div>
+          <div class="map-badge badge-b" onclick="selectLockerArea('사물함 B구역')">사물함 B</div>
+
+          <div class="map-controls-panel">
+            <button type="button">+</button>
+            <button type="button">-</button>
+            <button type="button" style="font-size: 10px; padding: 2px;">초기화</button>
+          </div>
+        </div>
+
+        <button type="button" class="btn-reserve-locker" onclick="doReserveLocker()">예약 완료하기</button>
+      </div>
+      <!-- //contents -->
+
+      <!-- 하단 5개 탭 바 (가운데 커스텀 QR 배치) -->
+      <div class="footerNav" style="border-top: 1px solid rgba(0,0,0,0.1); background: #ffffff;">
+        <ul class="btnArea" style="display: flex !important; align-items: flex-end !important; margin: 0; padding: 0 10px 0;">
+          <li style="flex: 1; float: none;">
+            <a href="./menu.html?resveYn=N" class="seat" style="display: inline-block; text-align: center; width: 100%; height: 56px; position: relative; color: var(--text-black03-color); background: url('./images/mobile_a/common/ico_seat.svg') no-repeat center top; background-size: 36px auto;"><span style="display: inline-block; text-align: center; position: absolute; width: 100%; left: 0; bottom: 0; font-size: 13px;">좌석예약</span></a>
+          </li>
+          <li style="flex: 1; float: none;">
+            <a href="./meeting_search.html" class="meet" style="display: inline-block; text-align: center; width: 100%; height: 56px; position: relative; color: var(--text-black03-color); background: url('./images/mobile_a/common/ico_meet.svg') no-repeat center top; background-size: 36px auto;"><span style="display: inline-block; text-align: center; position: absolute; width: 100%; left: 0; bottom: 0; font-size: 13px;">회의실예약</span></a>
+          </li>
+          <li class="center-qr-li" style="flex: 1; float: none; overflow: visible !important;">
+            <a href="./qr_scan.html" class="myQr center-qr-btn" style="position: relative !important; height: 56px !important; background: none !important; display: inline-block !important; width: 100% !important; overflow: visible !important; color: var(--text-black03-color) !important;">
+              <div class="qr-circle"></div>
+              <span style="display: inline-block; text-align: center; position: absolute; width: 100%; left: 0; bottom: 0; font-size: 13px;">QR 인증</span>
+            </a>
+          </li>
+          <li style="flex: 1; float: none;">
+            <a href="./my_reservations.html" class="myReserv" style="display: inline-block; text-align: center; width: 100%; height: 56px; position: relative; color: var(--text-black03-color); background: url('./images/mobile_a/common/ico_myReserv.svg') no-repeat center top; background-size: 36px auto;"><span style="display: inline-block; text-align: center; position: absolute; width: 100%; left: 0; bottom: 0; font-size: 13px;">나의예약</span></a>
+          </li>
+          <li style="flex: 1; float: none;">
+            <a href="./parking_search.html" class="parking" style="display: inline-block; text-align: center; width: 100%; height: 56px; position: relative; color: var(--text-black03-color); background: url('./images/mobile_a/common/ico_parking.svg') no-repeat center top; background-size: 36px auto;"><span style="display: inline-block; text-align: center; position: absolute; width: 100%; left: 0; bottom: 0; font-size: 13px;">주차정산</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </form>
+
+  <script>
+    let selectedArea = null;
+
+    function selectLockerArea(areaName) {
+      $('.map-badge').css('background-color', '#4caf50');
+      selectedArea = areaName;
+      if (areaName === '사물함 A구역') {
+        $('.badge-a').css('background-color', '#D71635');
+      } else {
+        $('.badge-b').css('background-color', '#D71635');
+      }
+      alert(`${areaName}을 선택하셨습니다. 아래의 예약 완료하기 버튼을 누르시면 예약 신청이 완료됩니다.`);
+    }
+
+    function doReserveLocker() {
+      if (!selectedArea) {
+        alert("사물함 구역을 먼저 배치도 맵에서 선택해 주세요.");
+        return;
+      }
+      const confirmed = confirm(`${selectedArea} 사물함 예약을 확정하시겠습니까?`);
+      if (confirmed) {
+        alert("사물함 예약 신청이 정상적으로 완료되었습니다. (사물함 번호 자동 배정)");
+        selectedArea = null;
+        $('.map-badge').css('background-color', '#4caf50');
+      }
+    }
+
+    $(function () {
+      accordion();
+      menuOpen();
+    });
+
+    function menuOpen() {
+      var nav = $('header nav');
+      $('.total_nav.btn-layer').on('click', function () {
+        nav.addClass('is-open').fadeIn(300);
+      });
+      $('.btn-layerClose').on('click', function () {
+        nav.removeClass('is-open').fadeOut(300);
+      });
+    }
+
+    function accordion() {
+      $('.btn_menu_toggle').on('click', function () {
+        var dd = $(this).parent().next('dd');
+        if (dd.is(':visible')) {
+          dd.slideUp(200);
+          $(this).removeClass('on');
+        } else {
+          dd.slideDown(200);
+          $(this).addClass('on');
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>
