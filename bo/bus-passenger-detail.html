@@ -1,105 +1,111 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>탑승권 등록/상세 - Smart Office Back Office</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Noto+Sans+KR:wght@400;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="common.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>탑승권 등록/상세 - Smart Office Back Office</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Noto+Sans+KR:wght@400;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
 </head>
+
 <body class="admin-page">
 
-<main class="admin-content">
-  <div class="page-heading">
-    <div>
-      <p class="eyebrow">PASSENGER DETAIL</p>
-      <h1 id="passenger-detail-title">탑승권 등록</h1>
-      <p>날짜는 DB 기준일로 계산하며, 정기권은 출근·퇴근 2건을 함께 등록합니다.</p>
+  <main class="admin-content">
+    <div class="page-heading">
+      <div>
+        <p class="eyebrow">PASSENGER DETAIL</p>
+        <h1 id="passenger-detail-title">탑승권 등록</h1>
+        <p>날짜는 DB 기준일로 계산하며, 정기권은 출근·퇴근 2건을 함께 등록합니다.</p>
+      </div>
+      <a class="button button--ghost button--list" href="bus-passengers.html">목록</a>
     </div>
-    <a class="button button--ghost button--list" href="bus-passengers.html">목록</a>
-  </div>
 
-  <section class="panel management-form-panel">
-    <form id="passenger-detail-form" onsubmit="handleSave(event)">
-      <div class="form-grid">
-        <div class="form-field">
-          <label for="detail-bus-id">버스 노선</label>
-          <select id="detail-bus-id" required>
-            <option value="">버스를 선택하세요</option>
-            <option value="BUS_01">1호차 (서울역 → 본사)</option>
-            <option value="BUS_02">2호차 (수원역 → 본사)</option>
-            <option value="BUS_03">3호차 (강남역 → 본사)</option>
-          </select>
+    <section class="panel management-form-panel">
+      <form id="passenger-detail-form" onsubmit="handleSave(event)">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="detail-bus-id">버스 노선</label>
+            <select id="detail-bus-id" required>
+              <option value="">버스를 선택하세요</option>
+              <option value="BUS_01">1호차 (대치행)</option>
+              <option value="BUS_02">2호차 (사당행)</option>
+              <option value="BUS_03">3호차 (신촌행)</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="userId">사용자 ID (사번)</label>
+            <input id="userId" maxlength="50" placeholder="예: KGC202401" required>
+          </div>
+          <div class="form-field">
+            <label for="userName">사용자명</label>
+            <input id="userName" placeholder="예: 김철수">
+          </div>
+          <div class="form-field">
+            <label for="dailyBoardingYn">탑승권 구분</label>
+            <select id="dailyBoardingYn" required>
+              <option value="N">정기권</option>
+              <option value="Y">일일권</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="commuteType">출퇴근 구분</label>
+            <select id="commuteType" required>
+              <option value="ALL">출근 / 퇴근 전체</option>
+              <option value="WORK">출근 전용</option>
+              <option value="HOME">퇴근 전용</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="boardingStartDate">탑승 시작일</label>
+            <input id="boardingStartDate" type="date" value="2025-01-01" required>
+          </div>
+          <div class="form-field">
+            <label for="boardingEndDate">탑승 종료일</label>
+            <input id="boardingEndDate" type="date" value="2025-12-31" required>
+          </div>
         </div>
-        <div class="form-field">
-          <label for="userId">사용자 ID (사번)</label>
-          <input id="userId" maxlength="50" placeholder="예: KGC202401" required>
+        <div class="form-actions form-actions--spaced" style="margin-top:24px;">
+          <button class="button button--danger" type="button" id="deleteBtn" onclick="handleDelete()"
+            style="display:none;">삭제</button>
+          <button class="button button--primary" type="submit">저장</button>
         </div>
-        <div class="form-field">
-          <label for="userName">사용자명</label>
-          <input id="userName" placeholder="예: 김철수">
-        </div>
-        <div class="form-field">
-          <label for="dailyBoardingYn">탑승권 구분</label>
-          <select id="dailyBoardingYn" required>
-            <option value="N">정기권</option>
-            <option value="Y">일일권</option>
-          </select>
-        </div>
-        <div class="form-field">
-          <label for="commuteType">출퇴근 구분</label>
-          <select id="commuteType" required>
-            <option value="ALL">출근 / 퇴근 전체</option>
-            <option value="WORK">출근 전용</option>
-            <option value="HOME">퇴근 전용</option>
-          </select>
-        </div>
-        <div class="form-field">
-          <label for="boardingStartDate">탑승 시작일</label>
-          <input id="boardingStartDate" type="date" value="2025-01-01" required>
-        </div>
-        <div class="form-field">
-          <label for="boardingEndDate">탑승 종료일</label>
-          <input id="boardingEndDate" type="date" value="2025-12-31" required>
-        </div>
-      </div>
-      <div class="form-actions form-actions--spaced" style="margin-top:24px;">
-        <button class="button button--danger" type="button" id="deleteBtn" onclick="handleDelete()" style="display:none;">삭제</button>
-        <button class="button button--primary" type="submit">저장</button>
-      </div>
-    </form>
-  </section>
-</main>
+      </form>
+    </section>
+  </main>
 
-<script src="common.js"></script>
-<script src="layout.js"></script>
-<script>
-  const urlParams = new URLSearchParams(window.location.search);
-  const id = urlParams.get('id');
-  const titleEl = document.getElementById('passenger-detail-title');
-  const deleteBtn = document.getElementById('deleteBtn');
+  <script src="common.js"></script>
+  <script src="layout.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    const titleEl = document.getElementById('passenger-detail-title');
+    const deleteBtn = document.getElementById('deleteBtn');
 
-  if (id) {
-    titleEl.textContent = `탑승권 상세 정보 (${id})`;
-    deleteBtn.style.display = 'inline-flex';
-    document.getElementById('detail-bus-id').value = 'BUS_01';
-    document.getElementById('userId').value = id;
-    document.getElementById('userName').value = id === 'KGC202408' ? '박선영' : '김철수';
-  }
+    if (id) {
+      titleEl.textContent = `탑승권 상세 정보 (${id})`;
+      deleteBtn.style.display = 'inline-flex';
+      document.getElementById('detail-bus-id').value = 'BUS_01';
+      document.getElementById('userId').value = id;
+      document.getElementById('userName').value = id === 'KGC202408' ? '박선영' : '김철수';
+    }
 
-  function handleSave(e) {
-    e.preventDefault();
-    BOLayout.showToast('탑승권 정보가 성공적으로 저장되었습니다.');
-    setTimeout(() => { location.href = 'bus-passengers.html'; }, 1000);
-  }
-
-  function handleDelete() {
-    if (confirm('탑승권 신청을 해지/삭제하시겠습니까?')) {
-      BOLayout.showToast('삭제 처리되었습니다.');
+    function handleSave(e) {
+      e.preventDefault();
+      BOLayout.showToast('탑승권 정보가 성공적으로 저장되었습니다.');
       setTimeout(() => { location.href = 'bus-passengers.html'; }, 1000);
     }
-  }
-</script>
+
+    function handleDelete() {
+      if (confirm('탑승권 신청을 해지/삭제하시겠습니까?')) {
+        BOLayout.showToast('삭제 처리되었습니다.');
+        setTimeout(() => { location.href = 'bus-passengers.html'; }, 1000);
+      }
+    }
+  </script>
 </body>
+
 </html>
