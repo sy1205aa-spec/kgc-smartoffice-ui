@@ -85,219 +85,296 @@
               </a>
             </li>
 
-            <li class="page-item" data-name="좌석예약  booking.html?resveYn=N">
+            <li class="page-item has-sub open" data-name="좌석예약  booking.html?resveYn=N">
               <a href="#" class="page-link highlight" onclick="loadPage('./booking.html?resveYn=N', this)">
                 <div class="name-desc">
                   <span class="name">좌석예약</span>
                   <span class="desc">booking.html?resveYn=N</span>
                 </div>
-                <i class="arrow">★</i>
+                <i class="arrow-toggle" onclick="toggleSubMenu(event, this)" title="접기/펼치기">▼</i>
               </a>
+              <!-- 좌석예약 상태별 하위 아코디언 메뉴 -->
+              <ul class="sub-page-list">
+                <li class="page-item" data-name="좌석예약 가능 booking.html?resveYn=N">
+                  <a href="#" class="page-link" onclick="loadPage('./booking.html?resveYn=N', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 좌석예약 가능</span>
+                      <span class="desc">booking.html?resveYn=N</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="좌석예약 퇴실하기 booking.html?resveYn=Y&resveSttus=ST03">
+                  <a href="#" class="page-link" onclick="loadPage('./booking.html?resveYn=Y&resveSttus=ST03', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 좌석예약 퇴실하기</span>
+                      <span class="desc">booking.html?resveYn=Y&resveSttus=ST03</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="좌석예약 예약취소 booking.html?resveYn=Y&resveSttus=ST01">
+                  <a href="#" class="page-link" onclick="loadPage('./booking.html?resveYn=Y&resveSttus=ST01', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 좌석예약 예약취소</span>
+                      <span class="desc">booking.html?resveYn=Y&resveSttus=ST01</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
             </li>
 
-            <li class="page-item" data-name="회의실예약  meetingroom.html">
-              <a href="#" class="page-link highlight" onclick="loadPage('./meetingroom.html', this)">
+            <li class="page-item" data-name="회의실예약  meeting_search.html">
+              <a href="#" class="page-link highlight" onclick="loadPage('./meeting_search.html', this)">
                 <div class="name-desc">
                   <span class="name">회의실예약</span>
-                  <span class="desc">meetingroom.html</span>
+                  <span class="desc">meeting_search.html</span>
                 </div>
                 <i class="arrow">★</i>
               </a>
             </li>
 
             <li class="page-item" data-name="QR인증  qr.html">
-              <a href="#" class="page-link highlight" onclick="loadPage('./qr.html', this)">
+              <a href="#" class="page-link highlight" onclick="loadPage('./qr_scan.html', this)">
                 <div class="name-desc">
                   <span class="name">QR인증</span>
-                  <span class="desc">qr.html</span>
-                </div>
-                <i class="arrow">★</i>
-              </a>
-            </li>
-
-            <li class="page-item" data-name="나의예약  mybooking.html">
-              <a href="#" class="page-link highlight" onclick="loadPage('./mybooking.html', this)">
-                <div class="name-desc">
-                  <span class="name">나의예약</span>
-                  <span class="desc">mybooking.html</span>
-                </div>
-                <i class="arrow">★</i>
-              </a>
-            </li>
-
-            <li class="page-item" data-name="주차정산  parkin.html">
-              <a href="#" class="page-link highlight" onclick="loadPage('./parkin.html', this)">
-                <div class="name-desc">
-                  <span class="name">주차정산</span>
-                  <span class="desc">parking.html</span>
-                </div>
-                <i class="arrow">★</i>
-              </a>
-            </li>
-
-            <li class="page-item" data-name="고정석  fixed_seat.html">
-              <a href="#" class="page-link highlight" onclick="loadPage('./fixed_seat.html', this)">
-                <div class="name-desc">
-                  <span class="name">고정석</span>
-                  <span class="desc">fixed_seat.html</span>
-                </div>
-                <i class="arrow">★</i>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- 3단계: 좌석예약 상태별 화면 -->
-        <div class="category">
-          <div class="category-title">3단계: 좌석예약 상태별 화면</div>
-          <ul class="page-list">
-            <li class="page-item" data-name="좌석예약 가능 booking.html?resveYn=N">
-              <a href="#" class="page-link highlight" onclick="loadPage('./booking.html?resveYn=N', this)">
-                <div class="name-desc">
-                  <span class="name">좌석예약 가능</span>
-                  <span class="desc">booking.html?resveYn=N</span>
-                </div>
-                <i class="arrow">★</i>
-              </a>
-            </li>
-            <li class="page-item" data-name="좌석예약 퇴실하기 booking.html?resveYn=Y&resveSttus=ST03">
-              <a href="#" class="page-link highlight"
-                onclick="loadPage('./booking.html?resveYn=Y&resveSttus=ST03', this)">
-                <div class="name-desc">
-                  <span class="name">좌석예약 퇴실하기</span>
-                  <span class="desc">booking.html?resveYn=Y&resveSttus=ST03</span>
-                </div>
-                <i class="arrow">★</i>
-              </a>
-            </li>
-            <li class="page-item" data-name="좌석예약 예약취소 booking.html?resveYn=Y&resveSttus=ST01">
-              <a href="#" class="page-link highlight"
-                onclick="loadPage('./booking.html?resveYn=Y&resveSttus=ST01', this)">
-                <div class="name-desc">
-                  <span class="name">좌석예약 예약취소</span>
-                  <span class="desc">booking.html?resveYn=Y&resveSttus=ST01</span>
-                </div>
-                <i class="arrow">★</i>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- 4단계: 주요 예약 서비스 -->
-        <div class="category">
-          <div class="category-title">4단계: 주요 예약 서비스</div>
-          <ul class="page-list">
-            <li class="page-item" data-name="직원검색 employee_search.html">
-              <a href="#" class="page-link" onclick="loadPage('./employee_search.html', this)">
-                <div class="name-desc">
-                  <span class="name">직원검색 (M0004)</span>
-                  <span class="desc">employee_search.html</span>
-                </div>
-                <i class="arrow">➔</i>
-              </a>
-            </li>
-            <li class="page-item" data-name="시간 검색 예약 회의실 meeting_search.html">
-              <a href="#" class="page-link" onclick="loadPage('./meeting_search.html', this)">
-                <div class="name-desc">
-                  <span class="name">회의실 시간 검색 예약 (M0005)</span>
-                  <span class="desc">meeting_search.html</span>
-                </div>
-                <i class="arrow">➔</i>
-              </a>
-            </li>
-            <li class="page-item" data-name="회의실 검색 예약 meeting_search.html">
-              <a href="#" class="page-link" onclick="loadPage('./meeting_search.html', this)">
-                <div class="name-desc">
-                  <span class="name">회의실 명칭 검색 예약 (M0006)</span>
-                  <span class="desc">meeting_search.html</span>
-                </div>
-                <i class="arrow">➔</i>
-              </a>
-            </li>
-            <li class="page-item" data-name="사물함 조회 locker_search.html">
-              <a href="#" class="page-link" onclick="loadPage('./locker_search.html', this)">
-                <div class="name-desc">
-                  <span class="name">사물함 조회 (M0007)</span>
-                  <span class="desc">locker_search.html</span>
-                </div>
-                <i class="arrow">➔</i>
-              </a>
-            </li>
-            <li class="page-item" data-name="주차정산 조회 parking_search.html">
-              <a href="#" class="page-link" onclick="loadPage('./parking_search.html', this)">
-                <div class="name-desc">
-                  <span class="name">주차정산 조회</span>
-                  <span class="desc">parking_search.html</span>
-                </div>
-                <i class="arrow">➔</i>
-              </a>
-            </li>
-            <li class="page-item" data-name="주차정산 상세 parking_detail.html">
-              <a href="#" class="page-link" onclick="loadPage('./parking_detail.html', this)">
-                <div class="name-desc">
-                  <span class="name">주차정산 상세 보기</span>
-                  <span class="desc">parking_detail.html</span>
-                </div>
-                <i class="arrow">➔</i>
-              </a>
-            </li>
-            <li class="page-item" data-name="셔틀탑승 신청 shuttle_request.html">
-              <a href="#" class="page-link" onclick="loadPage('./shuttle_request.html', this)">
-                <div class="name-desc">
-                  <span class="name">셔틀탑승 신청</span>
-                  <span class="desc">shuttle_request.html</span>
-                </div>
-                <i class="arrow">➔</i>
-              </a>
-            </li>
-            <li class="page-item" data-name="QR 인증 qr_scan.html">
-              <a href="#" class="page-link" onclick="loadPage('./qr_scan.html', this)">
-                <div class="name-desc">
-                  <span class="name">QR 인증 (버스터미널)</span>
                   <span class="desc">qr_scan.html</span>
                 </div>
-                <i class="arrow">➔</i>
+                <i class="arrow">★</i>
+              </a>
+            </li>
+
+            <li class="page-item" data-name="나의예약  my_reservations.html">
+              <a href="#" class="page-link highlight" onclick="loadPage('./my_reservations.html', this)">
+                <div class="name-desc">
+                  <span class="name">나의예약</span>
+                  <span class="desc">my_reservations.html</span>
+                </div>
+                <i class="arrow">★</i>
+              </a>
+            </li>
+
+            <li class="page-item" data-name="주차정산  parking_search.html">
+              <a href="#" class="page-link highlight" onclick="loadPage('./parking_search.html', this)">
+                <div class="name-desc">
+                  <span class="name">주차정산(신규)</span>
+                  <span class="desc">parking_search.html</span>
+                </div>
+                <i class="arrow">★</i>
               </a>
             </li>
           </ul>
         </div>
 
-        <!-- 5단계: 나의 예약 현황 -->
+        <!-- 3단계: 햄버거 메뉴 전체 순서 -->
         <div class="category">
-          <div class="category-title">5단계: 나의 예약 현황</div>
+          <div class="category-title">3단계: 햄버거 메뉴 전체 순서</div>
           <ul class="page-list">
-            <li class="page-item" data-name="나의 좌석 이용현황 my_reservations.html">
-              <a href="#" class="page-link" onclick="loadPage('./my_reservations.html', this)">
+            <!-- 1. 대시보드 -->
+            <li class="page-item" data-name="대시보드 menu_versions.html">
+              <a href="#" class="page-link highlight" onclick="loadPage('./menu_versions.html', this)">
                 <div class="name-desc">
-                  <span class="name">나의 좌석 이용현황 (M0009)</span>
-                  <span class="desc">my_reservations.html</span>
+                  <span class="name">대시보드</span>
+                  <span class="desc">menu_versions.html</span>
                 </div>
-                <i class="arrow">➔</i>
+                <i class="arrow">★</i>
               </a>
             </li>
-            <li class="page-item" data-name="나의 회의실 예약현황 my_reservations.html">
-              <a href="#" class="page-link" onclick="loadPage('./my_reservations.html', this)">
+
+            <!-- 2. 좌석예약 -->
+            <li class="page-item has-sub open" data-name="좌석예약 booking.html?resveYn=N">
+              <a href="#" class="page-link highlight" onclick="loadPage('./booking.html?resveYn=N', this)">
                 <div class="name-desc">
-                  <span class="name">나의 회의실 예약현황 (M0010)</span>
-                  <span class="desc">my_reservations.html</span>
+                  <span class="name">좌석예약</span>
+                  <span class="desc">booking.html?resveYn=N</span>
                 </div>
-                <i class="arrow">➔</i>
+                <i class="arrow-toggle" onclick="toggleSubMenu(event, this)" title="접기/펼치기">▼</i>
+              </a>
+              <ul class="sub-page-list">
+                <li class="page-item" data-name="좌석예약 booking.html?resveYn=N">
+                  <a href="#" class="page-link" onclick="loadPage('./booking.html?resveYn=N', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 좌석예약</span>
+                      <span class="desc">booking.html?resveYn=N</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="직원검색 employee_search.html">
+                  <a href="#" class="page-link" onclick="loadPage('./employee_search.html', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 직원검색</span>
+                      <span class="desc">employee_search.html</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="고정석신청 fixed_seat.html">
+                  <a href="#" class="page-link" onclick="loadPage('./fixed_seat.html', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 고정석신청</span>
+                      <span class="desc">fixed_seat.html</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- 3. 회의실예약 -->
+            <li class="page-item has-sub open" data-name="회의실예약 meeting_search.html">
+              <a href="#" class="page-link highlight" onclick="loadPage('./meeting_search.html', this)">
+                <div class="name-desc">
+                  <span class="name">회의실예약</span>
+                  <span class="desc">meeting_search.html</span>
+                </div>
+                <i class="arrow-toggle" onclick="toggleSubMenu(event, this)" title="접기/펼치기">▼</i>
+              </a>
+              <ul class="sub-page-list">
+                <li class="page-item" data-name="시간 검색 예약 meeting_search.html">
+                  <a href="#" class="page-link" onclick="loadPage('./meeting_search.html', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 시간 검색 예약</span>
+                      <span class="desc">meeting_search.html</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="회의실 검색 예약 meeting_search.html">
+                  <a href="#" class="page-link" onclick="loadPage('./meeting_search.html', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 회의실 검색 예약</span>
+                      <span class="desc">meeting_search.html</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="예약현황 조회 my_reservations.html">
+                  <a href="#" class="page-link" onclick="loadPage('./my_reservations.html', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 예약현황 조회</span>
+                      <span class="desc">my_reservations.html</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- 4. 사물함예약 -->
+            <li class="page-item" data-name="사물함예약 locker_search.html">
+              <a href="#" class="page-link highlight" onclick="loadPage('./locker_search.html', this)">
+                <div class="name-desc">
+                  <span class="name">사물함예약</span>
+                  <span class="desc">locker_search.html</span>
+                </div>
+                <i class="arrow">★</i>
               </a>
             </li>
-            <li class="page-item" data-name="나의 사물함 예약현황 my_reservations.html">
-              <a href="#" class="page-link" onclick="loadPage('./my_reservations.html', this)">
+
+            <!-- 5. 주차정산 -->
+            <li class="page-item has-sub open" data-name="주차정산 parking_search.html">
+              <a href="#" class="page-link highlight" onclick="loadPage('./parking_search.html', this)">
                 <div class="name-desc">
-                  <span class="name">나의 사물함 예약현황 (M0011)</span>
+                  <span class="name">주차정산</span>
+                  <span class="desc">parking_search.html</span>
+                </div>
+                <i class="arrow-toggle" onclick="toggleSubMenu(event, this)" title="접기/펼치기">▼</i>
+              </a>
+              <ul class="sub-page-list">
+                <li class="page-item" data-name="주차정산 parking_search.html">
+                  <a href="#" class="page-link" onclick="loadPage('./parking_search.html', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 주차정산</span>
+                      <span class="desc">parking_search.html</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="주차정산 상세 parking_detail.html">
+                  <a href="#" class="page-link" onclick="loadPage('./parking_detail.html', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 주차정산 상세</span>
+                      <span class="desc">parking_detail.html</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- 6. 출퇴근 버스 -->
+            <li class="page-item has-sub open" data-name="출퇴근 버스 shuttle_request.html">
+              <a href="#" class="page-link highlight" onclick="loadPage('./shuttle_request.html', this)">
+                <div class="name-desc">
+                  <span class="name">출퇴근 버스</span>
+                  <span class="desc">shuttle_request.html</span>
+                </div>
+                <i class="arrow-toggle" onclick="toggleSubMenu(event, this)" title="접기/펼치기">▼</i>
+              </a>
+              <ul class="sub-page-list">
+                <li class="page-item" data-name="QR 인증 qr_scan.html">
+                  <a href="#" class="page-link" onclick="loadPage('./qr_scan.html', this)">
+                    <div class="name-desc">
+                      <span class="name">└ QR 인증</span>
+                      <span class="desc">qr_scan.html</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="셔틀탑승 신청 shuttle_request.html">
+                  <a href="#" class="page-link" onclick="loadPage('./shuttle_request.html', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 셔틀탑승 신청</span>
+                      <span class="desc">shuttle_request.html</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- 7. 나의예약 -->
+            <li class="page-item has-sub open" data-name="나의예약 my_reservations.html">
+              <a href="#" class="page-link highlight" onclick="loadPage('./my_reservations.html', this)">
+                <div class="name-desc">
+                  <span class="name">나의예약</span>
                   <span class="desc">my_reservations.html</span>
                 </div>
-                <i class="arrow">➔</i>
+                <i class="arrow-toggle" onclick="toggleSubMenu(event, this)" title="접기/펼치기">▼</i>
+              </a>
+              <ul class="sub-page-list">
+                <li class="page-item" data-name="나의 좌석 이용현황 my_reservations.html">
+                  <a href="#" class="page-link" onclick="loadPage('./my_reservations.html', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 나의 좌석 이용현황</span>
+                      <span class="desc">my_reservations.html</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="나의 회의실 예약현황 my_reservations.html">
+                  <a href="#" class="page-link" onclick="loadPage('./my_reservations.html', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 나의 회의실 예약현황</span>
+                      <span class="desc">my_reservations.html</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="나의 사물함 예약현황 my_reservations.html">
+                  <a href="#" class="page-link" onclick="loadPage('./my_reservations.html', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 나의 사물함 예약현황</span>
+                      <span class="desc">my_reservations.html</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- 8. 생체인증 설정 -->
+            <li class="page-item" data-name="생체인증 설정 biometrics">
+              <a href="#" class="page-link" onclick="alert('생체인증 설정 기능은 시연 준비중입니다.')">
+                <div class="name-desc">
+                  <span class="name">생체인증 설정</span>
+                  <span class="desc">시연 준비중</span>
+                </div>
               </a>
             </li>
-            <li class="page-item" data-name="예약현황조회 회의실 my_reservations.html">
-              <a href="#" class="page-link" onclick="loadPage('./my_reservations.html', this)">
+
+            <!-- 9. 로그아웃 -->
+            <li class="page-item" data-name="로그아웃 login.html">
+              <a href="#" class="page-link" onclick="loadPage('./login.html', this)">
                 <div class="name-desc">
-                  <span class="name">예약현황 통합조회 (M0013)</span>
-                  <span class="desc">my_reservations.html</span>
+                  <span class="name">로그아웃</span>
+                  <span class="desc">login.html</span>
                 </div>
                 <i class="arrow">➔</i>
               </a>
@@ -305,9 +382,9 @@
           </ul>
         </div>
 
-        <!-- 6단계: 공통 모달 및 에러 -->
+        <!-- 4단계: 공통 모달 및 에러 -->
         <div class="category">
-          <div class="category-title">6단계: 공통 모달 및 에러</div>
+          <div class="category-title">4단계: 공통 모달 및 에러</div>
           <ul class="page-list">
             <li class="page-item" data-name="공통 알럿 alert.html">
               <a href="#" class="page-link" onclick="loadPage('./alert.html', this)">
@@ -607,6 +684,18 @@
         item.classList.remove('active');
       });
       element.closest('.page-item').classList.add('active');
+    }
+
+    function toggleSubMenu(event, element) {
+      if (event) event.stopPropagation();
+      const parentLi = element.closest('.has-sub');
+      if (!parentLi) return;
+
+      if (parentLi.classList.contains('open')) {
+        parentLi.classList.remove('open');
+      } else {
+        parentLi.classList.add('open');
+      }
     }
 
     function setDevice(deviceClass, btnElement) {

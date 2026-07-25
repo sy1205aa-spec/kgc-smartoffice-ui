@@ -218,6 +218,65 @@ body {
 }
 
 .page-link i.arrow {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* 아코디언 서브메뉴 스타일 */
+.has-sub {
+  position: relative;
+}
+
+.arrow-toggle {
+  font-style: normal;
+  font-size: 11px;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: transform 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.arrow-toggle:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.has-sub:not(.open) .arrow-toggle {
+  transform: rotate(-90deg);
+}
+
+.sub-page-list {
+  list-style: none;
+  margin-top: 4px;
+  margin-left: 12px;
+  padding-left: 10px;
+  border-left: 1px dashed rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.has-sub:not(.open) .sub-page-list {
+  display: none;
+}
+
+.sub-page-list .page-link {
+  padding: 7px 10px;
+  font-size: 12.5px;
+  background: transparent !important;
+  color: var(--text-sub);
+  border-radius: 6px;
+}
+
+.sub-page-list .page-link:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: var(--text-main);
+}
+
+.page-link i.arrow {
   opacity: 0;
   transform: translateX(-5px);
   transition: all 0.2s ease;
