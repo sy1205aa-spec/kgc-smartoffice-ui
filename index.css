@@ -276,6 +276,21 @@ body {
   color: var(--text-main);
 }
 
+/* 신규 런칭 메뉴 뱃지 (NEW) */
+.badge-new {
+  display: inline-block;
+  background: linear-gradient(135deg, #ef4444, #D71635);
+  color: #ffffff;
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-left: 5px;
+  vertical-align: middle;
+  box-shadow: 0 2px 5px rgba(215, 22, 53, 0.4);
+  line-height: 1.2;
+}
+
 .page-link i.arrow {
   opacity: 0;
   transform: translateX(-5px);
