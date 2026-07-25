@@ -633,7 +633,7 @@
         <ul class="btnArea" style="display: flex !important; align-items: flex-end !important; margin: 0; padding: 0 10px 0;">
           <!-- 1. 좌석예약 (현재 페이지 = active) -->
           <li style="flex: 1; float: none;">
-            <a href="./booking.html" class="seat on" style="display: inline-block; text-align: center; width: 100%; height: 56px; position: relative; color: #D71635 !important; background: url('./images/mobile_a/common/ico_seat_.svg') no-repeat center top !important; background-size: 36px auto !important;"><span style="display: inline-block; text-align: center; position: absolute; width: 100%; left: 0; bottom: 0; font-size: 13px;">좌석예약</span></a>
+            <a href="./booking.html" class="seat on" id="tabSeatBtn" style="display: inline-block; text-align: center; width: 100%; height: 56px; position: relative; color: #D71635 !important; background: url('./images/mobile_a/common/ico_seat_.svg') no-repeat center top !important; background-size: 36px auto !important;"><span id="tabSeatText" style="display: inline-block; text-align: center; position: absolute; width: 100%; left: 0; bottom: 0; font-size: 13px;">좌석예약</span></a>
           </li>
           <!-- 2. 회의실예약 -->
           <li style="flex: 1; float: none;">
@@ -824,8 +824,32 @@
       setTimeout(function(){ $t.fadeOut(400, function(){ $t.remove(); }); }, 2000);
     }
 
+    function handleStatusParams() {
+      var urlParams = new URLSearchParams(window.location.search);
+      var resveYn = urlParams.get('resveYn');
+      var resveSttus = urlParams.get('resveSttus');
+
+      if (resveYn === 'Y') {
+        if (resveSttus === 'ST03') {
+          $('#tabSeatText').text('퇴실하기');
+          $('#tabSeatBtn').css({
+            'background': "url('./images/mobile_a/common/ico_checkout_.svg') no-repeat center top",
+            'background-size': '36px auto'
+          }).attr('href', 'javascript:alert("퇴실 처리 시뮬레이션입니다.");');
+        } else if (resveSttus === 'ST01') {
+          $('#tabSeatText').text('예약취소');
+          $('#tabSeatBtn').css({
+            'background': "url('./images/mobile_a/common/ico_checkout_.svg') no-repeat center top",
+            'background-size': '36px auto'
+          }).attr('href', 'javascript:alert("예약 취소 시뮬레이션입니다.");');
+        }
+      }
+    }
+
     // ── 초기화 ───────────────────────────────
     $(function () {
+      handleStatusParams();
+
       // 날짜 표시
       updateDateDisplay();
 

@@ -395,9 +395,50 @@
       color: #d1d5db;
       cursor: default;
     }
-    /* 오늘 표시 (24일) */
+    /* 타인 지정/예약완료 일자 스타일 */
+    .cal-day-btn.taken {
+      background: #e5e7eb !important;
+      color: #9ca3af !important;
+      text-decoration: line-through;
+      cursor: not-allowed !important;
+      position: relative;
+    }
+    .cal-day-btn.taken::after {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #6b7280;
+      bottom: 3px;
+    }
+
+    /* 캘린더 범례 */
+    .cal-legend-bar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      font-size: 11px;
+      color: #6b7280;
+      margin-bottom: 12px;
+    }
+    .cal-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .cal-legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .cal-legend-dot.avail { background: #111827; }
+    .cal-legend-dot.taken { background: #d1d5db; }
+
+    /* 오늘 표시 (27일) */
     .cal-day-btn.today {
-      border: 1px solid #9ca3af;
+      border: 1.5px solid #111827;
     }
     /* 선택된 일자 표시 (27, 28, 29 등) */
     .cal-day-btn.selected {
@@ -829,6 +870,18 @@
 
       <div class="sheet-divider"></div>
 
+      <!-- 범례 표시 -->
+      <div class="cal-legend-bar">
+        <div class="cal-legend-item">
+          <div class="cal-legend-dot avail"></div>
+          <span>신청가능</span>
+        </div>
+        <div class="cal-legend-item">
+          <div class="cal-legend-dot taken"></div>
+          <span>타인예약(지정불가)</span>
+        </div>
+      </div>
+
       <!-- 달력 -->
       <div class="cal-header">
         <button type="button" class="cal-nav-btn">&#60;</button>
@@ -849,40 +902,40 @@
         <div class="cal-day-cell"></div>
         <div class="cal-day-cell"></div>
         <div class="cal-day-cell"></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">1</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">2</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">3</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">4</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">1</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">2</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">3</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">4</button></div>
 
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn sun">5</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">6</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">7</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">8</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">9</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">10</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">11</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn sun disabled">5</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">6</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">7</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">8</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">9</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">10</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">11</button></div>
 
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn sun">12</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">13</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">14</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">15</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">16</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">17</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">18</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn sun disabled">12</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">13</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">14</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">15</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">16</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">17</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">18</button></div>
 
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn sun">19</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">20</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">21</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">22</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn">23</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn today" data-day="24">24</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn" data-day="25">25</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn sun disabled">19</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">20</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">21</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">22</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">23</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">24</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">25</button></div>
 
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn sun" data-day="26">26</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn selectable" data-day="27">27</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn sun disabled">26</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn today selectable" data-day="27">27</button></div>
         <div class="cal-day-cell"><button type="button" class="cal-day-btn selectable" data-day="28">28</button></div>
         <div class="cal-day-cell"><button type="button" class="cal-day-btn selectable" data-day="29">29</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn selectable" data-day="30">30</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn taken" data-day="30" title="타인이 예약한 고정석 일자입니다.">30</button></div>
         <div class="cal-day-cell"><button type="button" class="cal-day-btn selectable" data-day="31">31</button></div>
       </div>
 
@@ -1023,6 +1076,13 @@
     $(function() {
       // 캘린더 날짜 클릭 이벤트
       $('.cal-day-btn').on('click', function() {
+        if ($(this).hasClass('taken')) {
+          showToast('이미 다른 사용자가 고정석으로 지정한 일자입니다.');
+          return;
+        }
+        if ($(this).hasClass('disabled')) {
+          return;
+        }
         var day = $(this).data('day');
         if (day) {
           toggleDaySelection(day, $(this));
