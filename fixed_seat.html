@@ -18,19 +18,23 @@
     .footerNav {
       overflow: visible !important;
     }
+
     .footerNav ul.btnArea {
       overflow: visible !important;
       display: flex !important;
       align-items: flex-end !important;
     }
+
     .footerNav ul.btnArea li {
       float: none !important;
       flex: 1 !important;
       overflow: visible !important;
     }
+
     .footerNav ul.btnArea li.center-qr-li {
       overflow: visible !important;
     }
+
     .footerNav ul.btnArea li a.center-qr-btn {
       position: relative !important;
       height: 56px !important;
@@ -39,6 +43,7 @@
       width: 100% !important;
       overflow: visible !important;
     }
+
     .footerNav ul.btnArea li a.center-qr-btn .qr-circle {
       position: absolute;
       left: 50%;
@@ -56,11 +61,13 @@
       transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
       box-sizing: content-box;
     }
+
     .footerNav ul.btnArea li a.center-qr-btn:active .qr-circle {
       background-color: #f1f3f5 !important;
       border-color: #d1d5db !important;
       transform: translateX(-50%) scale(0.95);
     }
+
     .footerNav ul.btnArea li a.center-qr-btn .qr-circle::before {
       content: "";
       width: 24px;
@@ -69,10 +76,12 @@
       background: url('./images/mobile_a/common/ico_qr.svg') no-repeat center center;
       background-size: 100% 100%;
     }
+
     .footerNav ul.btnArea li a.center-qr-btn:active .qr-circle::before {
       background: url('./images/mobile_a/common/ico_qr_.svg') no-repeat center center;
       background-size: 100% 100%;
     }
+
     .footerNav ul.btnArea li a.center-qr-btn span {
       position: absolute !important;
       bottom: 0 !important;
@@ -101,6 +110,7 @@
       background: #ffffff;
       border-bottom: 1px solid #e2e8f0;
     }
+
     .top-filter-bar select {
       flex: 1;
       height: 40px;
@@ -123,6 +133,7 @@
       background: #e5e7eb;
       position: relative;
     }
+
     .sub-toolbar .fold-btn {
       width: 48px;
       height: 24px;
@@ -134,8 +145,9 @@
       justify-content: center;
       margin: 0 auto;
       cursor: pointer;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     }
+
     .sub-toolbar .fold-btn::after {
       content: "";
       display: block;
@@ -146,6 +158,7 @@
       transform: rotate(45deg);
       margin-top: -3px;
     }
+
     .color-toggle-wrap {
       position: absolute;
       right: 16px;
@@ -155,6 +168,7 @@
       align-items: center;
       gap: 6px;
     }
+
     .color-toggle-btn {
       display: inline-flex;
       align-items: center;
@@ -166,6 +180,7 @@
       border-radius: 14px;
       cursor: pointer;
     }
+
     .color-toggle-btn::after {
       content: "";
       display: inline-block;
@@ -181,12 +196,14 @@
       padding: 20px 16px;
       background: #eef0f3;
     }
+
     .seat-map-box {
       background: #ffffff;
       border-radius: 12px;
       padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
+
     .seat-map-title {
       font-size: 14px;
       font-weight: 700;
@@ -194,11 +211,13 @@
       margin-bottom: 16px;
       text-align: center;
     }
+
     .seat-grid-fixed {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
     }
+
     .seat-item-btn {
       height: 52px;
       background: #f3f4f6;
@@ -211,29 +230,225 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
+
     .seat-item-btn.avail {
       background: #ffffff;
       border-color: #d1d5db;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
     }
-    .seat-item-btn.avail:hover, .seat-item-btn.avail:active, .seat-item-btn.selected {
+
+    .seat-item-btn.avail:hover {
+      border-color: #D71635;
+      transform: translateY(-2px);
+    }
+
+    /* 타인 지정 고정석 스타일 */
+    .seat-item-btn.other-taken {
+      background: #f3f4f6 !important;
+      border: 1.5px dashed #9ca3af !important;
+      color: #6b7280 !important;
+      cursor: pointer;
+    }
+
+    .seat-item-btn.other-taken .seat-num {
+      color: #4b5563 !important;
+    }
+
+    .seat-item-btn.other-taken .seat-type {
+      background: #e5e7eb !important;
+      color: #6b7280 !important;
+      font-weight: 700;
+    }
+
+    /* 나의 신청 고정석 강조 스타일 */
+    .seat-item-btn.my-reserved {
+      background: #fff5f5 !important;
+      border: 2px solid #D71635 !important;
+      box-shadow: 0 3px 8px rgba(215, 22, 53, 0.15) !important;
+    }
+
+    .seat-item-btn.my-reserved .seat-num {
+      color: #D71635 !important;
+      font-weight: 800 !important;
+    }
+
+    .seat-item-btn.my-reserved .seat-type {
+      background: #D71635 !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+    }
+
+    /* 1줄 콤팩트 스마트 배너 */
+    .my-fixed-compact-bar {
+      background: #ffffff;
+      border: 1px solid #fecdd3;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin: 12px 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 6px rgba(215, 22, 53, 0.06);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .my-fixed-compact-bar:hover {
+      background: #fff5f5;
+      border-color: #D71635;
+    }
+
+    .my-fixed-compact-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .my-fixed-compact-left .icon {
+      color: #D71635;
+    }
+
+    .my-fixed-compact-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #D71635;
+      font-weight: 700;
+    }
+
+    /* 나의 고정석 전체 신청 내역 모달 팝업 */
+    .summary-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 99999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .summary-modal-overlay.active {
+      display: flex;
+    }
+
+    .summary-modal-card {
+      background: #ffffff;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 380px;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+
+    .summary-modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid #f3f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .summary-modal-header h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #111827;
+      margin: 0;
+    }
+
+    .summary-modal-body {
+      padding: 16px 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .summary-item-card {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .summary-item-card:hover {
+      background: #fff5f5;
+      border-color: #fca5a5;
+    }
+
+    .summary-item-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .summary-item-seat {
+      font-size: 14px;
+      font-weight: 700;
+      color: #D71635;
+    }
+
+    .summary-item-dates {
+      font-size: 12px;
+      color: #4b5563;
+    }
+
+    .summary-modal-footer {
+      padding: 12px 20px 16px;
+      border-top: 1px solid #f3f4f6;
+    }
+
+    .summary-modal-footer button {
+      width: 100%;
+      height: 44px;
+      border-radius: 8px;
+      background: #111827;
+      color: #ffffff;
+      border: none;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .seat-item-btn.avail:hover,
+    .seat-item-btn.avail:active,
+    .seat-item-btn.selected {
       background: #fee2e2;
       border-color: #ef4444;
     }
+
     .seat-item-btn .seat-num {
       font-size: 15px;
       font-weight: 700;
       color: #111827;
     }
+
     .seat-item-btn .seat-type {
       font-size: 10px;
       color: #6b7280;
       margin-top: 2px;
     }
+
     .seat-item-btn.target-77 {
       background: #fff;
       border: 2px solid #D71635;
     }
+
     .seat-item-btn.target-77 .seat-num {
       color: #D71635;
     }
@@ -253,16 +468,22 @@
       max-height: 90vh;
       overflow-y: auto;
     }
+
     .calendar-bottom-sheet.active {
       transform: translateY(0);
     }
+
     .sheet-backdrop {
       position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
       z-index: 999;
       display: none;
     }
+
     .sheet-backdrop.active {
       display: block;
     }
@@ -278,6 +499,7 @@
       gap: 12px;
       margin-bottom: 12px;
     }
+
     .chip-badge {
       display: inline-flex;
       align-items: center;
@@ -289,6 +511,7 @@
       border-radius: 16px;
       gap: 8px;
     }
+
     .chip-value {
       font-size: 15px;
       font-weight: 700;
@@ -311,6 +534,7 @@
       margin-bottom: 16px;
       min-height: 34px;
     }
+
     .date-tag {
       background: #f3f4f6;
       color: #1f2937;
@@ -336,12 +560,14 @@
       gap: 40px;
       margin-bottom: 20px;
     }
+
     .cal-header h2 {
       font-size: 17px;
       font-weight: 700;
       color: #111827;
       margin: 0;
     }
+
     .cal-nav-btn {
       border: none;
       background: none;
@@ -357,12 +583,14 @@
       text-align: center;
       row-gap: 12px;
     }
+
     .cal-weekday {
       font-size: 13px;
       font-weight: 700;
       color: #6b7280;
       padding-bottom: 8px;
     }
+
     .cal-weekday.sun {
       color: #6b7280;
     }
@@ -373,6 +601,7 @@
       justify-content: center;
       height: 40px;
     }
+
     .cal-day-btn {
       width: 36px;
       height: 36px;
@@ -388,13 +617,16 @@
       justify-content: center;
       transition: all 0.15s ease;
     }
+
     .cal-day-btn.sun {
       color: #ef4444;
     }
+
     .cal-day-btn.disabled {
       color: #d1d5db;
       cursor: default;
     }
+
     /* 타인 지정/예약완료 일자 스타일 */
     .cal-day-btn.taken {
       background: #e5e7eb !important;
@@ -403,6 +635,7 @@
       cursor: not-allowed !important;
       position: relative;
     }
+
     .cal-day-btn.taken::after {
       content: "";
       position: absolute;
@@ -423,23 +656,32 @@
       color: #6b7280;
       margin-bottom: 12px;
     }
+
     .cal-legend-item {
       display: flex;
       align-items: center;
       gap: 4px;
     }
+
     .cal-legend-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
     }
-    .cal-legend-dot.avail { background: #111827; }
-    .cal-legend-dot.taken { background: #d1d5db; }
+
+    .cal-legend-dot.avail {
+      background: #111827;
+    }
+
+    .cal-legend-dot.taken {
+      background: #d1d5db;
+    }
 
     /* 오늘 표시 (27일) */
     .cal-day-btn.today {
       border: 1.5px solid #111827;
     }
+
     /* 선택된 일자 표시 (27, 28, 29 등) */
     .cal-day-btn.selected {
       background: #111827 !important;
@@ -462,6 +704,7 @@
       border: 1px solid #dde1e7;
       color: #1f2937;
     }
+
     .sheet-submit-btn.active {
       background: #D71635;
       border: none;
@@ -472,66 +715,80 @@
     /* ── 신청 완료 팝업/모달 ── */
     .confirm-modal-overlay {
       position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
       z-index: 9999;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
     }
+
     .confirm-modal-overlay.active {
       display: flex;
     }
+
     .confirm-modal-card {
       width: 100%;
       max-width: 320px;
       background: #ffffff;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
+
     .confirm-modal-header {
       background: #505c6d;
       padding: 14px 16px;
       text-align: center;
     }
+
     .confirm-modal-header h3 {
       font-size: 16px;
       font-weight: 700;
       color: #ffffff;
       margin: 0;
     }
+
     .confirm-modal-body {
       padding: 24px 20px 20px;
     }
+
     .profile-img-wrap {
       text-align: center;
       margin-bottom: 20px;
     }
+
     .profile-img-wrap img {
       width: 90px;
       height: 105px;
       object-fit: cover;
       border-radius: 8px;
       border: 1px solid #e5e7eb;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
     }
+
     .info-row-list {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
+
     .info-row {
       display: flex;
       font-size: 13px;
       line-height: 1.4;
     }
+
     .info-row .row-label {
       width: 70px;
       color: #6b7280;
       font-weight: 600;
     }
+
     .info-row .row-val {
       flex: 1;
       color: #111827;
@@ -543,6 +800,7 @@
       gap: 10px;
       padding: 16px 20px 20px;
     }
+
     .confirm-modal-footer button {
       flex: 1;
       height: 44px;
@@ -551,11 +809,13 @@
       font-weight: 700;
       cursor: pointer;
     }
+
     .btn-modal-cancel {
       background: #ffffff;
       border: 1px solid #dde1e7;
       color: #374151;
     }
+
     .btn-modal-ok {
       background: #D71635;
       border: none;
@@ -765,6 +1025,19 @@
           </select>
         </div>
 
+        <!-- 1줄 콤팩트 스마트 배너 (한달 이상 대량 신청 시에도 1줄 유지) -->
+        <div class="my-fixed-compact-bar" id="myFixedCompactBar" onclick="openMyFixedSummaryModal()">
+          <div class="my-fixed-compact-left">
+            <span class="icon">📌</span>
+            <span>나의 고정석 신청:</span>
+            <span style="color: #D71635; font-weight: 800;" id="myFixedSummaryText">총 2일 (77번, 79번)</span>
+          </div>
+          <div class="my-fixed-compact-right">
+            <span>상세보기</span>
+            <i class="arrow-r">›</i>
+          </div>
+        </div>
+
         <div class="sub-toolbar">
           <div class="fold-btn" title="접기/펼치기"></div>
           <div class="color-toggle-wrap">
@@ -781,17 +1054,17 @@
                 <span class="seat-num">77</span>
                 <span class="seat-type">일반석</span>
               </div>
-              <div class="seat-item-btn avail" onclick="openCalendarSheet(78, '일반석')">
+              <div class="seat-item-btn other-taken" onclick="openCalendarSheet(78, '일반석')">
                 <span class="seat-num">78</span>
+                <span class="seat-type">타인예약</span>
+              </div>
+              <div class="seat-item-btn avail" onclick="openCalendarSheet(79, '일반석')">
+                <span class="seat-num">79</span>
                 <span class="seat-type">일반석</span>
               </div>
-              <div class="seat-item-btn avail" onclick="openCalendarSheet(79, '창가석')">
-                <span class="seat-num">79</span>
-                <span class="seat-type">창가석</span>
-              </div>
-              <div class="seat-item-btn avail" onclick="openCalendarSheet(80, '창가석')">
+              <div class="seat-item-btn avail" onclick="openCalendarSheet(80, '일반석')">
                 <span class="seat-num">80</span>
-                <span class="seat-type">창가석</span>
+                <span class="seat-type">일반석</span>
               </div>
               <div class="seat-item-btn avail" onclick="openCalendarSheet(81, '일반석')">
                 <span class="seat-num">81</span>
@@ -817,24 +1090,36 @@
 
       <!-- 하단 탭 바 -->
       <div class="footerNav" style="border-top: 1px solid rgba(0,0,0,0.1); background: #ffffff;">
-        <ul class="btnArea" style="display: flex !important; align-items: flex-end !important; margin: 0; padding: 0 10px 0;">
+        <ul class="btnArea"
+          style="display: flex !important; align-items: flex-end !important; margin: 0; padding: 0 10px 0;">
           <li style="flex: 1; float: none;">
-            <a href="./fixed_seat.html" class="seat on" style="display: inline-block; text-align: center; width: 100%; height: 56px; position: relative; color: #D71635 !important; background: url('./images/mobile_a/common/ico_seat_.svg') no-repeat center top !important; background-size: 36px auto !important;"><span style="display: inline-block; text-align: center; position: absolute; width: 100%; left: 0; bottom: 0; font-size: 13px;">고정석</span></a>
+            <a href="./fixed_seat.html" class="seat on"
+              style="display: inline-block; text-align: center; width: 100%; height: 56px; position: relative; color: #D71635 !important; background: url('./images/mobile_a/common/ico_seat_.svg') no-repeat center top !important; background-size: 36px auto !important;"><span
+                style="display: inline-block; text-align: center; position: absolute; width: 100%; left: 0; bottom: 0; font-size: 13px;">고정석</span></a>
           </li>
           <li style="flex: 1; float: none;">
-            <a href="./meeting_search.html" class="meet" style="display: inline-block; text-align: center; width: 100%; height: 56px; position: relative; color: var(--text-black03-color); background: url('./images/mobile_a/common/ico_meet.svg') no-repeat center top; background-size: 36px auto;"><span style="display: inline-block; text-align: center; position: absolute; width: 100%; left: 0; bottom: 0; font-size: 13px;">회의실예약</span></a>
+            <a href="./meeting_search.html" class="meet"
+              style="display: inline-block; text-align: center; width: 100%; height: 56px; position: relative; color: var(--text-black03-color); background: url('./images/mobile_a/common/ico_meet.svg') no-repeat center top; background-size: 36px auto;"><span
+                style="display: inline-block; text-align: center; position: absolute; width: 100%; left: 0; bottom: 0; font-size: 13px;">회의실예약</span></a>
           </li>
           <li class="center-qr-li" style="flex: 1; float: none; overflow: visible !important;">
-            <a href="./qr_scan.html" class="myQr center-qr-btn" style="position: relative !important; height: 56px !important; background: none !important; display: inline-block !important; width: 100% !important; overflow: visible !important; color: var(--text-black03-color) !important;">
+            <a href="./qr_scan.html" class="myQr center-qr-btn"
+              style="position: relative !important; height: 56px !important; background: none !important; display: inline-block !important; width: 100% !important; overflow: visible !important; color: var(--text-black03-color) !important;">
               <div class="qr-circle"></div>
-              <span style="display: inline-block; text-align: center; position: absolute; width: 100%; left: 0; bottom: 0; font-size: 13px;">QR 인증</span>
+              <span
+                style="display: inline-block; text-align: center; position: absolute; width: 100%; left: 0; bottom: 0; font-size: 13px;">QR
+                인증</span>
             </a>
           </li>
           <li style="flex: 1; float: none;">
-            <a href="./my_reservations.html" class="myReserv" style="display: inline-block; text-align: center; width: 100%; height: 56px; position: relative; color: var(--text-black03-color); background: url('./images/mobile_a/common/ico_myReserv.svg') no-repeat center top; background-size: 36px auto;"><span style="display: inline-block; text-align: center; position: absolute; width: 100%; left: 0; bottom: 0; font-size: 13px;">나의예약</span></a>
+            <a href="./my_reservations.html" class="myReserv"
+              style="display: inline-block; text-align: center; width: 100%; height: 56px; position: relative; color: var(--text-black03-color); background: url('./images/mobile_a/common/ico_myReserv.svg') no-repeat center top; background-size: 36px auto;"><span
+                style="display: inline-block; text-align: center; position: absolute; width: 100%; left: 0; bottom: 0; font-size: 13px;">나의예약</span></a>
           </li>
           <li style="flex: 1; float: none;">
-            <a href="./parking_search.html" class="parking" style="display: inline-block; text-align: center; width: 100%; height: 56px; position: relative; color: var(--text-black03-color); background: url('./images/mobile_a/common/ico_parking.svg') no-repeat center top; background-size: 36px auto;"><span style="display: inline-block; text-align: center; position: absolute; width: 100%; left: 0; bottom: 0; font-size: 13px;">주차정산</span></a>
+            <a href="./parking_search.html" class="parking"
+              style="display: inline-block; text-align: center; width: 100%; height: 56px; position: relative; color: var(--text-black03-color); background: url('./images/mobile_a/common/ico_parking.svg') no-repeat center top; background-size: 36px auto;"><span
+                style="display: inline-block; text-align: center; position: absolute; width: 100%; left: 0; bottom: 0; font-size: 13px;">주차정산</span></a>
           </li>
         </ul>
       </div>
@@ -932,10 +1217,12 @@
         <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">25</button></div>
 
         <div class="cal-day-cell"><button type="button" class="cal-day-btn sun disabled">26</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn today selectable" data-day="27">27</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn today selectable" data-day="27">27</button>
+        </div>
         <div class="cal-day-cell"><button type="button" class="cal-day-btn selectable" data-day="28">28</button></div>
         <div class="cal-day-cell"><button type="button" class="cal-day-btn selectable" data-day="29">29</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn taken" data-day="30" title="타인이 예약한 고정석 일자입니다.">30</button></div>
+        <div class="cal-day-cell"><button type="button" class="cal-day-btn taken" data-day="30"
+            title="타인이 예약한 고정석 일자입니다.">30</button></div>
         <div class="cal-day-cell"><button type="button" class="cal-day-btn selectable" data-day="31">31</button></div>
       </div>
 
@@ -980,16 +1267,91 @@
     </div>
   </div>
 
+  <!-- 나의 고정석 전체 신청 내역 모달 팝업 -->
+  <div class="summary-modal-overlay" id="summaryModal">
+    <div class="summary-modal-card">
+      <div class="summary-modal-header">
+        <h3>📌 나의 고정석 신청 상세 내역</h3>
+        <button type="button" style="background:none; border:none; font-size:18px; cursor:pointer;"
+          onclick="closeMyFixedSummaryModal()">✕</button>
+      </div>
+      <div class="summary-modal-body" id="summaryModalList">
+        <!-- JS 동적 렌더링 -->
+      </div>
+      <div class="summary-modal-footer">
+        <button type="button" onclick="closeMyFixedSummaryModal()">닫기</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    var selectedDays = []; // 선택된 날짜 배열 (숫자형 day)
+    var selectedDays = []; // 현재 캘린더에서 선택 중인 날짜 배열 (숫자형 day)
     var currentSeatNo = 77;
     var currentSeatType = '일반석';
+
+    // 좌석별 타인/사전 예약된 기본 날짜 (타인 예약)
+    var seatTakenMap = {
+      77: [30],
+      78: [27, 28, 29, 30, 31] // 78번 좌석은 다른 사람이 전체 날짜 고정석 예약 완료
+    };
+
+    // 사용자가 각 좌석별로 신청 완료(저장)한 고정석 날짜 정보
+    // 77번: 27일, 79번: 29일
+    var reservedBySeats = {
+      77: [27],
+      79: [29]
+    };
+
+    function updateCalendarGridForSeat(seatNo) {
+      // 1) 다른 좌석에서 선점된 날짜 목록 (지정 불가: taken)
+      var takenDays = (seatTakenMap[seatNo] || []).slice();
+      $.each(reservedBySeats, function (sNo, days) {
+        if (parseInt(sNo) !== parseInt(seatNo)) {
+          $.each(days, function (i, d) {
+            if (takenDays.indexOf(d) === -1) {
+              takenDays.push(d);
+            }
+          });
+        }
+      });
+
+      // 2) 현재 좌석에서 내가 이미 저장 신청해 둔 날짜 목록 (selected: 검은색 원 & 취소 가능)
+      var myReservedDays = reservedBySeats[seatNo] || [];
+
+      $('.cal-day-btn').each(function () {
+        var day = $(this).data('day');
+        // 1~26일 지나간 날짜는 disabled 유지
+        if (!day || $(this).hasClass('disabled')) return;
+
+        // 다른 좌석 선점 일자 -> taken
+        if (takenDays.indexOf(day) !== -1) {
+          $(this).addClass('taken').removeClass('selectable selected').attr('title', '이미 다른 고정석으로 지정된 일자입니다.');
+        } else {
+          $(this).removeClass('taken').addClass('selectable').removeAttr('title');
+          // 내 좌석 지정 일자 -> selected (검은색 원)
+          if (myReservedDays.indexOf(day) !== -1) {
+            $(this).addClass('selected');
+          } else {
+            $(this).removeClass('selected');
+          }
+        }
+      });
+    }
 
     function openCalendarSheet(seatNo, seatType) {
       currentSeatNo = seatNo;
       currentSeatType = seatType;
       $('#sheetSeatNo').text(seatNo);
       $('#sheetSeatType').text(seatType);
+
+      // 좌석별 캘린더 타인/기지정 날짜 동적 업데이트
+      updateCalendarGridForSeat(seatNo);
+
+      // 현재 좌석에 저장된 내가 선택한 날짜들을 selectedDays로 초기화
+      selectedDays = (reservedBySeats[seatNo] || []).slice();
+
+      renderSelectedDateTags();
+      updateSubmitButtonState();
 
       $('#sheetBackdrop').addClass('active');
       $('#calendarSheet').addClass('active');
@@ -1003,14 +1365,16 @@
     function toggleDaySelection(day, $btn) {
       var idx = selectedDays.indexOf(day);
       if (idx > -1) {
+        // 이미 선택된 날짜 -> 선택 해제/취소
         selectedDays.splice(idx, 1);
         $btn.removeClass('selected');
       } else {
+        // 신규 날짜 선택
         selectedDays.push(day);
         $btn.addClass('selected');
       }
       // 날짜순 정렬
-      selectedDays.sort(function(a,b){ return a - b; });
+      selectedDays.sort(function (a, b) { return a - b; });
 
       renderSelectedDateTags();
       updateSubmitButtonState();
@@ -1018,7 +1382,11 @@
 
     function renderSelectedDateTags() {
       var $bar = $('#selectedDatesBar').empty();
-      $.each(selectedDays, function(i, d) {
+      if (selectedDays.length === 0) {
+        $bar.append('<div style="font-size: 13px; color: #9ca3af; padding: 4px 0;">신청할 일자를 달력에서 선택해주세요.</div>');
+        return;
+      }
+      $.each(selectedDays, function (i, d) {
         var dayStr = String(d).padStart(2, '0');
         var tagHtml = '<div class="date-tag">07월 ' + dayStr + '일</div>';
         $bar.append(tagHtml);
@@ -1027,7 +1395,9 @@
 
     function updateSubmitButtonState() {
       var $btn = $('#btnSubmitRequest');
-      if (selectedDays.length > 0) {
+      // 선택된 날짜가 있거나 기존 저장을 취소하는 경우에도 제출 가능
+      var myPrevReserved = reservedBySeats[currentSeatNo] || [];
+      if (selectedDays.length > 0 || myPrevReserved.length > 0) {
         $btn.addClass('active');
       } else {
         $btn.removeClass('active');
@@ -1035,14 +1405,16 @@
     }
 
     function openConfirmModal() {
-      if (selectedDays.length === 0) {
+      var myPrevReserved = reservedBySeats[currentSeatNo] || [];
+      if (selectedDays.length === 0 && myPrevReserved.length === 0) {
         alert('신청하실 일자를 선택해주세요.');
         return;
       }
+
       // 선택된 날짜 텍스트 구성
-      var dateTexts = selectedDays.map(function(d) {
+      var dateTexts = selectedDays.length > 0 ? selectedDays.map(function (d) {
         return '7월 ' + d + '일';
-      }).join(', ');
+      }).join(', ') : '신청 내역 없음 (취소)';
 
       $('#popSeatNo').text(currentSeatNo);
       $('#popSelectedDates').text(dateTexts);
@@ -1054,30 +1426,109 @@
       $('#confirmModal').removeClass('active');
     }
 
+    function openMyFixedSummaryModal() {
+      renderMyFixedSummaryModalList();
+      $('#summaryModal').addClass('active');
+    }
+    function closeMyFixedSummaryModal() {
+      $('#summaryModal').removeClass('active');
+    }
+
+    function renderMyFixedSummaryModalList() {
+      var $body = $('#summaryModalList').empty();
+      var totalDays = 0;
+
+      $.each(reservedBySeats, function (seatNo, days) {
+        if (days && days.length > 0) {
+          totalDays += days.length;
+
+          var daysStr = days.slice().sort(function (a, b) { return a - b; }).map(function (d) {
+            return '7월 ' + String(d).padStart(2, '0') + '일';
+          }).join(', ');
+
+          var cardHtml = '<div class="summary-item-card" onclick="closeMyFixedSummaryModal(); openCalendarSheet(' + seatNo + ', \'일반석\');" title="클릭 시 ' + seatNo + '번 좌석 신청 변경/취소">' +
+            '<div class="summary-item-left">' +
+            '<span class="summary-item-seat">' + seatNo + '번 좌석</span>' +
+            '<span class="summary-item-dates">신청일: ' + daysStr + ' (' + days.length + '일간)</span>' +
+            '</div>' +
+            '<span style="font-size:12px; color:#D71635; font-weight:700;">수정/취소 ›</span>' +
+            '</div>';
+
+          $body.append(cardHtml);
+        }
+      });
+
+      if (totalDays === 0) {
+        $body.html('<div style="text-align:center; padding:30px 0; color:#9ca3af; font-size:13px;">신청한 고정석 내역이 없습니다.</div>');
+      }
+    }
+
+    function renderMyFixedSummary() {
+      var totalDays = 0;
+      var seatList = [];
+
+      $.each(reservedBySeats, function (seatNo, days) {
+        if (days && days.length > 0) {
+          totalDays += days.length;
+          seatList.push(seatNo + '번');
+        }
+      });
+
+      if (totalDays === 0) {
+        $('#myFixedSummaryText').text('신청 내역 없음');
+      } else {
+        var seatsStr = seatList.join(', ');
+        $('#myFixedSummaryText').text('총 ' + totalDays + '일 (' + seatsStr + ')');
+      }
+
+      // 좌석 배치도 지도 상의 내 고정석 버튼 강조 (.my-reserved)
+      $('.seat-item-btn').each(function () {
+        var seatText = $(this).find('.seat-num').text().trim();
+        var sNo = parseInt(seatText);
+        if (reservedBySeats[sNo] && reservedBySeats[sNo].length > 0) {
+          $(this).addClass('my-reserved');
+        } else {
+          $(this).removeClass('my-reserved');
+        }
+      });
+    }
+
     function completeBooking() {
       closeConfirmModal();
       closeCalendarSheet();
 
-      // 토스트 메시지
-      showToast('고정석 신청이 완료되었습니다.');
+      // 현재 좌석(currentSeatNo)에서 확정 신청한 날짜 저장
+      if (selectedDays.length > 0) {
+        reservedBySeats[currentSeatNo] = selectedDays.slice();
+        showToast(currentSeatNo + '번 좌석 고정석 신청이 완료되었습니다.');
+      } else {
+        delete reservedBySeats[currentSeatNo];
+        showToast(currentSeatNo + '번 좌석 고정석 신청이 취소되었습니다.');
+      }
+
+      // 상단 요약 배너 및 지도 배지 갱신
+      renderMyFixedSummary();
     }
 
     function showToast(msg) {
       var $t = $('<div>').css({
-        position:'fixed', bottom:'80px', left:'50%', transform:'translateX(-50%)',
-        background:'rgba(0,0,0,0.85)', color:'#fff', padding:'12px 24px',
-        borderRadius:'24px', fontSize:'14px', fontWeight:'700', zIndex:99999,
-        whiteSpace:'nowrap', boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+        position: 'fixed', bottom: '80px', left: '50%', transform: 'translateX(-50%)',
+        background: 'rgba(0,0,0,0.85)', color: '#fff', padding: '12px 24px',
+        borderRadius: '24px', fontSize: '14px', fontWeight: '700', zIndex: 99999,
+        whiteSpace: 'nowrap', boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
       }).text(msg);
       $('body').append($t);
-      setTimeout(function(){ $t.fadeOut(400, function(){ $t.remove(); }); }, 2200);
+      setTimeout(function () { $t.fadeOut(400, function () { $t.remove(); }); }, 2200);
     }
 
-    $(function() {
+    $(function () {
+      // 상단 요약 배너 및 지도 뱃지 최초 렌더링
+      renderMyFixedSummary();
+
       // 캘린더 날짜 클릭 이벤트
-      $('.cal-day-btn').on('click', function() {
+      $('.cal-day-btn').on('click', function () {
         if ($(this).hasClass('taken')) {
-          showToast('이미 다른 사용자가 고정석으로 지정한 일자입니다.');
+          showToast('이미 다른 고정석으로 지정된 일자입니다.');
           return;
         }
         if ($(this).hasClass('disabled')) {
@@ -1097,13 +1548,6 @@
         if (dd.is(':visible')) { dd.slideUp(200); }
         else { dd.slideDown(200); }
       });
-
-      // 최초 로드 시 시안과 동일하게 77번 좌석 클릭 상태 & 27, 28, 29 선택 상태 시뮬레이션
-      openCalendarSheet(77, '일반석');
-      // 27, 28, 29일 클릭
-      $('.cal-day-btn[data-day="27"]').click();
-      $('.cal-day-btn[data-day="28"]').click();
-      $('.cal-day-btn[data-day="29"]').click();
     });
   </script>
 </body>
