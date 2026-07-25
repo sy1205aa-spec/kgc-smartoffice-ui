@@ -184,6 +184,9 @@
                       <li>
                         <a href="./employee_search.html"><span>직원검색<!-- 직원 검색 --></span></a>
                       </li>
+                      <li>
+                        <a href="./fixed_seat.html"><span>고정석신청</span></a>
+                      </li>
                     </ul>
                   </dd>
                 </dl>
@@ -272,7 +275,7 @@
                   <dd>
                     <ul>
                       <li>
-                        <a href="./qr_scan.html"><span>QR 인증<!-- QR 인증 --></span></a>
+                        <a href="https://works.kgc.co.kr/mbl/booking.do"><span>QR 인증<!-- QR 인증 --></span></a>
                       </li>
                       <li>
                         <!-- 2026-07-14 수정: 셔틀탑승 신청 로컬 링크 연동 -->
@@ -355,15 +358,15 @@
             <li>
               <c:choose>
                 <c:when test="${resveYn eq 'N'}">
-                  <a href="javascript:;" class="seat"><span>좌석예약<!-- 좌석예약 --></span></a>
+                  <a href="./booking.html" class="seat"><span>좌석예약<!-- 좌석예약 --></span></a>
                 </c:when>
                 <c:when test="${resveYn eq 'Y'}">
                   <c:choose>
                     <c:when test="${resveSttus eq 'ST03'}">
-                      <a href="javascript:;" class="checkOut"><span>퇴실하기<!-- 퇴실하기 --></span></a>
+                      <a href="./booking.html" class="checkOut"><span>퇴실하기<!-- 퇴실하기 --></span></a>
                     </c:when>
                     <c:when test="${resveSttus eq 'ST01'}">
-                      <a href="javascript:;" class="checkOut"><span>예약취소<!-- 예약취소 --></span></a>
+                      <a href="./booking.html" class="checkOut"><span>예약취소<!-- 예약취소 --></span></a>
                     </c:when>
                   </c:choose>
                 </c:when>
@@ -435,7 +438,7 @@
     };
   </script>
 
-  <!-- 2026-07-14 수정: 정적 HTML 내 JSTL 분기 구동용 시뮬레이션 스크립트 추가 -->
+  <!-- 2026-07-14 수정: 정적 HTML 내 JSTL 분기 구동용 시뮬레이션 스크립트 추가 및 인터랙티브 시뮬레이션 기능 -->
   <script>
     function simulateJstlForStaticHtml() {
       const urlParams = new URLSearchParams(window.location.search);
@@ -463,6 +466,18 @@
 
     $(function () {
       simulateJstlForStaticHtml();
+
+      // 좌석예약 클릭 시 시뮬레이션 → booking.html로 이동
+      $('.footerNav .btnArea').on('click', 'a.seat', function (e) {
+        e.preventDefault();
+        location.href = './booking.html';
+      });
+
+      // 퇴실하기 / 예약취소 클릭 시 시뮬레이션 → booking.html로 이동
+      $('.footerNav .btnArea').on('click', 'a.checkOut', function (e) {
+        e.preventDefault();
+        location.href = './booking.html';
+      });
     });
   </script>
 </body>

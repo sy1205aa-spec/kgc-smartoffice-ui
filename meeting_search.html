@@ -27,6 +27,19 @@
       flex: 1 !important;
       overflow: visible !important;
     }
+    .footerNav {
+      overflow: visible !important;
+    }
+    .footerNav ul.btnArea {
+      overflow: visible !important;
+      display: flex !important;
+      align-items: flex-end !important;
+    }
+    .footerNav ul.btnArea li {
+      float: none !important;
+      flex: 1 !important;
+      overflow: visible !important;
+    }
     .footerNav ul.btnArea li.center-qr-li {
       overflow: visible !important;
     }
@@ -46,14 +59,31 @@
       width: 48px;
       height: 48px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #FF3B30 0%, #D71635 100%) !important;
-      border: 1.5px solid #ffffff !important;
-      box-shadow: 0 4px 10px rgba(215, 22, 53, 0.35), 0 2px 4px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff !important;
+      border: 1.5px solid #e1e4e6 !important;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.06);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background-color 0.2s ease, transform 0.2s ease;
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
       box-sizing: content-box;
+    }
+    .footerNav ul.btnArea li a.center-qr-btn:active .qr-circle {
+      background-color: #f1f3f5 !important;
+      border-color: #d1d5db !important;
+      transform: translateX(-50%) scale(0.95);
+    }
+    .footerNav ul.btnArea li a.center-qr-btn .qr-circle::before {
+      content: "";
+      width: 24px;
+      height: 24px;
+      display: block;
+      background: url('./images/mobile_a/common/ico_qr.svg') no-repeat center center;
+      background-size: 100% 100%;
+    }
+    .footerNav ul.btnArea li a.center-qr-btn:active .qr-circle::before {
+      background: url('./images/mobile_a/common/ico_qr_.svg') no-repeat center center;
+      background-size: 100% 100%;
     }
     .footerNav ul.btnArea li a.center-qr-btn span {
       position: absolute !important;
@@ -64,14 +94,6 @@
       font-size: 13px !important;
       color: var(--text-black03-color) !important;
       line-height: normal !important;
-    }
-    .footerNav ul.btnArea li a.center-qr-btn .qr-circle::before {
-      content: "";
-      width: 24px;
-      height: 24px;
-      display: block;
-      background: url('./images/mobile_a/common/ico_qr_white.svg') no-repeat center center;
-      background-size: 100% 100%;
     }
 
     /* 회의실 예약 전용 추가 스타일 */
@@ -348,6 +370,9 @@
                       </li>
                       <li>
                         <a href="./employee_search.html"><span>직원검색</span></a>
+                      </li>
+                      <li>
+                        <a href="./fixed_seat.html"><span>고정석신청</span></a>
                       </li>
                     </ul>
                   </dd>

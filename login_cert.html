@@ -1,77 +1,212 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<head>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
-        <title>스마트오피스 예약시스템</title>
+    <title>스마트오피스 예약시스템</title>
 
-        <link rel="stylesheet" type="text/css" href="./css/mobile_a/fonts.css" />
-        <link rel="stylesheet" type="text/css" href="./css/mobile_a/base.css" />
-        <link rel="stylesheet" type="text/css" href="./css/mobile_a/common.css" />
-        <link rel="stylesheet" type="text/css" href="./css/mobile_a/layout.css" />
-        <link rel="stylesheet" type="text/css" href="./css/mobile_a/colorStyle.css" />
-        <link rel="stylesheet" type="text/css" href="./css/mobile_a/styleLayout.css" />
-    </head>
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/base.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/common.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/layout.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/colorStyle.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mobile_a/styleLayout.css" />
+</head>
 
-    <body>
-        <form>
-            <!-- wrap -->
-            <div id="wrap">
-                <!-- contents -->
-                <section id="contents">
-                    <div>
-                        <!--  -->
-                        <section class="loginArea">
-                            <div class="loginBox">
-                                <fieldset>
-                                    <div class="title"> <img src="./images/mobile_a/common/logo.svg" alt="로고" />
-                                        <p class="title">스마트오피스 예약시스템</p>
-                                    </div>
-                                    <legend class="blind">로그인 영역</legend>
-                                    <p>
-                                        <input type="text" name="id" id="id" class="medium" placeholder="아이디를 입력하세요. (kgc + 사번)" autocapitalize="off" />
-                                    </p>
-                                    <p>
-                                        <input type="password" name="password" id="password" class="medium" placeholder="비밀번호를 입력하세요." />
-                                    </p>
-                                    <p class="id_save">
-                                        <input type="checkbox" id="autoLogin" name="autoLogin" />
-                                        <label for="autoLogin" id="autoLoginLabel">자동 로그인</label>
-                                        <input type="checkbox" id="checkId" name="checkId" />
-                                        <label for="checkId">아이디저장<!-- 아이디 저장 --></label>
-                                    </p>
-                                </fieldset>
-                                <div class="login_btn">
-                                    <a href="javascript:;" id="loginBtn" class="btn pri btn_f" disabled>로그인<!-- 로그인 --></a>
+<body>
+    <form>
+        <!-- wrap -->
+        <div id="wrap">
+            <!-- contents -->
+            <section id="contents">
+                <div>
+                    <!--  -->
+                    <section class="loginArea">
+                        <div class="loginBox">
+                            <fieldset>
+                                <div class="title"> <img src="./images/mobile_a/common/logo.svg" alt="로고" />
+                                    <p class="title">스마트오피스 예약시스템</p>
                                 </div>
-                                <article id="auth_view">
-                                    <ul class="auth">
-                                        <li>
-                                            <input type="text" class="medium" placeholder="인증번호 입력">
-                                            <a href="javascript:;" class="btn medium pri"><span>인증키 재발송</span></a>
-                                        </li>
-                                        <li><a href="javascript:;" class="btn medium pri"><span>인증</span></a> </li>
-                                    </ul>
-                                    <!--             <p class="comment"> <em class="non-match">인증번호를 다시 확인해 주세요.</em> </p> -->
-                                    <p class="comment check-time">남은시간 : <em class="non-match" id="remainTime">02:39</em>초</p>
-                                </article>
-                                <div class="login_btn">
-                                    <a href="javascript:;" class="btn btn_f bio"><span>생체인증으로 로그인</span><!-- 생체인증으로 로그인 --></a>
-                                </div>
-                                <div class="descArea">
-                                    <p class="desc">다음 로그인부터 지문으로<br>더 빠르게 접속할 수 있어요.</p>
-                                </div>
+                                <legend class="blind">로그인 영역</legend>
+                                <p>
+                                    <input type="text" name="id" id="id" class="medium"
+                                        placeholder="아이디를 입력하세요. (kgc + 사번)" autocapitalize="off" readonly style="background:#f5f7fa; color:#888; cursor:default;" />
+                                </p>
+                                <p>
+                                    <input type="password" name="password" id="password" class="medium"
+                                        placeholder="비밀번호를 입력하세요." readonly style="background:#f5f7fa; color:#888; cursor:default;" />
+                                </p>
+                                <p class="id_save">
+                                    <input type="checkbox" id="autoLogin" name="autoLogin" />
+                                    <label for="autoLogin" id="autoLoginLabel">자동 로그인</label>
+                                    <input type="checkbox" id="checkId" name="checkId" />
+                                    <label for="checkId">아이디저장<!-- 아이디 저장 --></label>
+                                </p>
+                            </fieldset>
+                            <article id="auth_view">
+                                <ul class="auth">
+                                    <li>
+                                        <input type="text" id="authCode" class="medium"
+                                            placeholder="인증번호 입력 (인증번호: 123456)" maxlength="6">
+                                        <a href="javascript:;" id="btnResend" class="btn medium pri"><span>인증키
+                                                재발송</span></a>
+                                    </li>
+                                    <li><a href="javascript:;" id="btnVerify" class="btn medium pri"><span>인증</span></a>
+                                    </li>
+                                </ul>
+                                <p class="comment" id="authError" style="display: none;"> <em class="non-match">인증번호를 다시
+                                        확인해 주세요.</em> </p>
+                                <p class="comment check-time">남은시간 : <em class="non-match" id="remainTime">03:00</em>초
+                                </p>
+                            </article>
+                            <div class="login_btn" style="display: none;">
+                                <a href="javascript:;" id="loginBtn" class="btn pri btn_f" disabled>로그인<!-- 로그인 --></a>
                             </div>
-                        </section>
-                        <!-- // -->
-                    </div>
-                </section>
-                <!-- //contents -->
-            </div>
-            <!-- //wrap -->
-        </form>
+                            <div class="login_btn">
+                                <a href="javascript:;" class="btn btn_f bio"><span>생체인증으로
+                                        로그인</span><!-- 생체인증으로 로그인 --></a>
+                            </div>
+                            <div class="descArea">
+                                <p class="desc">다음 로그인부터 지문으로<br>더 빠르게 접속할 수 있어요.</p>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- // -->
+                </div>
+            </section>
+            <!-- //contents -->
+        </div>
+        <!-- //wrap -->
+    </form>
 
-    </body>
+    <!-- 알림 모달 -->
+    <div id="modal-window"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: center;">
+        <div class="modal-box modal-size-normal"
+            style="background: #fff; border-radius: 12px; width: 85%; max-width: 320px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+            <div class="modal-inner" style="padding: 20px;">
+                <p class="modal-title"
+                    style="font-size: 16px; font-weight: bold; margin: 0 0 10px; color: #232b33; text-align: left;">알림
+                </p>
+                <div class="modal-pop">
+                    <p class="modal-text" id="modalText"
+                        style="font-size: 14px; color: #4e5968; margin-bottom: 20px; line-height: 1.5; text-align: left;">
+                        인증에 성공하였습니다.</p>
+                    <div class="hr" style="height: 1px; background: #eef2f5; margin: 0 -20px 15px;"></div>
+                    <ul class="modal-buttons" style="margin: 0; padding: 0; list-style: none; text-align: right;">
+                        <a href="javascript:;" class="modal-btn btn-layerClose"
+                            style="display: inline-block; padding: 8px 20px; background: #D71635; color: #fff; font-size: 14px; font-weight: bold; border-radius: 6px; text-decoration: none;">확인</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(function () {
+            // URL 파라미터에서 아이디 읽어서 필드에 채우기
+            (function () {
+                var params = new URLSearchParams(window.location.search);
+                var id = params.get('id');
+                if (id) {
+                    $('#id').val(id);
+                    $('#password').val('\u25cf\u25cf\u25cf\u25cf'); // 마스킹 표시 (●●●●)
+                }
+            })();
+
+            var timeLeft = 180; // 3분
+            var timerId = null;
+            var redirectOnClose = false;
+
+            function showModal(text, isSuccess) {
+                $('#modalText').text(text);
+                $('#modal-window').css('display', 'flex');
+                redirectOnClose = !!isSuccess;
+            }
+
+            $('.btn-layerClose').on('click', function () {
+                $('#modal-window').hide();
+                if (redirectOnClose) {
+                    location.href = './menu_versions.html';
+                }
+            });
+
+            function startTimer() {
+                if (timerId) clearInterval(timerId);
+                timeLeft = 180;
+                updateTimerDisplay();
+
+                timerId = setInterval(function () {
+                    timeLeft--;
+                    updateTimerDisplay();
+
+                    if (timeLeft <= 0) {
+                        clearInterval(timerId);
+                        showModal('인증 시간이 초과되었습니다. 인증키 재발송을 눌러주세요.');
+                    }
+                }, 1000);
+            }
+
+            function updateTimerDisplay() {
+                var minutes = Math.floor(timeLeft / 60);
+                var seconds = timeLeft % 60;
+                var timeStr = (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds);
+                $('#remainTime').text(timeStr);
+            }
+
+            // 타이머 최초 구동
+            startTimer();
+
+            // 인증키 재발송 클릭
+            $('#btnResend').on('click', function (e) {
+                e.preventDefault();
+                startTimer();
+                $('#authError').hide();
+                showModal('인증키가 재발송되었습니다. (인증번호: 123456)');
+            });
+
+            // 인증 클릭
+            $('#btnVerify').on('click', function (e) {
+                e.preventDefault();
+                var code = $('#authCode').val().trim();
+
+                if (!code) {
+                    showModal('인증번호를 입력해 주세요.');
+                    return;
+                }
+
+                if (timeLeft <= 0) {
+                    showModal('인증 시간이 초과되었습니다. 인증키 재발송을 클릭해 주세요.');
+                    return;
+                }
+
+                // 인증번호가 123456인 경우 성공
+                if (code === '123456') {
+                    clearInterval(timerId);
+                    showModal('본인 인증에 성공하였습니다.', true);
+                } else {
+                    $('#authError').show();
+                }
+            });
+
+            // Enter 입력 시 인증 시도
+            $('#authCode').on('keydown', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    $('#btnVerify').trigger('click');
+                }
+            });
+
+            // 생체인증 버튼 클릭 시
+            $('.bio').on('click', function (e) {
+                e.preventDefault();
+                showModal('생체인증 로그인 기능은 시연 준비 중입니다.');
+            });
+        });
+    </script>
+</body>
 
 </html>

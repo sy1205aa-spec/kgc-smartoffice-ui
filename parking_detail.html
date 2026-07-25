@@ -15,6 +15,8 @@
     <link rel="stylesheet" type="text/css" href="./css/mobile_a/styleLayout.css" />
     <link rel="stylesheet" type="text/css" href="./css/mobile_a/colorStyle.css" />
     <!-- 2026-07-06 수정 : E -->
+    <!-- 주차정산 모달 CSS -->
+    <link rel="stylesheet" href="./css/mobile_a/jquery.modal.css" />
 
     <!-- 2026-07-15 수정: 가운데 QR 인증 버튼 커스텀 스타일 (KGC 프리미엄 브랜드 포인트 디자인 - 3안 적용) -->
     <style>
@@ -50,25 +52,30 @@
         width: 48px;
         height: 48px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #FF3B30 0%, #D71635 100%) !important;
-        border: 1.5px solid #ffffff !important;
-        box-shadow: 0 4px 10px rgba(215, 22, 53, 0.35), 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff !important;
+        border: 1.5px solid #e1e4e6 !important;
+        box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.06);
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: background-color 0.2s ease, transform 0.2s ease;
+        transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
         box-sizing: content-box;
       }
       .footerNav ul.btnArea li a.center-qr-btn:active .qr-circle {
+        background-color: #f1f3f5 !important;
+        border-color: #d1d5db !important;
         transform: translateX(-50%) scale(0.95);
-        opacity: 0.9;
       }
       .footerNav ul.btnArea li a.center-qr-btn .qr-circle::before {
         content: "";
         width: 24px;
         height: 24px;
         display: block;
-        background: url('./images/mobile_a/common/ico_qr_white.svg') no-repeat center center;
+        background: url('./images/mobile_a/common/ico_qr.svg') no-repeat center center;
+        background-size: 100% 100%;
+      }
+      .footerNav ul.btnArea li a.center-qr-btn:active .qr-circle::before {
+        background: url('./images/mobile_a/common/ico_qr_.svg') no-repeat center center;
         background-size: 100% 100%;
       }
       .footerNav ul.btnArea li a.center-qr-btn span {
@@ -80,6 +87,93 @@
         font-size: 13px !important;
         color: var(--text-black03-color) !important;
         line-height: normal !important;
+      }
+      }
+
+      /* 주차정산 모달 커스텀 오버레이 및 중앙 정렬 스타일 */
+      .parking-modal-overlay {
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          bottom: 0 !important;
+          z-index: 99999 !important;
+          width: 100vw !important;
+          height: 100vh !important;
+          background: rgba(0, 0, 0, 0.5) !important;
+          display: none;
+          box-sizing: border-box !important;
+      }
+      .parking-modal-overlay .modal-box {
+          position: absolute !important;
+          top: 50% !important;
+          left: 50% !important;
+          transform: translate(-50%, -50%) !important;
+          width: 90% !important;
+          max-width: 320px !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          box-sizing: border-box !important;
+      }
+      .parking-modal-overlay .modal-inner {
+          position: relative;
+          width: 100%;
+          border-radius: 12px;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+          font-size: 15px;
+          overflow: hidden;
+          background: #ffffff;
+      }
+      .parking-modal-overlay .modal-title {
+          width: 100%;
+          background: #505c6d;
+          color: #ffffff;
+          font-size: 16px;
+          font-weight: 700;
+          text-align: center;
+          padding: 14px 20px;
+          margin: 0;
+          box-sizing: border-box;
+      }
+      .parking-modal-overlay .modal-pop {
+          padding: 20px;
+          background: #ffffff;
+          box-sizing: border-box;
+      }
+      .parking-modal-overlay .modal-text {
+          text-align: center;
+          font-size: 14px;
+          color: #111827;
+          line-height: 1.5;
+          margin: 0 0 16px;
+      }
+      .parking-modal-overlay .modal-buttons {
+          display: flex;
+          gap: 10px;
+          margin: 16px 0 0;
+          padding: 0;
+          list-style: none;
+      }
+      .parking-modal-overlay .modal-buttons a {
+          flex: 1;
+          height: 42px;
+          line-height: 42px;
+          text-align: center;
+          border-radius: 8px;
+          font-size: 14px;
+          font-weight: 700;
+          text-decoration: none;
+          display: block;
+      }
+      .parking-modal-overlay .modal-buttons a.pri {
+          background: #D71635;
+          color: #ffffff !important;
+          border: none;
+      }
+      .parking-modal-overlay .modal-buttons a:not(.pri) {
+          background: #ffffff;
+          border: 1px solid #d1d5db;
+          color: #374151 !important;
       }
     </style>
 
@@ -147,6 +241,9 @@
                           </li>
                           <li>
                             <a href="./employee_search.html"><span>직원검색</span></a>
+                          </li>
+                          <li>
+                            <a href="./fixed_seat.html"><span>고정석신청</span></a>
                           </li>
                         </ul>
                       </dd>
@@ -413,6 +510,7 @@
         $(function () {
             accordion();
             menuOpen();
+            initParking();
         });
 
         function menuOpen() {
@@ -437,6 +535,157 @@
                 }
             });
         }
+    </script>
+
+    <!-- 주차정산 알림 모달 -->
+    <div id="parkAlertModal" class="parking-modal-overlay" style="display:none;">
+        <div class="modal-box modal-size-normal">
+            <div class="modal-inner">
+                <p class="modal-title">알림</p>
+                <div class="modal-pop">
+                    <p class="modal-text" id="parkAlertText"></p>
+                    <div class="hr"></div>
+                    <ul class="modal-buttons">
+                        <a href="javascript:;" class="modal-btn btn medium pri" id="parkAlertOk">확인</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 주차정산 확인 모달 -->
+    <div id="parkConfirmModal" class="parking-modal-overlay" style="display:none;">
+        <div class="modal-box modal-size-normal">
+            <div class="modal-inner">
+                <p class="modal-title">확인</p>
+                <div class="modal-pop">
+                    <p class="modal-text" id="parkConfirmText"></p>
+                    <div class="hr"></div>
+                    <ul class="modal-buttons">
+                        <a href="javascript:;" class="modal-btn btn medium" id="parkConfirmCancel">취소</a>
+                        <a href="javascript:;" class="modal-btn btn medium pri" id="parkConfirmOk">확인</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // ── 주차정산 인터랙션 ─────────────────────
+    var _parkAlertCallback = null;
+    var _parkConfirmCallback = null;
+
+    function parkAlert(msg, cb) {
+        $('#parkAlertText').text(msg);
+        _parkAlertCallback = cb || null;
+        $('#parkAlertModal').fadeIn(150);
+    }
+
+    function parkConfirm(msg, cb) {
+        $('#parkConfirmText').text(msg);
+        _parkConfirmCallback = cb || null;
+        $('#parkConfirmModal').fadeIn(150);
+    }
+
+    function pad2(n) {
+        return String(n).padStart(2, '0');
+    }
+
+    function getTimestamp() {
+        var now = new Date();
+        var yy = pad2(now.getFullYear() % 100);
+        var mm = pad2(now.getMonth() + 1);
+        var dd = pad2(now.getDate());
+        var hh = pad2(now.getHours());
+        var mi = pad2(now.getMinutes());
+        return { date: yy + '.' + mm + '.' + dd, time: hh + ':' + mi };
+    }
+
+    function initParking() {
+        // ─ 알림 모달 확인 버튼
+        $('#parkAlertOk').on('click', function () {
+            $('#parkAlertModal').fadeOut(150);
+            if (typeof _parkAlertCallback === 'function') {
+                _parkAlertCallback();
+                _parkAlertCallback = null;
+            }
+        });
+
+        // ─ 확인 모달 취소 버튼
+        $('#parkConfirmCancel').on('click', function () {
+            $('#parkConfirmModal').fadeOut(150);
+            _parkConfirmCallback = null;
+        });
+
+        // ─ 확인 모달 확인 버튼
+        $('#parkConfirmOk').on('click', function () {
+            $('#parkConfirmModal').fadeOut(150);
+            if (typeof _parkConfirmCallback === 'function') {
+                _parkConfirmCallback();
+                _parkConfirmCallback = null;
+            }
+        });
+
+        // ─ 삭제 버튼 (event delegation - 동적 추가 항목 포함)
+        $(document).on('click', '.btn_del', function () {
+            var $body = $(this).closest('.body');
+            parkConfirm('선택한 할인등록 내역을 삭제하시겠습니까?', function () {
+                $body.slideUp(250, function () {
+                    $body.remove();
+                    // 역사가 없으면 빈 메시지 표시
+                    if ($('.panel.list .body:not(.parking-empty)').length === 0) {
+                        if ($('.panel.list .parking-empty').length === 0) {
+                            $('.panel.list').append('<div class="body parking-empty" style="padding:16px;color:#94a3b8;font-size:13px;">할인등록 내역이 없습니다.</div>');
+                        }
+                    }
+                });
+                parkAlert('삭제가 완료되었습니다.');
+            });
+        });
+
+        // ─ 실활 할인 쿠폰 버튼 클릭
+        $(document).on('click', '.discount_coupon:not(:disabled)', function () {
+            var $btn = $(this);
+            var couponTitle = $btn.find('.title').text();
+            var amountVal  = $btn.find('.discount_amount strong').text();
+            var amountUnit = $btn.find('.discount_amount').contents().last().text().trim();
+            var displayTitle = amountVal
+                ? couponTitle + ' (' + amountVal + (amountUnit || '원') + ')'
+                : couponTitle;
+
+            $btn.prop('disabled', true);
+
+            // 빈 메시지 제거
+            $('.panel.list .parking-empty').remove();
+
+            var ts = getTimestamp();
+
+            // 신규 할인 내역 생성
+            var $newBody = $('<div>', { 'class': 'body' })
+                .append(
+                    $('<div>', { 'class': 'discount_info' })
+                        .append(
+                            $('<span>', { 'class': 'info_06' })
+                                .append($('<span>', { 'class': 'state reserved' }).text('할인등록 내역'))
+                                .append($('<span>', { 'class': 'date' }).text(ts.date))
+                                .append($('<time>').text(ts.time))
+                        )
+                        .append(
+                            $('<span>', { 'class': 'info_08' })
+                                .append($('<span>', { 'class': 'title' }).text(displayTitle))
+                        )
+                )
+                .append(
+                    $('<button>', { type: 'button', 'class': 'btn_del' }).text('삭제')
+                );
+
+            $newBody.hide();
+            $('.panel.list').append($newBody);
+            $newBody.slideDown(250);
+
+            parkAlert('할인처리 완료 되었습니다.');
+        });
+    }
     </script>
 </body>
 
