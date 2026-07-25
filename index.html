@@ -531,16 +531,23 @@
   <script>
     let currentUrl = './login.html';
 
+    function getSimulatedUrl(url) {
+      const filename = url.substring(url.lastIndexOf('/') + 1);
+      let basePath = window.location.pathname;
+      if (!basePath.endsWith('/')) {
+        basePath = basePath.substring(0, basePath.lastIndexOf('/') + 1);
+      }
+      const port = window.location.port ? `:${window.location.port}` : '';
+      return `${window.location.protocol}//${window.location.hostname}${port}${basePath}${filename}`;
+    }
+
     function loadPage(url, element) {
       const iframe = document.getElementById('preview-iframe');
       iframe.src = url;
       currentUrl = url;
 
-      // Update simulated address bar
-      const filename = url.substring(url.lastIndexOf('/') + 1);
-      const port = window.location.port ? `:${window.location.port}` : '';
-      const fullSimulatedUrl = `${window.location.protocol}//${window.location.hostname}${port}/${filename}`;
-      document.getElementById('simulated-url').innerText = fullSimulatedUrl;
+      // Update simulated address bar with repository base path (e.g. /kgc-smartoffice-ui/)
+      document.getElementById('simulated-url').innerText = getSimulatedUrl(url);
 
       // Update active class in menu list
       document.querySelectorAll('.page-item').forEach(item => {
@@ -597,9 +604,7 @@
 
     // Set initial address
     window.addEventListener('DOMContentLoaded', () => {
-      const port = window.location.port ? `:${window.location.port}` : '';
-      const fullSimulatedUrl = `${window.location.protocol}//${window.location.hostname}${port}/login.html`;
-      document.getElementById('simulated-url').innerText = fullSimulatedUrl;
+      document.getElementById('simulated-url').innerText = getSimulatedUrl('./login.html');
     });
   </script>
 </body>
