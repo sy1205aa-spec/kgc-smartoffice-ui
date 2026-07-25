@@ -23,20 +23,25 @@
             opacity: 0;
             transition: max-height 0.4s ease, opacity 0.3s ease;
         }
+
         #auth_view.visible {
             max-height: 320px;
             opacity: 1;
         }
+
         /* 아이디/패스워드 readonly 상태 스타일 */
-        #id[readonly], #password[readonly] {
+        #id[readonly],
+        #password[readonly] {
             background: #f5f7fa !important;
             color: #555 !important;
             cursor: default !important;
         }
+
         /* 로그인 버튼 영역 전환 */
         #login_btn_area {
             transition: opacity 0.3s ease;
         }
+
         #login_btn_area.hidden {
             display: none;
         }
@@ -64,7 +69,7 @@
                                 </p>
                                 <p>
                                     <input type="password" name="password" id="password" class="medium"
-                                        placeholder="비밀번호를 입력하세요. (비밀번호: 1234)" />
+                                        placeholder="비밀번호를 입력하세요." />
                                 </p>
                                 <p class="id_save">
                                     <input type="checkbox" id="autoLogin" name="autoLogin" />
@@ -78,8 +83,8 @@
                             <article id="auth_view">
                                 <ul class="auth">
                                     <li>
-                                        <input type="text" id="authCode" class="medium"
-                                            placeholder="인증번호 입력 (인증번호: 123456)" maxlength="6">
+                                        <input type="text" id="authCode" class="medium" placeholder="인증번호 입력"
+                                            maxlength="6">
                                         <a href="javascript:;" id="btnResend" class="btn medium pri"><span>인증키
                                                 재발송</span></a>
                                     </li>
@@ -180,7 +185,7 @@
                     startTimer();
 
                     // 인증번호 필드로 포커스 이동
-                    setTimeout(function() { $('#authCode').focus(); }, 400);
+                    setTimeout(function () { $('#authCode').focus(); }, 400);
                 } else {
                     showModal('아이디나 비밀번호가 일치하지 않습니다.');
                 }
@@ -228,7 +233,7 @@
                 startTimer();
                 $('#authError').hide();
                 $('#authCode').val('');
-                showModal('인증키가 재발송되었습니다. (인증번호: 123456)');
+                showModal('인증키가 재발송되었습니다.');
             });
 
             // ── 인증 버튼 ────────────────────────────────
