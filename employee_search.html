@@ -637,9 +637,9 @@
 
         $('#employee-result-card').fadeIn(300);
         $('#seat-pin').fadeIn(300);
-      } else if (q === '박' || q === '박선영' || q === 'SUN') {
+      } else if (q === '박' || q === '홍길동' || q === 'SUN') {
         $('#card-seat-no').text("A12");
-        $('#card-name').text("박선영");
+        $('#card-name').text("홍길동");
         $('#card-dept').text("HR팀");
         $('#card-time').text("08:30 ~ 17:30");
         $('#card-phone').text("010-1234-5678");
@@ -647,7 +647,7 @@
         $('#employee-result-card').fadeIn(300);
         $('#seat-pin').css({ left: '32%', top: '35%' }).fadeIn(300);
       } else {
-        alert("일치하는 직원 정보를 찾을 수 없습니다. (테스트 힌트: 'POS' 또는 '박선영'을 검색해 보세요.)");
+        alert("일치하는 직원 정보를 찾을 수 없습니다. (테스트 힌트: 'POS' 또는 '홍길동'을 검색해 보세요.)");
         $('#employee-result-card').fadeOut(200);
         $('#seat-pin').fadeOut(200);
       }

@@ -79,7 +79,7 @@ const BO_LAYOUT_HTML = `
 const BO_FOOTER_HTML = `
 <footer class="footer">
   <span>© 2026 Smart Office</span>
-  <span>GS ITM · Back Office System</span>
+  <span>Back Office System</span>
 </footer>
 <div class="common-modal" id="commonModal">
   <button class="common-modal__backdrop" type="button"></button>
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const layoutDiv = document.createElement('div');
   layoutDiv.innerHTML = BO_LAYOUT_HTML;
   document.body.insertBefore(layoutDiv, document.body.firstChild);
-  
+
   // body 맨 뒤에 푸터/모달 삽입
   const footerDiv = document.createElement('div');
   footerDiv.innerHTML = BO_FOOTER_HTML;
