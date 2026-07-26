@@ -278,48 +278,6 @@
       font-weight: 700 !important;
     }
 
-    /* 1줄 콤팩트 스마트 배너 */
-    .my-fixed-compact-bar {
-      background: #ffffff;
-      border: 1px solid #fecdd3;
-      border-radius: 10px;
-      padding: 10px 14px;
-      margin: 12px 16px 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 6px rgba(215, 22, 53, 0.06);
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .my-fixed-compact-bar:hover {
-      background: #fff5f5;
-      border-color: #D71635;
-    }
-
-    .my-fixed-compact-left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      color: #111827;
-    }
-
-    .my-fixed-compact-left .icon {
-      color: #D71635;
-    }
-
-    .my-fixed-compact-right {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      color: #D71635;
-      font-weight: 700;
-    }
-
     /* 나의 고정석 전체 신청 내역 모달 팝업 */
     .summary-modal-overlay {
       position: fixed;
@@ -862,19 +820,6 @@
           </select>
         </div>
 
-        <!-- 1줄 콤팩트 스마트 배너 (한달 이상 대량 신청 시에도 1줄 유지) -->
-        <div class="my-fixed-compact-bar" id="myFixedCompactBar" onclick="openMyFixedSummaryModal()">
-          <div class="my-fixed-compact-left">
-            <span class="icon">📌</span>
-            <span>나의 고정석 신청:</span>
-            <span style="color: #D71635; font-weight: 800;" id="myFixedSummaryText">총 2일 (77번, 79번)</span>
-          </div>
-          <div class="my-fixed-compact-right">
-            <span>상세보기</span>
-            <i class="arrow-r">›</i>
-          </div>
-        </div>
-
         <div class="sub-toolbar">
           <div class="fold-btn" title="접기/펼치기"></div>
           <div class="color-toggle-wrap">
@@ -1104,23 +1049,6 @@
     </div>
   </div>
 
-  <!-- 나의 고정석 전체 신청 내역 모달 팝업 -->
-  <div class="summary-modal-overlay" id="summaryModal">
-    <div class="summary-modal-card">
-      <div class="summary-modal-header">
-        <h3>📌 나의 고정석 신청 상세 내역</h3>
-        <button type="button" style="background:none; border:none; font-size:18px; cursor:pointer;"
-          onclick="closeMyFixedSummaryModal()">✕</button>
-      </div>
-      <div class="summary-modal-body" id="summaryModalList">
-        <!-- JS 동적 렌더링 -->
-      </div>
-      <div class="summary-modal-footer">
-        <button type="button" onclick="closeMyFixedSummaryModal()">닫기</button>
-      </div>
-    </div>
-  </div>
-
   <script>
     var selectedDays = []; // 현재 캘린더에서 선택 중인 날짜 배열 (숫자형 day)
     var currentSeatNo = 77;
@@ -1263,61 +1191,7 @@
       $('#confirmModal').removeClass('active');
     }
 
-    function openMyFixedSummaryModal() {
-      renderMyFixedSummaryModalList();
-      $('#summaryModal').addClass('active');
-    }
-    function closeMyFixedSummaryModal() {
-      $('#summaryModal').removeClass('active');
-    }
-
-    function renderMyFixedSummaryModalList() {
-      var $body = $('#summaryModalList').empty();
-      var totalDays = 0;
-
-      $.each(reservedBySeats, function (seatNo, days) {
-        if (days && days.length > 0) {
-          totalDays += days.length;
-
-          var daysStr = days.slice().sort(function (a, b) { return a - b; }).map(function (d) {
-            return '7월 ' + String(d).padStart(2, '0') + '일';
-          }).join(', ');
-
-          var cardHtml = '<div class="summary-item-card" onclick="closeMyFixedSummaryModal(); openCalendarSheet(' + seatNo + ', \'일반석\');" title="클릭 시 ' + seatNo + '번 좌석 신청 변경/취소">' +
-            '<div class="summary-item-left">' +
-            '<span class="summary-item-seat">' + seatNo + '번 좌석</span>' +
-            '<span class="summary-item-dates">신청일: ' + daysStr + ' (' + days.length + '일간)</span>' +
-            '</div>' +
-            '<span style="font-size:12px; color:#D71635; font-weight:700;">수정/취소 ›</span>' +
-            '</div>';
-
-          $body.append(cardHtml);
-        }
-      });
-
-      if (totalDays === 0) {
-        $body.html('<div style="text-align:center; padding:30px 0; color:#9ca3af; font-size:13px;">신청한 고정석 내역이 없습니다.</div>');
-      }
-    }
-
     function renderMyFixedSummary() {
-      var totalDays = 0;
-      var seatList = [];
-
-      $.each(reservedBySeats, function (seatNo, days) {
-        if (days && days.length > 0) {
-          totalDays += days.length;
-          seatList.push(seatNo + '번');
-        }
-      });
-
-      if (totalDays === 0) {
-        $('#myFixedSummaryText').text('신청 내역 없음');
-      } else {
-        var seatsStr = seatList.join(', ');
-        $('#myFixedSummaryText').text('총 ' + totalDays + '일 (' + seatsStr + ')');
-      }
-
       // 좌석 배치도 지도 상의 내 고정석 버튼 강조 (.my-reserved)
       $('.seat-item-btn').each(function () {
         var seatText = $(this).find('.seat-num').text().trim();
@@ -1343,7 +1217,7 @@
         showToast(currentSeatNo + '번 좌석 고정석 신청이 취소되었습니다.');
       }
 
-      // 상단 요약 배너 및 지도 배지 갱신
+      // 지도 배지 갱신
       renderMyFixedSummary();
     }
 
@@ -1359,7 +1233,7 @@
     }
 
     $(function () {
-      // 상단 요약 배너 및 지도 뱃지 최초 렌더링
+      // 지도 뱃지 최초 렌더링
       renderMyFixedSummary();
 
       // 캘린더 날짜 클릭 이벤트
