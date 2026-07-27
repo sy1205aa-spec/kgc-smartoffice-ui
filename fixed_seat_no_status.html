@@ -278,6 +278,87 @@
       font-weight: 700 !important;
     }
 
+    /* 직전 이용 고정석 스타일 (연속 신청 불가) */
+    .seat-item-btn.prev-used-seat {
+      background: #f3f4f6 !important;
+      border: 1.5px solid #6b7280 !important;
+      color: #4b5563 !important;
+      cursor: not-allowed !important;
+      opacity: 0.9;
+    }
+
+    .seat-item-btn.prev-used-seat .seat-num {
+      color: #374151 !important;
+    }
+
+    .seat-item-btn.prev-used-seat .seat-type {
+      background: #6b7280 !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+    }
+
+    /* From ~ To 연속 범위 선택 및 셀 배경 스트립 스타일 */
+    .cal-day-cell.range-start-cell {
+      background: #fee2e2 !important;
+      border-radius: 50% 0 0 50% !important;
+    }
+
+    .cal-day-cell.range-end-cell {
+      background: #fee2e2 !important;
+      border-radius: 0 50% 50% 0 !important;
+    }
+
+    .cal-day-cell.in-range-cell {
+      background: #fee2e2 !important;
+      border-radius: 0 !important;
+    }
+
+    .cal-day-cell.single-range-cell {
+      background: transparent !important;
+    }
+
+    .cal-day-btn.range-start,
+    .cal-day-btn.range-end {
+      background: #D71635 !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+      border-radius: 50% !important;
+      box-shadow: 0 2px 6px rgba(215, 22, 53, 0.3);
+    }
+
+    .cal-day-btn.in-range {
+      background: transparent !important;
+      color: #9f1239 !important;
+      font-weight: 800 !important;
+      border-radius: 0 !important;
+    }
+
+    /* 타인 지정/예약완료 일자 스타일 */
+    .cal-day-btn.taken {
+      background: #e5e7eb !important;
+      color: #9ca3af !important;
+      text-decoration: line-through;
+      cursor: not-allowed !important;
+      position: relative;
+    }
+
+    .cal-day-btn.taken::after {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #6b7280;
+      bottom: 3px;
+    }
+
+    .cal-day-btn.today-disabled {
+      color: #9ca3af !important;
+      background: #f3f4f6 !important;
+      text-decoration: line-through;
+      cursor: not-allowed !important;
+    }
+
     /* 나의 고정석 전체 신청 내역 모달 팝업 */
     .summary-modal-overlay {
       position: fixed;
@@ -830,6 +911,14 @@
         <!-- 좌석 도면 영역 -->
         <div class="seat-map-area">
           <div class="seat-map-box">
+            <!-- 범례 안내 추가 -->
+            <div class="seat-legend-bar" style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 14px; font-size: 11px; color: #4b5563; flex-wrap: wrap;">
+              <span style="display: inline-flex; align-items: center; gap: 4px;"><i style="display: inline-block; width: 10px; height: 10px; background: #fff5f5; border: 1.5px solid #D71635; border-radius: 2px;"></i> 내고정석</span>
+              <span style="display: inline-flex; align-items: center; gap: 4px;"><i style="display: inline-block; width: 10px; height: 10px; background: #ffffff; border: 1px solid #d1d5db; border-radius: 2px;"></i> 신청가능</span>
+              <span style="display: inline-flex; align-items: center; gap: 4px;"><i style="display: inline-block; width: 10px; height: 10px; background: #f3f4f6; border: 1.5px dashed #9ca3af; border-radius: 2px;"></i> 타인예약</span>
+              <span style="display: inline-flex; align-items: center; gap: 4px;"><i style="display: inline-block; width: 10px; height: 10px; background: #f3f4f6; border: 1.5px solid #6b7280; border-radius: 2px;"></i> 직전이용(신청불가)</span>
+            </div>
+
             <div class="seat-map-title">과천본사 10F 좌석 배치도 (좌석을 선택하세요)</div>
             <div class="seat-grid-fixed">
               <div class="seat-item-btn avail target-77" onclick="openCalendarSheet(77, '일반석')">
@@ -840,9 +929,9 @@
                 <span class="seat-num">78</span>
                 <span class="seat-type">타인예약</span>
               </div>
-              <div class="seat-item-btn avail" onclick="openCalendarSheet(79, '일반석')">
+              <div class="seat-item-btn prev-used-seat" onclick="openCalendarSheet(79, '일반석')">
                 <span class="seat-num">79</span>
-                <span class="seat-type">일반석</span>
+                <span class="seat-type">직전이용</span>
               </div>
               <div class="seat-item-btn avail" onclick="openCalendarSheet(80, '일반석')">
                 <span class="seat-num">80</span>
@@ -927,7 +1016,7 @@
       </div>
 
       <div class="seat-guide-text">
-        사용가능한 좌석입니다. 사용하실 일자를 선택 후, 예약하기를 선택하시면 예약이 완료됩니다.
+        <strong>[신청 안내]</strong> 당일 예약 불가 (내일부터 선택 가능) / 이용 시작일(From)과 종료일(To)을 순서대로 선택해주세요.
       </div>
 
       <!-- 선택된 일자 태그 영역 -->
@@ -947,65 +1036,21 @@
           <div class="cal-legend-dot taken"></div>
           <span>타인예약(지정불가)</span>
         </div>
-      </div>
-
-      <!-- 달력 -->
-      <div class="cal-header">
-        <button type="button" class="cal-nav-btn">&#60;</button>
-        <h2>2026년 7월</h2>
-        <button type="button" class="cal-nav-btn">&#62;</button>
-      </div>
-
-      <div class="cal-grid">
-        <div class="cal-weekday sun">일</div>
-        <div class="cal-weekday">월</div>
-        <div class="cal-weekday">화</div>
-        <div class="cal-weekday">수</div>
-        <div class="cal-weekday">목</div>
-        <div class="cal-weekday">금</div>
-        <div class="cal-weekday">토</div>
-
-        <!-- 2026년 7월: 1일(수요일)부터 시작 (빈 칸 3개) -->
-        <div class="cal-day-cell"></div>
-        <div class="cal-day-cell"></div>
-        <div class="cal-day-cell"></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">1</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">2</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">3</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">4</button></div>
-
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn sun disabled">5</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">6</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">7</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">8</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">9</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">10</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">11</button></div>
-
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn sun disabled">12</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">13</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">14</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">15</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">16</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">17</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">18</button></div>
-
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn sun disabled">19</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">20</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">21</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">22</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">23</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">24</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn disabled">25</button></div>
-
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn sun disabled">26</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn today selectable" data-day="27">27</button>
+        <div class="cal-legend-item">
+          <div class="cal-legend-dot" style="background: #D71635;"></div>
+          <span>선택구간(From~To)</span>
         </div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn selectable" data-day="28">28</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn selectable" data-day="29">29</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn taken" data-day="30"
-            title="타인이 예약한 고정석 일자입니다.">30</button></div>
-        <div class="cal-day-cell"><button type="button" class="cal-day-btn selectable" data-day="31">31</button></div>
+      </div>
+
+      <!-- 달력 헤더 (월 이동) -->
+      <div class="cal-header">
+        <button type="button" class="cal-nav-btn" onclick="changeCalMonth(-1)">&#60;</button>
+        <h2 id="calMonthTitle">2026년 7월</h2>
+        <button type="button" class="cal-nav-btn" onclick="changeCalMonth(1)">&#62;</button>
+      </div>
+
+      <div class="cal-grid" id="calGrid">
+        <!-- JS로 7월 / 8월 달력 동적 렌더링 -->
       </div>
 
       <!-- 하단 신청하기 버튼 -->
@@ -1049,72 +1094,196 @@
     </div>
   </div>
 
+  <!-- 기존 고정석 예약 삭제 확인 모달 -->
+  <div class="confirm-modal-overlay" id="deleteConfirmModal">
+    <div class="confirm-modal-card">
+      <div class="confirm-modal-header" style="background: #D71635;">
+        <h3>기존 예약 삭제 확인</h3>
+      </div>
+      <div class="confirm-modal-body" style="text-align: center; padding: 24px 20px;">
+        <div style="font-size: 15px; font-weight: 700; color: #111827; margin-bottom: 8px;">
+          기존 고정석 예약을 삭제하시겠습니까?
+        </div>
+        <div style="font-size: 13px; color: #6b7280; line-height: 1.5;" id="deleteModalInfo">
+          [ 77번 좌석 ] 07월 31일 ~ 08월 14일
+        </div>
+      </div>
+      <div class="confirm-modal-footer">
+        <button type="button" class="btn-modal-cancel" onclick="closeDeleteConfirmModal()">취소</button>
+        <button type="button" class="btn-modal-ok" style="background: #D71635; color: #ffffff;" onclick="confirmDeleteExistingBooking()">예약 삭제</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    var selectedDays = []; // 현재 캘린더에서 선택 중인 날짜 배열 (숫자형 day)
+    var selectedDays = [];      // 현재 선택된 날짜 키 배열 ['2026-07-28', ...]
+    var rangeStart = null;        // From 날짜 키 (string '2026-07-28')
+    var rangeEnd = null;          // To 날짜 키 (string '2026-08-14')
+
+    var currentCalYear = 2026;
+    var currentCalMonth = 7;     // 기본 7월
+
     var currentSeatNo = 77;
     var currentSeatType = '일반석';
 
-    // 좌석별 타인/사전 예약된 기본 날짜 (타인 예약)
+    // 직전 예약/사용한 고정석 번호 (77번)
+    var myLastReservedSeatNo = 77;
+
+    // 좌석별 타인/사전 예약된 기본 날짜 키 (타인 예약)
     var seatTakenMap = {
-      77: [30],
-      78: [27, 28, 29, 30, 31] // 78번 좌석은 다른 사람이 전체 날짜 고정석 예약 완료
+      77: ['2026-07-30', '2026-08-18', '2026-08-19', '2026-08-20'],
+      78: [
+        '2026-07-27', '2026-07-28', '2026-07-29', '2026-07-30', '2026-07-31',
+        '2026-08-01', '2026-08-02', '2026-08-03', '2026-08-04', '2026-08-05',
+        '2026-08-06', '2026-08-07', '2026-08-08', '2026-08-09', '2026-08-10',
+        '2026-08-11', '2026-08-12', '2026-08-13', '2026-08-14', '2026-08-15',
+        '2026-08-16', '2026-08-17', '2026-08-18', '2026-08-19', '2026-08-20'
+      ],
+      80: ['2026-08-01', '2026-08-02', '2026-08-03', '2026-08-04', '2026-08-05']
     };
 
-    // 사용자가 각 좌석별로 신청 완료(저장)한 고정석 날짜 정보
-    // 77번: 27일, 79번: 29일
+    // 사용자가 각 좌석별로 신청 완료(저장)한 고정석 날짜 키 정보
+    // (기본 시뮬레이션 설정: 77번 좌석 07월 31일 ~ 08월 14일 예약중)
     var reservedBySeats = {
-      77: [27],
-      79: [29]
+      77: [
+        '2026-07-31',
+        '2026-08-01', '2026-08-02', '2026-08-03', '2026-08-04', '2026-08-05',
+        '2026-08-06', '2026-08-07', '2026-08-08', '2026-08-09', '2026-08-10',
+        '2026-08-11', '2026-08-12', '2026-08-13', '2026-08-14'
+      ]
     };
 
-    function updateCalendarGridForSeat(seatNo) {
-      // 1) 다른 좌석에서 선점된 날짜 목록 (지정 불가: taken)
-      var takenDays = (seatTakenMap[seatNo] || []).slice();
+    function formatDateKey(year, month, day) {
+      var mStr = String(month).padStart(2, '0');
+      var dStr = String(day).padStart(2, '0');
+      return year + '-' + mStr + '-' + dStr;
+    }
+
+    function parseDateKey(key) {
+      var parts = key.split('-');
+      return {
+        year: parseInt(parts[0]),
+        month: parseInt(parts[1]),
+        day: parseInt(parts[2])
+      };
+    }
+
+    function changeCalMonth(dir) {
+      var newMonth = currentCalMonth + dir;
+      var newYear = currentCalYear;
+
+      if (newMonth < 7) {
+        showToast('7월 이전 달로는 이동할 수 없습니다.');
+        return;
+      }
+      if (newMonth > 8) {
+        showToast('고정석은 최대 8월까지 신청 가능합니다.');
+        return;
+      }
+
+      currentCalMonth = newMonth;
+      currentCalYear = newYear;
+      renderCalendarGrid(currentCalYear, currentCalMonth);
+    }
+
+    function renderCalendarGrid(year, month) {
+      $('#calMonthTitle').text(year + '년 ' + month + '월');
+      var $grid = $('#calGrid').empty();
+
+      // 요일 헤더
+      $grid.append('<div class="cal-weekday sun">일</div>');
+      $grid.append('<div class="cal-weekday">월</div>');
+      $grid.append('<div class="cal-weekday">화</div>');
+      $grid.append('<div class="cal-weekday">수</div>');
+      $grid.append('<div class="cal-weekday">목</div>');
+      $grid.append('<div class="cal-weekday">금</div>');
+      $grid.append('<div class="cal-weekday">토</div>');
+
+      var firstDayOfWeek = new Date(year, month - 1, 1).getDay();
+      var totalDaysInMonth = new Date(year, month, 0).getDate();
+
+      // 시작 빈 칸
+      for (var i = 0; i < firstDayOfWeek; i++) {
+        $grid.append('<div class="cal-day-cell"></div>');
+      }
+
+      // 타 좌석 선점 일자
+      var takenDays = getTakenDatesForSeat(currentSeatNo);
+
+      for (var d = 1; d <= totalDaysInMonth; d++) {
+        var dateKey = formatDateKey(year, month, d);
+        var dayOfWeek = new Date(year, month - 1, d).getDay();
+        var sunClass = dayOfWeek === 0 ? ' sun' : '';
+
+        var $cell = $('<div class="cal-day-cell"></div>');
+        var $btn = $('<button type="button" class="cal-day-btn' + sunClass + '" data-date="' + dateKey + '">' + d + '</button>');
+
+        // 지나간 날짜 및 당일(2026-07-27) 비활성화
+        if (dateKey < '2026-07-27') {
+          $btn.addClass('disabled');
+        } else if (dateKey === '2026-07-27') {
+          $btn.addClass('today-disabled disabled').attr('title', '당일 고정석 예약 불가');
+        } else if (takenDays.indexOf(dateKey) !== -1) {
+          $btn.addClass('taken').attr('title', '이미 다른 고정석으로 지정된 일자입니다.');
+        } else if (isDateInMyExistingBooking(dateKey)) {
+          $btn.addClass('my-reserved-day').attr('title', '이미 예약된 좌석입니다 (삭제 시 클릭)');
+        } else {
+          $btn.addClass('selectable');
+        }
+
+        $cell.append($btn);
+        $grid.append($cell);
+      }
+
+      renderCalendarRangeUI();
+    }
+
+    function getTakenDatesForSeat(seatNo) {
+      var taken = (seatTakenMap[seatNo] || []).slice();
       $.each(reservedBySeats, function (sNo, days) {
         if (parseInt(sNo) !== parseInt(seatNo)) {
           $.each(days, function (i, d) {
-            if (takenDays.indexOf(d) === -1) {
-              takenDays.push(d);
-            }
+            if (taken.indexOf(d) === -1) taken.push(d);
           });
         }
       });
-
-      // 2) 현재 좌석에서 내가 이미 저장 신청해 둔 날짜 목록 (selected: 검은색 원 & 취소 가능)
-      var myReservedDays = reservedBySeats[seatNo] || [];
-
-      $('.cal-day-btn').each(function () {
-        var day = $(this).data('day');
-        // 1~26일 지나간 날짜는 disabled 유지
-        if (!day || $(this).hasClass('disabled')) return;
-
-        // 다른 좌석 선점 일자 -> taken
-        if (takenDays.indexOf(day) !== -1) {
-          $(this).addClass('taken').removeClass('selectable selected').attr('title', '이미 다른 고정석으로 지정된 일자입니다.');
-        } else {
-          $(this).removeClass('taken').addClass('selectable').removeAttr('title');
-          // 내 좌석 지정 일자 -> selected (검은색 원)
-          if (myReservedDays.indexOf(day) !== -1) {
-            $(this).addClass('selected');
-          } else {
-            $(this).removeClass('selected');
-          }
-        }
-      });
+      return taken;
     }
 
     function openCalendarSheet(seatNo, seatType) {
+      // 1. 직전 예약/사용한 고정석 연속 신청 제약 검사
+      // (만약 사용자가 직전 7/31~8/14에 77번 좌석을 예약 저장한 후, 77번 좌석에 대해 새 예약을 시도하는 경우)
+      if (parseInt(seatNo) === myLastReservedSeatNo && reservedBySeats[seatNo] && reservedBySeats[seatNo].length > 0) {
+        var days = reservedBySeats[seatNo].slice().sort();
+        var pS = parseDateKey(days[0]);
+        var pE = parseDateKey(days[days.length - 1]);
+        showToast('직전 예약하신 고정석(' + seatNo + '번 / ' + pS.month + '/' + pS.day + ' ~ ' + pE.month + '/' + pE.day + ')은 연속 신청이 불가합니다.');
+        // 바텀시트를 열어 기존 예약을 확인/삭제할 수 있도록 허용
+      }
+
       currentSeatNo = seatNo;
       currentSeatType = seatType;
       $('#sheetSeatNo').text(seatNo);
       $('#sheetSeatType').text(seatType);
 
-      // 좌석별 캘린더 타인/기지정 날짜 동적 업데이트
-      updateCalendarGridForSeat(seatNo);
+      // 현재 좌석에 저장된 기존 범위로 rangeStart, rangeEnd 초기화
+      var existingDays = reservedBySeats[seatNo] || [];
+      if (existingDays.length > 0) {
+        existingDays.sort();
+        rangeStart = existingDays[0];
+        rangeEnd = existingDays.length > 1 ? existingDays[existingDays.length - 1] : existingDays[0];
+        var p = parseDateKey(rangeStart);
+        currentCalYear = p.year;
+        currentCalMonth = p.month;
+      } else {
+        rangeStart = null;
+        rangeEnd = null;
+        currentCalYear = 2026;
+        currentCalMonth = 7;
+      }
 
-      // 현재 좌석에 저장된 내가 선택한 날짜들을 selectedDays로 초기화
-      selectedDays = (reservedBySeats[seatNo] || []).slice();
-
+      renderCalendarGrid(currentCalYear, currentCalMonth);
+      updateSelectedDaysFromRange();
       renderSelectedDateTags();
       updateSubmitButtonState();
 
@@ -1127,62 +1296,272 @@
       $('#calendarSheet').removeClass('active');
     }
 
-    function toggleDaySelection(day, $btn) {
-      var idx = selectedDays.indexOf(day);
-      if (idx > -1) {
-        // 이미 선택된 날짜 -> 선택 해제/취소
-        selectedDays.splice(idx, 1);
-        $btn.removeClass('selected');
-      } else {
-        // 신규 날짜 선택
-        selectedDays.push(day);
-        $btn.addClass('selected');
-      }
-      // 날짜순 정렬
-      selectedDays.sort(function (a, b) { return a - b; });
+    function isDateInMyExistingBooking(dateKey) {
+      var inBooking = false;
+      $.each(reservedBySeats, function (sNo, days) {
+        if (days.indexOf(dateKey) !== -1) {
+          inBooking = true;
+        }
+      });
+      return inBooking;
+    }
 
+    function openDeleteConfirmModal(clickedDateKey) {
+      var targetSeatNo = null;
+      var targetDays = [];
+      $.each(reservedBySeats, function (sNo, days) {
+        if (days.indexOf(clickedDateKey) !== -1) {
+          targetSeatNo = sNo;
+          targetDays = days.slice().sort();
+        }
+      });
+
+      if (!targetSeatNo) return;
+
+      var pS = parseDateKey(targetDays[0]);
+      var pE = parseDateKey(targetDays[targetDays.length - 1]);
+      var infoText = '[ ' + targetSeatNo + '번 좌석 ] ' + String(pS.month).padStart(2, '0') + '월 ' + String(pS.day).padStart(2, '0') + '일 ~ ' + String(pE.month).padStart(2, '0') + '월 ' + String(pE.day).padStart(2, '0') + '일 (총 ' + targetDays.length + '일간)';
+
+      $('#deleteModalInfo').text(infoText);
+      $('#deleteConfirmModal').data('targetSeatNo', targetSeatNo).addClass('active');
+    }
+
+    function closeDeleteConfirmModal() {
+      $('#deleteConfirmModal').removeClass('active');
+    }
+
+    function confirmDeleteExistingBooking() {
+      var sNo = $('#deleteConfirmModal').data('targetSeatNo');
+      if (sNo) {
+        delete reservedBySeats[sNo];
+        if (parseInt(sNo) === parseInt(myLastReservedSeatNo)) {
+          myLastReservedSeatNo = null;
+        }
+        rangeStart = null;
+        rangeEnd = null;
+        selectedDays = [];
+
+        renderCalendarGrid(currentCalYear, currentCalMonth);
+        renderSelectedDateTags();
+        updateSubmitButtonState();
+        renderMyFixedSummary();
+
+        showToast('기존 ' + sNo + '번 좌석 고정석 예약이 삭제되었습니다.');
+      }
+      closeDeleteConfirmModal();
+    }
+
+    function handleRangeDateClick(dateKey) {
+      // 1. 당일 고정석 예약 불가
+      if (dateKey === '2026-07-27') {
+        showToast('당일 고정석 예약은 불가능합니다. (내일부터 선택 가능)');
+        return;
+      }
+
+      // 2. 직전/기존 예약 일자 클릭 시 -> 기존 고정석 예약 삭제 여부 확인 모달
+      if (isDateInMyExistingBooking(dateKey)) {
+        openDeleteConfirmModal(dateKey);
+        return;
+      }
+
+      // 3. 직전 선택(예약)된 내역이 있는 좌석(77번 등)에 대해 그 이후 새 날짜 범위 선택 시 -> 변경 불가 및 안내 메시지
+      if (reservedBySeats[currentSeatNo] && reservedBySeats[currentSeatNo].length > 0) {
+        var days = reservedBySeats[currentSeatNo].slice().sort();
+        var pS = parseDateKey(days[0]);
+        var pE = parseDateKey(days[days.length - 1]);
+        showToast('직전 선택된 예약 내역(' + currentSeatNo + '번 좌석: ' + String(pS.month).padStart(2, '0') + '/' + String(pS.day).padStart(2, '0') + ' ~ ' + String(pE.month).padStart(2, '0') + '/' + String(pE.day).padStart(2, '0') + ')이 있어 변경이 불가합니다.');
+        return;
+      }
+
+      // 4. 직전 예약했던 좌석(myLastReservedSeatNo)에 대해 새 기간 신청 시도시 -> 연속 신청 불가 처리
+      if (parseInt(currentSeatNo) === parseInt(myLastReservedSeatNo)) {
+        showToast('직전 이용/예약하신 고정석(' + currentSeatNo + '번)은 연속 신청이 불가능합니다. 다른 좌석을 선택해 주세요.');
+        return;
+      }
+
+      var takenDays = getTakenDatesForSeat(currentSeatNo);
+
+      // Case A: 첫번째 클릭 (From 설정)
+      if (rangeStart === null) {
+        rangeStart = dateKey;
+        rangeEnd = null;
+        var p = parseDateKey(dateKey);
+        showToast(p.month + '월 ' + p.day + '일(From) 선택됨. 종료일(To)을 클릭하세요.');
+      }
+      // Case B: 두번째 클릭 (To 설정)
+      else if (rangeStart !== null && rangeEnd === null) {
+        if (dateKey < rangeStart) {
+          // From보다 이전 날짜 클릭 시 -> 시작일(From) 새로 변경
+          rangeStart = dateKey;
+          var p = parseDateKey(dateKey);
+          showToast('시작일(From)이 ' + p.month + '월 ' + p.day + '일로 변경되었습니다. 종료일(To)을 선택하세요.');
+        } else if (dateKey === rangeStart) {
+          // 같은 날짜 재클릭시 -> 선택 초기화
+          rangeStart = null;
+          rangeEnd = null;
+          showToast('날짜 선택이 초기화되었습니다.');
+        } else {
+          // 1. 기간(총 일수) 검사 (최대 1개월 / 31일 제한)
+          var sDate = new Date(rangeStart);
+          var eDate = new Date(dateKey);
+          var diffDays = Math.round((eDate - sDate) / (1000 * 60 * 60 * 24)) + 1;
+
+          if (diffDays > 31) {
+            showToast('고정석은 최대 1개월(31일)까지만 신청 가능합니다. (선택: ' + diffDays + '일)');
+            return;
+          }
+
+          // 2. From~To 구간 내 타인예약(taken) 일자 포함 검사
+          var curr = new Date(rangeStart);
+          var hasTaken = false;
+          while (curr <= eDate) {
+            var k = formatDateKey(curr.getFullYear(), curr.getMonth() + 1, curr.getDate());
+            if (takenDays.indexOf(k) !== -1) {
+              hasTaken = true;
+              break;
+            }
+            curr.setDate(curr.getDate() + 1);
+          }
+
+          if (hasTaken) {
+            showToast('선택한 기간 내에 예약 불가(타인예약) 일자가 포함되어 있습니다.');
+            return;
+          }
+
+          rangeEnd = dateKey;
+          var pS = parseDateKey(rangeStart);
+          var pE = parseDateKey(rangeEnd);
+          showToast(pS.month + '월 ' + pS.day + '일 ~ ' + pE.month + '월 ' + pE.day + '일 (총 ' + diffDays + '일간) 선택 완료!');
+        }
+      }
+      // Case C: 이미 From/To 모두 선택되어 있던 경우 -> 새로 From 설정
+      else {
+        rangeStart = dateKey;
+        rangeEnd = null;
+        var p = parseDateKey(dateKey);
+        showToast(p.month + '월 ' + p.day + '일(From) 선택됨. 종료일(To)을 클릭하세요.');
+      }
+
+      updateSelectedDaysFromRange();
+      renderCalendarRangeUI();
       renderSelectedDateTags();
       updateSubmitButtonState();
     }
 
+    function updateSelectedDaysFromRange() {
+      selectedDays = [];
+      if (rangeStart !== null && rangeEnd === null) {
+        selectedDays = [rangeStart];
+      } else if (rangeStart !== null && rangeEnd !== null) {
+        var curr = new Date(rangeStart);
+        var eDate = new Date(rangeEnd);
+        while (curr <= eDate) {
+          var k = formatDateKey(curr.getFullYear(), curr.getMonth() + 1, curr.getDate());
+          selectedDays.push(k);
+          curr.setDate(curr.getDate() + 1);
+        }
+      }
+    }
+
+    function renderCalendarRangeUI() {
+      $('.cal-day-cell').removeClass('range-start-cell range-end-cell in-range-cell single-range-cell');
+      $('.cal-day-btn').removeClass('range-start range-end in-range selected');
+
+      if (rangeStart !== null && rangeEnd === null) {
+        var $btn = $('.cal-day-btn[data-date="' + rangeStart + '"]');
+        if ($btn.length > 0) {
+          $btn.addClass('range-start selected');
+          $btn.closest('.cal-day-cell').addClass('single-range-cell');
+        }
+      } else if (rangeStart !== null && rangeEnd !== null) {
+        $.each(selectedDays, function (i, k) {
+          var $btn = $('.cal-day-btn[data-date="' + k + '"]');
+          if ($btn.length > 0) {
+            var $cell = $btn.closest('.cal-day-cell');
+            if (k === rangeStart) {
+              $btn.addClass('range-start selected');
+              $cell.addClass('range-start-cell');
+            } else if (k === rangeEnd) {
+              $btn.addClass('range-end selected');
+              $cell.addClass('range-end-cell');
+            } else {
+              $btn.addClass('in-range selected');
+              $cell.addClass('in-range-cell');
+            }
+          }
+        });
+      }
+    }
+
     function renderSelectedDateTags() {
       var $bar = $('#selectedDatesBar').empty();
-      if (selectedDays.length === 0) {
-        $bar.append('<div style="font-size: 13px; color: #9ca3af; padding: 4px 0;">신청할 일자를 달력에서 선택해주세요.</div>');
+      if (rangeStart === null) {
+        $bar.append('<div style="font-size: 13px; color: #9ca3af; padding: 4px 0;">이용 시작일(From)과 종료일(To)을 선택해주세요. (최대 1개월)</div>');
         return;
       }
-      $.each(selectedDays, function (i, d) {
-        var dayStr = String(d).padStart(2, '0');
-        var tagHtml = '<div class="date-tag">07월 ' + dayStr + '일</div>';
+      if (rangeStart !== null && rangeEnd === null) {
+        var pS = parseDateKey(rangeStart);
+        var tagHtml = '<div class="date-tag" style="background: #fff1f2; color: #D71635; border: 1px solid #fecdd3;">' +
+          String(pS.month).padStart(2, '0') + '월 ' + String(pS.day).padStart(2, '0') + '일(From) ~ 종료일(To) 선택중' +
+          '</div>';
         $bar.append(tagHtml);
-      });
+        return;
+      }
+      if (rangeStart !== null && rangeEnd !== null) {
+        var pS = parseDateKey(rangeStart);
+        var pE = parseDateKey(rangeEnd);
+        var sDate = new Date(rangeStart);
+        var eDate = new Date(rangeEnd);
+        var totalDays = Math.round((eDate - sDate) / (1000 * 60 * 60 * 24)) + 1;
+
+        var tagHtml = '<div class="date-tag" style="background: #fff1f2; color: #D71635; border: 1px solid #fecdd3; font-weight: 800;">' +
+          String(pS.month).padStart(2, '0') + '월 ' + String(pS.day).padStart(2, '0') + '일 ~ ' +
+          String(pE.month).padStart(2, '0') + '월 ' + String(pE.day).padStart(2, '0') + '일 (총 ' + totalDays + '일간)' +
+          '</div>';
+        $bar.append(tagHtml);
+      }
     }
 
     function updateSubmitButtonState() {
       var $btn = $('#btnSubmitRequest');
-      // 선택된 날짜가 있거나 기존 저장을 취소하는 경우에도 제출 가능
       var myPrevReserved = reservedBySeats[currentSeatNo] || [];
-      if (selectedDays.length > 0 || myPrevReserved.length > 0) {
+      if (rangeStart !== null || myPrevReserved.length > 0) {
         $btn.addClass('active');
+        if (selectedDays.length > 0) {
+          $btn.text('신청하기 (' + selectedDays.length + '일간)');
+        } else {
+          $btn.text('신청 취소하기');
+        }
       } else {
         $btn.removeClass('active');
+        $btn.text('신청하기');
       }
     }
 
     function openConfirmModal() {
       var myPrevReserved = reservedBySeats[currentSeatNo] || [];
-      if (selectedDays.length === 0 && myPrevReserved.length === 0) {
-        alert('신청하실 일자를 선택해주세요.');
+      if (rangeStart === null && myPrevReserved.length === 0) {
+        showToast('신청하실 이용 기간(From~To)을 선택해주세요.');
         return;
       }
 
-      // 선택된 날짜 텍스트 구성
-      var dateTexts = selectedDays.length > 0 ? selectedDays.map(function (d) {
-        return '7월 ' + d + '일';
-      }).join(', ') : '신청 내역 없음 (취소)';
+      var dateText = '';
+      if (rangeStart !== null && rangeEnd !== null) {
+        var pS = parseDateKey(rangeStart);
+        var pE = parseDateKey(rangeEnd);
+        var sDate = new Date(rangeStart);
+        var eDate = new Date(rangeEnd);
+        var totalDays = Math.round((eDate - sDate) / (1000 * 60 * 60 * 24)) + 1;
+        dateText = pS.month + '월 ' + pS.day + '일 ~ ' + pE.month + '월 ' + pE.day + '일 (총 ' + totalDays + '일간)';
+      } else if (rangeStart !== null && rangeEnd === null) {
+        var pS = parseDateKey(rangeStart);
+        dateText = pS.month + '월 ' + pS.day + '일 (1일간)';
+      } else {
+        dateText = '신청 내역 없음 (취소)';
+      }
 
       $('#popSeatNo').text(currentSeatNo);
-      $('#popSelectedDates').text(dateTexts);
+      $('#popSelectedDates').text(dateText);
 
       $('#confirmModal').addClass('active');
     }
@@ -1192,14 +1571,18 @@
     }
 
     function renderMyFixedSummary() {
-      // 좌석 배치도 지도 상의 내 고정석 버튼 강조 (.my-reserved)
       $('.seat-item-btn').each(function () {
         var seatText = $(this).find('.seat-num').text().trim();
         var sNo = parseInt(seatText);
+
         if (reservedBySeats[sNo] && reservedBySeats[sNo].length > 0) {
-          $(this).addClass('my-reserved');
-        } else {
-          $(this).removeClass('my-reserved');
+          $(this).addClass('my-reserved').removeClass('prev-used-seat avail');
+          $(this).find('.seat-type').text('내고정석');
+        } else if (sNo === myLastReservedSeatNo) {
+          $(this).addClass('prev-used-seat').removeClass('my-reserved avail');
+          $(this).find('.seat-type').text('직전이용');
+        } else if (!$(this).hasClass('other-taken')) {
+          $(this).removeClass('my-reserved prev-used-seat').addClass('avail');
         }
       });
     }
@@ -1208,49 +1591,51 @@
       closeConfirmModal();
       closeCalendarSheet();
 
-      // 현재 좌석(currentSeatNo)에서 확정 신청한 날짜 저장
       if (selectedDays.length > 0) {
         reservedBySeats[currentSeatNo] = selectedDays.slice();
-        showToast(currentSeatNo + '번 좌석 고정석 신청이 완료되었습니다.');
+        var pS = parseDateKey(rangeStart);
+        var pE = rangeEnd !== null ? parseDateKey(rangeEnd) : pS;
+        showToast(currentSeatNo + '번 좌석 고정석 신청 완료! (' + pS.month + '/' + pS.day + ' ~ ' + pE.month + '/' + pE.day + ')');
       } else {
         delete reservedBySeats[currentSeatNo];
         showToast(currentSeatNo + '번 좌석 고정석 신청이 취소되었습니다.');
       }
 
-      // 지도 배지 갱신
       renderMyFixedSummary();
     }
 
     function showToast(msg) {
       var $t = $('<div>').css({
         position: 'fixed', bottom: '80px', left: '50%', transform: 'translateX(-50%)',
-        background: 'rgba(0,0,0,0.85)', color: '#fff', padding: '12px 24px',
+        background: 'rgba(0,0,0,0.88)', color: '#fff', padding: '12px 24px',
         borderRadius: '24px', fontSize: '14px', fontWeight: '700', zIndex: 99999,
-        whiteSpace: 'nowrap', boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+        whiteSpace: 'nowrap', boxShadow: '0 4px 12px rgba(0,0,0,0.18)'
       }).text(msg);
       $('body').append($t);
       setTimeout(function () { $t.fadeOut(400, function () { $t.remove(); }); }, 2200);
     }
 
     $(function () {
-      // 지도 뱃지 최초 렌더링
       renderMyFixedSummary();
 
-      // 캘린더 날짜 클릭 이벤트
-      $('.cal-day-btn').on('click', function () {
+      // 달력 내 일자 클릭 이벤트 (이벤트 위임)
+      $(document).on('click', '.cal-day-btn', function () {
         if ($(this).hasClass('taken')) {
           showToast('이미 다른 고정석으로 지정된 일자입니다.');
+          return;
+        }
+        if ($(this).hasClass('today-disabled')) {
+          showToast('당일 고정석 예약은 불가능합니다. (내일부터 선택 가능)');
           return;
         }
         if ($(this).hasClass('disabled')) {
           return;
         }
-        var day = $(this).data('day');
-        if (day) {
-          toggleDaySelection(day, $(this));
+        var dateKey = $(this).data('date');
+        if (dateKey) {
+          handleRangeDateClick(dateKey);
         }
       });
-
     });
   </script>
 </body>
