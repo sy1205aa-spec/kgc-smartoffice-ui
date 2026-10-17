@@ -7,16 +7,19 @@
    ========================================================================== */
 
 /* 기본 레이아웃 및 캔버스 */
-html, body.web-dashboard-page {
-    height: 100%;
+html {
+    height: auto;
+    min-height: 100%;
+}
+
+body.web-dashboard-page {
+    min-height: 100vh;
+    height: auto;
     min-width: 1240px;
     background-color: #F8FAFC;
     color: #1E293B;
     font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
-}
-
-body.web-dashboard-page {
     display: flex;
     flex-direction: column;
 }
@@ -51,14 +54,17 @@ body.web-dashboard-page {
 }
 
 /* --------------------------------------------------------------------------
-   대시보드 메인 컨테이너
+   대시보드 메인 컨테이너 (#contents 기본 height:100% / min-height:800px 리셋)
    -------------------------------------------------------------------------- */
-.web-dashboard-container {
+#contents.web-dashboard-container {
     flex: 1 0 auto;
     width: 100%;
     max-width: 1360px;
+    height: auto;
+    min-height: 0;
     margin: 0 auto;
-    padding: 32px 30px 48px;
+    padding: 32px 30px 56px;
+    background: transparent;
     box-sizing: border-box;
 }
 
@@ -215,7 +221,9 @@ body.web-dashboard-page {
     margin-left: 6px;
 }
 
-.btn-external-link {
+.btn-external-link,
+.btn-external-link:link,
+.btn-external-link:visited {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -473,7 +481,9 @@ body.web-dashboard-page {
     margin: 0 0 12px;
 }
 
-.btn-card-action {
+.btn-card-action,
+.btn-card-action:link,
+.btn-card-action:visited {
     display: inline-block;
     padding: 6px 14px;
     background: #FFFFFF;
@@ -632,7 +642,9 @@ body.web-dashboard-page {
     margin-top: 18px;
 }
 
-.btn-service-link {
+.btn-service-link,
+.btn-service-link:link,
+.btn-service-link:visited {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -647,25 +659,22 @@ body.web-dashboard-page {
     transition: all 0.2s ease;
 }
 
-.btn-parking {
-    background: #0F172A;
-    color: #FFFFFF;
-}
-
-.btn-parking:hover {
-    background: #1E293B;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
-}
-
-.btn-shuttle {
+.btn-parking,
+.btn-parking:link,
+.btn-parking:visited,
+.btn-shuttle,
+.btn-shuttle:link,
+.btn-shuttle:visited {
     background: #F1F5F9;
     color: #334155;
     border: 1px solid #E2E8F0;
 }
 
+.btn-parking:hover,
 .btn-shuttle:hover {
     background: #E2E8F0;
     color: #0F172A;
+    border-color: #CBD5E1;
 }
 
 .btn-service-link .arr-right {
@@ -722,7 +731,9 @@ body.web-dashboard-page {
     margin: 0 0 8px;
 }
 
-.guide-link {
+.guide-link,
+.guide-link:link,
+.guide-link:visited {
     display: inline-block;
     font-size: 12px;
     font-weight: 700;
@@ -735,14 +746,18 @@ body.web-dashboard-page {
 }
 
 /* --------------------------------------------------------------------------
-   4. 푸터 스타일
+   4. 푸터 스타일 (#footer 기본 height:100px / background:#27303b 덮어쓰기)
    -------------------------------------------------------------------------- */
-.web-footer {
+#footer.web-footer {
+    position: relative;
+    z-index: 1;
     width: 100%;
+    height: auto;
     background: #FFFFFF;
     border-top: 1px solid #E2E8F0;
     padding: 24px 0;
     margin-top: auto;
+    flex-shrink: 0;
 }
 
 .footer-inner {
@@ -765,7 +780,9 @@ body.web-dashboard-page {
     color: #CBD5E1;
 }
 
-.btn-switch-mobile {
+.btn-switch-mobile,
+.btn-switch-mobile:link,
+.btn-switch-mobile:visited {
     display: inline-flex;
     align-items: center;
     gap: 6px;

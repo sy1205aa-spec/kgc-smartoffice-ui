@@ -2,8 +2,9 @@
    PC 메인 iframe 안 화면 공통 (templates/web/parking.html, busReservation.html)
    kgc_works_snapshot 회의실예약/나의예약 화면(title_area, quickSearch_area, bbs_list, btn) 구성에 맞춤
    ========================================================================== */
-html, body.frame-page { background: #fff; }
-.frame-page #contents { min-height: 100%; padding: 30px 0 60px; }
+html { height: auto; min-height: 100%; }
+body.frame-page { min-height: 100vh; height: auto; background: #fff; display: flex; flex-direction: column; }
+.frame-page #contents { flex: 1 0 auto; height: auto; min-height: 0; padding: 30px 0 60px; }
 
 /* 상단 바: 좌측 quickSearch_area(검색/입력), 우측 주요 버튼 (회의실예약 '예약하기' 배치와 동일) */
 .frame-page .search_bar { display: flex; clear: both; align-items: center; justify-content: space-between; gap: 20px; min-height: 44px; margin: 26px 0 20px; padding-top: 20px; border-top: 1px solid #e5e5e5; }

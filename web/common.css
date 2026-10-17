@@ -60,6 +60,8 @@
 
 /* 공통 푸터 스타일 (web-footer) */
 #footer.web-footer {
+    position: relative;
+    z-index: 1;
     width: 100%;
     height: auto;
     background: #FFFFFF;
@@ -89,7 +91,9 @@
     color: #CBD5E1;
 }
 
-.btn-switch-mobile {
+.btn-switch-mobile,
+.btn-switch-mobile:link,
+.btn-switch-mobile:visited {
     display: inline-flex;
     align-items: center;
     gap: 6px;
