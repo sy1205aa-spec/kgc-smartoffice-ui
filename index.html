@@ -401,28 +401,60 @@
             </li>
 
             <!-- 5. 주차정산 -->
-            <li class="page-item has-sub open" data-name="주차정산 parking_search.html">
-              <a href="#" class="page-link highlight" onclick="loadPage('./parking_search.html', this)">
+            <li class="page-item has-sub open" data-name="주차정산 parking_search.html parking_detail.html">
+              <a href="#" class="page-link highlight" onclick="loadPage('./parking_detail.html?scenario=case2', this)">
                 <div class="name-desc">
-                  <span class="name">주차정산 <span class="badge-new">NEW</span></span>
-                  <span class="desc">parking_search.html</span>
+                  <span class="name">주차정산 (24h 모듈러 개선) <span class="badge-new">NEW</span></span>
+                  <span class="desc">parking_detail.html</span>
                 </div>
                 <i class="arrow-toggle" onclick="toggleSubMenu(event, this)" title="접기/펼치기">▼</i>
               </a>
               <ul class="sub-page-list">
-                <li class="page-item" data-name="주차정산 parking_search.html">
+                <li class="page-item" data-name="주차정산 차량조회 parking_search.html">
                   <a href="#" class="page-link" onclick="loadPage('./parking_search.html', this)">
                     <div class="name-desc">
-                      <span class="name">└ 주차정산 <span class="badge-new">NEW</span></span>
+                      <span class="name">└ 차량조회 화면</span>
                       <span class="desc">parking_search.html</span>
                     </div>
                   </a>
                 </li>
-                <li class="page-item" data-name="주차정산 상세 parking_detail.html">
-                  <a href="#" class="page-link" onclick="loadPage('./parking_detail.html', this)">
+                <li class="page-item" data-name="주차정산 상세 사례2 13시간 30분 삭제유도 parking_detail.html?scenario=case2">
+                  <a href="#" class="page-link" onclick="loadPage('./parking_detail.html?scenario=case2', this)">
                     <div class="name-desc">
-                      <span class="name">└ 주차정산 상세 <span class="badge-new">NEW</span></span>
-                      <span class="desc">parking_detail.html</span>
+                      <span class="name">└ [사례2] 13.5시간 (삭제유도·24h추천) <span class="badge-new">NEW</span></span>
+                      <span class="desc">parking_detail.html?scenario=case2</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="주차정산 상세 사례1-A 5시간 일반주차 parking_detail.html?scenario=case1a">
+                  <a href="#" class="page-link" onclick="loadPage('./parking_detail.html?scenario=case1a', this)">
+                    <div class="name-desc">
+                      <span class="name">└ [사례1-A] 5시간 (무료➔시간권)</span>
+                      <span class="desc">parking_detail.html?scenario=case1a</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="주차정산 상세 사례1-B 10시간 다건등록 parking_detail.html?scenario=case1b">
+                  <a href="#" class="page-link" onclick="loadPage('./parking_detail.html?scenario=case1b', this)">
+                    <div class="name-desc">
+                      <span class="name">└ [사례1-B] 10시간 (3h 다건등록)</span>
+                      <span class="desc">parking_detail.html?scenario=case1b</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="주차정산 상세 사례3 25시간 다일주차 parking_detail.html?scenario=case3">
+                  <a href="#" class="page-link" onclick="loadPage('./parking_detail.html?scenario=case3', this)">
+                    <div class="name-desc">
+                      <span class="name">└ [사례3] 25시간 (24h+1h 무료)</span>
+                      <span class="desc">parking_detail.html?scenario=case3</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="주차정산 상세 사례4 35시간 다일장기 parking_detail.html?scenario=case4">
+                  <a href="#" class="page-link" onclick="loadPage('./parking_detail.html?scenario=case4', this)">
+                    <div class="name-desc">
+                      <span class="name">└ [사례4] 35시간 (24h권 2장)</span>
+                      <span class="desc">parking_detail.html?scenario=case4</span>
                     </div>
                   </a>
                 </li>

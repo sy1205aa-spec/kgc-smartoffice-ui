@@ -1,11 +1,12 @@
+<!DOCTYPE html>
 <html lang="ko">
 
 <head>
-  <!-- 2026-07-06 수정 : S -->
+  <meta charset="UTF-8">
   <meta name="viewport"
     content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
-  <title>스마트오피스 예약시스템</title>
+  <title>스마트오피스 예약시스템 - 주차정산</title>
 
   <link rel="stylesheet" type="text/css" href="./css/mobile_a/fonts.css" />
   <link rel="stylesheet" type="text/css" href="./css/mobile_a/base.css" />
@@ -14,12 +15,10 @@
   <link rel="stylesheet" type="text/css" href="./css/mobile_a/layout.css" />
   <link rel="stylesheet" type="text/css" href="./css/mobile_a/styleLayout.css" />
   <link rel="stylesheet" type="text/css" href="./css/mobile_a/colorStyle.css" />
-  <!-- 2026-07-06 수정 : E -->
-  <!-- 주차정산 모달 CSS -->
   <link rel="stylesheet" href="./css/mobile_a/jquery.modal.css" />
 
-  <!-- 2026-07-15 수정: 가운데 QR 인증 버튼 커스텀 스타일 (KGC 프리미엄 브랜드 포인트 디자인 - 3안 적용) -->
   <style>
+    /* 하단 5개 탭 바 QR 센터 버튼 스타일 */
     .footerNav {
       overflow: visible !important;
     }
@@ -97,7 +96,6 @@
       color: var(--text-black03-color) !important;
       line-height: normal !important;
     }
-    }
 
     /* 주차정산 모달 커스텀 오버레이 및 중앙 정렬 스타일 */
     .parking-modal-overlay {
@@ -120,7 +118,7 @@
       left: 50% !important;
       transform: translate(-50%, -50%) !important;
       width: 90% !important;
-      max-width: 320px !important;
+      max-width: 330px !important;
       padding: 0 !important;
       margin: 0 !important;
       box-sizing: border-box !important;
@@ -158,8 +156,10 @@
       text-align: center;
       font-size: 14px;
       color: #111827;
-      line-height: 1.5;
+      line-height: 1.55;
       margin: 0 0 16px;
+      white-space: pre-line;
+      word-break: keep-all;
     }
 
     .parking-modal-overlay .modal-buttons {
@@ -198,6 +198,391 @@
     #contents {
       padding-bottom: 90px !important;
     }
+
+    /* ==========================================================================
+       시연용 시나리오 전환 바 (목업 테스트 전용)
+       ========================================================================== */
+    .demo-scenario-bar {
+      margin: 8px 0 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #0F172A;
+      color: #F8FAFC;
+      box-sizing: border-box;
+    }
+
+    .demo-scenario-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 11.5px;
+      color: #94A3B8;
+      font-weight: 600;
+    }
+
+    .demo-scenario-head strong {
+      color: #38BDF8;
+      font-weight: 700;
+    }
+
+    .demo-scenario-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .demo-chip {
+      padding: 5px 8px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      background: #1E293B;
+      color: #CBD5E1;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .demo-chip:hover {
+      background: #334155;
+      color: #FFFFFF;
+    }
+
+    .demo-chip.active {
+      background: #D71635;
+      border-color: #F87171;
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       주차권 등록 개선 (24시간 모듈러 룰 엔진 & 스마트 가이드 UX)
+       ========================================================================== */
+
+    /* 1. 상단 주차 할인 스마트 가이드 박스 */
+    .parking-smart-guide {
+      margin: 12px 0 18px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1.5px solid #BFDBFE;
+      background: #EFF6FF;
+      box-sizing: border-box;
+      transition: all 0.25s ease;
+    }
+
+    .parking-smart-guide.state-warning {
+      border-color: #FCA5A5;
+      background: #FEF2F2;
+    }
+
+    .parking-smart-guide.state-recommend {
+      border-color: #93C5FD;
+      background: #EFF6FF;
+    }
+
+    .parking-smart-guide.state-complete {
+      border-color: #86EFAC;
+      background: #F0FDF4;
+    }
+
+    .parking-smart-guide .guide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .parking-smart-guide .guide-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #1E3A8A;
+    }
+
+    .parking-smart-guide.state-warning .guide-title {
+      color: #991B1B;
+    }
+
+    .parking-smart-guide.state-complete .guide-title {
+      color: #166534;
+    }
+
+    .parking-smart-guide .guide-step-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      background: #1D4ED8;
+      color: #FFFFFF;
+    }
+
+    .parking-smart-guide.state-warning .guide-step-badge {
+      background: #DC2626;
+      color: #FFFFFF;
+    }
+
+    .parking-smart-guide.state-complete .guide-step-badge {
+      background: #16A34A;
+      color: #FFFFFF;
+    }
+
+    .parking-smart-guide .guide-message {
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #1E293B;
+      word-break: keep-all;
+    }
+
+    .parking-smart-guide .guide-message strong {
+      font-weight: 700;
+      color: #0F172A;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .parking-smart-guide.state-warning .guide-message strong {
+      color: #B91C1C;
+    }
+
+    /* 2. 섹션 소제목 (▼ 할인등록 내역 / ▼ 사용 가능한 할인권) */
+    .parking-sec-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 16px 0 8px;
+      padding: 0 2px;
+      clear: both;
+    }
+
+    .parking-sec-head .sec-tit {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1E293B;
+    }
+
+    .parking-sec-head .sec-meta {
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748B;
+    }
+
+    .parking-sec-head .sec-meta.is-danger {
+      color: #DC2626;
+      font-weight: 700;
+    }
+
+    /* 3. 할인등록 내역 리스트 및 [삭제 필요] 강조 */
+    .section.parking .panel.list {
+      padding: 0;
+    }
+
+    .section.parking .panel.list > .body {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 14px;
+      margin-bottom: 8px;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      background: #FFFFFF;
+      box-sizing: border-box;
+      transition: all 0.2s ease;
+    }
+
+    .section.parking .panel.list > .body.parking-empty {
+      justify-content: center;
+      color: #94A3B8;
+      font-size: 13.5px;
+      padding: 20px;
+      background: #F8FAFC;
+      border-style: dashed;
+    }
+
+    .section.parking .panel.list > .body.is-delete-needed {
+      border: 1.5px solid #EF4444 !important;
+      background: #FEF2F2 !important;
+      box-shadow: 0 2px 10px rgba(239, 68, 68, 0.12);
+    }
+
+    @keyframes parkingDeletePulse {
+      0%, 100% { transform: translateX(0); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.45); }
+      25% { transform: translateX(-5px); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.22); }
+      75% { transform: translateX(5px); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.22); }
+    }
+
+    .section.parking .panel.list > .body.pulse-focus {
+      animation: parkingDeletePulse 0.45s ease-in-out 2;
+    }
+
+    .section.parking .panel.list .info_06 {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .section.parking .panel.list .info_06 .state.reserved {
+      float: none;
+      margin: 0;
+      padding: 3px 8px;
+      font-size: 11.5px;
+    }
+
+    .section.parking .panel.list .info_06 > span.date,
+    .section.parking .panel.list .info_06 > time {
+      font-size: 13px;
+      color: #64748B;
+    }
+
+    .badge-delete-needed {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: #DC2626;
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .section.parking .panel.list .info_08 {
+      display: block;
+      margin-top: 6px;
+    }
+
+    .section.parking .panel.list .info_08 > .title {
+      display: inline-block;
+      padding: 0;
+      font-size: 16px;
+      font-weight: 700;
+      color: #1E293B;
+    }
+
+    .section.parking .panel.list > .body.is-delete-needed .info_08 > .title {
+      color: #991B1B;
+    }
+
+    .section.parking .panel.list > .body > .btn_del {
+      flex-shrink: 0;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    /* 4. 사용 가능한 할인권 2단 그리드 및 [추천] 뱃지 */
+    .panel.discount {
+      padding: 4px 0 10px;
+    }
+
+    .panel.discount .discount_list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .panel.discount .discount_list li + li {
+      margin-top: 0 !important;
+    }
+
+    .panel.discount .discount_list li .discount_coupon {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 100%;
+      min-height: 76px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background-color: #1391E7;
+      border: 2px solid transparent;
+      box-sizing: border-box;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .panel.discount .discount_list li .discount_coupon .coupon-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      gap: 4px;
+    }
+
+    .panel.discount .discount_list li .discount_coupon .title {
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 0;
+      line-height: 1.25;
+      letter-spacing: -0.3px;
+    }
+
+    .panel.discount .discount_list li .discount_coupon .coupon-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      width: 100%;
+      margin-top: 6px;
+    }
+
+    .panel.discount .discount_list li .discount_coupon .coupon-sub {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.88);
+      font-weight: 500;
+    }
+
+    .panel.discount .discount_list li .discount_coupon .discount_amount {
+      font-size: 13px;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    /* [추천] 강조 스타일 */
+    .panel.discount .discount_list li .discount_coupon.is-recommended {
+      background: linear-gradient(135deg, #0284C7 0%, #1D4ED8 100%);
+      border-color: #FACC15;
+      box-shadow: 0 4px 14px rgba(29, 78, 216, 0.3);
+    }
+
+    .badge-recommend {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: #FACC15;
+      color: #0F172A;
+      font-size: 11px;
+      font-weight: 800;
+      flex-shrink: 0;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 비활성화 (회색조 + 투명도 45%) */
+    .panel.discount .discount_list li .discount_coupon:disabled {
+      background-color: #CBD5E1 !important;
+      border-color: #CBD5E1 !important;
+      opacity: 0.45 !important;
+      cursor: not-allowed !important;
+      box-shadow: none !important;
+    }
+
+    .panel.discount .discount_list li .discount_coupon:disabled .title,
+    .panel.discount .discount_list li .discount_coupon:disabled .discount_amount {
+      color: #334155 !important;
+    }
+
+    .panel.discount .discount_list li .discount_coupon:disabled .coupon-sub {
+      color: #475569 !important;
+    }
   </style>
 
   <script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
@@ -210,111 +595,98 @@
   <div id="wrap">
     <header>
       <div class="gnb">
-        <div class="left"><a href="javascript:history.back();"><i class="ico angle-left"></i></a><a
-            href="./menu_versions.html"><i class="ico home"></i></a></div>
-        <!-- 2026-07-14 수정: 주차관리 -> 주차정산 명칭 변경 -->
-        <h1>주차정산<!-- 주차정산 --></h1>
-        <div class="right"> <a href="#" class="total_nav btn-layer"><i class="ico menu">메뉴</i></a></div>
+        <div class="left">
+          <a href="./parking_search.html"><i class="ico angle-left"></i></a>
+          <a href="./menu_versions.html"><i class="ico home"></i></a>
+        </div>
+        <h1>주차정산</h1>
+        <div class="right"><a href="#" class="total_nav btn-layer"><i class="ico menu">메뉴</i></a></div>
       </div>
-
-      <!-- 햄버거 메뉴 (공통 inc_nav.html 자동 로드) -->
     </header>
     <hr>
 
     <!-- contents -->
     <div id="contents">
-      <!-- content -->
       <article class="section table_list parking">
+
+        <!-- 시연용 시나리오 전환 바 (목업 뷰어에서 5가지 주차 구간 테스트 지원) -->
+        <div class="demo-scenario-bar">
+          <div class="demo-scenario-head">
+            <span>🧪 <strong>24시간 모듈러 룰 시나리오 시연</strong></span>
+            <span id="demoRuleFormula">N=0일, R=13h 30m</span>
+          </div>
+          <div class="demo-scenario-chips">
+            <button type="button" class="demo-chip active" data-scenario="case2">사례2: 13.5시간(삭제유도)</button>
+            <button type="button" class="demo-chip" data-scenario="case1a">사례1-A: 5시간(일반)</button>
+            <button type="button" class="demo-chip" data-scenario="case1b">사례1-B: 10시간(다건)</button>
+            <button type="button" class="demo-chip" data-scenario="case3">사례3: 25시간(다일+1h)</button>
+            <button type="button" class="demo-chip" data-scenario="case4">사례4: 35시간(다일장기)</button>
+          </div>
+        </div>
+
         <div class="panel_tab">
           <div class="row">
-            <div class="col col-3 title">차량번호<!-- 차량번호 --></div>
+            <div class="col col-3 title">차량번호</div>
             <div class="col col-9">
-              <input type="text" value="03라 2873" readonly>
+              <input type="text" id="fieldVehicleNo" value="03라 2873" readonly>
             </div>
           </div>
           <div class="row">
             <div class="col col-3 title"></div>
             <div class="col col-9">
               <div class="img_warp">
-                <img src="images/mobile_a/common/car_sample.svg" alt="" /> <!-- 2026-07-06 수정 -->
+                <img src="images/mobile_a/common/car_sample.svg" alt="차량 이미지" />
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col col-3 title">입차일자<!-- 입차일자 --></div>
+            <div class="col col-3 title">입차일자</div>
             <div class="col col-9">
-              <input type="text" value="2026.06.09 07:05:22" readonly>
+              <input type="text" id="fieldInDtm" value="2026.07.15 07:00:00" readonly>
             </div>
           </div>
           <div class="row">
-            <div class="col col-3 title">주차시간<!-- 주차시간 --></div>
+            <div class="col col-3 title">주차시간</div>
             <div class="col col-9">
-              <input type="text" value="2시간 23분" readonly>
+              <input type="text" id="fieldParkingTime" value="13시간 30분" readonly>
             </div>
           </div>
           <div class="row">
-            <div class="col col-3 title">비고<!-- 비고 --></div>
+            <div class="col col-3 title">총 할인시간</div>
             <div class="col col-9">
-              <input type="text" value="모바일 웹 등록" readonly>
+              <input type="text" id="fieldDiscountTotalTime" value="2시간" readonly>
             </div>
           </div>
+          <p class="comment desc">출차 할인은 출차 5분전 등록 바랍니다.</p>
         </div>
 
-        <div class="panel list">
-          <div class="body">
-            <div class="discount_info">
-              <span class="info_06">
-                <span class="state reserved">할인등록 내역<!--할인등록 내역--></span>
-                <span class="date">26.06.09</span>
-                <time>09:12</time>
-              </span>
-              <span class="info_08"><span class="title">1시간 무료할인(A1500)</span></span>
-            </div>
-
-            <button type="button" class="btn_del">삭제</button>
+        <!-- 1. 상단 상태 안내 가이드 박스 (신규) -->
+        <div id="parkingSmartGuide" class="parking-smart-guide state-warning" role="status" aria-live="polite">
+          <div class="guide-header">
+            <span class="guide-title"><span aria-hidden="true">📢</span> 주차 할인 가이드</span>
+            <span class="guide-step-badge" id="parkingGuideBadge">삭제 필요 2건</span>
           </div>
-
-          <div class="body">
-            <div class="discount_info">
-              <span class="info_06">
-                <span class="state reserved">할인등록 내역<!--할인등록 내역--></span>
-                <span class="date">26.06.09</span>
-                <time>09:12</time>
-              </span>
-
-              <span class="info_08"><span class="title">1시간 유료할인(B0720)</span></span>
-            </div>
-
-            <button type="button" class="btn_del">삭제</button>
-          </div>
+          <p class="guide-message" id="parkingGuideMessage">
+            현재 <strong>13시간 30분</strong> 주차 중입니다. <strong>24시간 이용권</strong> 대상입니다.<br>
+            기존 등록된 할인권을 삭제하신 후 24시간권을 등록해 주세요.
+          </p>
         </div>
 
+        <!-- 2. 할인등록 내역 리스트 -->
+        <div class="parking-sec-head">
+          <span class="sec-tit">▼ 할인등록 내역</span>
+          <span class="sec-meta is-danger" id="parkingHistoryMeta">삭제 필요 2건</span>
+        </div>
+        <div class="panel list" id="parkingDiscountHistory"></div>
+
+        <!-- 3. 사용 가능한 할인권 (2단 그리드 + 스마트 활성화 + [추천] 뱃지) -->
+        <div class="parking-sec-head">
+          <span class="sec-tit">▼ 사용 가능한 할인권</span>
+          <span class="sec-meta" id="parkingCouponMeta">스마트 추천 적용</span>
+        </div>
         <div class="panel discount">
-          <ul class="discount_list">
-            <li>
-              <button type="button" class="discount_coupon" disabled><span class="title">1시간무료할인</span><span
-                  class="discount_amount"><strong>0</strong>원</span></button>
-            </li>
-            <li>
-              <button type="button" class="discount_coupon"><span class="title">30분유료할인</span><span
-                  class="discount_amount"><strong>500</strong>원</span></button>
-            </li>
-            <li>
-              <button type="button" class="discount_coupon"><span class="title">1시간유료할인</span><span
-                  class="discount_amount"><strong>1000</strong>원</span></button>
-            </li>
-            <li>
-              <button type="button" class="discount_coupon"><span class="title">24시간유료할인</span><span
-                  class="discount_amount"><strong>10000</strong>원</span></button>
-            </li>
-            <li>
-              <button type="button" class="discount_coupon"><span class="title">3시간유료할인</span><span
-                  class="discount_amount"><strong>3000</strong>원</span></button>
-            </li>
-          </ul>
+          <ul class="discount_list" id="parkingDiscountCodeList"></ul>
         </div>
-
-        <p class="comment desc">출차 5분전 반드시 등록바랍니다.</p>
 
         <div style="height: 90px; clear: both;">&nbsp;</div>
 
@@ -365,12 +737,6 @@
   </div>
   <!-- //wrap -->
 
-  <script>
-    $(function () {
-      initParking();
-    });
-  </script>
-
   <!-- 주차정산 알림 모달 -->
   <div id="parkAlertModal" class="parking-modal-overlay" style="display:none;">
     <div class="modal-box modal-size-normal">
@@ -405,7 +771,67 @@
   </div>
 
   <script>
-    // ── 주차정산 인터랙션 ─────────────────────
+    // ==========================================================================
+    // 주차권 등록 개선 (24시간 모듈러 룰 엔진 & 인터랙티브 가이드 목업)
+    // ==========================================================================
+    var DAY_MINUTES = 1440;               // 24시간 (1,440분)
+    var LONG_TERM_THRESHOLD_MINUTES = 660; // 11시간 (660분)
+    var DISCOUNT_GRACE_MINUTES = 30;      // 30분 여유 한도
+
+    // 사용 가능한 4종 표준 할인권 (개발방향서 4장 기준)
+    var AVAILABLE_COUPONS = [
+      { discCodeNo: 1, discName: '1시간 무료', minutes: 60, amountText: '무료', isFree: true, is24h: false },
+      { discCodeNo: 2, discName: '1시간 유료', minutes: 60, amountText: '1,000원', isFree: false, is24h: false },
+      { discCodeNo: 3, discName: '3시간 유료', minutes: 180, amountText: '3,000원', isFree: false, is24h: false },
+      { discCodeNo: 4, discName: '24시간 유료', minutes: 1440, amountText: '10,000원', isFree: false, is24h: true }
+    ];
+
+    // 개발방향서 5장 주차 시나리오별 프리셋
+    var SCENARIOS = {
+      case2: {
+        label: '사례 2 · 13시간 30분 주차 (당일 장기 · 기존 쿠폰 있음)',
+        inDtm: '2026.07.15 07:00:00',
+        parkingMinutes: 810, // 13시간 30분 (N=0, R=13.5h >= 11h)
+        history: [
+          { id: 'H-1', discCodeNo: 1, discName: '1시간 무료 할인', minutes: 60, date: '26.07.15', time: '09:12' },
+          { id: 'H-2', discCodeNo: 2, discName: '1시간 유료 할인', minutes: 60, date: '26.07.15', time: '09:12' }
+        ]
+      },
+      case1a: {
+        label: '사례 1-A · 5시간 주차 (11시간 미만 일반 주차)',
+        inDtm: '2026.07.15 13:30:00',
+        parkingMinutes: 300, // 5시간 (N=0, R=5h < 11h)
+        history: []
+      },
+      case1b: {
+        label: '사례 1-B · 10시간 주차 (3시간권 3회 연속 다건 등록)',
+        inDtm: '2026.07.15 08:30:00',
+        parkingMinutes: 600, // 10시간 (N=0, R=10h < 11h)
+        history: [
+          { id: 'H-10', discCodeNo: 1, discName: '1시간 무료 할인', minutes: 60, date: '26.07.15', time: '09:00' }
+        ]
+      },
+      case3: {
+        label: '사례 3 · 25시간 주차 (24h 1장 + 잔여 1h 무료권)',
+        inDtm: '2026.07.14 17:30:00',
+        parkingMinutes: 1500, // 25시간 (N=1, R=1h < 11h)
+        history: []
+      },
+      case4: {
+        label: '사례 4 · 35시간 주차 (24h + 잔여 11h ➔ 24시간권 2장)',
+        inDtm: '2026.07.14 07:30:00',
+        parkingMinutes: 2100, // 35시간 (N=1, R=11h >= 11h)
+        history: [
+          { id: 'H-40', discCodeNo: 4, discName: '24시간 유료 할인', minutes: 1440, date: '26.07.14', time: '18:00' }
+        ]
+      }
+    };
+
+    var currentScenarioKey = 'case2';
+    var currentParkingMinutes = 810;
+    var currentHistoryList = [];
+    var nextIdSeq = 100;
+
     var _parkAlertCallback = null;
     var _parkConfirmCallback = null;
 
@@ -435,91 +861,469 @@
       return { date: yy + '.' + mm + '.' + dd, time: hh + ':' + mi };
     }
 
+    function formatMinutesText(totalMinutes) {
+      var mins = Math.max(Number(totalMinutes) || 0, 0);
+      if (mins === 0) return '0분';
+      var hours = Math.floor(mins / 60);
+      var rem = mins % 60;
+      if (hours > 0 && rem > 0) return hours + '시간 ' + rem + '분';
+      if (hours > 0) return hours + '시간';
+      return rem + '분';
+    }
+
+    function formatParkingDuration(totalMinutes) {
+      var mins = Math.max(Number(totalMinutes) || 0, 0);
+      var hours = Math.floor(mins / 60);
+      var rem = mins % 60;
+      if (hours > 0 && rem > 0) return hours + '시간 ' + rem + '분';
+      if (hours > 0) return hours + '시간';
+      return rem + '분';
+    }
+
+    // 24시간 모듈러 룰 엔진 계산
+    function evaluateModularRule(parkingMinutes, historyList) {
+      var safeMinutes = Math.max(Number(parkingMinutes) || 0, 0);
+      var list = historyList || [];
+
+      var completedDays = Math.floor(safeMinutes / DAY_MINUTES); // N (일수)
+      var remainderMinutes = safeMinutes % DAY_MINUTES;          // R (잔여 시간)
+      var isRemainderLongTerm = remainderMinutes >= LONG_TERM_THRESHOLD_MINUTES;
+
+      var required24hCount = 0;
+      var remainderTargetMinutes = 0;
+      var zoneType = 'ZONE_1';
+
+      if (completedDays === 0 && !isRemainderLongTerm) {
+        zoneType = 'ZONE_1'; // 구간 ① 일반 주차 (<11h)
+        required24hCount = 0;
+        remainderTargetMinutes = remainderMinutes;
+      } else if ((completedDays === 0 && isRemainderLongTerm) || (completedDays === 1 && remainderMinutes === 0)) {
+        zoneType = 'ZONE_2'; // 구간 ② 당일 장기 (11h ~ 24h)
+        required24hCount = 1;
+        remainderTargetMinutes = 0;
+      } else if (completedDays >= 1 && !isRemainderLongTerm) {
+        zoneType = 'ZONE_3'; // 구간 ③ 다일 주차 (잔여 <11h)
+        required24hCount = completedDays;
+        remainderTargetMinutes = remainderMinutes;
+      } else {
+        zoneType = 'ZONE_4'; // 구간 ④ 다일 장기 (잔여 >=11h)
+        required24hCount = completedDays + 1;
+        remainderTargetMinutes = 0;
+      }
+
+      var seen24h = 0;
+      var seenFree = 0;
+      var accNon24hMinutes = 0;
+      var maxNon24hAllowed = remainderTargetMinutes > 0
+        ? (remainderTargetMinutes + DISCOUNT_GRACE_MINUTES)
+        : 0;
+      var hasAnyFreeInHistory = list.some(function (h) { return h.discCodeNo === 1; });
+
+      var historyAnnotations = list.map(function (item) {
+        var is24h = item.discCodeNo === 4 || item.minutes >= DAY_MINUTES;
+        var isFree = item.discCodeNo === 1;
+        var mins = Number(item.minutes) || 0;
+        var needsDelete = false;
+
+        if (is24h) {
+          seen24h += 1;
+          if (seen24h > required24hCount) {
+            needsDelete = true;
+          }
+        } else {
+          if (remainderTargetMinutes === 0) {
+            needsDelete = true;
+          } else if (isFree) {
+            seenFree += 1;
+            if (seenFree > 1) {
+              needsDelete = true;
+            } else {
+              accNon24hMinutes += mins;
+            }
+          } else {
+            if (!hasAnyFreeInHistory || (accNon24hMinutes + mins > maxNon24hAllowed)) {
+              needsDelete = true;
+            } else {
+              accNon24hMinutes += mins;
+            }
+          }
+        }
+
+        return {
+          item: item,
+          needsDelete: needsDelete
+        };
+      });
+
+      var deleteNeededCount = historyAnnotations.filter(function (a) { return a.needsDelete; }).length;
+      var hasDeleteNeeded = deleteNeededCount > 0;
+      var valid24hCount = Math.min(seen24h, required24hCount);
+      var hasValidFree = seenFree >= 1 && remainderTargetMinutes > 0;
+      var uncoveredRemainderMinutes = Math.max(remainderTargetMinutes - accNon24hMinutes, 0);
+      var remainingAdditionalNon24hLimit = Math.max(maxNon24hAllowed - accNon24hMinutes, 0);
+      var totalDiscountMinutes = list.reduce(function (sum, item) { return sum + (Number(item.minutes) || 0); }, 0);
+      var isFullyCovered = !hasDeleteNeeded
+        && (valid24hCount >= required24hCount)
+        && (uncoveredRemainderMinutes <= 0)
+        && (totalDiscountMinutes >= safeMinutes);
+
+      return {
+        parkingMinutes: safeMinutes,
+        completedDays: completedDays,
+        remainderMinutes: remainderMinutes,
+        zoneType: zoneType,
+        required24hCount: required24hCount,
+        remainderTargetMinutes: remainderTargetMinutes,
+        valid24hCount: valid24hCount,
+        hasValidFree: hasValidFree,
+        accNon24hMinutes: accNon24hMinutes,
+        uncoveredRemainderMinutes: uncoveredRemainderMinutes,
+        remainingAdditionalNon24hLimit: remainingAdditionalNon24hLimit,
+        historyAnnotations: historyAnnotations,
+        deleteNeededCount: deleteNeededCount,
+        hasDeleteNeeded: hasDeleteNeeded,
+        totalDiscountMinutes: totalDiscountMinutes,
+        isFullyCovered: isFullyCovered
+      };
+    }
+
+    function focusFirstDeleteNeededItem() {
+      var $firstTarget = $('#parkingDiscountHistory .body.is-delete-needed').first();
+      if (!$firstTarget.length) return;
+
+      var $container = $('#contents');
+      if ($container.length) {
+        var targetTop = $firstTarget.offset().top - $container.offset().top + $container.scrollTop() - 80;
+        $container.animate({ scrollTop: Math.max(targetTop, 0) }, 300);
+      }
+      $firstTarget.removeClass('pulse-focus');
+      void $firstTarget[0].offsetWidth;
+      $firstTarget.addClass('pulse-focus');
+      $firstTarget.find('.btn_del').trigger('focus');
+    }
+
+    function renderAll() {
+      var rule = evaluateModularRule(currentParkingMinutes, currentHistoryList);
+      var parkTimeText = formatParkingDuration(currentParkingMinutes);
+
+      $('#fieldParkingTime').val(parkTimeText);
+      $('#fieldDiscountTotalTime').val(formatMinutesText(rule.totalDiscountMinutes));
+      $('#demoRuleFormula').text(
+        'N=' + rule.completedDays + '일, R=' + formatMinutesText(rule.remainderMinutes)
+      );
+
+      // 1. 상단 스마트 가이드 박스 렌더링
+      var $guide = $('#parkingSmartGuide');
+      var $badge = $('#parkingGuideBadge');
+      var $msg = $('#parkingGuideMessage');
+      $guide.removeClass('state-warning state-recommend state-complete');
+
+      if (rule.hasDeleteNeeded) {
+        $guide.addClass('state-warning');
+        $badge.text('삭제 필요 ' + rule.deleteNeededCount + '건');
+        $msg.html(
+          '현재 <strong>' + parkTimeText + '</strong> 주차 중입니다. <strong>24시간 이용권</strong> 대상입니다.<br>' +
+          '기존 등록된 <strong>[삭제 필요]</strong> 할인권을 삭제하신 후 24시간권을 등록해 주세요.'
+        );
+      } else if (rule.isFullyCovered) {
+        $guide.addClass('state-complete');
+        $badge.text('정산 준비 완료');
+        $msg.html(
+          '현재 주차시간(<strong>' + parkTimeText + '</strong>)에 대한 할인권 등록(총 <strong>' +
+          formatMinutesText(rule.totalDiscountMinutes) + '</strong>)이 완료되었습니다.'
+        );
+      } else if (rule.valid24hCount < rule.required24hCount) {
+        var remain24h = rule.required24hCount - rule.valid24hCount;
+        $guide.addClass('state-recommend');
+        $badge.text('24시간권 대상');
+        if (rule.zoneType === 'ZONE_2') {
+          $msg.html(
+            '현재 <strong>' + parkTimeText + '</strong> 주차 중입니다. (11시간 이상 장기주차)<br>' +
+            '기존 할인권이 없으므로 <strong>[추천]</strong> 표시된 <strong>[24시간 유료]</strong> 이용권을 등록해 주세요.'
+          );
+        } else if (rule.zoneType === 'ZONE_3') {
+          $msg.html(
+            '<strong>' + parkTimeText + '</strong> 주차 차량입니다.<br>' +
+            '<strong>[24시간 이용권 ' + remain24h + '장]</strong> 등록 후 잔여 시간(' +
+            formatMinutesText(rule.remainderTargetMinutes) + ')에 대해 [1시간 무료]를 등록해 주세요.'
+          );
+        } else {
+          $msg.html(
+            '<strong>' + parkTimeText + '</strong> 장기 주차 차량입니다. (잔여 11시간 이상)<br>' +
+            '<strong>[24시간 이용권]</strong> 총 <strong>' + rule.required24hCount + '장</strong>이 필요합니다. (현재 ' +
+            rule.valid24hCount + '/' + rule.required24hCount + '장 등록됨)'
+          );
+        }
+      } else if (!rule.hasValidFree) {
+        $guide.addClass('state-recommend');
+        $badge.text('1단계 · 무료권 선등록');
+        if (rule.zoneType === 'ZONE_3') {
+          $msg.html(
+            '24시간 이용권(' + rule.valid24hCount + '장) 등록이 완료되었습니다.<br>' +
+            '잔여 주차시간(<strong>' + formatMinutesText(rule.remainderTargetMinutes) + '</strong>)에 대해 <strong>[1시간 무료]</strong>를 등록해 주세요.'
+          );
+        } else {
+          $msg.html(
+            '현재 <strong>' + parkTimeText + '</strong> 주차 중입니다. (11시간 미만 일반주차)<br>' +
+            '<strong>[추천]</strong> 표시된 <strong>[1시간 무료]</strong> 할인권을 가장 먼저 등록해 주세요.'
+          );
+        }
+      } else {
+        $guide.addClass('state-recommend');
+        $badge.text('2단계 · 시간권 추가');
+        $msg.html(
+          '현재 총 <strong>' + formatMinutesText(rule.totalDiscountMinutes) + '</strong> 할인이 적용되었습니다.<br>' +
+          '남은 주차시간(<strong>' + formatMinutesText(rule.uncoveredRemainderMinutes) + '</strong>)에 맞춰 <strong>[추천]</strong> 유료 시간권을 등록해 주세요. (다건 등록 가능)'
+        );
+      }
+
+      // 2. 할인등록 내역 리스트 렌더링
+      var $history = $('#parkingDiscountHistory').empty();
+      var $historyMeta = $('#parkingHistoryMeta');
+      if (rule.hasDeleteNeeded) {
+        $historyMeta.text('삭제 필요 ' + rule.deleteNeededCount + '건').addClass('is-danger');
+      } else {
+        $historyMeta.text('총 ' + currentHistoryList.length + '건').removeClass('is-danger');
+      }
+
+      if (currentHistoryList.length === 0) {
+        $history.append('<div class="body parking-empty">할인등록 내역이 없습니다.</div>');
+      } else {
+        rule.historyAnnotations.forEach(function (annotation) {
+          var h = annotation.item;
+          var $body = $('<div>', {
+            'class': 'body' + (annotation.needsDelete ? ' is-delete-needed' : ''),
+            'data-history-id': h.id
+          });
+
+          var $meta = $('<span>', { 'class': 'info_06' })
+            .append($('<span>', { 'class': 'state reserved' }).text('할인등록 내역'))
+            .append($('<span>', { 'class': 'date' }).text(h.date))
+            .append($('<time>').text(h.time));
+
+          if (annotation.needsDelete) {
+            $meta.append($('<span>', { 'class': 'badge-delete-needed' }).text('삭제 필요'));
+          }
+
+          var $info = $('<div>', { 'class': 'discount_info' })
+            .append($meta)
+            .append($('<span>', { 'class': 'info_08' }).append($('<span>', { 'class': 'title' }).text(h.discName)));
+
+          var $delBtn = $('<button>', { type: 'button', 'class': 'btn_del', title: '삭제' }).text('삭제');
+          $body.append($info).append($delBtn);
+          $history.append($body);
+        });
+      }
+
+      // 3. 사용 가능한 할인권 2단 그리드 렌더링
+      var $couponList = $('#parkingDiscountCodeList').empty();
+
+      // 유료 시간권 중 추천 쿠폰 계산 (잔여 시간이 1시간 초과이고 3시간권 한도 이내면 3시간권 추천, 아니면 1시간권 추천)
+      var recommendedHourlyCodeNo = null;
+      if (
+        !rule.hasDeleteNeeded &&
+        rule.valid24hCount >= rule.required24hCount &&
+        rule.remainderTargetMinutes > 0 &&
+        rule.hasValidFree &&
+        rule.uncoveredRemainderMinutes > 0
+      ) {
+        if (rule.uncoveredRemainderMinutes >= 120 && 180 <= rule.remainingAdditionalNon24hLimit) {
+          recommendedHourlyCodeNo = 3; // 3시간 유료 추천
+        } else if (60 <= rule.remainingAdditionalNon24hLimit) {
+          recommendedHourlyCodeNo = 2; // 1시간 유료 추천
+        }
+      }
+
+      AVAILABLE_COUPONS.forEach(function (coupon) {
+        var isEnabled = false;
+        var isRecommended = false;
+        var requiresDeleteBeforeUse = false;
+        var subText = '';
+
+        if (coupon.is24h) {
+          if (rule.valid24hCount < rule.required24hCount) {
+            isEnabled = true;
+            isRecommended = true;
+            requiresDeleteBeforeUse = rule.hasDeleteNeeded;
+            subText = rule.hasDeleteNeeded ? '기존 쿠폰 삭제 후 가능' : '장기주차 전용';
+          } else {
+            isEnabled = false;
+            subText = rule.required24hCount === 0 ? '11시간 미만 사용불가' : '24시간권 등록완료';
+          }
+        } else if (coupon.isFree) {
+          if (
+            !rule.hasDeleteNeeded &&
+            rule.valid24hCount >= rule.required24hCount &&
+            rule.remainderTargetMinutes > 0 &&
+            !rule.hasValidFree
+          ) {
+            isEnabled = true;
+            isRecommended = true;
+            subText = '최초 1회 선등록 필수';
+          } else {
+            isEnabled = false;
+            if (rule.hasValidFree) {
+              subText = '선등록 완료 (1회)';
+            } else if (rule.valid24hCount < rule.required24hCount) {
+              subText = '24시간권 대상 구간';
+            } else {
+              subText = '사용 불가';
+            }
+          }
+        } else {
+          // 1시간 유료, 3시간 유료
+          if (
+            !rule.hasDeleteNeeded &&
+            rule.valid24hCount >= rule.required24hCount &&
+            rule.remainderTargetMinutes > 0 &&
+            rule.hasValidFree &&
+            rule.uncoveredRemainderMinutes > 0 &&
+            coupon.minutes <= rule.remainingAdditionalNon24hLimit
+          ) {
+            isEnabled = true;
+            isRecommended = (coupon.discCodeNo === recommendedHourlyCodeNo);
+            subText = '다건 중복 등록 가능';
+          } else {
+            isEnabled = false;
+            if (rule.valid24hCount < rule.required24hCount || rule.remainderTargetMinutes === 0) {
+              subText = '24시간권 적용 구간';
+            } else if (!rule.hasValidFree) {
+              subText = '1시간 무료 선등록 필요';
+            } else if (rule.uncoveredRemainderMinutes <= 0) {
+              subText = '할인 정산 시간 충족';
+            } else {
+              subText = '주차시간+30분 한도초과';
+            }
+          }
+        }
+
+        var $btn = $('<button>', {
+          type: 'button',
+          'class': 'discount_coupon' + (isRecommended ? ' is-recommended' : ''),
+          disabled: !isEnabled,
+          'data-disc-code-no': coupon.discCodeNo,
+          'data-requires-delete': requiresDeleteBeforeUse ? 'true' : 'false'
+        });
+
+        var $top = $('<span>', { 'class': 'coupon-top' })
+          .append($('<span>', { 'class': 'title' }).text(coupon.discName));
+
+        if (isRecommended) {
+          $top.append($('<span>', { 'class': 'badge-recommend' }).text('추천'));
+        }
+
+        var $bottom = $('<span>', { 'class': 'coupon-bottom' })
+          .append($('<span>', { 'class': 'coupon-sub' }).text(subText))
+          .append($('<span>', { 'class': 'discount_amount' }).text(coupon.amountText));
+
+        $btn.append($top).append($bottom);
+        $couponList.append($('<li>').append($btn));
+      });
+    }
+
+    function applyScenario(key) {
+      var preset = SCENARIOS[key] || SCENARIOS.case2;
+      currentScenarioKey = key in SCENARIOS ? key : 'case2';
+      currentParkingMinutes = preset.parkingMinutes;
+      currentHistoryList = preset.history.map(function (item) {
+        return $.extend({}, item);
+      });
+      $('#fieldInDtm').val(preset.inDtm);
+      $('.demo-chip').removeClass('active');
+      $('.demo-chip[data-scenario="' + currentScenarioKey + '"]').addClass('active');
+      renderAll();
+    }
+
     function initParking() {
-      // ─ 알림 모달 확인 버튼
+      // URL 파라미터(?scenario=case1a 등) 지원
+      var params = new URLSearchParams(window.location.search);
+      var initialScenario = params.get('scenario') || 'case2';
+      applyScenario(initialScenario);
+
+      // 시나리오 전환 칩 클릭
+      $(document).on('click', '.demo-chip', function () {
+        var key = $(this).data('scenario');
+        applyScenario(key);
+      });
+
+      // 알림 모달 확인 버튼
       $('#parkAlertOk').on('click', function () {
         $('#parkAlertModal').fadeOut(150);
         if (typeof _parkAlertCallback === 'function') {
-          _parkAlertCallback();
+          var cb = _parkAlertCallback;
           _parkAlertCallback = null;
+          cb();
         }
       });
 
-      // ─ 확인 모달 취소 버튼
+      // 확인 모달 취소 버튼
       $('#parkConfirmCancel').on('click', function () {
         $('#parkConfirmModal').fadeOut(150);
         _parkConfirmCallback = null;
       });
 
-      // ─ 확인 모달 확인 버튼
+      // 확인 모달 확인 버튼
       $('#parkConfirmOk').on('click', function () {
         $('#parkConfirmModal').fadeOut(150);
         if (typeof _parkConfirmCallback === 'function') {
-          _parkConfirmCallback();
+          var cb = _parkConfirmCallback;
           _parkConfirmCallback = null;
+          cb();
         }
       });
 
-      // ─ 삭제 버튼 (event delegation - 동적 추가 항목 포함)
+      // 할인등록 내역 삭제 버튼
       $(document).on('click', '.btn_del', function () {
         var $body = $(this).closest('.body');
+        var historyId = $body.data('history-id');
         parkConfirm('선택한 할인등록 내역을 삭제하시겠습니까?', function () {
-          $body.slideUp(250, function () {
-            $body.remove();
-            // 역사가 없으면 빈 메시지 표시
-            if ($('.panel.list .body:not(.parking-empty)').length === 0) {
-              if ($('.panel.list .parking-empty').length === 0) {
-                $('.panel.list').append('<div class="body parking-empty" style="padding:16px;color:#94a3b8;font-size:13px;">할인등록 내역이 없습니다.</div>');
-              }
-            }
+          currentHistoryList = currentHistoryList.filter(function (item) {
+            return String(item.id) !== String(historyId);
           });
+          renderAll();
           parkAlert('삭제가 완료되었습니다.');
         });
       });
 
-      // ─ 실활 할인 쿠폰 버튼 클릭
+      // 사용 가능한 할인권 클릭
       $(document).on('click', '.discount_coupon:not(:disabled)', function () {
         var $btn = $(this);
-        var couponTitle = $btn.find('.title').text();
-        var amountVal = $btn.find('.discount_amount strong').text();
-        var amountUnit = $btn.find('.discount_amount').contents().last().text().trim();
-        var displayTitle = amountVal
-          ? couponTitle + ' (' + amountVal + (amountUnit || '원') + ')'
-          : couponTitle;
+        var requiresDelete = $btn.attr('data-requires-delete') === 'true';
 
-        $btn.prop('disabled', true);
+        // 4.3: 11시간 이상인데 기존 쿠폰이 남아있는 상태에서 [24시간권] 클릭 시 삭제 유도 팝업 + 스크롤 포커스
+        if (requiresDelete) {
+          parkAlert(
+            '기존에 등록된 할인권을 먼저 삭제해야 24시간 이용권을 등록할 수 있습니다.\n목록에서 [삭제 필요] 할인권을 삭제해 주세요.',
+            function () {
+              focusFirstDeleteNeededItem();
+            }
+          );
+          return;
+        }
 
-        // 빈 메시지 제거
-        $('.panel.list .parking-empty').remove();
+        var codeNo = Number($btn.data('disc-code-no'));
+        var coupon = AVAILABLE_COUPONS.find(function (c) { return c.discCodeNo === codeNo; });
+        if (!coupon) return;
 
         var ts = getTimestamp();
+        nextIdSeq += 1;
+        currentHistoryList.push({
+          id: 'H-' + nextIdSeq,
+          discCodeNo: coupon.discCodeNo,
+          discName: coupon.discName + ' 할인',
+          minutes: coupon.minutes,
+          date: ts.date,
+          time: ts.time
+        });
 
-        // 신규 할인 내역 생성
-        var $newBody = $('<div>', { 'class': 'body' })
-          .append(
-            $('<div>', { 'class': 'discount_info' })
-              .append(
-                $('<span>', { 'class': 'info_06' })
-                  .append($('<span>', { 'class': 'state reserved' }).text('할인등록 내역'))
-                  .append($('<span>', { 'class': 'date' }).text(ts.date))
-                  .append($('<time>').text(ts.time))
-              )
-              .append(
-                $('<span>', { 'class': 'info_08' })
-                  .append($('<span>', { 'class': 'title' }).text(displayTitle))
-              )
-          )
-          .append(
-            $('<button>', { type: 'button', 'class': 'btn_del' }).text('삭제')
-          );
-
-        $newBody.hide();
-        $('.panel.list').append($newBody);
-        $newBody.slideDown(250);
-
-        parkAlert('할인처리 완료 되었습니다.');
+        renderAll();
+        parkAlert('[' + coupon.discName + '] 할인권이 등록되었습니다.');
       });
     }
+
+    $(function () {
+      initParking();
+    });
   </script>
 </body>
 
