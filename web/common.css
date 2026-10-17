@@ -1,0 +1,270 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   KGC 스마트오피스 PC Web 공통 보정 및 레이아웃 스타일 (web/common.css)
+   - GNB 헤더 아이콘 매핑 및 푸터 스타일
+   - 공통 알림 모달 (#modal-window) 및 로딩 스피너
+   - 시연용 상태 전환 플로팅 컨트롤러
+   ========================================================================== */
+
+/* 환경 표시 플로팅 뱃지 (LOC / DEV / DEMO) */
+.env-floating-badge {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 99999;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+    user-select: none;
+}
+.env-floating-badge.env-loc { background: linear-gradient(135deg, #8b5cf6, #6d28d9); border: 1px solid rgba(255, 255, 255, 0.4); }
+.env-floating-badge.env-dev { background: linear-gradient(135deg, #f97316, #c2410c); border: 1px solid rgba(255, 255, 255, 0.4); }
+
+/* 외부 링크 표시 아이콘 */
+.ext-ico {
+    display: inline-block;
+    font-size: 11px;
+    font-style: normal;
+    margin-left: 2px;
+    opacity: 0.8;
+}
+
+/* 헤더 GNB 메뉴 아이콘 매핑 */
+#header { flex-shrink: 0; z-index: 10; }
+#logo > span { display: inline-block !important; }
+#head ul.menu li > a.dashboard { background-image: url("../images/web/menu/ico_dashboard.svg") }
+#head ul.menu li > a.seat { background-image: url("../images/web/menu/ico_seat.svg") }
+#head ul.menu li > a.meet { background-image: url("../images/web/menu/ico_meet.svg") }
+#head ul.menu li > a.locker { background-image: url("../images/web/menu/ico_locker.svg") }
+#head ul.menu li > a.parking { background-image: url("../images/web/menu/ico_parking.svg") }
+#head ul.menu li > a.bus { background-image: url("../images/web/menu/ico_bus.svg") }
+#head ul.menu li > a.myReserv { background-image: url("../images/web/menu/ico_myReserv.svg") }
+#head ul.menu li > a.dashboard.on, #head ul.menu li > a.dashboard:hover { background-image: url("../images/web/menu/ico_dashboard_on.svg") }
+#head ul.menu li > a.seat.on, #head ul.menu li > a.seat:hover { background-image: url("../images/web/menu/ico_seat_on.svg") }
+#head ul.menu li > a.meet.on, #head ul.menu li > a.meet:hover { background-image: url("../images/web/menu/ico_meet_on.svg") }
+#head ul.menu li > a.locker.on, #head ul.menu li > a.locker:hover { background-image: url("../images/web/menu/ico_locker_on.svg") }
+#head ul.menu li > a.parking.on, #head ul.menu li > a.parking:hover { background-image: url("../images/web/menu/ico_parking_on.svg") }
+#head ul.menu li > a.bus.on, #head ul.menu li > a.bus:hover { background-image: url("../images/web/menu/ico_bus_on.svg") }
+#head ul.menu li > a.myReserv.on, #head ul.menu li > a.myReserv:hover { background-image: url("../images/web/menu/ico_myReserv_on.svg") }
+#gnb li.tnb a { font-size: 13px; }
+
+@media screen and (max-width: 1440px) {
+    #logo > span { display: none !important; }
+}
+
+/* 공통 푸터 스타일 (web-footer) */
+#footer.web-footer {
+    width: 100%;
+    height: auto;
+    background: #FFFFFF;
+    border-top: 1px solid #E2E8F0;
+    padding: 24px 0;
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+.footer-inner {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.footer-info {
+    font-size: 13px;
+    color: #64748B;
+}
+
+.footer-info .divider {
+    margin: 0 10px;
+    color: #CBD5E1;
+}
+
+.btn-switch-mobile {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: #F1F5F9;
+    color: #475569;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid #E2E8F0;
+    transition: all 0.2s;
+}
+
+.btn-switch-mobile:hover {
+    background: #E2E8F0;
+    color: #0F172A;
+}
+
+.btn-switch-mobile .ico-mobile {
+    font-style: normal;
+}
+
+/* 공통 알림 모달 (soAlert / soConfirmAlert) */
+#modal-window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.55);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+}
+
+#modal-window .modal-box {
+    width: 380px;
+    max-width: 90%;
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+#modal-window .modal-title {
+    margin: 0;
+    padding: 16px 20px;
+    background: #1E293B;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+}
+
+#modal-window .modal-pop {
+    padding: 24px 20px 18px;
+}
+
+#modal-window .modal-text {
+    margin: 0;
+    color: #1E293B;
+    font-size: 14.5px;
+    line-height: 1.6;
+    text-align: center;
+    white-space: pre-line;
+}
+
+#modal-window .modal-buttons {
+    display: flex;
+    gap: 10px;
+    padding: 0 20px 20px;
+    margin: 0;
+    list-style: none;
+}
+
+#modal-window .modal-buttons li {
+    flex: 1;
+}
+
+#modal-window .modal-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+#modal-window .modal-buttons a.btn-modal-pri {
+    background: #D71635;
+    color: #ffffff;
+    border: 1px solid #D71635;
+}
+
+#modal-window .modal-buttons a.btn-modal-pri:hover {
+    background: #b8122d;
+}
+
+#modal-window .modal-buttons a.btn-modal-sec {
+    background: #F1F5F9;
+    color: #475569;
+    border: 1px solid #CBD5E1;
+}
+
+#modal-window .modal-buttons a.btn-modal-sec:hover {
+    background: #E2E8F0;
+    color: #0F172A;
+}
+
+/* 공통 로딩 레이어 */
+.loadingWrap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999; }
+.loadingWrap .bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); }
+.loadingWrap .fg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.loadingWrap .spinner {
+    width: 44px;
+    height: 44px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #E7002A;
+    border-radius: 50%;
+    animation: web-spin 0.8s linear infinite;
+}
+@keyframes web-spin { to { transform: rotate(360deg); } }
+
+/* 시연용 시나리오 전환 플로팅 바 (현업 브리핑용) */
+.demo-scenario-bar {
+    position: fixed;
+    bottom: 20px;
+    right: 24px;
+    z-index: 9990;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: rgba(15, 23, 42, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(8px);
+    font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", sans-serif;
+}
+
+.demo-scenario-bar .demo-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #94A3B8;
+    padding-right: 4px;
+}
+
+.demo-scenario-bar .demo-btn {
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+    color: #E2E8F0;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.demo-scenario-bar .demo-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #FFFFFF;
+}
+
+.demo-scenario-bar .demo-btn.active {
+    background: #D71635;
+    border-color: #D71635;
+    color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(215, 22, 53, 0.4);
+}

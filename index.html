@@ -33,7 +33,115 @@
       <div class="menu-container" id="menu-container">
 
         <div
-          style="font-size: 13px; font-weight: bold; color: var(--accent); margin: 15px 0 10px 8px; border-bottom: 2px solid var(--accent); padding-bottom: 5px;">
+          style="font-size: 13px; font-weight: bold; color: #38bdf8; margin: 15px 0 10px 8px; border-bottom: 2px solid #38bdf8; padding-bottom: 5px;">
+          FO (PC 웹 사용자 시나리오) <span class="badge-new">NEW</span>
+        </div>
+
+        <!-- PC 1단계: 무인증 대시보드 & 시연 허브 -->
+        <div class="category">
+          <div class="category-title">1단계: 메인 대시보드 (무인증 직행)</div>
+          <ul class="page-list">
+            <li class="page-item has-sub open" data-name="PC 웹 통합 대시보드 web/main.html">
+              <a href="#" class="page-link highlight" onclick="loadPage('./web/main.html', this)">
+                <div class="name-desc">
+                  <span class="name">PC 웹 통합 대시보드 <span class="badge-new">NEW</span></span>
+                  <span class="desc">web/main.html (로그인 없이 바로보기)</span>
+                </div>
+                <i class="arrow-toggle" onclick="toggleSubMenu(event, this)" title="접기/펼치기">▼</i>
+              </a>
+              <ul class="sub-page-list">
+                <li class="page-item" data-name="PC 대시보드 이용중 상태 web/main.html?mode=active">
+                  <a href="#" class="page-link" onclick="loadPage('./web/main.html?mode=active', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 이용중 상태 (기본)</span>
+                      <span class="desc">web/main.html?mode=active</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="PC 대시보드 회의 다건 상태 web/main.html?mode=multi">
+                  <a href="#" class="page-link" onclick="loadPage('./web/main.html?mode=multi', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 회의 3건 이상 (+외 N건)</span>
+                      <span class="desc">web/main.html?mode=multi</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="PC 대시보드 미예약 빈 상태 web/main.html?mode=empty">
+                  <a href="#" class="page-link" onclick="loadPage('./web/main.html?mode=empty', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 미예약 상태 (Empty State)</span>
+                      <span class="desc">web/main.html?mode=empty</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="page-item" data-name="PC 웹 시연 허브 web/index.html">
+              <a href="#" class="page-link" onclick="loadPage('./web/index.html', this)">
+                <div class="name-desc">
+                  <span class="name">PC 웹 전체 시안 허브</span>
+                  <span class="desc">web/index.html</span>
+                </div>
+                <i class="arrow">➔</i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- PC 2단계: PC 웹 자체 서비스 및 로그인 -->
+        <div class="category">
+          <div class="category-title">2단계: PC 웹 자체 서비스 & 로그인</div>
+          <ul class="page-list">
+            <li class="page-item has-sub open" data-name="PC 주차정산 web/parking.html">
+              <a href="#" class="page-link highlight" onclick="loadPage('./web/parking.html', this)">
+                <div class="name-desc">
+                  <span class="name">PC 주차정산 <span class="badge-new">NEW</span></span>
+                  <span class="desc">web/parking.html</span>
+                </div>
+                <i class="arrow-toggle" onclick="toggleSubMenu(event, this)" title="접기/펼치기">▼</i>
+              </a>
+              <ul class="sub-page-list">
+                <li class="page-item" data-name="PC 주차정산 차량조회 web/parking.html">
+                  <a href="#" class="page-link" onclick="loadPage('./web/parking.html', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 차량번호 조회</span>
+                      <span class="desc">web/parking.html</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="PC 주차정산 할인등록 상세 web/parking.html?view=detail">
+                  <a href="#" class="page-link" onclick="loadPage('./web/parking.html?view=detail', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 차량상세 및 할인등록</span>
+                      <span class="desc">web/parking.html?view=detail</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="page-item" data-name="PC 출퇴근 셔틀버스 web/busReservation.html">
+              <a href="#" class="page-link highlight" onclick="loadPage('./web/busReservation.html', this)">
+                <div class="name-desc">
+                  <span class="name">PC 출퇴근 셔틀버스 <span class="badge-new">NEW</span></span>
+                  <span class="desc">web/busReservation.html</span>
+                </div>
+                <i class="arrow">★</i>
+              </a>
+            </li>
+            <li class="page-item" data-name="PC 웹 로그인 web/login.html">
+              <a href="#" class="page-link" onclick="loadPage('./web/login.html', this)">
+                <div class="name-desc">
+                  <span class="name">PC 웹 로그인 화면</span>
+                  <span class="desc">web/login.html</span>
+                </div>
+                <i class="arrow">➔</i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div
+          style="font-size: 13px; font-weight: bold; color: var(--accent); margin: 25px 0 10px 8px; border-bottom: 2px solid var(--accent); padding-bottom: 5px;">
           FO (모바일 사용자 시나리오)
         </div>
 
@@ -648,7 +756,7 @@
         <div class="actions">
           <!-- Device Type Selectors -->
           <div class="device-selectors">
-            <button class="device-btn active" onclick="setDevice('iphone-15', this)">
+            <button class="device-btn" onclick="setDevice('iphone-15', this)">
               <i>📱</i> iPhone 15 Pro
             </button>
             <button class="device-btn" onclick="setDevice('galaxy-s23', this)">
@@ -657,7 +765,7 @@
             <button class="device-btn" onclick="setDevice('ipad', this)">
               <i>📱</i> iPad
             </button>
-            <button class="device-btn" onclick="setDevice('pc-wide', this)">
+            <button class="device-btn active" onclick="setDevice('pc-wide', this)">
               <i>💻</i> PC (Wide 100%)
             </button>
           </div>
@@ -673,13 +781,13 @@
 
       <!-- Simulator Viewer -->
       <div class="viewer-container">
-        <div class="device-mockup iphone-15" id="device-mockup">
+        <div class="device-mockup pc-wide" id="device-mockup">
           <div class="device-notch">
             <div class="camera-lens"></div>
             <div class="speaker-grill"></div>
           </div>
           <div class="device-screen">
-            <iframe class="preview-iframe" id="preview-iframe" src="./login.html"></iframe>
+            <iframe class="preview-iframe" id="preview-iframe" src="./web/main.html"></iframe>
           </div>
         </div>
       </div>
@@ -687,16 +795,16 @@
   </div>
 
   <script>
-    let currentUrl = './login.html';
+    let currentUrl = './web/main.html';
 
     function getSimulatedUrl(url) {
-      const filename = url.substring(url.lastIndexOf('/') + 1);
+      const cleanRel = url.replace(/^\.\//, '');
       let basePath = window.location.pathname;
       if (!basePath.endsWith('/')) {
         basePath = basePath.substring(0, basePath.lastIndexOf('/') + 1);
       }
       const port = window.location.port ? `:${window.location.port}` : '';
-      return `${window.location.protocol}//${window.location.hostname}${port}${basePath}${filename}`;
+      return `${window.location.protocol}//${window.location.hostname}${port}${basePath}${cleanRel}`;
     }
 
     function loadPage(url, element) {
@@ -706,6 +814,12 @@
 
       // Update simulated address bar with repository base path (e.g. /kgc-smartoffice-ui/)
       document.getElementById('simulated-url').innerText = getSimulatedUrl(url);
+
+      // PC 웹(./web/) 또는 백오피스(./bo/) 진입 시 자동으로 PC (Wide 100%) 뷰어로 전환
+      if (url.startsWith('./web/') || url.startsWith('./bo/')) {
+        const pcBtn = document.querySelector('.device-btn[onclick*="pc-wide"]');
+        if (pcBtn) setDevice('pc-wide', pcBtn);
+      }
 
       // Update active class in menu list
       document.querySelectorAll('.page-item').forEach(item => {
@@ -774,7 +888,7 @@
 
     // Set initial address
     window.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('simulated-url').innerText = getSimulatedUrl('./login.html');
+      document.getElementById('simulated-url').innerText = getSimulatedUrl('./web/main.html');
     });
   </script>
 </body>

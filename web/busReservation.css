@@ -1,0 +1,28 @@
+/* PC 출퇴근 버스 (templates/web/busReservation.html) : busReservation.js 가 그리는 요소 포함 */
+
+/* 신청 바 */
+.bus-reservation-page #busBoardingDate { width: 160px; background: #f9f9f9; color: var(--text-black02-color); }
+.bus-reservation-page .quickSearch_area ul li.seat_num_area { display: inline-flex; align-items: center; gap: 8px; margin-left: 10px; color: var(--text-black02-color); }
+.bus-reservation-page .seat_num strong { color: var(--primary-default-color); font-size: 16px; font-weight: 400; }
+.bus-reservation-page .bus-available-count { padding: 4px 10px; border-radius: 6px; background: var(--accWeak-default-color); color: #1c77ff; font-size: 13px; }
+.bus-reservation-page #busReservationSubmit:disabled { opacity: .55; cursor: not-allowed; }
+
+/* 나의 예약 내역 (busReservation.js renderReservationList) : 탑승일 | 구분 | 상태 | 차량 | 관리 */
+.bus-reservation-page .reserv_list_area .grid_head,
+.bus-reservation-page .reserv_list > li { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.4fr 1fr; align-items: center; }
+.bus-reservation-page .reserv_list > li { min-height: 51px; border-bottom: 1px solid #d9d9d9; color: var(--text-black02-color); text-align: center; }
+.bus-reservation-page .reserv_list .left,
+.bus-reservation-page .reserv_list .date_commute_area,
+.bus-reservation-page .reserv_list .status_car_area { display: contents; }
+.bus-reservation-page .reserv_list .date,
+.bus-reservation-page .reserv_list .status,
+.bus-reservation-page .reserv_list .car { padding: 14px 8px; }
+.bus-reservation-page .reserv_list .date { color: #232323; }
+.bus-reservation-page .reserv_list .commute { justify-self: center; padding: 4px 10px; border-radius: 6px; font-size: 13px; }
+.bus-reservation-page .reserv_list .commute.work { background: var(--accWeak-default-color); color: #1c77ff; }
+.bus-reservation-page .reserv_list .commute.leave { background: var(--warWeak-default-color); color: var(--warning-default-color); }
+.bus-reservation-page .reserv_list .status { color: var(--success-default-color); }
+.bus-reservation-page .reserv_list .right { display: flex; justify-content: center; }
+.bus-reservation-page .reserv_list > li.bus-history-empty { display: block; padding: 16px 0; }
+.bus-reservation-page .btn_cancel { height: 32px; padding: 0 14px; border: 1px solid rgba(0, 0, 0, .1); border-radius: 6px; background: #f6f7f8; color: var(--text-black02-color); font-size: 13px; cursor: pointer; transition: .1s ease-in-out; }
+.bus-reservation-page .btn_cancel:hover { border-color: var(--primary-default-color); color: var(--primary-default-color); }

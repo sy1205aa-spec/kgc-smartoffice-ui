@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1280">
+    <title>로그인 - KGC 스마트오피스 예약시스템</title>
+    <link rel="shortcut icon" href="../images/web_a/common/logo.svg" type="image/svg+xml">
+
+    <!-- PC(web_a) 퍼블 스타일 -->
+    <link rel="stylesheet" href="../css/web_a/fonts.css">
+    <link rel="stylesheet" href="../css/web_a/base.css">
+    <link rel="stylesheet" href="../css/web_a/layout.css">
+    <link rel="stylesheet" href="../css/web_a/common.css">
+    <link rel="stylesheet" href="../css/web_a/contents.css">
+    <link rel="stylesheet" href="../css/web_a/colorStyle.css">
+    <link rel="stylesheet" href="../css/web_a/response.css">
+    <link rel="stylesheet" href="../css/web_a/jquery.modal.css">
+    <link rel="stylesheet" href="../css/xeicon/xeicon.min.css">
+    <link rel="stylesheet" href="./common.css">
+    <link rel="stylesheet" href="./login.css">
+
+    <script src="../js/jquery-3.6.0.js"></script>
+    <script src="./common.js"></script>
+</head>
+
+<body class="login-page">
+    <div class="loginWrap">
+        <section class="loginArea">
+            <div class="loginBox">
+                <form id="loginForm" method="post" autocomplete="off" novalidate onsubmit="return false;">
+                    <fieldset class="login-main-fields">
+                        <div class="title">
+                            <img src="../images/mobile_a/common/logo.svg" alt="로고">
+                            <p class="title">스마트오피스 예약시스템</p>
+                        </div>
+                        <legend class="blind">로그인 영역</legend>
+                        <p>
+                            <input type="text" name="id" id="userId" class="medium" value="kgc202401" placeholder="아이디를 입력하세요. (kgc + 사번)"
+                                   autocomplete="username" autocapitalize="off">
+                        </p>
+                        <p>
+                            <input type="password" name="password" id="userPw" class="medium" value="1234" placeholder="비밀번호를 입력하세요."
+                                   autocomplete="current-password">
+                        </p>
+                        <p class="id_save">
+                            <input type="checkbox" id="autoLogin" name="autoLogin" checked>
+                            <label for="autoLogin" id="autoLoginLabel">자동 로그인</label>
+                            <input type="checkbox" id="rememberId" name="rememberId" checked>
+                            <label for="rememberId">아이디저장</label>
+                        </p>
+                    </fieldset>
+
+                    <div class="login_btn">
+                        <button type="button" id="loginBtn" class="btn pri btn_f">로그인</button>
+                    </div>
+
+                    <article id="auth_view" class="sms-form sms-div" style="display: none;">
+                        <ul class="auth">
+                            <li>
+                                <input type="text" id="smsCode" class="medium" value="123456" placeholder="인증번호 입력" inputmode="numeric"
+                                       maxlength="6" autocomplete="one-time-code">
+                                <button type="button" class="btn medium pri btn-resend"><span>인증키 재발송</span></button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn medium pri verify-btn"><span>인증</span></button>
+                            </li>
+                        </ul>
+                        <p class="comment check-time">남은시간 : <em class="non-match timer-value">03:00</em>초</p>
+                    </article>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- 현업 시연용 상태 전환 플로팅 바 -->
+    <div class="demo-scenario-bar">
+        <span class="demo-label">💡 시연 상태 전환:</span>
+        <button type="button" class="demo-btn active" data-mode="normal" onclick="toggleSmsView(false)">기본 로그인</button>
+        <button type="button" class="demo-btn" data-mode="sms" onclick="toggleSmsView(true)">SMS 본인인증 단계</button>
+    </div>
+
+    <!-- 공통 모달 -->
+    <div id="modal-window" style="display: none;">
+        <div class="modal-box">
+            <p id="modal-title" class="modal-title">알림</p>
+            <div class="modal-pop">
+                <p id="modal-text" class="modal-text"></p>
+            </div>
+            <ul id="modal-buttons" class="modal-buttons"></ul>
+        </div>
+    </div>
+
+    <script>
+        function toggleSmsView(showSms) {
+            $('.demo-scenario-bar .demo-btn').removeClass('active');
+            $(`.demo-scenario-bar .demo-btn[data-mode="${showSms ? 'sms' : 'normal'}"]`).addClass('active');
+
+            if (showSms) {
+                $('.login-main-fields').addClass('login-fields-disabled').find('input').prop('disabled', true);
+                $('#loginBtn').prop('disabled', true);
+                $('#auth_view').slideDown(200);
+            } else {
+                $('.login-main-fields').removeClass('login-fields-disabled').find('input').prop('disabled', false);
+                $('#loginBtn').prop('disabled', false);
+                $('#auth_view').slideUp(200);
+            }
+        }
+
+        $(function () {
+            $('#loginBtn, .verify-btn').on('click', function () {
+                window.location.href = './main.html';
+            });
+
+            $('.btn-resend').on('click', function () {
+                soAlert('인증번호가 재발송되었습니다.');
+            });
+        });
+    </script>
+</body>
+
+</html>

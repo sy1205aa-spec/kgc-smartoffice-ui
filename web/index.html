@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KGC 스마트오피스 PC 웹 시안 리스트 & 시연 허브</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="../images/web_a/common/logo.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --primary: #D71635;
+      --primary-dark: #b8122d;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --bg: #f8fafc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Pretendard', 'Noto Sans KR', 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .hub-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+    .hub-header {
+      margin-bottom: 36px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #fee2e2;
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .status-badge i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: inline-block;
+    }
+    .hub-header h1 {
+      font-size: 30px;
+      font-weight: 800;
+      margin: 0 0 8px;
+      letter-spacing: -0.5px;
+    }
+    .hub-header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .hub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 22px;
+    }
+    .hub-card {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .hub-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(215, 22, 53, 0.1);
+      border-color: var(--primary);
+    }
+    .hub-card__category {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .hub-card__title {
+      font-size: 19px;
+      font-weight: 800;
+      margin: 0 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .hub-card__desc {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin: 0 0 20px;
+      line-height: 1.6;
+    }
+    .hub-card__actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 9px;
+      border-radius: 6px;
+      background: #fff1f2;
+      color: var(--primary);
+      border: 1px solid #fecdd3;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .button--primary {
+      background: var(--primary);
+      color: #ffffff;
+      border: 1px solid var(--primary);
+    }
+    .button--primary:hover {
+      background: var(--primary-dark);
+    }
+    .button--secondary {
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+    }
+    .button--secondary:hover {
+      background: #e2e8f0;
+      color: var(--ink);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="hub-container">
+    <div class="hub-header">
+      <div>
+        <div class="status-badge"><i></i> <span>무인증(로그인 불필요) 현업 시연용 PC Web 목업</span></div>
+        <h1>KGC 스마트오피스 PC (Web) 포털 시연 허브</h1>
+        <p>신규 개발된 스마트오피스 PC 웹 통합 대시보드 및 자체 서비스(주차정산, 셔틀버스) 화면을 로그인 없이 즉시 확인할 수 있습니다.</p>
+      </div>
+      <div>
+        <a class="button button--secondary" href="../index.html">← 통합 퍼블리싱 뷰어로 돌아가기</a>
+      </div>
+    </div>
+
+    <div class="hub-grid">
+      <!-- 1. PC 웹 통합 대시보드 (메인) -->
+      <div class="hub-card">
+        <div>
+          <div class="hub-card__category">MAIN DASHBOARD</div>
+          <div class="hub-card__title"><span>PC 포털 통합 대시보드</span> <span class="tag">핵심 메인</span></div>
+          <div class="hub-card__desc">
+            나의 예약(이용 좌석, 당일 회의실 최대 2건, 사물함) 실시간 요약과 나의 차량 등록 정보, 셔틀버스 예약, 모바일 앱 설치 QR을 한눈에 제공하는 와이드 대시보드입니다.
+          </div>
+        </div>
+        <div class="hub-card__actions">
+          <a class="button button--primary" href="./main.html">이용중 상태 보기</a>
+          <a class="button button--secondary" href="./main.html?mode=multi">회의 다건(3건+)</a>
+          <a class="button button--secondary" href="./main.html?mode=empty">미예약 상태</a>
+        </div>
+      </div>
+
+      <!-- 2. PC 주차정산 -->
+      <div class="hub-card">
+        <div>
+          <div class="hub-card__category">PARKING SERVICE</div>
+          <div class="hub-card__title"><span>PC 주차정산</span> <span class="tag">자체 서비스</span></div>
+          <div class="hub-card__desc">
+            과천사옥 주차장 이용 차량 조회, 입차 시각·주차시간 확인, 주차 할인권(1시간 무료 및 유료 할인권) 실시간 등록/취소 기능을 시연합니다.
+          </div>
+        </div>
+        <div class="hub-card__actions">
+          <a class="button button--primary" href="./parking.html">차량 조회 화면</a>
+          <a class="button button--secondary" href="./parking.html?view=detail">할인 등록/상세 화면</a>
+        </div>
+      </div>
+
+      <!-- 3. PC 출퇴근 버스 -->
+      <div class="hub-card">
+        <div>
+          <div class="hub-card__category">SHUTTLE BUS</div>
+          <div class="hub-card__title"><span>PC 출퇴근 셔틀버스</span> <span class="tag">자체 서비스</span></div>
+          <div class="hub-card__desc">
+            출퇴근 구분 및 호차별 잔여 좌석 실시간 조회, 셔틀버스 탑승 예약 신청 및 나의 예약 내역 확인·취소 기능을 시연합니다.
+          </div>
+        </div>
+        <div class="hub-card__actions">
+          <a class="button button--primary" href="./busReservation.html">페이지 바로가기</a>
+        </div>
+      </div>
+
+      <!-- 4. PC 로그인 -->
+      <div class="hub-card">
+        <div>
+          <div class="hub-card__category">AUTHENTICATION</div>
+          <div class="hub-card__title"><span>PC 웹 로그인</span> <span class="tag">인증</span></div>
+          <div class="hub-card__desc">
+            PC 웹 환경 전용 로그인 및 SMS 본인인증 화면입니다. (로그인 버튼 클릭 시 인증 절차 없이 즉시 메인 대시보드로 진입합니다.)
+          </div>
+        </div>
+        <div class="hub-card__actions">
+          <a class="button button--primary" href="./login.html">페이지 바로가기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

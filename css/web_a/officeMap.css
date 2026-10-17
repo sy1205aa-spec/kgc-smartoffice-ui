@@ -1,0 +1,130 @@
+@charset "utf-8";
+/********************************************** 좌석크기관련_수정영역 *******************************************************/
+/* 줌프래임사이즈 - 이미지 사이즈 동일 - 가로크기는 항상 1200px 유지 *** 높이는 706px 이하로 유지 */
+#zoomArea { width: 1200px; height: 800px; }
+/* 보여질 이미지 사이즈*/
+.map_box .bg_fix img { width: 1200px; height: 800px; }
+/* 좌석크기조정 맵크기에 따라 transform으로 조정 */
+.position_abs { position: absolute; z-index: 100; border-radius: 30px; text-align: center; line-height: 100%; -webkit-transform-origin: top left; -moz-transform-origin: top left; transform-origin: top left; -webkit-transform: scale(.6); -moz-transform: scale(.6); transform: scale(.6); box-shadow: 0 0 4px rgb(0 0 0 / 10%); }
+.map_box div.position_abs a { display: inline-flex; padding: 3px 6px; text-overflow: ellipsis; line-height: 100%; white-space: nowrap; }
+.map_box div a { display: inline-flex; width: auto; height: auto; border-radius: 30px; text-overflow: ellipsis; white-space: nowrap; justify-content: center; align-items: center; }
+.position_abs > a { min-width: 40px }
+/******************************************* 좌석번호색상_수정영역 **********************************************************/
+.seat_able { background-color: #fff; color: #000; font-size: 11px; }/* 일반석(사용가능석) */
+.seat_disable { font-size: 11px; }/* 사용중 */
+.nameCheck { color: #fff; background-color: #515160; font-size: 10px !important; }/* 이름출력 */
+.colorA { background-color: #fff; color: #515160 !important; border: 2px solid #515160; } /* 일반석(사용가능석) */
+a.colorB { background: #5E6977; color: #fff !important; border: 2px solid rgba(0,0,0,.1) !important; } /*사용중 (사용불가) */
+.colorC { opacity: .7 /* 자리비움*/ }
+.colorF { background-color: #fff; color: #3F51F0 !important; border: 2px solid #3F51F0 !important; } /* 고정석*/
+.colorG { background-color: #fff; color: #63b148 !important; border: 2px solid #63b148; } /* 집중업무석 */
+.colorH { background-color: #fff; color: #ba68c8 !important; border: 2px solid #ba68c8; } /* 모션데스크 */
+.colorI { background-color: #fff; color: #EF86C5 !important; border: 2px solid #EF86C5; } /* 협업석 */
+.colorJ { background-color: #fff; color: #40C6FF !important; border: 2px solid #40C6FF; } /* 창가석 */
+.colorK { background-color: #fff; color: #BA601F !important; border: 2px solid #BA601F; } /* 카페석 */
+.colorD { background-color: #ff8f00 !important; color: #fff !important; border: 2px solid rgba(0,0,0,.1) !important; }/* 나의 팀원 */
+.colorE { background-color: #FE3767 !important; color: #fff !important; border: 2px solid rgba(0,0,0,.1) !important; } /* 나의 좌석 */
+.seat_away { } /* 자리비움 */
+.seat_myteam { } /* 나의팀 */
+.seat_my {/* border-top-right-radius:3px !important */ }/* 나의좌석 */
+.seat_fix { } /* 고정석 */
+.choice { border: 2px solid #FF6060 !important; }
+.choice::after { display: inline-block; position: absolute; left: 50%; bottom: -5px; width: 4px; height: 4px; border-bottom: 1px solid rgba(0, 0, 0, .1); border-left: 1px solid rgba(0, 0, 0, .1); background-color: #FF6060; content: ""; transform: translate(-50%, -50%) rotate(-45deg); z-index: -1 }
+.map_box div.position_abs a:active { background: #fff !important; color: #FF6060 !important; border: 2px solid #FF6060 !important; }
+.map_box div.position_abs a:active::after { display: inline-block; position: absolute; left: 50%; bottom: -5px; width: 4px; height: 4px; border-bottom: 1px solid rgba(0, 0, 0, .1); border-left: 1px solid rgba(0, 0, 0, .1); background-color: #FF6060; content: ""; transform: translate(-50%, -50%) rotate(-45deg); z-index: -1 }
+.map_box div.position_abs a.choice { background: #fff !important; color: #FF6060 !important; border: 2px solid #FF6060 !important; }
+.map_box div.position_abs a.choice:after { display: inline-block; position: absolute; left: 50%; bottom: -5px; width: 4px; height: 4px; border-bottom: 1px solid rgba(0, 0, 0, .1); border-left: 1px solid rgba(0, 0, 0, .1); background-color: #FF6060; content: ""; transform: translate(-50%, -50%) rotate(-45deg); z-index: -1 }
+/********************************************** 회의실명칭크기_수정영역 *******************************************************/
+/* 룸명칭크기조정 맵크기에 따라 transform으로 조정 */
+.map_box div.room { position: absolute; z-index: 100; background: #fff; border: 1px solid rgba(0, 0, 0, .1); border-radius: 10px; font-size: 11px; text-align: center; line-height: 0; vertical-align: middle; word-break: break-word; transform-origin: top left; -webkit-transform: scale(1.1); -moz-transform: scale(1.1); transform: scale(1.1); }
+/********************************************** //회의실명칭크기_수정영역 *******************************************************/
+.map_box div.room::after { display: inline-block; position: absolute; left: 50%; bottom: -8px; width: 6px; height: 6px; border-bottom: 1px solid rgba(0, 0, 0, .1); border-left: 1px solid rgba(0, 0, 0, .1); background-color: inherit; content: ""; transform: translate(-50%, -50%) rotate(-45deg); z-index: -1 }
+/*공간명칭만쓸때*/
+.map_box div.room > a { display: inline-block; position: relative; min-width: 40px; height: auto; padding: 5px 4px 5px; color: #333; text-align: center; text-indent: 0 !important; text-shadow: none; line-height: 11px; overflow: hidden }
+.map_box div.room > a > em { position: relative; padding: 2px 4px; border-radius: 30px; font-size: 10px; z-index: -1 }
+.map_box div.room > a > span { position: relative; padding: 2px 4px; font-size: 10px; z-index: -1 }
+/*회의실*/
+.map_box div.room.meet > a { min-width: 100px; text-align: left; }
+.map_box div.room.meet { }
+.map_box div.room.meet.on em { background-color: var(--primary-default-color); color: #fff } /*진행중*/
+/*.map_box div.room.meet.reserved em { background: #fff; border: 1px solid var(--primary-default-color); color: var(--primary-default-color) } */
+/*.map_box div.room.meet.end em { background-color: #515160; color: #fff } */
+.map_box div.room.meet.off em { background-color: #515160; color: #fff } /*대기중/예약없음*/
+/*임원실*/
+.map_box div.room.manage > a { min-width: 100px; text-align: left; }
+.map_box div.room.manage { }
+.map_box div.room.manage.on em { background-color: var(--primary-default-color); color: #fff } /*재실*/
+.map_box div.room.manage.off em { background-color: #515160; color: #fff } /*부재중*/
+/*사물함*/
+.map_box div.room.locker > a { min-width: 70px; text-align: left; }
+.map_box div.room.locker { }
+.map_box div.room.locker.on em { background-color: #0CB66E; color: #fff } /*사용가능*/
+.map_box div.room.locker.off em { background-color: #515160; color: #fff } /*사용불가*/
+/*부스*/
+.map_box div.room.booth { min-width: 100px; max-width: 130px; text-align: left; }
+.map_box div.room.booth.on em { background-color: var(--primary-default-color); color: #fff } /*사용가능*/
+.map_box div.room.booth.end em { background-color: #515160; color: #fff } /*사용불가*/
+/********************************************** 층별도면_회의실상태색상 *******************************************************/
+/*
+.map_box .ing { background: var(--primary-default-color); color: #fff; }
+.map_box .reserved { background: #fff; border: 1px solid var(--primary-default-color); color: var(--primary-default-color) }
+.map_box .end { background: #515160; color: #fff; }
+.map_box .wait { background: #515160; color: #fff; }
+.map_box .fix { background: #ccc; color: #fff; }
+*/
+/**************************************************** 이하_변경이_적은_부분 ********************************************************/
+/********************************************** 좌석범례크기위치_수정영역 *******************************************************/
+.bumrea li { margin: 0 0 4px 0; }
+.bumrea li > a { display: inline-flex; height: 32px; margin-right: 4px; padding: 0 10px; border: 1px solid rgba(0, 0, 0, 0); border-radius: 50px; align-items: center; justify-content: center; }
+.bumrea li > a:hover { background: #fff; color: #333; border: 1px solid rgba(0, 0, 0, 0.2) }
+.bumrea li > a:active { background: #fff; border: 1px solid rgba(0, 0, 0, 0.2) }
+.bumrea li > a.on { background: #fff; border: 1px solid rgba(0, 0, 0, 0.2) }
+.bumrea li.default > a.on { border: 1px solid rgba(0, 0, 0, 0.08); background: #fff; background-color: var(--primary-default-color); color: #fff; }
+.bumrea li.default > a { background: #fff; border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 6px }
+.bumrea li.margin { margin-right: 20px; position: relative }
+.bumrea li.margin::after { position: absolute; right: -8px; width: 1px; height: 14px; background: #ccc; content: ""; top: 10px }
+/********************************************** 프레임영역 *******************************************************/
+.wrap_left { margin-left: 0px !important }
+.wrap_right { margin-right: 0px !important }
+.map_area { -ms-overflow-style: none; }
+.map_area::-webkit-scrollbar {
+display:none
+}
+.leftBox { -ms-overflow-style: none; }
+.leftBox::-webkit-scrollbar {
+display:none
+}
+.map_area { scrollbar-width: none;/* Firefox 64 */ }
+.leftBox { scrollbar-width: none;/* Firefox 64 */ }
+/*맵확대되는프래임전체크기*/
+.map_area { position: relative; width: 100%; height: 100%; }
+/*맵확대되는프래임높이*/
+#zoomContent { position: relative; width: 100%; height: calc(100vh - 270px); background: #f9f9f9; }
+#zoomContent.timetable { position: relative; width: 100%; height: calc(100vh - 352px); }
+#zoomContainer { width: 100%; height: 100% }
+.zoomableContainer { overflow: visible !important }
+#rotate { display: flex; width: 100%; height: 100%; align-items: center; }
+/*맵위치가운데조정- 맵축소비율*/
+.map_box { position: relative; top: 0px; width: 100%; height: 100%; -webkit-transform: scale(1); -moz-transform: scale(1); transform: scale(1); -webkit-transform-origin: center center; -moz-transform-origin: center center; transform-origin: center center; }
+.map_box .bg_fix { float: left; }
+/* 확대시텍스트보이게할때 -99999px or 0 */
+.map_area > div.on .map_box div a { text-indent: 0 }
+/*전체아이콘*/
+.ico { position: absolute; z-index: 10; font-size: 11px; text-align: center; line-height: 12px; }
+/* 화장실 */
+.map_box div.restDiv { display: table; position: absolute; z-index: 100; overflow: hidden; border-radius: 4px; color: #fff; font-size: 12px; text-align: center; text-indent: 0; text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); line-height: 16px; vertical-align: middle; }
+.map_box div.restDiv.repair { display: table; position: absolute; z-index: 100; overflow: hidden; border-radius: 4px; color: #fff; font-size: 9px; text-align: center; text-indent: 0; text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); line-height: 16px; vertical-align: middle; }
+.map_box div.restDiv span { display: table-cell; position: relative; padding: 0 4px; border-radius: 0; color: #fff; text-align: center; text-indent: 0; text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); vertical-align: middle; white-space: normal; word-break: keep-all; }
+/* 층별도면 화장실상태색상 */
+.map_box .restDiv.off { background-color: #8892a0; color: #fff; }
+.map_box .restDiv.on { background-color: #ff9b2f; color: #fff; }
+.map_box .restDiv.repair { background-color: #212121; color: #fff; }
+/*화장실*/
+.ico.restRoom { -webkit-transform: scale(1); -moz-transform: scale(1); transform: scale(1); }
+.ico.restRoom span { display: inline-block; z-index: 10; width: 28px; height: 28px; border-radius: 6px; background-size: 100% 100%; font-size: 12px; text-align: center; text-indent: -9999px; line-height: 12px; }
+.ico.restRoom.man span { background: #273C81 url("../../images/web_a/map/ico_man.svg") center center no-repeat; }
+.ico.restRoom.man:hover span { background: #273C81 url("../../images/web_a/map/ico_man.svg") center center no-repeat; }
+.ico.restRoom.man.on span { background: #273C81 url("../../images/web_a/map/ico_man.svg") center center no-repeat; }
+.ico.restRoom.woman span { background: #B84A28 url("../../images/web_a/map/ico_woman.svg") center center no-repeat; }
+.ico.restRoom.woman:hover span { background: #B84A28 url("../../images/web_a/map/ico_woman.svg") center center no-repeat; }
+.ico.restRoom.woman.on span { background: #B84A28 url("../../images/web_a/map/ico_woman.svg") center center no-repeat; }

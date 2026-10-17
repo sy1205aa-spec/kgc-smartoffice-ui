@@ -1,0 +1,160 @@
+@charset "utf-8";
+/*날짜Nav*/
+.date-area { float: left; width: 100%; border-bottom: 1px solid #e5e5e5; padding: 10px 0 20px }
+.calendar_area { margin: 0 0 14px 0; float: left }
+.calendar_area ul { display: flex; align-items: center; }
+.calendar_area ul li { height: 32px; margin: 0 10px 0 0; display: inline-flex; align-items: center; }
+.calendar_area ul li > a { display: block; width: 32px; height: 32px; padding: 0; border-radius: 100%; text-align: center; }
+.calendar_area ul li > a > i { color: #666; position: relative; }
+.calendar_area ul li > a:hover { background-color: #EEE; }
+.calendar_area ul li i { color: #666; }
+.calendar_area i.calendar-left { display: block; width: 100%; height: 100%; background: url("../../images/web_a/ico/icm_arrow_left.svg") no-repeat center center; }
+.calendar_area i.calendar-right { display: block; width: 100%; height: 100%; background: url(../../images/web_a/ico/icm_arrow_right.svg) no-repeat center center; }
+.calendar_area ul li.date_day { padding: 0; font-size: 26px; color: #333; text-align: center; }
+.calendar_area ul li.date_day > span { display: inline-block; padding: 2px 0 0 4px; font-size: 16px; color: #666 }
+.calendar_area ul li.date { font-size: 26px; color: #333; }
+.calendar_area.wfull { width: 100%; display: flex; justify-content: space-between; }
+.calendar_area .ui-datepicker-trigger { margin: 0; cursor: pointer; width: 24px; height: 24px; }
+/*헤더고정*/
+#fix_table { width: 100%; overflow: hidden }
+#fix_table .ui-selecting { background: #ffd101 !important }
+#fix_table .ui-selected { background: #ffd101 !important }
+#fix_table td.selectable { cursor: pointer }
+#fix_table td.selectable:hover { background-color: #ffd101 !important; cursor: pointer }
+.ui-selectable-helper { position: absolute }
+/*일간현황테이블*/
+.reserv_dayList { width: 100%; border-collapse: collapse; background: #fff; }
+.reserv_dayList thead { border-top: 1px solid #bfbfbf; border-bottom: 1px solid #bfbfbf; }
+/*헤더시간위치변경*/
+.reserv_dayList thead th:first-child { padding: 15px 0; color: #666; text-align: center; vertical-align: middle; background: #f2f2f2 url(../../images/web_a/common/line_thead.png) right top repeat-y; }
+.reserv_dayList thead th { padding: 5px 0; color: #333; text-align: center; vertical-align: middle; background: #f9f9f9 }
+.reserv_dayList thead th span { position: relative; left: -50%; top: 0; width: auto; display: inline-block; font-size: 15px; padding: 0;/* background: #555; */ }
+.reserv_dayList thead th span::after { position: absolute; top: 100%; left: 50%; transform: translate(-50%, 100%); content: ""; width: 2px; height: 7px; background: url(../../images/web_a/common/line_min30.gif) left top no-repeat; }
+.reserv_dayList thead th span.end { color: #ccc }
+/*  */
+.reserv_day .reserv_dayList thead th:first-child, .reserv_day .reserv_dayList thead th:nth-child(2) { background-color: #E6E6E6; color: #666; }
+/* 좌석수노출시*/
+.reserv_dayList thead th.roomUser { width: 60px; color: #666 }
+.reserv_dayList thead th.roomUser { background: #f2f2f2 url(../../images/web_a/common/line_thead.png) right top repeat-y; }
+.reserv_dayList tbody { border-bottom: solid 1px #d9d9d9; background-color: #fff }
+.reserv_dayList tbody tr { height: 32px }
+.reserv_dayList tbody tr.floorIng th { background-color: #f5f5f5 }
+.reserv_dayList tbody th { border-top: solid 1px #d9d9d9; padding: 3px 0; font-weight: normal; color: #333; vertical-align: middle; height: 32px }
+/*헤더시간위치변경*/
+.reserv_dayList th.roomName { padding-left: 8px; background: url(../../images/web_a/common/line_min30.gif) right top repeat-y; color: #4b4b4b; text-align: left }
+.reserv_dayList th.roomUserCount { padding-right: 6px; text-align: right; width: 60px; font-size: 13px; background-image: url(../../images/web_a/common/line_min30.gif); background-position: right top; background-repeat: repeat-y; color: #666; }
+.reserv_dayList th.roomName p { overflow: hidden; width: 96%; font-size: 14px; white-space: nowrap; text-overflow: ellipsis; }
+.reserv_dayList th.roomName p a { position: relative; color: #333 }
+.reserv_dayList th.roomName p a:hover { color: #000 }
+/*.reserv_dayList th.roomName p a>i { position: absolute; top: 3px; left: -18px; font-size: 13px; color: #7092be }*/
+.reserv_dayList th.roomName p a > i { color: #333; float: left; }
+.reserv_dayList th.roomName p a > i:last-child { margin-right: 6px }
+.reserv_dayList th.roomName p a > i.none { width: 18px; height: 18px }
+.reserv_dayList tbody td { border-top: solid 1px #E6E6E6; line-height: 200%; text-align: center; height: 32px; }
+/*지난시간*/
+.reserv_dayList tbody tr td.end_time { background-color: #f5f5f5; color: #999 }
+/*분단위라인*/
+.reserv_dayList tbody td.minLine { background-image: url(../../images/web_a/common/line_min30.gif); background-position: right top; background-repeat: repeat-y }
+/*주간현황테이블*/
+.reserv_weekList { width: 100%; border-collapse: collapse; table-layout: fixed }
+.reserv_weekList thead { }
+.reserv_weekList thead th { padding: 5px 0; color: #666; text-align: center; vertical-align: middle; border: 1px solid #bfbfbf; background: #e6e6e6; }
+.reserv_weekList tbody th { padding-left: 14px; background: #f5f5f5; color: #555; text-align: left; border: 1px solid #ccc; }
+.reserv_weekList tbody th.roomName p { width: 96%; color: #999; line-height: 140% }
+.reserv_weekList tbody th.roomName p a { position: relative; display: block }
+.reserv_weekList tbody th.roomName p > i { margin-right: 3px; font-size: 14px; color: #7092be }
+.reserv_weekList tbody th.roomName p .ico_type { background: #7092be; color: #fff !important; border-radius: 6px; width: 20px; height: 14px; text-align: center; font-size: 11px; position: relative; top: -2px; }
+.reserv_weekList tbody th.roomName p .ico_type > em { position: relative; top: 1px; }
+.reserv_weekList tbody { }
+.reserv_weekList tbody td { border: 1px solid #ccc; height: 90px; padding: 3px; text-align: left; vertical-align: top; }
+.reserv_weekList tbody td.today { background-color: #fff7e8 }
+.reserv_weekList tbody td i { position: relative; top: 1px; margin-right: 3px }
+.reserv_weekList img { vertical-align: middle }
+.reserv_weekList tbody td .con { display: inline-block; overflow: hidden; width: 100%; white-space: nowrap; text-overflow: ellipsis; height: 24px; margin-bottom: 1px; padding: 4px 0 0px 4px; font-size: 12px; border: 1px solid rgba(0, 0, 0, .2) }
+/*월간현황테이블*/
+.reserv_monthList { width: 100%; height: 100%; border-collapse: collapse; table-layout: fixed }
+.reserv_monthList thead { }
+.reserv_monthList thead th { padding: 5px 0; color: #666; text-align: center; vertical-align: middle; border: 1px solid #bfbfbf; background: #e6e6e6; }
+.reserv_monthList tbody td { border: 1px solid #ccc; height: 130px; background: #fff; vertical-align: top; padding: 22px 3px 3px 3px; position: relative; }
+.reserv_monthList tbody td .more { float: left; width: 100%; padding: 2px; text-align: right; }
+.reserv_monthList tbody td .num { height: 20px; padding: 1px 0 5px 5px; border-bottom: 1px #eee solid; background: #f6f6f6; color: #666; line-height: 130%; position: absolute; width: 100%; left: 0; left: 0; top: 0; }
+.reserv_monthList tbody td .num a { display: block; width: 100%; color: #555; }
+.reserv_monthList tbody td.today { background-color: #fff7e8 }
+.reserv_monthList tbody td .ico_today { background: #f6f6f6 url(../../images/web_a/common/today.png) 30px 60% no-repeat }
+.reserv_monthList tbody td div.sat a { display: block; width: 99%; height: 18px; color: #4a84bc; text-decoration: none }
+.reserv_monthList tbody td div.sat { height: 20px; padding: 1px 0 5px 5px; border-bottom: 1px #eee solid; background: #f6f6f6; line-height: 130%; color: #4a84bc }
+.reserv_monthList tbody td div.sun a { display: block; width: 99%; height: 18px; color: #d92d1e; text-decoration: none }
+.reserv_monthList tbody td div.sun { height: 20px; padding: 1px 0 5px 5px; border-bottom: 1px #eee solid; background: #f6f6f6; color: #d92d1e; line-height: 130% }
+.reserv_monthList tbody td span.sun_comment { height: auto; padding-right: 0; color: #db9e9e; letter-spacing: 0; font-size: 13px; float: right; position: absolute; top: 2px; right: 6px; background: none; left: auto; width: auto; border: none; }
+.reserv_monthList tbody td.blank { height: 130px; background: #f5f5f5; line-height: 130%; color: #bcbcbc; padding: 22px 3px 3px 3px; position: relative; }
+.reserv_monthList tbody td div.blank a { display: block; width: 99%; height: 18px; background: #f6f6f6; color: #bcbcbc; text-decoration: none }
+.reserv_monthList tbody td .con { display: inline-block; overflow: hidden; width: 100%; white-space: nowrap; text-overflow: ellipsis; float: left; height: 24px; margin: 2px 0px 0; padding: 4px 0 0px 4px; font-size: 12px; color: #fff; cursor: pointer; border: 1px solid rgba(0, 0, 0, .2) }
+.reserv_monthList tbody td .con > i { position: relative; top: 1px; margin-right: 3px; display: inline-block; margin-top: 2px }
+/**/
+.reserv_edit { width: 100% }
+.reserv_edit .seatEditArea { float: left; width: 100%; height: 560px; position: relative }
+.reserv_edit .seatEditArea .deskArea { float: left; width: 60%; height: 560px; position: relative; overflow: hidden; }
+.reserv_edit .seatEditArea .addMemberArea { float: left; width: 40%; height: 560px; overflow: auto }
+.reserv_edit .seatEditArea .deskArea .centerArea { margin: 0 auto; width: 600px }
+.addMemberArea table th { border: 1px solid #ccc; }
+.addMemberArea table td { border: 1px solid #eee; }
+/* icon_comment */
+.icon_comment { width: 100%; height: 32px; display: flex; align-items: center; }
+.icon_comment li { padding: 10px; }
+.icon_comment li:first-child { padding: 10px 10px 10px 0; }
+.icon_comment li i { width: 30px; height: 30px; margin-right: 5px; background-size: 26px; }
+.icon_comment li em { font-size: 14px; color: #999; }
+.icon_comment li span { font-size: 12px; color: #666; position: relative; top: -10px; }
+i.wait_approval, i.video_meeting, i.wait_video_meeting { width: 18px; height: 18px; background-size: cover; }
+.wait_approval { background: url(../../images/web_a/common/ico_wait_chek.svg) no-repeat center center; }
+.video_meeting { background: url(../../images/web_a/common/ico_video_meeting.svg) no-repeat center center; }
+.wait_video_meeting { background: url(../../images/web_a/common/ico_video_meeting_check.svg) no-repeat center center; }
+.reserv_day .icon_comment { margin-top: 26px; padding-bottom: 56px; }
+.reserv_week .icon_comment { position: relative; top: 0; }
+/*회의실*/
+.reserv_day .reserv_dayList { width: 100% }
+.reserv_day .reserv_dayList { }
+.reserv_day .reserv_dayList thead th:first-child { width: 176px }
+.reserv_day .reserv_dayList thead th:nth-child(2) { width: 60px }
+.reserv_day .reserv_dayList tbody th.roomUserCount { width: 60px }
+.reserv_day .reserv_dayList th.roomName { width: 220px; height: 32px }
+.reserv_dayList colgroup col { width: auto !important }
+.reserv_weekList colgroup col { width: auto !important }
+.MainFull .floatThead-table { width: calc(100% - 35px) !important; }
+.MainFull .floatThead-container { width: calc(100% - 35px) !important; left: 40px !important; }
+.MainBasic .floatThead-container { left: 200px !important; }
+.reserv_day tbody tr:hover th { background-color: #f9f9f9 }
+.reserv_week tbody tr:hover td { background-color: #f9f9f9 }
+.reserv_week tbody tr:hover th { background-color: #f9f9f9 }
+.reserv_month tbody tr:hover td { background-color: #f9f9f9 }
+.reserv_month tbody tr:hover th { background-color: #f9f9f9 }
+.time_boxTable_day .fix_table_hover tbody tr:hover th { background-color: #f9f9f9 }
+.time_boxTable_week .fix_table_hover tbody tr:hover td { background-color: #f9f9f9 }
+.time_boxTable_week .fix_table_hover tbody tr:hover th { background-color: #f9f9f9 }
+.table_striped tbody tr:nth-child(odd) td { background-color: #fff }
+.table_striped tbody tr:hover td { background-color: #f9f9f9 }
+/*나의예약현황 상태표시컬러*/
+.state { display: inline-block; font-size: 13px; border-radius: 30px; min-width: 66px; text-align: center; padding: 4px; color: #fff; border: 1px solid rgba(0, 0, 0, .1); }
+/*회의종료*/
+.state.end { background: #F1F1F1; color: #9199A3; }
+/*진행중*/
+.state.ing { background: #fff; border: 1px solid #FE3767; color: #FE3767; }
+/*승인대기*/
+.state.confirmWait { background: #fff; border: 1px solid #ff8f00; color: #ff8f00; }
+/*나의참여*/
+.state.parti { background: #fff; border: 1px solid #ba68c8; color: #ba68c8; }
+/*나의참조*/
+.state.refer { background: #fff; border: 1px solid #3F51F0; color: #3F51F0; }
+/*반려*/
+.state.reject { background: #e4514e }
+/*나의예약완료*/
+.state.myReserv { color: #fff; background: #63b148 }
+/*승인대기*/
+.state.myWait { background: #ff8f00 }
+/*나의진행*/
+.state.myIng { background: #FE3767 }
+/****************************************************/
+/*승인완료*/
+.state.confirm { color: #fff; background: #63b148 }
+/*예약완료*/
+.state.reserved { color: #fff; background: #63b148 }

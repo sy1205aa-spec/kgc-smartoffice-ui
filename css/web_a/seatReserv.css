@@ -1,0 +1,359 @@
+@charset "utf-8";
+/* zoomout */
+.mapWrap { position: relative; margin-top: 0px }
+.rest_area { width: 100%; }
+.leftBox { width: 970px; margin: 0 auto; }
+.pdHack { position: relative; overflow: hidden; border-radius: 14px; border: 1px solid rgba(0,0,0,.1) }
+.rightBox { float: right; }
+/*회의실검색Nav*/
+.quickSearch_area { float: left; margin: 20px 0 0 0 }
+.quickSearch_area ul li { float: left; height: 30px; margin: 0 8px 0 0 }
+.quickSearch_area ul li.margin { float: left; margin: 7px 10px 0 0 }
+.quickSearch_area ul li i { display: inline-block; margin: 5px 4px 0 0; color: #666; font-size: 11px; }
+.quickSearch_area ul li.search_title { margin-right: 10px; padding: 0px 0 0; font-size: 14px }
+.quickSearch_area ul li.solid { margin-right: 4px; padding: 0 }
+/* 좌석예약 */
+.rest_area { position: relative; float: left; }
+.rest_area .layout01 { }
+.rest_area .layout02 { display: none }
+.rest_area01 { float: left; width: 100%; margin: 0 0 12px; background: #fff; }
+.rest_area02 { float: left; background: #fff; }
+.rest_area02 .table_comment { float: left; width: 100%; margin-bottom: 2px }
+.rest_area02 .result { float: left; width: 100%; padding: 0 0 20px 20px }
+.rest_area02 .result li { float: left; width: 20%; margin: 10px 8px 0 0; padding: 0 8px 0 0; border-right: 1px dotted #ccc }
+.rest_area02 .result li input { width: 90% }
+.rest_area02 .ctitle { display: inline-block; padding-left: 12px; background: url(../../images/web_a/common/arrow07.gif) no-repeat left 50%; font-size: 14px; color: #333 }
+.rest_area .table_comment { float: left; width: 100%; margin-bottom: 2px }
+.rest_area .btitle { display: inline-block; padding: 20px 0 10px; font-size: 24px; color: #333 }
+.rest_area02 .sbtn_list:link { display: inline-block; float: right; padding: 0 5px; border: 1px solid #ccc; border-radius: 3px; color: #666; font-size: 12px; }
+.rest_area02 .sbtn_list:active { display: inline-block; float: right; padding: 0 5px; border: 1px solid #ccc; border-radius: 3px; color: #666; font-size: 12px; }
+.rest_area02 .sbtn_list:visited { display: inline-block; float: right; padding: 0 5px; border: 1px solid #ccc; border-radius: 3px; color: #666; font-size: 12px; }
+.rest_area02 .sbtn_list:hover { font-weight: bold }
+.rest_area02 .sbtn_list i { position: relative; top: 2px; font-size: 11px }
+.rest_area02 .result li.end { border-right: none }
+.rest_area03 { float: left; width: 100%; margin: 0 0 8px; }
+.utilArea { float: left; width: 100%; position: relative }
+.sideOnoff { float: right; margin-top: 6px; font-size: 22px; }
+/*날짜Nav*/
+.calNav { margin: 0px 0 20px 0; float: left }
+.calNav ul { display: flex; align-items: center; }
+.calNav ul li { display: inline-flex; height: 32px; margin: 0 10px 0 0; align-items: center; }
+.calNav ul li>a { display: block; width: 32px; height: 32px; padding: 0; border-radius: 100%; text-align: center; }
+.calNav ul li>a>i { position: relative; color: #666; }
+.calNav ul li>a:hover { background-color: #EEE; }
+.calNav ul li i { color: #666; }
+.calNav ul li>a.disable { cursor: default }
+.calNav ul li>a.disable:hover { background-color: #fff; }
+.calNav ul li>a.disable i.calendar-left { display: block; width: 100%; height: 100%; background: url("../../images/web_a/ico/icm_arrow_left_dis.svg") no-repeat center center; }
+.calNav ul li>a.disable i.calendar-right { display: block; width: 100%; height: 100%; background: url("../../images/web_a/ico/icm_arrow_right_dis.svg") no-repeat center center; }
+.calNav i.calendar-left { display: block; width: 100%; height: 100%; background: url("../../images/web_a/ico/icm_arrow_left.svg") no-repeat center center; }
+.calNav i.calendar-right { display: block; width: 100%; height: 100%; background: url(../../images/web_a/ico/icm_arrow_right.svg) no-repeat center center; }
+.calNav ul li.date_day { padding: 0; color: #333; font-size: 26px; text-align: center; }
+.calNav ul li.date_day>span { display: inline-block; padding: 2px 0 0 4px; font-size: 16px; color: #666 }
+.calNav ul li.date { color: #333; font-size: 26px; }
+.calendar_area.wfull { display: flex; width: 100%; justify-content: space-between; }
+.calNav .ui-datepicker-trigger { width: 24px; height: 24px; margin: 0; cursor: pointer; }
+/*좌석위치확인*/
+.rightMenu { float: left; width: 100%; margin-bottom: 10px; padding: 10px 12px; border-radius: 14px; background: #fff; border: 1px solid rgba(0,0,0,.1) }
+.rightMenu .titleBox { width: 100%; height: 100%; padding: 16px 0 22px 10px; line-height: 180%; }
+.rightMenu .titleBox p { width: 100%; font-size: 30px; letter-spacing: -1px; }
+.rightMenu .titleBox p:first-child { font-size: 12px; letter-spacing: 0; ; font-weight: normal }
+.rightMenu .titleBox .btn_userList { float: right; padding: 6px; font-size: 16px; }
+.rightMenu .selectBox { width: 100%; position: relative }
+.rightMenu .selectBox input, .rightMenu .selectBox select { }
+.rightMenu .selectBox ul { display: inline-block; width: 100%; margin: 0 0 8px 0; padding: 0; }
+.rightMenu .selectBox ul li { position: relative; float: left; margin: 0 3px 0 0; }
+.rightMenu .selectBox ul li:last-child { margin: 0 }
+.rightMenu .selectBox ul li.fl { width: 100%; }
+.rightMenu .selectBox ul li.flm { width: 100%; margin: 0 0 3px 0; }
+.rightMenu .selectBox ul li.flt { width: 100%; margin: 3px 0 0 0; }
+.rightMenu .selectBox ul li > select { }
+.rightMenu .selectBox ul li > input { }
+.rightMenu .selectBox ul li > input.date { }
+.rightMenu .selectBox ul li img { position: relative; top: 5px; margin-right: 0px; cursor: pointer }
+.rightMenu .selectBox ul li > a { position: absolute; top: -1px; right: 3px; padding: 1px 6px 6px; }
+.rightMenu .selectBox ul li > a > i { position: relative; top: 3px; font-size: 20px; color: #333 }
+.rightMenu .selectBox ul li > a > i:hover { position: relative; top: 3px; font-size: 20px; color: #000 }
+.rightMenu .selectBox > ul li .btn_cal { padding: 2px 3px; }
+.rightMenu .selectBox > ul li .btn_cal:hover { position: relative; }
+.rightMenu .selectBox ul li.fl >a { padding: 0; }
+.rightMenu .contBox { float: left; width: 100%; }
+.rightMenu .contBox > ul { float: left; width: 100%; padding: 14px; background: #fff; }
+.rightMenu .contBox > ul li { padding: 5px 0 6px 10px; }
+.rightMenu .contBox > ul li.first { padding: 5px 0 6px 0; }
+.rightMenu .contBox > ul li select { padding: 0 0 0 10px; font-size: 14px; }
+.rightMenu .contBox > ul li.tit { background: #999; font-size: 14px; color: #fff }
+.rightMenu .contBox > ul li > input { height: 32px; padding: 3px 0; border: none; background: #f3f9eb; font-size: 14px; }
+.rightMenu .contBox > ul li > p { padding: 3px 0; color: #333; font-size: 15px; text-overflow: ellipsis }
+.rightMenu .contBox > ul li .btn_cal { position: relative; top: 3px; padding: 4px 0 0 10px; color: #9bd16b; font-size: 25px; }
+.rightMenu .contBox > ul li .btn_cal:hover { position: relative; top: 3px; color: #467f32; font-size: 25px; }
+.rightMenu .contBox > ul li.userinfor { float: left }
+.rightMenu .contBox > ul li.userinfor p.photo { float: left; margin: 0 8px 4px 0; }
+.rightMenu .contBox > ul li.userinfor p.photo img { width: 56px; height: 68px; overflow: hidden; border-radius: 3px }
+.rightMenu .contBox > ul li span { display: block; float: left; width: 114px; margin-bottom: 1px; }
+.rightMenu .contBox > ul li span.nm { font-size: 15px; }
+.rightMenu .contBox > ul li span.ft { width: 100% }
+.rightMenu .contBox > ul li > ul.user li div.fr { float: right; width: 140px; }
+.rightMenu .contBox > ul li > ul.user li div.fr span { }
+/************ 직원검색이력 ***************/
+.rightMenu .contBox { position: relative; width: 100%; }
+.rightMenu .contBox div.boxArea { position: relative; width: 100%; height: calc(100vh - 390px); overflow: auto; border-radius: 4px; background: #fff; overflow-x: hidden; }
+.rightMenu .contBox div.boxArea dl { width: 100%; height: 100%; padding: 6px 16px; }
+.rightMenu .contBox div.boxArea dl dd { display: flex; width: 100%; padding: 10px 0; border-bottom: 1px solid #eee; justify-content: space-between; align-items: center; }
+.rightMenu .contBox div.boxArea dl dd label { display: inline-block; }
+.rightMenu .contBox div.boxArea dl dd a.btn { position: relative; top: -2px }
+.rightMenu .contBox div.boxArea dl dd.no-data { padding: 20px 0 }
+.rightMenu .contBox div.boxArea dl dd.no-data > span i { position: relative; top: 2px; font-size: 16px; padding-right: 4px }
+.rightMenu .contBox div.boxArea dl dd.close { justify-content: flex-end; padding: 0 }
+.rightMenu .selectBox ul li > dl { float: left }
+.rightMenu .selectBox ul li > dl dd { float: left }
+.rightMenu .search-member { width: 140px; height: 32px; margin-left: 3px; border: 1px solid var(--input-def-border-color); border-radius: 6px; background: #fff; background-color: var(--input-bg-color); color: var(--text-black01-color); }
+.rightMenu .search-member > input { position: relative; width: 100px; height: 30px; padding: 0 0 0 10px; border: none; background: transparent; top: -2px }
+.rightMenu .search-member a { display: inline-block; position: relative; top: 1px; font-size: 20px; padding: 4px 2px }
+.rightMenu .search-member a > i { color: #888 }
+.rightMenu .search-member a > i:hover { color: var(--primary-default-color) }
+.rightMenu .search-member a.btn-search { }
+.rightMenu .search-member a.btn-history { }
+.rightMenu .search-member a.btn-history.on > i { color: var(--primary-default-color) }
+.rightMenu .search-member:hover { border: 1px solid rgba(0,0,0,.5); }
+.rightMenu .search-member:focus { border: 1px solid rgba(0,0,0,.9); color: var(--text-black01-color); }
+.rightMenu .contBox div.btn-fix { display: flex; position: absolute; z-index: 999; left: 0; bottom: 0; width: 100%; height: 50px; padding: 0 16px; padding-top: 8px; border-top: 1px solid #ccc; background: #fff; justify-content: space-between; align-items: center; }
+.rightMenu .contBox div.btn-fix > label { display: inline-flex; height: 32px; font-size: 13px; justify-content: center; align-items: center; }
+.rightMenu .contBox div.btn-fix > label > input { position: relative; top: 0px }
+.rightMenu .lastLi { width: 250px; height: 26px; }
+.rightMenu .contBox02 { display: inline-block; width: 100%; border: 1px solid rgba(0,0,0,.1); border-radius: 6px; overflow: hidden }
+.rightMenu .contBox02 div.boxArea { width: 100%; height: calc(100vh - 455px); overflow: auto; overflow-x: hidden; }
+.rightMenu .contBox02 div.boxArea.timetable { width: 100%; height: calc(100vh - 455px); overflow: auto; border-radius: 4px; background: #fff; overflow-x: hidden; }
+.rightMenu .contBox02 ul.list { display: inline-block; width: 100%; }
+.rightMenu .contBox02 ul.list > li:first-child { border-top: none }
+.rightMenu .contBox02 ul.list > li:nth-child(2) { border-top: none }
+.rightMenu .contBox02 ul.list > li:nth-child(even) { background: #fff }
+.rightMenu .contBox02 ul.list > li { float: left; width: 100%; padding: 14px 10px 10px 10px; border-bottom: 1px dashed #ddd; transition: all .1s; -webkit-transition: all .1s; }
+.rightMenu .contBox02 ul.list > li:hover { background: #f2f2f2; color: #333; cursor: pointer; }
+.rightMenu .contBox02 ul.list li > .on { background: #f2f2f2 }
+.rightMenu .contBox02 ul.list > li.on { background: #f2f2f2 }
+.rightMenu .contBox02 ul.list > li:active { background: #f2f2f2 }
+.rightMenu .contBox02 ul.list li:active > .customer_infor ul.infor li .num { }
+.rightMenu .contBox02 ul.list li > .customer_infor .disable_legend { background: #8cdeff }
+.rightMenu .contBox02 ul.list li > .customer_infor .my_legend { background: #31b4dd }
+.rightMenu .contBox02 ul.list li > .customer_infor .myteam_legend { background: #98cb52 }
+.rightMenu .contBox02 ul.list li > .customer_infor .fix_legend { background: #4dc3c3 }
+.rightMenu .contBox02 ul.list li > .customer_infor p.comment { display: inline-flex; float: left; width: 100%; height: 60px; padding: 0px 4px 0 56px; background: url(../../images/web_a/common/user_none.svg) 10px 50% no-repeat; background-size: 30px; color: #333; font-size: 14px; line-height: 120%; align-items: center; }
+/*사진,번호,시간,내선,닉네임,이름,직책,소속*/
+.rightMenu .contBox02 ul.list li > .customer_infor { float: left; width: 100%; padding: 0; }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor { float: left; width: 100% }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li { float: right; width: 100%; font-size: 13px; line-height: 100%; margin-bottom: 4px }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.photo { float: left; width: 60px; height: 60px; margin: 0; overflow: hidden; border: 1px solid rgba(0,0,0,.1); border-radius: 100%; }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.photo img { width: 100%; height: 100%; object-fit: cover; background: #f5f5f5 }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.seatInfor { width: 68%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.seatInfor.full { width: 98%; padding-left: 4px }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li .tag { display: inline-flex; min-width: 58px; height: 22px; margin-right: 4px; padding: 0 10px; overflow: hidden; border-radius: 30px; background: #87909d; color: #fff; text-overflow: ellipsis; line-height: 100%; white-space: nowrap; align-items: center; justify-content: center; }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.seatInfor .tag.loc { font-size: 13px }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.seatInfor > em { display: inline; position: relative; color: #333 }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.phone { width: 68%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.phone .tag { }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.phone .tag.loc { font-size: 11px; }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.phone > em { }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.phone.full { width: 98%; padding-left: 4px }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.nicName { display: inline-block; width: 68%; max-width: 210px; padding: 0; overflow: hidden; color: #333; font-size: 20px; white-space: nowrap; letter-spacing: -1px; text-overflow: ellipsis }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.nicName.full { width: 98%; padding-left: 10px }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.nicName > em { display: inline-block; position: relative; top: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.nicName em.name { position: relative; top: -1px; margin-left: 4px; color: #666; font-size: 13px; padding: 1px }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.nicName em.name::before { content: "( " }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.nicName em.name::after { content: " )" }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.name { width: 68%; padding: 6px 0 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.name.full { width: 98%; padding-left: 4px }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.name > span { position: relative; color: #333; font-size: 13px; }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.name.point > span { font-size: 18px }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.name > .position { margin-left: 4px; color: #666; font-size: 13px !important }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.name > .position::before { position: relative; font-size: 12px; top: -1px }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.name > .position::after { position: relative; font-size: 12px; top: -1px }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.position { width: 68%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.position.full { width: 98%; padding-left: 4px }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.position > span { position: relative; color: #666; font-size: 14px; }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.group { width: 68%; margin-bottom: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.group.full { width: 98%; padding-left: 4px }
+.rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.group > span { position: relative; color: #666; font-size: 13px; top: 0px }
+/*롤오버시번호색상변경*/
+.rightMenu .contBox02 ul.list > li:hover > .customer_infor ul.infor li .tag { background: #333; transition: all .1s; -webkit-transition: all .1s; }
+.rightMenu .contBox02 ul.list > li.on > .customer_infor ul.infor li.seatInfor .tag { background: #333 }
+/* 예약버튼 */
+.btn_seatInfo { float: left; width: 49%; padding: 12px 0 10px; background: #333; color: #fff; font-size: 16px; text-align: center; cursor: pointer; }
+.btn_seatInfo:hover { width: 49%; background: #333; color: #fff; }
+.btn_seatInfo:active { background: #333; color: #fff; }
+.btn_seatInfo i { font-size: 13px }
+.btn_seatInfo_ { float: left; width: 49%; margin-top: 3px; padding: 9px 0 10px; background: #8c8c8d; color: #fff; font-size: 16px; text-align: center; cursor: pointer; }
+.btn_seatInfo_:hover { width: 49%; background: #333; color: #fff; }
+.btn_seatInfo_:active { background: #000; color: #fff; }
+.btn_seatInfo_ i { font-size: 13px }
+.btn_memberSearch { float: right; width: 49%; padding: 12px 0 10px; background: #333; color: #fff; font-size: 16px; text-align: center; cursor: pointer; }
+.btn_memberSearch:hover { background: #333; color: #fff; }
+.btn_memberSearch:active { background: #333; color: #fff; }
+.btn_memberSearch i { font-size: 13px }
+.btn_memberSearch_ { float: right; width: 49%; margin-top: 3px; padding: 9px 0 10px; background: #8c8c8d; color: #fff; font-size: 16px; text-align: center; cursor: pointer; }
+.btn_memberSearch_:hover { background: #333; color: #fff; }
+.btn_memberSearch_:active { background: #000; color: #fff; }
+.btn_memberSearch_ i { font-size: 13px }
+.MainBasic { float: left; width: 100%; }
+.MainFull { float: right; width: 100%; padding: 0; }
+#LblockRightOpen { display: block; position: absolute; top: 0px; right: 0; float: left; width: 280px; height: 100%; min-height: 100%; }
+.leftBox { position: relative; width: 600px; margin: 0 auto; overflow: auto; }
+.rightBox { float: right; width: 280px; height: 100%; min-height: 100%;/*position:absolute;top:-10px;right:0;*/ }
+.roomAreabox .leftBox { position: relative; width: 100%; height: 640px; margin: 0 auto; overflow: auto; }
+.roomAreabox .rightBox { float: right; width: 244px; margin-top: 10px; }
+.MainFull .leftBox { width: 100%; }
+.MainBasic .leftBox { width: 100%; }
+.MainBasic .rest_area { width: calc(100% - 300px); overflow: hidden; }
+/* 범례01 */
+.legend_box { float: left; width: 100%; margin: 0px 0 20px 0 }
+.legend_box span.txt { display: inline-block; margin: 6px 0; padding-left: 10px; background: url(../../images/web_a/common/arrow00_.gif) left 4px no-repeat }
+.bumrea02 { float: left; width: 100%; padding-top: 4px; font-size: 13px; }
+.bumrea02 ul { display: inline-block; float: left; color: #333 }
+.bumrea02 li { float: left; margin-right: 10px; line-height: 160%; }
+.bumrea02 li span { display: inline-block; position: relative; top: 2px; width: 14px; height: 14px; margin-right: 4px; border-radius: 100% }
+.bumrea { float: left; width: 100%; font-size: 13px; }
+.bumrea ul { display: inline-block; float: left; color: #333 }
+.bumrea li { float: left; margin-right: 20px; line-height: 160%; }
+.bumrea li span { display: inline-block; position: relative; top: 0px; width: 14px; height: 14px; margin-right: 5px; border-radius: 100%; }
+.bumrea li span.seat_able { background-color: rgba(255,255,255,.5) !important; border: 1px solid #ccc }
+.bumrea li span.colorB { background-color: #515160; }
+.bumrea li > div { display: inline-flex; height: 32px; margin-right: 4px; padding: 0 0px; align-items: center; justify-content: center; }
+/*******/
+.floorSelect { position: absolute; top: 30px; right: 30px; z-index: 999 }
+.floorSelect li { margin-bottom: 10px }
+.floorSelect li .mapColor-Change { float: right; }
+/*날짜Nav*/
+.calendar_area { float: left; margin: 5px 20px 6px 0 }
+.calendar_area ul li { float: left; margin: 0 10px 0 0; }
+.calendar_area ul li>a { display: inline-block; width: 30px; height: 30px; padding: 5px 0 0; border: 1px solid rgba(0,0,0,0.3); border-radius: 3px; background: #fbfbfb; text-align: center; }
+.calendar_area ul li>a>i { position: relative; color: #666; top: 2px }
+.calendar_area ul li>a:hover { background: #fff; color: #000 }
+.calendar_area ul li>a:hover>i { background: #fff; color: #000 }
+.calendar_area ul li i { color: #666; }
+.calendar_area ul li.date_day { padding: 0 20px; color: #333; font-size: 26px; text-align: center; letter-spacing: -1px; line-height: 100% }
+.calendar_area ul li.date_day>span { display: inline-block; padding: 3px 0 0 4px; font-size: 16px; color: #666 }
+.calendar_area ul li.date { padding: 0 20px; color: #333; font-size: 26px; letter-spacing: -1px; line-height: 100% }
+.calendar_area.seat ul li.date { padding: 0; color: #333; font-size: 26px; letter-spacing: -1px; line-height: 100% }
+.calendar_area.seat ul li.date .cal { position: relative; top: 2px; left: -6px; }
+.calendar_area ul li.date > input { width: 132px; border: none; background: #fff; color: #333; font-size: 23px; text-align: center; letter-spacing: -1px; }
+.calendar_area ul li.margin02 { float: left; margin: 7px 10px 0 0; }
+.calendar_area ul li>a.disable { display: inline-block; width: 30px; height: 30px; padding: 5px 0 0; border: 1px solid rgba(0,0,0,0.1); border-radius: 3px; background: #fbfbfb; text-align: center; }
+.calendar_area ul li>a.disable>i { position: relative; color: #ccc; top: 2px }
+.calendar_area ul li>a.disable:hover { background: #fbfbfb; color: #ccc; cursor: default }
+.calendar_area ul li>a.disable:hover>i { background: #fbfbfb; color: #ccc }
+.calendar_box3 { float: left; margin: 5px 0 0 0 }
+.calendar_box3 > ul li { float: left; height: 30px; margin: 0 6px 0 0 }
+.calendar_box3 > ul li.margin { float: left; margin: 7px 10px 0 0 }
+.calendar_box3 > ul li i { display: inline-block; margin: 5px 4px 0 0; color: #666; font-size: 11px; }
+/*헤더고정*/
+#fix_table { width: 100% }
+#fix_table .ui-selecting { background: #f5a800 !important }
+#fix_table .ui-selected { background: #f5a800 !important }
+#fix_table td.selectable { cursor: pointer }
+#fix_table td.selectable:hover { background-color: #f5a800 !important; cursor: pointer }
+.ui-selectable-helper { position: absolute }
+.reserv_day .quickSearch_area ul li.search_title { padding: 5px 0 0 0; }
+/*일간현황층구분선*/
+.reserv_seatList tbody tr.floorStart th { border-top: solid 1px #bbb; background-color: #f5f5f5 }
+.reserv_seatList tbody tr.floorIng th { background-color: #f5f5f5 }
+.reserv_seatList tbody tr.floorEnd th { border-bottom: 1px solid #bbb; background-color: #f5f5f5 }
+/*일간현황층구분선*/
+.reserv_seatList tbody tr.floorStart td { border-top: 1px solid #bbb; }
+.reserv_seatList tbody tr.floorIng td { }
+.reserv_seatList tbody tr.floorEnd td { border-bottom: 1px solid #bbb; }
+/*일간현황테이블*/
+.reserv_seatList { width: 100%; border-collapse: collapse; background: #fff; }
+.reserv_seatList thead { border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; border-left: 1px solid #ccc; }
+.reserv_seatList thead th { padding: 8px 0; color: #333; text-align: center; vertical-align: middle; background: #eee }
+.reserv_seatList thead th:first-child { background: #eee url(../../images/web_a/common/line_thead_seat.gif) right top repeat-y !important; }
+.reserv_seatList thead th:last-child { background: #eee url(../../images/web_a/common/line_thead_seat.gif) right top repeat-y !important; }
+.reserv_seatList thead th > span { display: inline-block; position: relative; top: -1px; left: -50%; padding: 1px 6px; font-size: 13px; }
+.reserv_seatList thead th:nth-child(2) > span { visibility: hidden }
+.reserv_seatList thead th > span::before { position: absolute; left: 17px; bottom: -9px; content: "▼"; color: #aaa; font-size: 11px; -webkit-transform: scale(0.5); transform: scale(0.5); }
+.reserv_seatList thead th > span.end { color: #999; }
+.reserv_seatList thead tr td:first-child { width: 100px !important }
+.reserv_seatList tbody { border-bottom: solid 1px #d9d9d9; border-left: 1px solid #ccc; }
+.reserv_seatList tbody th { padding: 6px 0; border-top: solid 1px #d9d9d9; color: #333; font-weight: normal; vertical-align: middle; }
+.reserv_seatList thead th.roomUser { width: 60px; color: #fff }
+.reserv_day { width: 100% }
+.reserv_seatList th.roomName { padding-left: 4px; background: url(../../images/web_a/common/line_min30.gif) right top repeat-y; color: #4b4b4b; text-align: left }
+.reserv_seatList th.roomUserCount { width: 60px; padding-right: 12px; background-image: url(../../images/web_a/common/line_min30.gif); background-repeat: repeat-y; background-position: right top; color: #666; text-align: right }
+.reserv_seatList th.roomName p { width: 96%; padding-left: 24px; overflow: hidden; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
+.reserv_seatList th.roomName p a { position: relative }
+.reserv_seatList th.roomName p a > i { position: absolute; top: 3px; left: -18px; font-size: 13px; color: #7092be }
+.reserv_seatList tbody td { border-top: solid 1px #d9d9d9; line-height: 200%; text-align: center }
+/*지난시간*/
+.reserv_seatList tbody tr td.end_time { background-color: #f4f4f4; color: #999 }
+/*분단위라인*/
+.reserv_seatList tbody td { background-image: url(../../images/web_a/common/line_min30.gif); background-position: right top; background-repeat: repeat-y }
+/* 좌석번호 */
+p.seatNum { display: table; float: left; width: 140px; color: #3992dc; font-size: 18px; line-height: 70%; letter-spacing: -1px; }
+/* 회의실번호색상 */
+p.seatNum > span.nm { display: inline-flex; width: 98%; padding: 0 10px; overflow: hidden; color: #999; text-align: left; text-overflow: ellipsis; line-height: 100%; vertical-align: middle; white-space: nowrap; align-items: center; }
+p.seatNum > span.on { color: #333; }
+p.seatNum > span.off { color: #aaa; }
+p.seatNum > span .snum { position: relative; top: 0; margin-right: 8px; padding: 5px 12px; border-radius: 30px; font-size: 14px; text-align: left; line-height: 100%; vertical-align: middle; }
+p.seatNum > span > span { position: relative; font-size: 13px }
+/*네비박스*/
+.navBox { position: absolute; z-index: 100; bottom: -90px; float: left; width: 100%; height: 90px; transition: all .2s; -webkit-transition: all .2s; }
+.navBox.on { bottom: 0 }
+.navBox .timeSlideArea a.btn_toggle > em { color: #666; font-size: 13px; }
+.navBox .timeSlideArea a.btn_toggle:hover > em { color: #333; }
+.navBox.on .timeSlideArea a.btn_toggle > em:nth-child(1) { display: none }
+.navBox.on .timeSlideArea a.btn_toggle > em:nth-child(2) { color: #333; display: block !important }
+/* 시간조회버튼텍스트토글 */
+.timeSlideArea a.btn_toggle { display: inline-flex; position: absolute; top: -33px; right: 130px; width: 124px; height: 32px; padding: 1px 0 0 0; border: 1px solid rgba(0,0,0,.2); border-bottom: none; border-radius: 10px 10px 0 0; background: #fff; justify-content: center; align-items: center; }
+/*맵네비*/
+#mapNav { position: absolute; z-index: 99; right: 22px; bottom: 130px; width: 90px; height: 192px; transition: all .2s; -webkit-transition: all .2s; }
+#mapNav .type_swich { display: inline-flex; width: 81px; height: 32px; border: 1px solid #ccc; border-bottom: none; border-radius: 6px 6px 0 0; background: #eee; color: #333; font-size: 12px; text-align: center; transition: all .2s; justify-content: center; align-items: center; -webkit-transition: all .2s; }
+#mapNav .type_swich > em { color: #333; font-size: 12px; }
+#mapNav .type_swich > em > i { position: relative; font-size: 11px; top: 1px }
+#mapNav.on .type_swich > em:nth-child(1) { display: none }
+#mapNav.on .type_swich > em:nth-child(2) { display: block !important }
+#mapNav.on { bottom: -70px }
+#mapNav.on .type_swich { background: #fff }
+#mapNav.on .type_swich > em { color: #666; }
+#mapNav.on .type_swich:hover > em { color: #333; }
+#mapNav .navArea { width: 81px; height: 164px; padding: 4px; border: 1px solid rgba(0,0,0,.3); background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,.1); }
+#mapNav .positionBtnArea { position: relative; width: 70px; height: 78px; border: 1px solid rgba(0,0,0,.3); background: #fff; }
+#mapNav .positionBtnArea span { display: inline-block; position: absolute; width: 30px; height: 30px; border-radius: 100%; text-align: center; text-indent: -9999px; line-height: 16px; cursor: pointer }
+#mapNav .positionBtnArea span:hover { border-radius: 100%; background-color: #eee; }
+#mapNav .positionBtnArea span:active { border-radius: 100%; background-color: #eee; }
+#topPositionMap { top: 4px; left: 20px; background: url("../../images/web_a/map/btn_top.svg") center center no-repeat; background-size: 22px 24px }
+#leftPositionMap { top: 23px; left: 1px; background: url("../../images/web_a/map/btn_left.svg") center center no-repeat; background-size: 22px 24px }
+#rightPositionMap { top: 23px; right: 0px; background: url("../../images/web_a/map/btn_right.svg") center center no-repeat; background-size: 22px 24px }
+#bottomPositionMap { left: 20px; bottom: 4px; background: url("../../images/web_a/map/btn_down.svg") center center no-repeat; background-size: 22px 24px }
+#mapNav .zoomBtnArea span { display: inline-block; float: left; width: 34px; height: 34px; margin: 4px 0 0 2px; border: 1px solid rgba(0,0,0,.3); background: #fff; text-align: center; line-height: 0; cursor: pointer; }
+#mapNav .zoomBtnArea span:first-child { margin-left: 0 }
+#mapNav .zoomBtnArea span > i { display: inline-block; width: 34px; height: 34px; color: #333; text-align: center; line-height: 31px; }
+#mapNav .zoomBtnArea span:hover { border: 1px solid rgba(0,0,0,.2); background: #999; color: #fff }
+#mapNav .zoomBtnArea span:active { border: 1px solid rgba(0,0,0,.2); background: #999; color: #fff }
+#mapNav .zoomBtnArea span:hover > i { color: #fff; }
+#mapNav .zoomBtnArea span:active > i { color: #fff; }
+.btn_reset { display: inline-flex; float: left; width: 100%; height: 34px; margin: 4px 0 0 0; border: 1px solid rgba(0,0,0,.3); background: #fff; font-size: 13px; text-align: center; cursor: pointer; justify-content: center; align-items: center; }
+.btn_reset:hover { border: 1px solid rgba(0,0,0,.3); background: #999; color: #fff }
+.btn_reset:active { border: 1px solid rgba(0,0,0,.3); background: #999; color: #fff }
+.btn_reset i { position: relative; top: 0px; font-size: 9px; margin-right: 3px }
+/* 종일제*/
+#mapNav { bottom: 30px }
+#mapNav.on { bottom: -160px }
+/* 시간제 */
+.navBox #mapNav { bottom: 130px }
+.navBox #mapNav.on { bottom: -70px }
+/*타임슬라이드*/
+.timeSlideArea { position: absolute; z-index: 200; bottom: 0; float: left; width: 100%; height: 90px; margin: 0; padding: 14px 0 0 0; border-top: 1px dotted #ccc; background: #f9f9f9; transition: all .2s; -webkit-transition: all .2s; }
+.timeSlideArea > span.title { display: inline-block; float: left; width: 180px; padding: 21px 30px; color: #888; font-size: 15px; text-align: center; }
+/*타임테이블*/
+.timeSelectArea { width: 100%; padding: 20px 40px; }
+.timeSelectArea .sTitle { float: left; width: 100%; margin: 0 0 10px; color: #333; font-size: 15px; position: relative }
+.timeSelectArea .sTitle > span:first-child { display: inline-block; margin: 4px 0 10px; font-size: 24px }
+.timeSelectArea .sTitle >span em { font-size: 16px; margin-left: 10px }
+.timeSelectArea .sTitle i { color: #999; font-size: 13px; margin-left: 2px }
+.timeSelectArea .sTitle .listOn { float: right }
+/* 층정보 */
+.floor-infor { position: absolute; top: 20px; left: 24px; z-index: 999; padding: 14px 26px; background: rgba(255,255,255,.9); border-radius: 10px; }
+.floor-infor dl { }
+.floor-infor dl:nth-child(2) { margin-top: 20px }
+.floor-infor dl dt { color: var(--text-black02-color); font-size: 20px; margin-bottom: 10px; }
+.floor-infor dl dd { position: relative; line-height: 140%; margin-left: 13px; color: var(--text-black02-color) }
+.floor-infor dl dd::before { content: "\2022"; color: var(--text-black02-color); display: inline-block; width: 2px; height: 2px; margin-left: -14px; position: absolute; }

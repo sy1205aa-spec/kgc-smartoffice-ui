@@ -1,0 +1,65 @@
+#modal-window {
+	position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10010;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.3);
+}
+/*.mw .fg*/
+#modal-window .modal-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 480px;
+    padding: 20px;
+    border-radius: 14px;
+    background: #fff;
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 1px 5px rgb(0 0 0 / 10%);
+}
+
+/* Modal Title */	
+#modal-window .modal-box .modal-title {
+    margin: 0 0 8px 10px;
+    font-size: 22px;
+}
+
+/* pop_box */
+#modal-window .modal-box .modal-pop {
+    float: left;
+    width: 100%;
+    margin: 4px auto 10px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+    line-height: 140%;
+    font-size: 16px;
+}
+
+/* 메뉴하나 */
+#modal-window .modal-buttons {
+    float: left;
+    width: 100%;
+	margin-top: 10px;
+}
+
+#modal-window .modal-buttons a {
+    float: left;
+}
+
+#modal-window .modal-buttons a:first-child:nth-last-child(1) {
+    width: 100%;
+}
+
+/* 메뉴두개 */
+#modal-window .modal-buttons a:first-child:nth-last-child(2), #modal-window .modal-buttons a:first-child:nth-last-child(2) ~ a {
+    width: calc(50% - 5px);
+    margin-left: 10px
+}
+
+#modal-window .modal-buttons a:first-child:nth-last-child(2) {
+    margin-left: 0
+}

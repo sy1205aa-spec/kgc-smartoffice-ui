@@ -1,0 +1,790 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   KGC 스마트오피스 PC Web 대시보드 프리미엄 스타일 시트
+   - 와이드 데스크톱(최소 1200px ~ 1440px) 최적화
+   - KGC 시그니처 레드(#D71635), 딥 차콜(#1A1D20), 세련된 카드 레이아웃
+   ========================================================================== */
+
+/* 기본 레이아웃 및 캔버스 */
+html, body.web-dashboard-page {
+    height: 100%;
+    min-width: 1240px;
+    background-color: #F8FAFC;
+    color: #1E293B;
+    font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+body.web-dashboard-page {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 외부 링크 표시 아이콘 */
+.ext-ico {
+    display: inline-block;
+    font-size: 11px;
+    font-style: normal;
+    margin-left: 2px;
+    opacity: 0.8;
+}
+
+/* 헤더 GNB 메뉴 아이콘 매핑 */
+#head ul.menu li > a.dashboard { background-image: url("../images/web/menu/ico_dashboard.svg") }
+#head ul.menu li > a.seat { background-image: url("../images/web/menu/ico_seat.svg") }
+#head ul.menu li > a.meet { background-image: url("../images/web/menu/ico_meet.svg") }
+#head ul.menu li > a.locker { background-image: url("../images/web/menu/ico_locker.svg") }
+#head ul.menu li > a.parking { background-image: url("../images/web/menu/ico_parking.svg") }
+#head ul.menu li > a.bus { background-image: url("../images/web/menu/ico_bus.svg") }
+#head ul.menu li > a.myReserv { background-image: url("../images/web/menu/ico_myReserv.svg") }
+#head ul.menu li > a.dashboard.on, #head ul.menu li > a.dashboard:hover { background-image: url("../images/web/menu/ico_dashboard_on.svg") }
+#head ul.menu li > a.seat.on, #head ul.menu li > a.seat:hover { background-image: url("../images/web/menu/ico_seat_on.svg") }
+#head ul.menu li > a.meet.on, #head ul.menu li > a.meet:hover { background-image: url("../images/web/menu/ico_meet_on.svg") }
+#head ul.menu li > a.locker.on, #head ul.menu li > a.locker:hover { background-image: url("../images/web/menu/ico_locker_on.svg") }
+#head ul.menu li > a.parking.on, #head ul.menu li > a.parking:hover { background-image: url("../images/web/menu/ico_parking_on.svg") }
+#head ul.menu li > a.bus.on, #head ul.menu li > a.bus:hover { background-image: url("../images/web/menu/ico_bus_on.svg") }
+#head ul.menu li > a.myReserv.on, #head ul.menu li > a.myReserv:hover { background-image: url("../images/web/menu/ico_myReserv_on.svg") }
+#logo > span { display: inline-block !important; }
+@media screen and (max-width: 1440px) {
+    #logo > span { display: none !important; }
+}
+
+/* --------------------------------------------------------------------------
+   대시보드 메인 컨테이너
+   -------------------------------------------------------------------------- */
+.web-dashboard-container {
+    flex: 1 0 auto;
+    width: 100%;
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 32px 30px 48px;
+    box-sizing: border-box;
+}
+
+.dashboard-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* --------------------------------------------------------------------------
+   1. 히어로 헤더 (환영 문구 + 새로고침)
+   -------------------------------------------------------------------------- */
+.dashboard-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 32px;
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.2);
+    color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-hero::after {
+    content: "";
+    position: absolute;
+    right: -40px;
+    top: -50px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(215, 22, 53, 0.25) 0%, rgba(215, 22, 53, 0) 70%);
+    pointer-events: none;
+}
+
+.hero-title {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 0 0 6px;
+    letter-spacing: -0.5px;
+}
+
+.hero-title .user-greeting {
+    color: #F87171;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.hero-sub {
+    font-size: 14px;
+    color: #94A3B8;
+    margin: 0;
+}
+
+.btn-dashboard-refresh {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #F1F5F9;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+}
+
+.btn-dashboard-refresh:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.35);
+    transform: translateY(-1px);
+}
+
+.btn-dashboard-refresh .ico-refresh {
+    font-style: normal;
+    font-size: 16px;
+    display: inline-block;
+    transition: transform 0.5s ease;
+}
+
+.btn-dashboard-refresh.rotating .ico-refresh {
+    transform: rotate(360deg);
+}
+
+/* --------------------------------------------------------------------------
+   2. [메인 섹션] 나의 예약 (My Reservation)
+   -------------------------------------------------------------------------- */
+.section-my-reservation {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 28px 32px 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    border: 1px solid #E2E8F0;
+    position: relative;
+}
+
+.section-my-reservation::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 32px;
+    width: 60px;
+    height: 4px;
+    background: #D71635;
+    border-radius: 0 0 4px 4px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #F1F5F9;
+}
+
+.section-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    background: #FEE2E2;
+    color: #D71635;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0F172A;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.section-title .sub-en {
+    font-size: 14px;
+    color: #64748B;
+    font-weight: 500;
+    margin-left: 6px;
+}
+
+.btn-external-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: #FFF1F2;
+    color: #D71635;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid #FECDD3;
+    transition: all 0.2s ease;
+}
+
+.btn-external-link:hover {
+    background: #D71635;
+    color: #FFFFFF;
+    border-color: #D71635;
+    box-shadow: 0 4px 12px rgba(215, 22, 53, 0.25);
+    transform: translateY(-1px);
+}
+
+.btn-external-link .ext-arrow {
+    font-style: normal;
+    font-size: 14px;
+    transition: transform 0.2s ease;
+}
+
+.btn-external-link:hover .ext-arrow {
+    transform: translate(2px, -2px);
+}
+
+/* 3단 카드 그리드 */
+.reservation-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.reservation-card {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px;
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+}
+
+.reservation-card:hover {
+    background: #FFFFFF;
+    border-color: #CBD5E1;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    transform: translateY(-2px);
+}
+
+.card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.card-icon {
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1E293B;
+    margin: 0;
+    flex: 1;
+}
+
+/* 뱃지 공통 */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.badge-active {
+    background: #DCFCE7;
+    color: #15803D;
+    border: 1px solid #BBF7D0;
+}
+
+.badge-reserved {
+    background: #DBEAFE;
+    color: #1D4ED8;
+    border: 1px solid #BFDBFE;
+}
+
+.count-badge {
+    background: #F1F5F9;
+    color: #475569;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   카드 본문 상세 스타일
+   -------------------------------------------------------------------------- */
+.seat-main-number, .locker-main-number {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.number-label {
+    font-size: 12px;
+    color: #64748B;
+    font-weight: 600;
+}
+
+.seat-no, .locker-no {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0F172A;
+    letter-spacing: -1px;
+}
+
+.type-pill {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    background: #EFF6FF;
+    color: #2563EB;
+    border-radius: 4px;
+}
+
+.d-day-pill {
+    font-size: 11px;
+    font-weight: 800;
+    padding: 2px 8px;
+    background: #FEE2E2;
+    color: #D71635;
+    border-radius: 4px;
+    margin-left: 6px;
+}
+
+.detail-meta-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.detail-meta-list li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.meta-label {
+    color: #64748B;
+    font-weight: 500;
+}
+
+.meta-val {
+    color: #1E293B;
+    font-weight: 600;
+    text-align: right;
+}
+
+/* 회의실 리스트 */
+.meeting-list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.meeting-item {
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 12px 14px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.meeting-time-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.time-range {
+    font-size: 13px;
+    font-weight: 700;
+    color: #D71635;
+}
+
+.place-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 6px;
+    background: #F1F5F9;
+    color: #334155;
+    border-radius: 4px;
+}
+
+.meeting-subject {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0F172A;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.meeting-more-bar {
+    font-size: 12px;
+    color: #64748B;
+    font-weight: 600;
+    text-align: center;
+    padding: 6px 0;
+    background: #F1F5F9;
+    border-radius: 6px;
+}
+
+/* 미예약/미배정 Empty State */
+.empty-state-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.empty-msg {
+    font-size: 14px;
+    color: #64748B;
+    margin: 0 0 12px;
+}
+
+.btn-card-action {
+    display: inline-block;
+    padding: 6px 14px;
+    background: #FFFFFF;
+    color: #D71635;
+    border: 1px solid #D71635;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn-card-action:hover {
+    background: #D71635;
+    color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   3. [하단 섹션] 자체 서비스 3단 그리드
+   -------------------------------------------------------------------------- */
+.dashboard-grid-bottom {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.sub-service-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 20px;
+    padding: 26px 28px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    min-height: 250px;
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+}
+
+.sub-service-card:hover {
+    border-color: #CBD5E1;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+    transform: translateY(-2px);
+}
+
+.card-header-simple {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.service-icon {
+    font-size: 20px;
+}
+
+.service-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0F172A;
+    margin: 0;
+}
+
+.service-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 차량 정보 */
+.vehicle-plate-box {
+    background: #F8FAFC;
+    border: 1px dashed #CBD5E1;
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.plate-label {
+    font-size: 12px;
+    color: #64748B;
+    font-weight: 600;
+}
+
+.plate-number {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0F172A;
+    letter-spacing: -0.5px;
+}
+
+.notice-info-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    border-radius: 10px;
+    padding: 10px 14px;
+}
+
+.notice-info-box .ico-info {
+    font-style: normal;
+    color: #D97706;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.notice-info-box .notice-text {
+    font-size: 12px;
+    color: #92400E;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* 셔틀버스 */
+.shuttle-info-box {
+    background: #F8FAFC;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #E2E8F0;
+}
+
+.shuttle-route-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.route-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0F172A;
+}
+
+.ticket-type-pill {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    background: #FEF3C7;
+    color: #B45309;
+    border-radius: 4px;
+}
+
+/* 액션 링크 버튼 */
+.service-card-foot {
+    margin-top: 18px;
+}
+
+.btn-service-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.btn-parking {
+    background: #0F172A;
+    color: #FFFFFF;
+}
+
+.btn-parking:hover {
+    background: #1E293B;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+}
+
+.btn-shuttle {
+    background: #F1F5F9;
+    color: #334155;
+    border: 1px solid #E2E8F0;
+}
+
+.btn-shuttle:hover {
+    background: #E2E8F0;
+    color: #0F172A;
+}
+
+.btn-service-link .arr-right {
+    font-style: normal;
+    transition: transform 0.2s;
+}
+
+.btn-service-link:hover .arr-right {
+    transform: translateX(3px);
+}
+
+/* 모바일 앱 QR 카드 */
+.qr-body {
+    padding: 0;
+}
+
+.qr-frame {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #F8FAFC;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #E2E8F0;
+}
+
+.qr-image-wrap {
+    flex-shrink: 0;
+    background: #FFFFFF;
+    padding: 6px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #E2E8F0;
+}
+
+.qr-svg {
+    display: block;
+}
+
+.qr-guide-text {
+    flex: 1;
+}
+
+.guide-lead {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0F172A;
+    margin: 0 0 2px;
+}
+
+.guide-sub {
+    font-size: 12px;
+    color: #64748B;
+    margin: 0 0 8px;
+}
+
+.guide-link {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #D71635;
+    text-decoration: none;
+}
+
+.guide-link:hover {
+    text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   4. 푸터 스타일
+   -------------------------------------------------------------------------- */
+.web-footer {
+    width: 100%;
+    background: #FFFFFF;
+    border-top: 1px solid #E2E8F0;
+    padding: 24px 0;
+    margin-top: auto;
+}
+
+.footer-inner {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.footer-info {
+    font-size: 13px;
+    color: #64748B;
+}
+
+.footer-info .divider {
+    margin: 0 10px;
+    color: #CBD5E1;
+}
+
+.btn-switch-mobile {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: #F1F5F9;
+    color: #475569;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid #E2E8F0;
+    transition: all 0.2s;
+}
+
+.btn-switch-mobile:hover {
+    background: #E2E8F0;
+    color: #0F172A;
+}
+
+.btn-switch-mobile .ico-mobile {
+    font-style: normal;
+}

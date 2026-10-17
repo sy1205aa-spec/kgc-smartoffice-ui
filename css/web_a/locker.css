@@ -1,0 +1,174 @@
+@charset "utf-8";
+.title_area { margin-bottom: 30px }
+.locker .title_area .floorInfor { padding: 0 0 16px 0 }
+.locker .tab_wrap > .title_area { position: relative; float: left; width: 100%; border-bottom: 1px dotted #ccc }
+.locker .title_area .floorInfor > span.count { position: relative; top: 7px; }
+.locker .map_box a.lockerGroup { display: inline-block; position: absolute; z-index: 9999; font-size: 30px; padding: 20px; width: 90px; height: 90px; color: #000 }
+.locker .map_box a.lockerGroup > span { text-align: center; display: inline-flex; align-items: center; width: 50px; height: 50px; background-color: #fff4e8; border-radius: 100%; border: 1px solid rgba(0,0,0,.1); box-shadow: 0 0 10px rgba(0,0,0,.1) }
+.locker .map_box a.lockerGroup > span > em { display: inline-block; width: 100%; height: 100%; text-align: center }
+.locker .map_box > a.lockerGroup > i { font-size: 20px; color: #ff3b00; text-shadow: 0 0 6px #fff; position: relative; top: -2px; left: 3px }
+/* 사물함 */
+.mw .pop_locker { width: 940px }
+.mw .pop_locker.regist { width: 410px; }
+.mw .pop_locker.confirm { width: 460px; }
+/* 사물함 */
+.mw .pop_locker .title { font-size: 24px; color: #000; margin: 4px 0 4px 10px; }
+.mw .pop_locker .title > span { font-size: 22px; color: #333; margin-left: 20px; }
+.mw .pop_locker .title > span > em { color: #ff3b00; }
+.mw .pop_locker ul.legend { clear: both; width: 100%; padding: 20px 0 10px 24px; }
+.mw .pop_locker ul.legend li { font-size: 16px; display: inline-flex; margin-right: 20px; align-items: center; }
+.mw .pop_locker ul.legend li span { display: inline-block; width: 16px; height: 16px; border-radius: 50%; margin-right: 8px; border: 1px solid rgba(0, 0, 0, .2) }
+.mw .pop_locker ul.legend li span.able { background: #605DFA; }
+.mw .pop_locker ul.legend li span.occupied { background: #677088 }
+.mw .pop_locker ul.legend li span.myLocker { background: #FE3767 }
+/* 사물함팝업 */
+.mw .pop_locker { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 210; width: 940px; border-radius: 10px; padding: 30px; background: #fff; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); }
+/**********************/
+.mw .pop_locker .locker-frame {     border: 1px solid rgba(0, 0, 0, .1);
+    background: #FAFAFA;
+    border-radius: 4px;
+    width: calc(100% - 210px);
+    height: 370px;
+    overflow: hidden;
+    float: left; }
+.mw .pop_locker .locker-frame .zoomContainer { position: relative; width: 100%; height: 370px; }
+.mw .pop_locker .locker-frame .zoomArea { width: max-content; height: max-content; }
+.mw .pop_locker .locker-frame .lockerArea { position: relative; top: 0px; width: max-content; height: max-content; -webkit-transform-origin: center center; -moz-transform-origin: center center; transform-origin: center center; -webkit-transform: scale(.9); -moz-transform: scale(.9); transform: scale(.9); }
+/**********************/
+.lockerArea .locker { display: flex; flex-wrap: wrap; gap: 10px; width: max-content; height: max-content; }
+.lockerArea .locker > li { flex-wrap: wrap; gap: 10px; width: 60px; height: 60px; color: #fff; padding: 4px 6px; border-radius: 4px; border: 3px solid rgba(0, 0, 0, .1); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; cursor: pointer}
+.lockerArea .locker > li:active { border: 3px solid #00ef14 }
+.lockerArea .locker > li.select { border: 3px solid #00ef14 }
+.lockerArea .locker > li.occupied { background: #677088 }
+.lockerArea .locker > li.able { background: #605DFA }
+.lockerArea .locker > li.disable { text-indent: -9999px; background: #24254f url(../../images/web_a/ico/ico-cross.svg) center center / 120% no-repeat }
+.lockerArea .locker > li.detected { background: #677088 }
+.lockerArea .locker > li.open { background: #677088 }
+.lockerArea .locker > li.lock { background: #677088 }
+.lockerArea .locker > li.long_unused { background: #677088 }
+.lockerArea .locker > li.checking { background: #677088 }
+.lockerArea .locker > li.blank { text-indent: -9999px; background: #eee url("../../images/web_a/ico/ico-pad.svg") center center / 100% no-repeat }
+.lockerArea .locker > li.myLocker { background: #FE3767 }
+.lockerArea .locker > li > a { display: flex; flex-direction: column; justify-content: space-between; height: 100%; color: #fff }
+.lockerArea .locker > li > a > p { display: flex; flex-direction: column; }
+.lockerArea .locker > li > a > p > span { font-size: 16px; }
+.lockerArea .locker > li > a > p > em { font-size: 12px; }
+.lockerArea .locker > li ul.status { display: flex }
+.lockerArea .locker > li ul.status li { width: 14px; height: 14px; border-radius: 3px }
+.lockerArea .locker > li ul.status li.detected { background: url(../../images/web_a/ico/ico_box.svg) center center / 12px 12px no-repeat }
+.lockerArea .locker > li ul.status li.open { background: url(../../images/web_a/ico/ico_open.svg) center center / 12px 12px no-repeat }
+.lockerArea .locker > li ul.status li.lock { background: url(../../images/web_a/ico/ico_close.svg) center center / 12px 12px no-repeat }
+.lockerArea .locker > li ul.status li.long_unused { background: url(../../images/web_a/ico/ico_nonuse.svg) center center / 12px 12px no-repeat }
+.lockerArea .locker > li ul.status li.checking { background: #ff4b4b url(../../images/web_a/ico/ico_fix.svg) center center / 12px 12px no-repeat }
+/********************************/
+.locker.leftBottom { flex-direction: row; }
+.locker.rightBottom { flex-direction: row-reverse; justify-content: flex-end; }
+.locker.bottomLeft { flex-direction: column; }
+.locker.topLeft { flex-direction: column-reverse; justify-content: flex-end; }
+.locker.topRight { flex-direction: column-reverse; }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n):nth-child(-n+4) { order: 24 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+5):nth-child(-n+8) { order: 23 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+9):nth-child(-n+12) { order: 22 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+13):nth-child(-n+16) { order: 21 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+17):nth-child(-n+20) { order: 20 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+21):nth-child(-n+24) { order: 19 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+25):nth-child(-n+28) { order: 18 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+29):nth-child(-n+32) { order: 17 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+33):nth-child(-n+36) { order: 16 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+37):nth-child(-n+40) { order: 15 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+41):nth-child(-n+44) { order: 14 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+45):nth-child(-n+48) { order: 13 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+49):nth-child(-n+52) { order: 12 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+53):nth-child(-n+56) { order: 11 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+57):nth-child(-n+62) { order: 10 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+63):nth-child(-n+66) { order: 9 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+67):nth-child(-n+72) { order: 8 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+73):nth-child(-n+76) { order: 7 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+77):nth-child(-n+80) { order: 6 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+81):nth-child(-n+84) { order: 5 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+85):nth-child(-n+88) { order: 4 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+89):nth-child(-n+92) { order: 3 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+93):nth-child(-n+96) { order: 2 }
+.mw .pop_locker .lockerArea .locker.topRight > li:nth-child(n+97):nth-child(-n+100) { order: 1 }
+.mw .pop_locker .lockerArea .locker.bottomRight { flex-direction: column; }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n):nth-child(-n+4) { order: 24 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+5):nth-child(-n+8) { order: 23 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+9):nth-child(-n+12) { order: 22 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+13):nth-child(-n+16) { order: 21 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+17):nth-child(-n+20) { order: 20 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+21):nth-child(-n+24) { order: 19 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+25):nth-child(-n+28) { order: 18 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+29):nth-child(-n+32) { order: 17 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+33):nth-child(-n+36) { order: 16 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+37):nth-child(-n+40) { order: 15 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+41):nth-child(-n+44) { order: 14 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+45):nth-child(-n+48) { order: 13 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+49):nth-child(-n+52) { order: 12 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+53):nth-child(-n+56) { order: 11 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+57):nth-child(-n+62) { order: 10 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+63):nth-child(-n+66) { order: 9 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+67):nth-child(-n+72) { order: 8 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+73):nth-child(-n+76) { order: 7 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+77):nth-child(-n+80) { order: 6 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+81):nth-child(-n+84) { order: 5 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+85):nth-child(-n+88) { order: 4 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+89):nth-child(-n+92) { order: 3 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+93):nth-child(-n+96) { order: 2 }
+.mw .pop_locker .lockerArea .locker.bottomRight > li:nth-child(n+97):nth-child(-n+100) { order: 1 }
+.mw .pop_locker .lockerArea .locker.leftTop { flex-direction: row; }
+.mw .pop_locker .lockerArea .locker.leftTop > li:nth-child(n):nth-child(-n+25) { order: 4 }
+.mw .pop_locker .lockerArea .locker.leftTop > li:nth-child(n+26):nth-child(-n+50) { order: 3 }
+.mw .pop_locker .lockerArea .locker.leftTop > li:nth-child(n+51):nth-child(-n+75) { order: 2 }
+.mw .pop_locker .lockerArea .locker.leftTop > li:nth-child(n+76):nth-child(-n+100) { order: 1 }
+.mw .pop_locker .lockerArea .locker.rightTop { flex-direction: row-reverse; }
+.mw .pop_locker .lockerArea .locker.rightTop > li:nth-child(n):nth-child(-n+25) { order: 4 }
+.mw .pop_locker .lockerArea .locker.rightTop > li:nth-child(n+26):nth-child(-n+50) { order: 3 }
+.mw .pop_locker .lockerArea .locker.rightTop > li:nth-child(n+51):nth-child(-n+75) { order: 2 }
+.mw .pop_locker .lockerArea .locker.rightTop > li:nth-child(n+76):nth-child(-n+100) { order: 1 }
+/**********************/
+.mw .pop_locker .lockerSelectArea { float: right; width: 200px; height: 370px; }
+.mw .pop_locker .lockerSelectArea>p { width: 100%; background: #333; color: #fff; height: 10%; padding-top: 8px; font-size: 17px; text-align: center; border-top-left-radius: 5px; border-top-right-radius: 5px; }
+.mw .pop_locker .lockerSelectArea .lockerSelect { border: 1px solid #ccc; width: 100%; height: 90%; margin-bottom: 6px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; background: #fff; }
+.mw .pop_locker .lockerSelectArea .lockerSelect ul { float: left; width: 100%; padding: 18px 20px; height: 330px; overflow: auto; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+.mw .pop_locker .lockerSelectArea .lockerSelect ul li { float: left; width: 100%; margin: 0 0px 5px 0; }
+.mw .pop_locker .lockerSelectArea .lockerSelect ul li a { background: #fff; display: flex; width: 100%; height: 48px; color: #333; border-radius: 10px; font-size: 16px; text-align: center; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; justify-content: center; align-items: center; border: 1px solid rgba(0, 0, 0, .1); }
+.mw .pop_locker .lockerSelectArea .lockerSelect ul li a:active { border: 1px solid rgba(0,0,0,.3); }
+.mw .pop_locker .lockerSelectArea .lockerSelect ul li a.on { background: #121212 !important; color: #fff; }
+.mw .pop_locker .lockerSelectArea .lockerSelect ul li a:active { }
+/**********************/
+.mw .pop_locker .help { float: left; width: 100%; margin: 10px 0 14px 24px; color: #3a2f29; font-size: 14px; }
+.mw .pop_locker .help li { float: left; margin-right: 20px; width: 100%; margin-bottom: 6px }
+.mw .pop_locker .help li:first-letter { font-size: 11px; }
+.mw .pop_locker .useInfor { float: left; width: 100%; margin: 6px 0 0 10px; }
+.mw .pop_locker p.stitle { float: left; width: 100%; font-size: 18px; margin: 6px 0 8px 0}
+/**********************/
+.mw .pop_locker .btn_list { float: left; display: inline-block; margin-bottom: 16px; font-size: 16px }
+.mw .pop_locker .btn_list li { float: left; margin-right: 4px; line-height: 160% }
+.mw .pop_locker .btn_list li input[type=text] { }
+.mw .pop_locker .btn_list li input[type=password] { }
+/*.mw .pop_locker .btn_list li .ui-datepicker-trigger { padding: 2px; vertical-align: top; margin-left: 10px; width: 44px; height: 44px; border: none; background: none }*/
+/**********************/
+.mw .pop_locker .number_pad { width: 100%; display: inline-flex; background: #454b51; border-radius: 10px; padding: 20px 100px; margin-bottom: 6px; align-items: center; justify-content: center; flex-wrap: wrap;     gap: 10px;}
+.mw .pop_locker .number_pad li { float: left; width: 40px; line-height: 120%; ; }
+.mw .pop_locker .numberKey { position: relative; width: 40px; height: 40px; border-radius: 100%; background: #454b51; font-size: 28px; color: #fff !important; text-align: center; text-decoration: none; display: inline-flex; cursor: pointer; align-items: center; justify-content: center; }
+.mw .pop_locker .number_pad li div.on { }
+.mw .pop_locker .numberKey02 { display: inline-block; overflow: visible; position: relative; width: 70px; height: 70px; border-radius: 100%; background: #f50000; font-size: 36px; line-height: 92px; color: #fff !important; letter-spacing: -2px; text-align: center; text-decoration: none; cursor: pointer }
+.mw .pop_locker .numberKey03 { display: inline-flex; overflow: visible; position: relative; width: 70px; height: 70px; border-radius: 100%; font-size: 48px; color: #fff; text-align: center; text-decoration: none; align-items: center; justify-content: center; cursor: pointer }
+.mw .pop_locker .numberKey:hover { background: var(--primary-default-color); }
+.mw .pop_locker .numberKey:active { background: var(--primary-default-color); }
+.mw .pop_locker .number_pad li div.on { background: var(--primary-default-color); color: #fff !important; }
+.mw .pop_locker .number_pad li div:active { background: var(--primary-default-color); color: #fff !important; }
+.mw .pop_locker .pop_box { float: left; width: 100%; margin: 0 auto 20px; padding: 5px 10px; border-radius: 10px; background: #38353a; }
+.mw .pop_locker .pop_box p { color: #fff; font-size: 30px; line-height: 140% }
+.mw .pop_locker .pop_box p.cardTag { float: left; width: 100%; padding: 20px 40px; }
+.mw .pop_locker .pop_box p.cardTag img { float: left; margin-right: 20px; }
+.mw .pop_locker .pop_box p.cardTag span { float: left; margin-right: 20px; color: #fff; margin: 20px 0 0 0 }
+.mw .pop_locker .pop_box p.comment { color: #fff; font-size: 24px; line-height: 140%; padding: 20px }
+.mw .pop_locker .pop_box p > span { color: #FF0 }
+.mw .pop_locker .user { margin: 20px; font-size: 20px }
+.mw .pop_locker .user li { overflow: hidden; margin-bottom: 4px; padding: 5px 0; color: #fff; white-space: nowrap; text-overflow: ellipsis }
+.mw .pop_locker .user li.photo { float: left; height: 100px; margin-right: 20px; }
+.mw .pop_locker .user li.photo img { width: 62px; height: 74px; }
+.mw .pop_locker .user li > span:first-child { display: inline-block; width: 120px; color: #999999 }
+.mw .pop_locker p.comment01 { padding: 20px; font-size: 22px; color: #fff; }
+.mw .pop_locker p.comment02 { padding-bottom: 4px; font-size: 16px; color: #666; }

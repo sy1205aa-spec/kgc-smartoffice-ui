@@ -1,0 +1,130 @@
+@charset "utf-8";
+/*범례*/
+ul.bumrea { display: inline-block; }
+ul.bumrea li { float: left; margin-right: 16px; padding: 6px 0 16px; line-height: 20px; font-size: 13px; }
+ul.bumrea li span { display: inline-block; float: left; width: 20px; height: 20px; margin-right: 5px; text-align: center; }
+ul.bumrea li em { color: #999; font-size: 14px; }
+ul.bumrea li span.meet_reserved { border: 1px solid rgba(0, 0, 0, .2); background: #9199A3 }
+ul.bumrea li span.meet_myWait { border-left: 5px solid #63b148; background: #f2f2f2 url(../../images/web_a/common/ico_fix_day.png) left 50% repeat-x; }
+ul.bumrea li span.meet_myReserv { border: 1px solid rgba(0, 0, 0, .2); background: #63b148; }
+ul.bumrea li span.meet_end { background-color: #f1f1f1; border: 1px solid rgba(0, 0, 0, .2) }
+ul.bumrea li span.meet_myParti { border: 1px solid #64a04b; border: 1px solid rgba(0, 0, 0, .2); background: #bfe4b1; }
+ul.bumrea li span.meet_confirmWait { border-left: 5px solid #9199A3; background: #f2f2f2 url(../../images/web_a/common/ico_fix_day.png) left 50% repeat-x }
+ul.bumrea li span.meet_none { border: 1px solid #ccc; background: #f2f2f2 url(../../images/web_a/common/ico_fix_day_none.png) left 50% no-repeat; }
+ul.bumrea li span.meet_ing { border: 1px solid rgba(0, 0, 0, .2); background: var(--primary-default-color); }
+ul.bumrea li.margin { margin-right: 60px }
+.reserv_dayList tbody td { position: relative }
+/*****************************************일간*********************************************/
+/*예약완료*/
+.reserv_dayList tbody td.meetStart_reserved > a { border: 1px solid rgba(0, 0, 0, .2); border-right: none }
+.reserv_dayList tbody td.meetIng_reserved > a { border: 1px solid rgba(0, 0, 0, .2); border-left: none; border-right: none }
+.reserv_dayList tbody td.meetEnd_reserved > a { border: 1px solid rgba(0, 0, 0, .2); border-left: none }
+.reserv_dayList tbody td.meetSell_reserved > a { border: 1px solid rgba(0, 0, 0, .2); }
+.reserv_dayList tbody td a:link.reserved { display: block; position: relative; left: -1px; height: 16px; margin: 0; padding: 0; background-color: #9199A3; font-size: 0 }
+.reserv_dayList tbody td a:visited.reserved { background-color: #9199A3 }
+.reserv_dayList tbody td a:active.reserved { background-color: #9199A3 }
+.reserv_dayList tbody td a:hover.reserved { background-color: #9199A3 }
+/*진행중*/
+.reserv_dayList tbody td.meetStart_ing > a { border: 1px solid rgba(0, 0, 0, .2); border-right: none }
+.reserv_dayList tbody td.meetIng_ing > a { border: 1px solid rgba(0, 0, 0, .2); border-left: none; border-right: none }
+.reserv_dayList tbody td.meetEnd_ing > a { border: 1px solid rgba(0, 0, 0, .2); border-left: none }
+.reserv_dayList tbody td.meetSell_ing > a { border: 1px solid rgba(0, 0, 0, .2); }
+.reserv_dayList tbody td a:link.ing { display: block; position: relative; left: -1px; height: 16px; margin: 0; padding: 0; background-color: var(--primary-default-color); font-size: 0 }
+.reserv_dayList tbody td a:visited.ing { background-color: var(--primary-default-color); }
+.reserv_dayList tbody td a:active.ing { background-color: var(--primary-default-color); }
+.reserv_dayList tbody td a:hover.ing { background-color: var(--primary-default-color); }
+/*승인대기*/
+.reserv_dayList tbody td.meetStart_confirmWait > a { border: 1px solid rgba(0, 0, 0, .2); border-left: 5px solid #999; border-right: none }
+.reserv_dayList tbody td.meetIng_confirmWait > a { border: 1px solid rgba(0, 0, 0, .2); border-left: none; border-right: none }
+.reserv_dayList tbody td.meetEnd_confirmWait > a { border: 1px solid rgba(0, 0, 0, .2); border-left: none }
+.reserv_dayList tbody td.meetSell_confirmWait > a { border: 1px solid rgba(0, 0, 0, .2); border-left: 5px solid rgba(0, 0, 0, .2) }
+.reserv_dayList tbody td a.confirmWait { display: block; position: relative; left: 0px; height: 16px; margin: 0; padding: 0; background: #fff url(../../images/web_a/common/ico_fix_day.png) left -1px repeat-x; text-indent: -9999px }
+/*나의승인대기*/
+.reserv_dayList tbody td.meetStart_myWait > a { border: 1px solid #63b148; border-left: 5px solid #63b148; border-right: none }
+.reserv_dayList tbody td.meetIng_myWait > a { border: 1px solid #63b148; border-left: none; border-right: none }
+.reserv_dayList tbody td.meetEnd_myWait > a { border: 1px solid #63b148; border-left: none; }
+/* border-right: 1px solid #7c7365; border-top: 1px solid #7c7365; border-bottom: 1px solid #7c7365 */
+.reserv_dayList tbody td.meetSell_myWait > a { border: 1px solid #63b148; border-left: 5px solid #63b148 }
+.reserv_dayList tbody td a:link.myWait { display: block; position: relative; left: 0; height: 16px; margin: 0; padding: 0; background: #fff url(../../images/web_a/common/ico_fix_day.png) left -1px repeat-x; text-indent: -9999px }
+.reserv_dayList tbody td a:visited.myWait { background-color: #fff }
+.reserv_dayList tbody td a:active.myWait { background-color: #fff }
+.reserv_dayList tbody td a:hover.myWait { background-color: #fff }
+/*나의예약*/
+.reserv_dayList tbody td.meetStart_myReserv > a { border: 1px solid rgba(0, 0, 0, .2); border-right: none }
+.reserv_dayList tbody td.meetIng_myReserv > a { border: 1px solid rgba(0, 0, 0, .2); border-left: none; border-right: none }
+.reserv_dayList tbody td.meetEnd_myReserv > a { border: 1px solid rgba(0, 0, 0, .2); border-left: none }
+.reserv_dayList tbody td.meetSell_myReserv > a { border: 1px solid rgba(0, 0, 0, .2); }
+.reserv_dayList tbody td a:link.myReserv { display: block; position: relative; left: -1px; height: 16px; margin: 0; padding: 0; background-color: #63b148; font-size: 0 }
+.reserv_dayList tbody td a:visited.myReserv { background-color: #63b148 }
+.reserv_dayList tbody td a:active.myReserv { background-color: #63b148 }
+.reserv_dayList tbody td a:hover.myReserv { background-color: #63b148 }
+/*나의회의진행중*/
+td.meetStart_myReserv > a { }
+td.current::before { position: absolute; top: -8px; right: -8px; z-index: 99999; width: 0; display: flex; height: 0; content: ""; color: #fff; font-size: 11px; line-height: 100%; align-items: center; justify-content: center; border-bottom: 7px solid #F64A4A; border-left: 8px solid transparent; border-right: 8px solid transparent; }
+td.current::after { position: absolute; top: -4px; right: 0px; z-index: 99999; width: 1px; display: flex; height: 500vh; border-radius: 10px; background: red; content: ""; color: #fff; font-size: 11px; line-height: 100%; align-items: center; justify-content: center; }
+/*나의참여회의*/
+.reserv_dayList tbody td.meetStart_myParti > a { border-left: 5px solid #64a04b; border-top: 1px solid #64a04b; border-bottom: 1px solid #64a04b }
+.reserv_dayList tbody td.meetIng_myParti > a { border-top: 1px solid #64a04b; border-bottom: 1px solid #64a04b }
+.reserv_dayList tbody td.meetEnd_myParti > a { border-right: 1px solid #64a04b; border-top: 1px solid #64a04b; border-bottom: 1px solid #64a04b }
+.reserv_dayList tbody td.meetSell_myParti > a { border: 1px solid #64a04b; border-left: 5px solid #64a04b }
+.reserv_dayList tbody td a:link.myParti { display: block; position: relative; left: -1px; height: 16px; margin: 0; padding: 0; background-color: #bfe4b1; font-size: 0 }
+.reserv_dayList tbody td a:visited.myParti { background-color: #bfe4b1 }
+.reserv_dayList tbody td a:active.myParti { background-color: #bfe4b1 }
+.reserv_dayList tbody td a:hover.myParti { background-color: #bfe4b1 }
+/*회의종료*/
+.reserv_dayList tbody td.meetStart_end > a { border: 1px solid rgba(0, 0, 0, .2); border-right: none }
+.reserv_dayList tbody td.meetIng_end > a { border: 1px solid rgba(0, 0, 0, .2); border-left: none; border-right: none }
+.reserv_dayList tbody td.meetEnd_end > a { border: 1px solid rgba(0, 0, 0, .2); border-left: none }
+.reserv_dayList tbody td.meetSell_end > a { border: 1px solid rgba(0, 0, 0, .2) }
+.reserv_dayList tbody td a:link.end { display: block; position: relative; left: -1px; height: 16px; margin: 0; padding: 0; background-color: #f1f1f1; font-size: 0 }
+.reserv_dayList tbody td a:visited.end { display: block; background: #f1f1f1; }
+.reserv_dayList tbody td a:active.end { display: block; background: #f1f1f1; }
+.reserv_dayList tbody td a:hover.end { display: block; background: #f1f1f1; }
+/*비밀회의*/
+.reserv_dayList tbody td.meetStart_secret > a { border-left: 5px solid #bbb; }
+/* .reserv_dayList tbody td.meetIng_secret>a { border-top: 1px solid #bbb; border-bottom: 1px solid #bbb }
+.reserv_dayList tbody td.meetEnd_secret>a { border-right: 1px solid #bbb; border-top: 1px solid #bbb; border-bottom: 1px solid #bbb } */
+.reserv_dayList tbody td.meetSell_secret > a { border-left: 5px solid #bbb }
+.reserv_dayList tbody td a:link.secret { display: block; position: relative; left: -1px; height: 16px; margin: 0; padding: 0; background-color: #eee; font-size: 0 }
+.reserv_dayList tbody td a:visited.secret { background-color: #eee }
+.reserv_dayList tbody td a:active.secret { background-color: #eee }
+.reserv_dayList tbody td a:hover.secret { background-color: #eee }
+/*예약불가회의실*/
+.reserv_dayList tbody td.fixRoom { background: url(../../images/web_a/common/ico_fix_day_none.png) left top repeat; }
+/*******************************************주간**************************************/
+.reserv_weekList tbody td > div { padding: 2px 0 0 0; }
+.reserv_weekList tbody td > div > i { display: inline-block;  }
+/*예약완료*/
+.reserv_weekList tbody td .reserved { background-color: #9199A3; color: #fff; cursor: pointer }
+/*승인대기*/
+.reserv_weekList tbody td .confirmWait { border-left: 5px solid #999; color: #666; background: #fff url(../../images/web_a/common/ico_fix_day.png) center center no-repeat; background-position: 110px -55px; }
+/*나의예약*/
+.reserv_weekList tbody td .myReserv { background-color: #63b148; color: #fff; cursor: pointer }
+/*나의승인대기*/
+.reserv_weekList tbody td .myWait { border-left: 5px solid #63b148; color: #666; background: #fff url(../../images/web_a/common/ico_fix_day.png) center center no-repeat; background-position: 110px -55px; }
+/*나의참여회의*/
+.reserv_weekList tbody td .myParti { background-color: #85cc6a; color: #fff; cursor: pointer }
+/*회의종료*/
+.reserv_weekList tbody td .end { background-color: #f1f1f1; color: #9199A3; cursor: pointer }
+/*비밀회의*/
+.reserv_weekList tbody td .secret { border: 1px solid #ccc; background-color: #eee; color: #999; cursor: pointer; text-shadow: none }
+.reserv_weekList .more { float: left; width: 100%; padding: 2px; text-align: right; }
+.reserv_weekList tbody td.end_time { background-color: #f4f4f4; color: #D9D9D9; text-indent: -9999px }
+/*예약불가회의실*/
+.reserv_weekList tbody td.fixRoom { background: url(../../images/web_a/common/ico_fix_day_none.png); }
+.reserv_monthList tbody td.fixRoom { background: url(../../images/web_a/common/ico_fix_day_none.png); }
+/**********************************************월간*******************************************/
+/*예약완료*/
+.reserv_monthList tbody td .reserved { background-color: #9199A3; color: #fff; cursor: pointer }
+/*승인대기*/
+.reserv_monthList tbody td .confirmWait { border-left: 5px solid #9199A3; background-color: #eee; color: #999; background: #fff url(../../images/web_a/common/ico_fix_day.png) center center no-repeat; background-position: 110px -55px; }
+/*나의참여회의*/
+.reserv_monthList tbody td .myParti { background-color: #85cc6a; color: #fff; cursor: pointer }
+/*나의예약*/
+.reserv_monthList tbody td .myReserv { background-color: #63b148; color: #fff; cursor: pointer }
+/*나의승인대기*/
+.reserv_monthList tbody td .myWait { border-left: 5px solid #63b148; color: #999; background: #fff url(../../images/web_a/common/ico_fix_day.png) center center no-repeat; background-position: 110px -55px; }
+/*회의종료*/
+.reserv_monthList tbody td .end { background-color: #f1f1f1; color: #9199A3; cursor: pointer }
+/*비밀회의*/
+.reserv_monthList tbody td .secret { border: 1px solid #ccc; background-color: #eee; color: #999; cursor: pointer; text-shadow: none }

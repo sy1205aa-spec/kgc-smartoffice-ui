@@ -1,0 +1,47 @@
+/* ==========================================================================
+   PC 메인 iframe 안 화면 공통 (templates/web/parking.html, busReservation.html)
+   kgc_works_snapshot 회의실예약/나의예약 화면(title_area, quickSearch_area, bbs_list, btn) 구성에 맞춤
+   ========================================================================== */
+html, body.frame-page { background: #fff; }
+.frame-page #contents { min-height: 100%; padding: 30px 0 60px; }
+
+/* 상단 바: 좌측 quickSearch_area(검색/입력), 우측 주요 버튼 (회의실예약 '예약하기' 배치와 동일) */
+.frame-page .search_bar { display: flex; clear: both; align-items: center; justify-content: space-between; gap: 20px; min-height: 44px; margin: 26px 0 20px; padding-top: 20px; border-top: 1px solid #e5e5e5; }
+.frame-page .search_bar .quickSearch_area { float: none; margin: 0; }
+.frame-page .search_bar .quickSearch_area ul { flex-wrap: wrap; row-gap: 10px; }
+.frame-page .search_bar .quickSearch_area ul li.search_title { margin-right: 8px; color: var(--text-black01-color); }
+.frame-page .search_bar .quickSearch_area ul li.search_title ~ li.search_title { margin-left: 10px; }
+.frame-page .search_bar_R { display: flex; flex-shrink: 0; gap: 8px; }
+.frame-page .quickSearch_area input[type=text] { width: 220px; }
+.frame-page .quickSearch_area select { min-width: 180px; }
+.frame-page .quickSearch_area input[readonly] { cursor: default; }
+
+/* 소제목 */
+.frame-page .sub_title_area { display: flex; align-items: baseline; gap: 12px; margin: 0 0 14px; }
+.frame-page .sub_title { color: #232323; font-size: 18px; font-weight: 400; }
+.frame-page .sub_desc { color: #999; font-size: 14px; }
+.frame-page .search_bar .sub_title_area { margin: 0; }
+
+/* bbs_list 와 같은 모양의 목록 (JS 가 ul/div 로 그리는 목록을 표 형태로 표시) */
+.frame-page .grid_list { margin-bottom: 30px; font-size: 15px; }
+.frame-page .grid_list .grid_head,
+.frame-page .grid_list .grid_row { display: grid; align-items: center; }
+.frame-page .grid_list .grid_head { background: var(--ui-bg05-color); color: #fff; text-align: center; }
+.frame-page .grid_list .grid_head > span { padding: 16px 0; }
+.frame-page .grid_list .grid_cell { padding: 14px 8px; color: var(--text-black02-color); text-align: center; }
+.frame-page .grid_list .grid_empty { padding: 16px 0; border-bottom: 1px solid #d9d9d9; color: var(--text-black02-color); text-align: center; }
+
+/* 목록 안 작은 버튼 (나의예약 목록 버튼 크기) */
+.frame-page .btn_line { height: 32px; padding: 0 14px; border: 1px solid rgba(0, 0, 0, .1); border-radius: 6px; background: #f6f7f8; color: var(--text-black02-color); font-size: 13px; cursor: pointer; transition: .1s ease-in-out; }
+.frame-page .btn_line:hover { border-color: var(--primary-default-color); color: var(--primary-default-color); }
+
+/* 상태 라벨 */
+.frame-page .label { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 13px; letter-spacing: -.5px; }
+
+/* 안내 */
+.frame-page .guide_box { clear: both; margin-top: 30px; padding: 20px 24px; border-radius: 10px; background: #f9f9f9; color: #666; font-size: 14px; line-height: 170%; }
+.frame-page .guide_box .title { margin-bottom: 6px; color: #232323; font-size: 15px; }
+.frame-page .guide_box .desc_list li { position: relative; padding-left: 12px; }
+.frame-page .guide_box .desc_list li::before { position: absolute; left: 0; content: '·'; }
+.frame-page .guide_box strong { color: #232323; font-weight: 400; text-decoration: underline; text-underline-position: under; }
+.frame-page .search_bar + .clear + .sub_title_area { margin-top: 30px; }

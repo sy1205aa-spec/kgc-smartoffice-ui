@@ -1,0 +1,34 @@
+@charset "utf-8";
+.eng #logo>span { display: none }
+.eng #head ul.menu li span { font-size: 13px }
+.eng #logo { width: 220px }
+/*사진,번호,시간,내선,닉네임,이름,직책,소속*/
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.seatInfor { width: 68% }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.seatInfor.full { width: 98% }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.seatInfor .tag { font-size: 14px }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.seatInfor .tag.loc { font-size: 12px }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.seatInfor > em { font-size: 13px }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.phone .tag { font-size: 12px }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.phone > em { font-size: 12px }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.nicName { font-size: 20px; }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.nicName > em { font-size: 13px }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.nicName em.name { font-size: 13px }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.name { width: 68%; }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.name > span { font-size: 12px }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.name.point > span { font-size: 16px }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.name > .position { font-size: 13px !important }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.name > .position::before { content: "( "; font-size: 12px; }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.name > .position::after { content: " )"; font-size: 12px; }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.position > span { font-size: 12px; }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.group > span { font-size: 12px; }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.position { font-size: 12px }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.photo { margin: 0 10px 5px 0 }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.position.full { padding-left: 4px }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.group.full { padding-left: 4px }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.nicName.full { width: 98% }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.nicName.full { padding-left: 4px }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.seatInfor.full { padding-left: 4px }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.name.full { padding-left: 4px }
+.eng .rightMenu .contBox02 ul.list li > .customer_infor ul.infor li.phone.full { padding-left: 4px }
+.eng .btn_shArea.timetable .btn_userBox { font-size: 11px }
+.eng .rightMenu .selectBox ul li > select { font-size: 12px }

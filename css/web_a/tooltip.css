@@ -1,0 +1,110 @@
+@charset "utf-8";
+#helpbox { position: absolute; top: 0; left: 0; z-index: 999999; width: auto; min-width: 200px; height: 0; border-width: 0; border-style: none }
+#roomLocation { position: absolute; top: 0; left: 0; z-index: 1010; width: auto; height: 0; border-width: 0; border-style: none }
+/*회의종료*/
+.meetInfo_tooltip { width: auto; padding: 6px; border: 1px solid #e6e6e6; border-radius: 14px; border-collapse: collapse; background: #fff; box-shadow: 1px 1px 6px rgba(0, 0, 0, .1) }
+.meetInfo_tooltip ul li { line-height: 180%; margin-bottom: 4px; color: #232B33; }
+.meetInfo_tooltip ul li span { display: inline-block; color: #9199A3; margin-right: 6px; padding-left: 10px; min-width: 60px; text-align: left }
+.meetInfo_tooltip .title { width: auto; margin-bottom: 6px; padding: 4px 10px 3px 10px; border: 1px solid rgba(0, 0, 0, .1); border-radius: 10px; background: #f9f9f9; color: #232B33; }
+.meetInfo_tooltip .none { padding-left: 0; background: 0 }
+/*회의종료*/
+.tooltip_end { width: auto; padding: 6px 8px; border: 1px solid #e6e6e6; border-radius: 10px; border-collapse: collapse; background: #fff; box-shadow: 1px 1px 6px rgba(0, 0, 0, .1) }
+.tooltip_end ul li { line-height: 180%; margin-bottom: 4px; color: #232B33; }
+.tooltip_end ul li span { display: inline-block; color: #232B33; background: #eee; border-radius: 10px; margin-right: 5px; width: 60px; text-align: center }
+.tooltip_end .title { width: auto; margin-bottom: 6px; padding: 4px 10px 3px 10px; border: 1px solid #e6e6e6; border-radius: 10px; background: #eee }
+.tooltip_end .none { padding-left: 0; background: 0 }
+/*나의회의*/
+.tooltip_myReserv { width: auto; padding: 6px 8px; border: 1px solid #e6e6e6; border-radius: 10px; border-collapse: collapse; background: #fff; box-shadow: 1px 1px 6px rgba(0, 0, 0, .1) }
+.tooltip_myReserv ul li { line-height: 180%; margin-bottom: 4px; color: #232B33 }
+.tooltip_myReserv ul li span { display: inline-block; color: #232B33; background: #eee; border-radius: 10px; margin-right: 5px; width: 60px; text-align: center }
+.tooltip_myReserv .title { width: auto; margin-bottom: 6px; padding: 4px 10px 3px 10px; border: 1px solid rgba(0, 0, 0, .1); border-radius: 10px; background: #f9f9f9; color: #232B33; }
+.tooltip_myReserv .none { padding-left: 0; background: 0 }
+/*나의승인대기*/
+.tooltip_myWait { width: auto; padding: 6px 8px; border: 1px solid #e6e6e6; border-radius: 10px; border-collapse: collapse; background: #fff; box-shadow: 1px 1px 6px rgba(0, 0, 0, .1) }
+.tooltip_myWait ul li { line-height: 180%; margin-bottom: 4px; color: #232B33 }
+.tooltip_myWait ul li span { display: inline-block; color: #232B33; background: #eee; border-radius: 10px; margin-right: 5px; width: 60px; text-align: center }
+.tooltip_myWait .title { width: auto; margin-bottom: 6px; padding: 4px 10px 3px 10px; border: 1px solid rgba(0, 0, 0, .1); border-radius: 10px; background: #f9f9f9; color: #232B33; }
+.tooltip_myWait .none { padding-left: 0; background: 0 }
+/*예약완료*/
+.tooltip_reserv { width: auto; padding: 6px 8px; border: 1px solid #e6e6e6; border-radius: 10px; border-collapse: collapse; background: #fff; box-shadow: 1px 1px 6px rgba(0, 0, 0, .1) }
+.tooltip_reserv ul li { line-height: 180%; margin-bottom: 4px; color: #232B33 }
+.tooltip_reserv ul li span { display: inline-block; color: #232B33; background: #eee; border-radius: 10px; margin-right: 5px; width: 60px; text-align: center }
+.tooltip_reserv .title { width: auto; margin-bottom: 6px; padding: 4px 10px 3px 10px; border: 1px solid rgba(0, 0, 0, .1); border-radius: 10px; background: #f9f9f9; color: #232B33; }
+.tooltip_reserv .none { padding-left: 0; background: 0 }
+/*승인대기*/
+.tooltip_wait { width: auto; padding: 6px 8px; border: 1px solid #e6e6e6; border-radius: 10px; border-collapse: collapse; background: #fff; box-shadow: 1px 1px 6px rgba(0, 0, 0, .1) }
+.tooltip_wait ul li { line-height: 180%; margin-bottom: 4px; color: #232B33 }
+.tooltip_wait ul li span { display: inline-block; color: #232B33; background: #eee; border-radius: 10px; margin-right: 5px; width: 60px; text-align: center }
+.tooltip_wait .title { width: auto; margin-bottom: 6px; padding: 4px 10px 3px 10px; border: 1px solid rgba(0, 0, 0, .1); border-radius: 10px; background: #f9f9f9; color: #232B33; }
+.tooltip_wait .none { padding-left: 0; background: 0 }
+/*나의참여회의*/
+.tooltip_myParti { width: auto; padding: 6px 8px; border: 1px solid #e6e6e6; border-radius: 10px; border-collapse: collapse; background: #fff; box-shadow: 1px 1px 6px rgba(0, 0, 0, .1) }
+.tooltip_myParti ul li { margin-bottom: 4px; color: #232B33 }
+.tooltip_myParti ul li span { display: inline-block; color: #232B33; background: #eee; border-radius: 10px; margin-right: 5px; width: 60px; text-align: center }
+.tooltip_myParti .title { width: auto; margin-bottom: 6px; padding: 4px 10px 3px 10px; border: 1px solid #bdd198; border-radius: 10px; background: #dfe8ce; color: #232B33; }
+.tooltip_myParti .none { padding-left: 0; background: 0 }
+/*비밀회의*/
+.tooltip_secret { width: auto; padding: 6px 8px; border: 1px solid #e6e6e6; border-radius: 10px; border-collapse: collapse; background: #fff; box-shadow: 1px 1px 6px rgba(0, 0, 0, .1) }
+.tooltip_secret ul li { line-height: 180%; margin-bottom: 4px; color: #232B33 }
+.tooltip_secret ul li span { display: inline-block; color: #232B33; background: #eee; border-radius: 10px; margin-right: 5px; width: 60px; text-align: center }
+.tooltip_secret .title { width: auto; margin-bottom: 6px; padding: 4px 10px 3px 10px; border: 1px solid #e6e6e6; border-radius: 10px; background: #eee }
+.tooltip_secret .none { padding-left: 0; background: 0 }
+/*예약하기01*/
+.reserv_pop { float: left; width: 230px; padding: 16px; border: 1px solid #e6e6e6; border-radius: 10px; border-collapse: collapse; background: #fff; box-shadow: 1px 1px 10px rgba(0, 0, 0, .1) }
+.reserv_pop .title { margin: 0; padding: 0 0 4px 4px; font-size: 16px; border-bottom: 1px solid #f2f2f2; }
+.reserv_pop .title .close { font-family: arial; margin: 2px 0 0 0; float: right; font-size: 24px; line-height: 16px; color: #aaa; text-decoration: none; }
+.reserv_pop .title .close:hover { color: #232B33 }
+.reserv_pop .title .close:after { content: "\00D7"; width: 12px; height: 12px; padding: 4px; position: relative; }
+.reserv_pop .reservInfor { float: left; margin: 12px 0 10px 0 }
+.reserv_pop .reservInfor li { margin-bottom: 0 }
+.reserv_pop .reservInfor li span:first-child { background: #999; color: #fff; width: auto; font-size: 14px; padding: 2px 10px; margin-right: 10px; display: inline-block; border-radius: 10px; float: left; position: relative; top: -2px }
+.reserv_pop .reservInfor li span { display: inline-block; width: 110px; font-size: 15px; /*overflow: hidden; white-space: nowrap; text-overflow: ellipsis; */
+word-break: break-all; float: left; line-height: 130% }
+.reserv_pop .btn { width: 100%; margin-top: 10px; padding: 0 20px; border-radius: 10px; height: 44px; font-size: 16px; }
+/*예약없는셀에서마우스롤오버했을때시간만나오는툴팁*/
+.reserv_pop2 { width: auto; padding: 10px 10px 6px; border: 1px solid #999; border-radius: 10px; border-collapse: collapse; background: #fff; box-shadow: 1px 1px 5px rgba(0, 0, 0, .2) }
+.reserv_pop2 ul li { padding-left: 2px; margin-bottom: 2px; color: #232B33; font-size: 15px }
+.reserv_pop2 ul li span { display: inline-block; color: #232B33 }
+.reserv_pop2 ul li span:first-child { background: #666; color: #fff; width: auto; font-size: 14px; padding: 2px 10px; margin-right: 10px; display: inline-block; border-radius: 10px; text-align: center }
+.reserv_pop2 .title { display: block; width: auto; margin-bottom: 6px; margin-top: 6px; padding: 4px 0; border: 1px solid rgba(0, 0, 0, .5); border-radius: 10px; background-color: var(--primary-default-color); color: #fff; text-align: center; cursor: pointer; background-image: url(../../images/web_a/btn/button-overlay.png); }
+.reserv_pop2 .title:hover { background-color: var(--primary-default-color); color: #fff; background-image: none }
+.reserv_pop2 .none { padding-left: 0; background: 0 }
+/*예약불가*/
+.tooltip_fixRoom { width: auto; padding: 6px 8px; border: 1px solid #e6e6e6; border-radius: 10px; border-collapse: collapse; background: #fff; box-shadow: 1px 1px 6px rgba(0, 0, 0, .1) }
+.tooltip_fixRoom ul li { line-height: 180%; margin-bottom: 4px; color: #232B33 }
+.tooltip_fixRoom ul li span { display: inline-block; color: #232B33; background: #eee; border-radius: 10px; margin-right: 5px; width: 60px; text-align: center }
+.tooltip_fixRoom .title { width: auto; margin-bottom: 6px; padding: 4px 10px 3px 10px; border: 1px solid #e6e6e6; border-radius: 10px; background: #eee }
+.tooltip_fixRoom .none { padding-left: 0; background: 0 }
+/*회의실위치*/
+.tooltip_roomLocation { width: auto; padding: 12px 16px; border: 1px solid #e6e6e6; border-radius: 10px; border-collapse: collapse; background: #fff; box-shadow: 1px 1px 6px rgba(0, 0, 0, .1) }
+.tooltip_roomLocation ul li { margin-bottom: 4px; color: #232B33 }
+.tooltip_roomLocation ul li span { display: inline-block; color: #232B33; background: #eee; border-radius: 10px; margin-right: 5px; width: 60px; text-align: center }
+.tooltip_roomLocation .title { width: auto; margin-bottom: 6px; padding: 6px 40px 8px 20px; border-radius: 10px; color: #fff; background: #232B33 }
+/**/
+.period_set02 { padding-bottom: 0; }
+.period02 { display: table; position: relative; width: 100%; background: #fff; }
+.period02 .date { display: table-cell; width: 50%; height: 53px; border: 1px solid #e6e6e6; font-size: 12px; line-height: 15px; text-align: center; vertical-align: middle; }
+.period02 .date:first-child { border-right: 0; color: #6d6e71 }
+.period02 .date strong { display: block; font-size: 19px; line-height: 20px }
+/*
+.period02 .to { position: absolute; top: 50%; left: 50%; width: 15px; height: 13px; margin: -6.5px 0 0 -6px; background: url('../../images/web_a/common/bg_to.png') no-repeat 0 0; background-size: 15px 38px; font-size: 0; line-height: 0; text-indent: -9999px }
+.period02 .to.on { background-position: 0 -25px }
+*/
+
+
+.period02 .to { position: absolute; top: 50%; left: 50%; width: 16px; height: 20px; margin: -8px 0 0 -6px; background: rgba(255, 255, 255, .3) url(../../images/web_a/common/bg_to.svg) no-repeat 0 4px; background-size: 14px auto; font-size: 0; line-height: 0; text-indent: -9999px; }
+.period02 .to.on { background-position: 0 -12px }
+.period02 .default { line-height: 53px; font-size: 14px }
+.timeTable { padding: 10px; margin-top: 8px; background: #fff; border: 1px solid #e6e6e6; }
+.time_body { overflow-y: auto; }
+.time_body caption { height: auto; width: 100%; line-height: 18px; padding: 0 0 15px; text-align: center; font-size: 14px; font-weight: bold; text-indent: 0 }
+.time_body tr td { width: 14%; text-align: center; margin: 0; padding: 4px 0; color: #404041 }
+.time_body tr td a { display: block; color: #232B33 }
+.time_body tr td:first-child, .time_body tr td:last-child { width: 15% }
+.timeTable .before { color: #cececf }
+.timeTable .use > a { color: #e6e6e6 }
+.time_body tr td.currentTime span { display: inline-block; width: 100%; border-radius: 10px; margin: 0 auto; background: #eb8c00; text-align: center; color: #fff }
+.time_body tr td.ing span, .time_body tr td.start span, .time_body tr td.end span { display: block; width: 100%; height: 20px; background: #5E6977; text-align: center; line-height: 20px; color: #fff }
+.time_body tr td.start span { border-radius: 10px 0 0 10px }
+.time_body tr td.end span { border-radius: 0 10px 10px 0 }
+.time_body tr td.start.end_time span { width: auto; border-radius: 10px; margin: 0 auto }

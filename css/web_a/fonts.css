@@ -1,0 +1,23 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face { font-family: 'Pretendard-Bold'; font-style: normal; font-weight: normal; src: local(☺), url(../../fonts/Pretendard-Bold.woff) format('woff'); }
+@font-face { font-family: 'Pretendard-Medium'; font-style: normal; font-weight: normal; src: local(☺), url(../../fonts/Pretendard-Medium.woff) format('woff'); }
+@font-face { font-family: 'Pretendard-Light'; font-style: normal; font-weight: normal; src: local(☺), url(../../fonts/Pretendard-Light.woff) format('woff'); }
+/*폰트적용*/
+.loginForm .titl01 { font-family: 'Pretendard-Bold'; }
+.title_area h2 { font-family: 'Pretendard-Bold'; }
+.timeSelectArea .sTitle >span { font-family: 'Pretendard-Bold' }
+.timeSelectArea .sTitle >span em { font-family: 'Pretendard-Medium' }
+#head ul.menu { font-family: 'Pretendard-Bold' }
+.tab_wrap ul.tab li:hover a { font-family: 'Pretendard-Bold' }
+.tab_wrap ul.tab li.on a { font-family: 'Pretendard-Bold' }
+.title_area .floorNum { font-family: 'Pretendard-Bold' }
+.rightMenu .titleBox p { font-family: 'Pretendard-Bold' }
+.title_area .floorInfor > .count .title { font-family: 'Pretendard-Bold' }
+.position_abs > a { font-family: 'Pretendard-Bold' }
+.map_box div.room { font-family: 'Pretendard-Bold' }
+.floor-infor dl dt { font-family: 'Pretendard-Bold' }
+.detail-page > h1 { font-family: 'Pretendard-Bold'; }
+.portlet-header .tui-chart-legend ul li { font-family: 'Pretendard-Light' }
+.portlet-header h3 span { font-family: 'Pretendard-Light' }
+.toastui-calendar-weekday-event-title { font-family: 'Pretendard-Bold'; }

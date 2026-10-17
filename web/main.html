@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1280">
+    <title>KGC 스마트오피스 포털 대시보드</title>
+    <link rel="shortcut icon" href="../images/web_a/common/logo.svg" type="image/svg+xml">
+
+    <!-- PC(web_a) 퍼블 스타일 -->
+    <link rel="stylesheet" href="../css/web_a/fonts.css">
+    <link rel="stylesheet" href="../css/web_a/base.css">
+    <link rel="stylesheet" href="../css/web_a/layout.css">
+    <link rel="stylesheet" href="../css/web_a/common.css">
+    <link rel="stylesheet" href="../css/web_a/contents.css">
+    <link rel="stylesheet" href="../css/web_a/colorStyle.css">
+    <link rel="stylesheet" href="../css/web_a/response.css">
+    <link rel="stylesheet" href="../css/web_a/jquery.modal.css">
+    <link rel="stylesheet" href="../css/xeicon/xeicon.min.css">
+    <link rel="stylesheet" href="./common.css">
+    <link rel="stylesheet" href="./main.css">
+
+    <script src="../js/jquery-3.6.0.js"></script>
+    <script src="./common.js"></script>
+</head>
+
+<body class="web-dashboard-page">
+
+    <!-- PC 공통 헤더 (web_a #header/#head 구조) -->
+    <header id="header">
+        <div id="head">
+            <div class="head_L">
+                <h1 id="logo">
+                    <a href="./main.html">
+                        <img src="../images/web_a/common/logo.svg" alt="스마트오피스 예약시스템">
+                    </a><span>스마트오피스 예약시스템</span>
+                </h1>
+                <ul class="menu">
+                    <li>
+                        <a href="./main.html" class="ico dashboard on" data-menu="dashboard" title="대시보드">
+                            <span>대시보드</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://works.kgc.co.kr/swc/booking.do" target="_blank" rel="noopener noreferrer" class="ico seat external" data-menu="seat" title="스마트웍스 좌석예약 (새 탭)">
+                            <span>좌석예약 <i class="ext-ico">↗</i></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://works.kgc.co.kr/mtg/resve.do" target="_blank" rel="noopener noreferrer" class="ico meet external" data-menu="meeting" title="스마트웍스 회의실예약 (새 탭)">
+                            <span>회의실예약 <i class="ext-ico">↗</i></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./parking.html" class="ico parking" data-menu="parking" title="주차정산">
+                            <span>주차정산</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./busReservation.html" class="ico bus" data-menu="bus" title="셔틀버스">
+                            <span>셔틀버스</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="head_R">
+                <ul id="gnb">
+                    <li class="tnb">
+                        <a href="./main.html" title="홈">Home</a>
+                        <a href="javascript:void(0);" id="logoutBtn" title="로그아웃">Logout</a>
+                    </li>
+                    <li class="nm">
+                        홍길동님 환영합니다
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 대시보드 메인 컨텐츠 -->
+    <div id="contents" class="web-dashboard-container">
+        <main class="dashboard-wrapper">
+            <!-- 대시보드 환영 및 요약 바 -->
+            <header class="dashboard-hero">
+                <div class="hero-text">
+                    <h2 class="hero-title">
+                        <span class="user-greeting">홍길동</span>님, 
+                        오늘도 스마트한 하루 되세요!
+                    </h2>
+                    <p class="hero-sub" id="currentDateDisplay">오늘의 스마트오피스 이용 현황을 한눈에 확인하세요.</p>
+                </div>
+                <div class="hero-actions">
+                    <button type="button" id="btnRefreshDashboard" class="btn-dashboard-refresh" title="대시보드 실시간 갱신">
+                        <i class="ico-refresh">⟳</i> <span>새로고침</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- [메인 섹션] 나의 예약 (My Reservation) -->
+            <section class="dashboard-section section-my-reservation">
+                <div class="section-header">
+                    <div class="section-title-wrap">
+                        <span class="section-badge">Today</span>
+                        <h3 class="section-title">나의 예약 <span class="sub-en">My Reservation</span></h3>
+                    </div>
+                    <div class="section-link-wrap">
+                        <a href="https://works.kgc.co.kr/swc/myResve.do" target="_blank" rel="noopener noreferrer" 
+                           class="btn-external-link" title="스마트웍스 나의 예약 통합 화면으로 이동 (새 탭)">
+                            <span>나의 예약 바로가기</span>
+                            <i class="ext-arrow">↗</i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 상단 3단 카드 그리드 (좌석, 회의실, 사물함) -->
+                <div class="reservation-cards-grid">
+                    
+                    <!-- 1. 이용 좌석 카드 -->
+                    <article class="reservation-card card-seat" id="cardSeat">
+                        <div class="card-head">
+                            <div class="card-icon seat-icon">🪑</div>
+                            <h4 class="card-title">이용 좌석</h4>
+                            <span class="status-badge badge-active" id="seatStatusBadge">입실중</span>
+                        </div>
+                        <div class="card-body">
+                            <!-- 좌석 배정 시 -->
+                            <div class="seat-info-view" id="seatInfoView">
+                                <div class="seat-main-number">
+                                    <span class="number-label">좌석 번호</span>
+                                    <strong class="seat-no" id="seatNo">042번</strong>
+                                    <span class="type-pill" id="seatType">자율석</span>
+                                </div>
+                                <ul class="detail-meta-list">
+                                    <li>
+                                        <span class="meta-label">위치 센터</span>
+                                        <span class="meta-val" id="seatCenter">과천사옥 6층 자율석</span>
+                                    </li>
+                                    <li>
+                                        <span class="meta-label">이용 시간</span>
+                                        <span class="meta-val" id="seatTime">09:00 ~ 18:00</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- 미예약 시 (fallback) -->
+                            <div class="empty-state-view" id="seatEmptyView" style="display: none;">
+                                <p class="empty-msg">오늘 예약된 좌석이 없습니다.</p>
+                                <a href="https://works.kgc.co.kr/swc/booking.do" target="_blank" rel="noopener noreferrer" class="btn-card-action">
+                                    좌석 예약하기 ↗
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 2. 나의 회의실 카드 (오늘 최대 2건) -->
+                    <article class="reservation-card card-meeting" id="cardMeeting">
+                        <div class="card-head">
+                            <div class="card-icon meeting-icon">📅</div>
+                            <h4 class="card-title">나의 회의실</h4>
+                            <span class="count-badge" id="meetingCountBadge">오늘 2건</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="meeting-list-view" id="meetingListView">
+                                <!-- 회의 항목 1 -->
+                                <div class="meeting-item" id="meetingItem1">
+                                    <div class="meeting-time-box">
+                                        <span class="time-range" id="meeting1Time">14:00 ~ 15:30</span>
+                                        <span class="place-badge" id="meeting1Place">대회의실</span>
+                                    </div>
+                                    <p class="meeting-subject" id="meeting1Subject" title="스마트오피스 주간회의">스마트오피스 주간회의</p>
+                                </div>
+                                <!-- 회의 항목 2 -->
+                                <div class="meeting-item" id="meetingItem2">
+                                    <div class="meeting-time-box">
+                                        <span class="time-range" id="meeting2Time">16:30 ~ 17:30</span>
+                                        <span class="place-badge" id="meeting2Place">소회의실 2</span>
+                                    </div>
+                                    <p class="meeting-subject" id="meeting2Subject" title="TFT 파트장 점검 회의">TFT 파트장 점검 회의</p>
+                                </div>
+                                <!-- 초과 건수 표시 (3건 이상 시) -->
+                                <div class="meeting-more-bar" id="meetingMoreBar" style="display: none;">
+                                    <span id="meetingMoreText">+ 외 1건의 회의가 더 있습니다.</span>
+                                </div>
+                            </div>
+                            <!-- 회의 없을 시 (fallback) -->
+                            <div class="empty-state-view" id="meetingEmptyView" style="display: none;">
+                                <p class="empty-msg">오늘 예정된 회의가 없습니다.</p>
+                                <a href="https://works.kgc.co.kr/mtg/resve.do" target="_blank" rel="noopener noreferrer" class="btn-card-action">
+                                    회의실 예약하기 ↗
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 3. 나의 사물함 카드 -->
+                    <article class="reservation-card card-locker" id="cardLocker">
+                        <div class="card-head">
+                            <div class="card-icon locker-icon">🔐</div>
+                            <h4 class="card-title">나의 사물함</h4>
+                            <span class="status-badge badge-active" id="lockerStatusBadge">사용중</span>
+                        </div>
+                        <div class="card-body">
+                            <!-- 사물함 배정 시 -->
+                            <div class="locker-info-view" id="lockerInfoView">
+                                <div class="locker-main-number">
+                                    <span class="number-label">사물함 번호</span>
+                                    <strong class="locker-no" id="lockerNo">012호</strong>
+                                </div>
+                                <ul class="detail-meta-list">
+                                    <li>
+                                        <span class="meta-label">보관 구역</span>
+                                        <span class="meta-val" id="lockerZone">과천사옥 3층 A존</span>
+                                    </li>
+                                    <li>
+                                        <span class="meta-label">이용 기간</span>
+                                        <span class="meta-val" id="lockerPeriodWrap">
+                                            <span id="lockerPeriod">~ 2026.12.31</span>
+                                            <span class="d-day-pill" id="lockerDday">D-75</span>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- 미배정 시 (fallback) -->
+                            <div class="empty-state-view" id="lockerEmptyView" style="display: none;">
+                                <p class="empty-msg">현재 배정된 사물함이 없습니다.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- [하단 섹션] 자체 서비스 카드 3단 (주차, 셔틀, 모바일 앱 QR) -->
+            <section class="dashboard-grid-bottom">
+                
+                <!-- 하단 1: 나의 차량 등록 정보 -->
+                <article class="sub-service-card card-parking">
+                    <div class="card-header-simple">
+                        <span class="service-icon">🚗</span>
+                        <h4 class="service-title">나의 차량 등록 정보</h4>
+                    </div>
+                    <div class="service-card-body">
+                        <div class="vehicle-plate-box">
+                            <span class="plate-label">등록 차량번호</span>
+                            <strong class="plate-number" id="registeredCarNo">12가 3456</strong>
+                        </div>
+                        <!-- 사용자 필수 요청 고정 안내 문구 -->
+                        <div class="notice-info-box">
+                            <i class="ico-info">ℹ</i>
+                            <p class="notice-text">차량 등록은 과천사옥 3층 안내데스크에서 가능합니다.</p>
+                        </div>
+                    </div>
+                    <div class="service-card-foot">
+                        <a href="./parking.html" class="btn-service-link btn-parking" title="주차 정산 화면으로 이동">
+                            <span>주차 정산 바로가기</span>
+                            <i class="arr-right">→</i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 하단 2: 나의 셔틀버스 예약 -->
+                <article class="sub-service-card card-shuttle">
+                    <div class="card-header-simple">
+                        <span class="service-icon">🚌</span>
+                        <h4 class="service-title">나의 셔틀버스 예약</h4>
+                    </div>
+                    <div class="service-card-body">
+                        <div class="shuttle-info-box" id="shuttleInfoBox">
+                            <div class="shuttle-route-row">
+                                <span class="route-name" id="shuttleRouteName">1호차 (사당행)</span>
+                                <span class="ticket-type-pill" id="shuttleTicketType">일일권</span>
+                            </div>
+                            <ul class="detail-meta-list">
+                                <li>
+                                    <span class="meta-label">탑승 일자</span>
+                                    <span class="meta-val" id="shuttleDate">2026.10.17 (토) 퇴근</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- 셔틀 미예약 시 (fallback) -->
+                        <div class="empty-state-view" id="shuttleEmptyView" style="display: none;">
+                            <p class="empty-msg">오늘 예약된 셔틀버스가 없습니다.</p>
+                        </div>
+                    </div>
+                    <div class="service-card-foot">
+                        <a href="./busReservation.html" class="btn-service-link btn-shuttle" title="셔틀버스 예약/노선 화면으로 이동">
+                            <span>예약 취소/변경</span>
+                            <i class="arr-right">→</i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 하단 3: 모바일 앱 다운로드 QR -->
+                <article class="sub-service-card card-app-qr">
+                    <div class="card-header-simple">
+                        <span class="service-icon">📱</span>
+                        <h4 class="service-title">모바일 앱 다운로드</h4>
+                    </div>
+                    <div class="service-card-body qr-body">
+                        <div class="qr-frame">
+                            <div class="qr-image-wrap">
+                                <svg class="qr-svg" viewBox="0 0 120 120" width="108" height="108" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="120" height="120" fill="#ffffff" rx="8"/>
+                                    <!-- QR 위치 패턴 좌상단 -->
+                                    <rect x="10" y="10" width="30" height="30" fill="#1A1D20" rx="4"/>
+                                    <rect x="16" y="16" width="18" height="18" fill="#ffffff" rx="2"/>
+                                    <rect x="21" y="21" width="8" height="8" fill="#D71635" rx="1"/>
+                                    <!-- QR 위치 패턴 우상단 -->
+                                    <rect x="80" y="10" width="30" height="30" fill="#1A1D20" rx="4"/>
+                                    <rect x="86" y="16" width="18" height="18" fill="#ffffff" rx="2"/>
+                                    <rect x="91" y="21" width="8" height="8" fill="#D71635" rx="1"/>
+                                    <!-- QR 위치 패턴 좌하단 -->
+                                    <rect x="10" y="80" width="30" height="30" fill="#1A1D20" rx="4"/>
+                                    <rect x="16" y="86" width="18" height="18" fill="#ffffff" rx="2"/>
+                                    <rect x="21" y="91" width="8" height="8" fill="#D71635" rx="1"/>
+                                    <!-- QR 가상 데이터 매트릭스 도트 -->
+                                    <rect x="46" y="14" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="58" y="14" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="68" y="22" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="46" y="28" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="58" y="34" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="14" y="48" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="26" y="56" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="36" y="48" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="48" y="48" width="6" height="6" fill="#D71635"/>
+                                    <rect x="58" y="56" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="68" y="48" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="80" y="56" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="94" y="48" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="46" y="68" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="60" y="68" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="72" y="74" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="48" y="86" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="62" y="94" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="74" y="86" width="6" height="6" fill="#D71635"/>
+                                    <rect x="86" y="94" width="6" height="6" fill="#1A1D20"/>
+                                    <rect x="98" y="86" width="6" height="6" fill="#1A1D20"/>
+                                </svg>
+                            </div>
+                            <div class="qr-guide-text">
+                                <p class="guide-lead">스마트폰 카메라로 스캔하여</p>
+                                <p class="guide-sub">사내 모바일 앱을 설치하세요.</p>
+                                <a href="javascript:void(0);" onclick="soAlert('사내 모바일 앱(APK) 설치 안내 페이지로 이동합니다.')" class="guide-link">설치 안내 페이지 바로가기 &gt;</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </section>
+        </main>
+    </div>
+
+    <!-- PC 공통 푸터 -->
+    <footer id="footer" class="web-footer">
+        <div class="footer-inner">
+            <div class="footer-info">
+                <span class="copyright">Copyright &copy; KGC. All Rights Reserved.</span>
+                <span class="divider">|</span>
+                <span class="inquiry">시스템 문의: 스마트오피스 구축 TFT</span>
+            </div>
+            <div class="footer-links">
+                <a href="../menu_versions.html" class="btn-switch-mobile" title="스마트오피스 모바일 웹 화면으로 전환">
+                    <i class="ico-mobile">📱</i> 모바일 웹으로 전환
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 현업 시연용 상태 전환 플로팅 바 -->
+    <div class="demo-scenario-bar">
+        <span class="demo-label">💡 시연 상태 전환:</span>
+        <button type="button" class="demo-btn active" data-mode="active" onclick="applyDemoScenario('active')">이용중 (기본)</button>
+        <button type="button" class="demo-btn" data-mode="multi" onclick="applyDemoScenario('multi')">회의 다건 (3건+)</button>
+        <button type="button" class="demo-btn" data-mode="empty" onclick="applyDemoScenario('empty')">미예약 (빈 상태)</button>
+    </div>
+
+    <!-- 공통 모달 -->
+    <div id="modal-window" style="display: none;">
+        <div class="modal-box">
+            <p id="modal-title" class="modal-title">알림</p>
+            <div class="modal-pop">
+                <p id="modal-text" class="modal-text"></p>
+            </div>
+            <ul id="modal-buttons" class="modal-buttons"></ul>
+        </div>
+    </div>
+
+    <script>
+        const DEMO_SCENARIOS = {
+            active: {
+                seat: { seatNo: '042번', center: '과천사옥 6층 자율석', type: '자율석', time: '09:00 ~ 18:00', status: '입실중' },
+                meetings: [
+                    { time: '14:00 ~ 15:30', place: '대회의실', subject: '스마트오피스 주간회의' },
+                    { time: '16:30 ~ 17:30', place: '소회의실 2', subject: 'TFT 파트장 점검 회의' }
+                ],
+                locker: { lockerNo: '012호', zone: '과천사옥 3층 A존', period: '~ 2026.12.31', dDay: 'D-75', status: '사용중' },
+                carNo: '12가 3456',
+                shuttle: { route: '1호차 (사당행)', ticketType: '일일권', date: getTodayFormatted() + ' 퇴근' }
+            },
+            multi: {
+                seat: { seatNo: '108번', center: '과천사옥 5층 고정석', type: '고정석', time: '08:30 ~ 18:00', status: '예약완료' },
+                meetings: [
+                    { time: '10:00 ~ 11:00', place: '중회의실 1', subject: 'PC 웹 포털 UI/UX 현업 리뷰' },
+                    { time: '14:00 ~ 15:30', place: '대회의실', subject: '스마트오피스 주간회의' },
+                    { time: '16:00 ~ 17:00', place: '소회의실 2', subject: '주차/셔틀 연동 점검' },
+                    { time: '17:00 ~ 17:30', place: '집중회의실', subject: '일일 마감 스크럼' }
+                ],
+                locker: { lockerNo: '012호', zone: '과천사옥 3층 A존', period: '~ 2026.12.31', dDay: 'D-75', status: '사용중' },
+                carNo: '12가 3456',
+                shuttle: { route: '2호차 (양재행)', ticketType: '정기권', date: getTodayFormatted() + ' 퇴근' }
+            },
+            empty: {
+                seat: null,
+                meetings: [],
+                locker: null,
+                carNo: '미등록 차량',
+                shuttle: null
+            }
+        };
+
+        let currentScenario = 'active';
+
+        function getTodayFormatted() {
+            const now = new Date();
+            const days = ['일', '월', '화', '수', '목', '금', '토'];
+            const yyyy = now.getFullYear();
+            const mm = String(now.getMonth() + 1).padStart(2, '0');
+            const dd = String(now.getDate()).padStart(2, '0');
+            const day = days[now.getDay()];
+            return `${yyyy}.${mm}.${dd} (${day})`;
+        }
+
+        function initCurrentDate() {
+            const now = new Date();
+            const days = ['일', '월', '화', '수', '목', '금', '토'];
+            const dateStr = `${now.getFullYear()}년 ${now.getMonth() + 1}월 ${now.getDate()}일 (${days[now.getDay()]}) 오늘의 스마트오피스 이용 현황입니다.`;
+            $('#currentDateDisplay').text(dateStr);
+            $('#shuttleDate').text(getTodayFormatted() + ' 퇴근');
+        }
+
+        function renderDashboard(data) {
+            if (!data) return;
+
+            // 1) 이용 좌석 렌더링
+            if (data.seat && data.seat.seatNo) {
+                $('#seatInfoView').show();
+                $('#seatEmptyView').hide();
+                $('#seatNo').text(data.seat.seatNo);
+                $('#seatCenter').text(data.seat.center || '과천사옥');
+                $('#seatType').text(data.seat.type || '자율석');
+                $('#seatTime').text(data.seat.time || '09:00 ~ 18:00');
+                
+                const $statusBadge = $('#seatStatusBadge');
+                $statusBadge.text(data.seat.status || '입실중');
+                if (data.seat.status === '예약완료') {
+                    $statusBadge.removeClass('badge-active').addClass('badge-reserved');
+                } else {
+                    $statusBadge.removeClass('badge-reserved').addClass('badge-active');
+                }
+            } else {
+                $('#seatInfoView').hide();
+                $('#seatEmptyView').show();
+                $('#seatStatusBadge').text('미이용').removeClass('badge-active badge-reserved');
+            }
+
+            // 2) 나의 회의실 렌더링 (최대 2건 제한)
+            if (data.meetings && data.meetings.length > 0) {
+                $('#meetingListView').show();
+                $('#meetingEmptyView').hide();
+                $('#meetingCountBadge').text('오늘 ' + data.meetings.length + '건');
+
+                const m1 = data.meetings[0];
+                $('#meetingItem1').show();
+                $('#meeting1Time').text(m1.time || '');
+                $('#meeting1Place').text(m1.place || '');
+                $('#meeting1Subject').text(m1.subject || '').attr('title', m1.subject || '');
+
+                if (data.meetings.length >= 2) {
+                    const m2 = data.meetings[1];
+                    $('#meetingItem2').show();
+                    $('#meeting2Time').text(m2.time || '');
+                    $('#meeting2Place').text(m2.place || '');
+                    $('#meeting2Subject').text(m2.subject || '').attr('title', m2.subject || '');
+                } else {
+                    $('#meetingItem2').hide();
+                }
+
+                if (data.meetings.length > 2) {
+                    const extraCount = data.meetings.length - 2;
+                    $('#meetingMoreBar').show();
+                    $('#meetingMoreText').text(`+ 외 ${extraCount}건의 회의가 더 있습니다.`);
+                } else {
+                    $('#meetingMoreBar').hide();
+                }
+            } else {
+                $('#meetingListView').hide();
+                $('#meetingEmptyView').show();
+                $('#meetingCountBadge').text('오늘 0건');
+            }
+
+            // 3) 나의 사물함 렌더링
+            if (data.locker && data.locker.lockerNo) {
+                $('#lockerInfoView').show();
+                $('#lockerEmptyView').hide();
+                $('#lockerNo').text(data.locker.lockerNo);
+                $('#lockerZone').text(data.locker.zone || '과천사옥');
+                $('#lockerPeriod').text(data.locker.period || '');
+                $('#lockerDday').text(data.locker.dDay || '');
+                $('#lockerStatusBadge').text(data.locker.status || '사용중').show();
+            } else {
+                $('#lockerInfoView').hide();
+                $('#lockerEmptyView').show();
+                $('#lockerStatusBadge').hide();
+            }
+
+            // 4) 등록 차량 번호
+            if (data.carNo) {
+                $('#registeredCarNo').text(data.carNo);
+            }
+
+            // 5) 셔틀버스 예약 정보
+            if (data.shuttle && data.shuttle.route) {
+                $('#shuttleInfoBox').show();
+                $('#shuttleEmptyView').hide();
+                $('#shuttleRouteName').text(data.shuttle.route);
+                $('#shuttleTicketType').text(data.shuttle.ticketType || '일일권');
+                $('#shuttleDate').text(data.shuttle.date || '');
+            } else {
+                $('#shuttleInfoBox').hide();
+                $('#shuttleEmptyView').show();
+            }
+        }
+
+        function applyDemoScenario(mode) {
+            currentScenario = mode;
+            $('.demo-scenario-bar .demo-btn').removeClass('active');
+            $(`.demo-scenario-bar .demo-btn[data-mode="${mode}"]`).addClass('active');
+            renderDashboard(DEMO_SCENARIOS[mode]);
+        }
+
+        $(function () {
+            initCurrentDate();
+
+            // URL 파라미터 mode 지원 (?mode=empty 또는 ?mode=multi)
+            const params = new URLSearchParams(window.location.search);
+            const modeParam = params.get('mode');
+            if (modeParam && DEMO_SCENARIOS[modeParam]) {
+                applyDemoScenario(modeParam);
+            }
+
+            $('#btnRefreshDashboard').on('click', function () {
+                const $btn = $(this);
+                if ($btn.hasClass('rotating')) return;
+                $btn.addClass('rotating');
+                setTimeout(function () {
+                    renderDashboard(DEMO_SCENARIOS[currentScenario]);
+                    $btn.removeClass('rotating');
+                }, 500);
+            });
+        });
+    </script>
+</body>
+
+</html>

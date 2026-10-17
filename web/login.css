@@ -1,0 +1,78 @@
+/* ==========================================================================
+   PC 로그인 (templates/web/login.html)
+   - 배경/카드: PC 퍼블 web_a (.loginWrap, .loginArea)
+   - 카드 안 요소: 모바일 로그인 값 기준
+     (publish/css/mobile_a/layout.css "로그인", assets/css/template.css 로그인 영역)
+   ========================================================================== */
+
+/* 배경·카드 (web_a .loginArea 680px 카드 안에 모바일 폼 폭으로 배치) */
+html, body.login-page { height: 100%; }
+.login-page .loginWrap { display: flex; align-items: center; justify-content: center; min-height: 100%; padding: 40px 0; }
+.login-page .loginArea { width: 520px; min-height: 0; padding: 50px 0 40px; }
+
+.loginBox { width: 400px; }
+.loginBox form { width: 100%; }
+
+/* 로고·타이틀 */
+.loginBox fieldset { position: relative; width: 100%; margin: 0 0 34px; padding: 0; border: 0; min-width: 0; }
+.loginBox fieldset > div.title img { width: 134px; margin-bottom: 10px; }
+.loginBox fieldset .title { padding-top: 6px; margin-bottom: 30px; color: var(--text-black01-color); font-family: 'Pretendard-Bold'; font-size: 20px; line-height: 120%; letter-spacing: 0; cursor: default; user-select: none; }
+.loginBox fieldset > div.title > p.title { margin-bottom: 0; }
+.loginBox fieldset > div.title { margin-bottom: 30px; padding-top: 0; }
+.loginBox fieldset p { padding-top: 0; margin-bottom: 10px; }
+
+/* 아이디·비밀번호: 하단 라인형 입력 */
+.loginBox fieldset input[type=text],
+.loginBox fieldset input[type=password] {
+    width: 100%;
+    height: 50px;
+    padding: 0 16px 0 0;
+    border: none;
+    border-bottom: 1px solid #E0E0E0;
+    border-radius: 0;
+    background: #fff;
+    color: var(--text-black01-color);
+    font-size: 15px;
+}
+.loginBox fieldset input[type=text]:hover,
+.loginBox fieldset input[type=password]:hover { border: none; border-bottom: 1px solid #E0E0E0; }
+.loginBox fieldset input[type=text]:focus,
+.loginBox fieldset input[type=password]:focus { border: none; border-bottom: 1px solid var(--text-black01-color); outline: none; }
+.loginBox fieldset input[type=text]::placeholder,
+.loginBox fieldset input[type=password]::placeholder { font-size: 16px; color: #999; }
+.loginBox input:-webkit-autofill,
+.loginBox input:-webkit-autofill:hover,
+.loginBox input:-webkit-autofill:focus,
+.loginBox input:-webkit-autofill:active { transition: background-color 5000s; -webkit-text-fill-color: #232B33 !important; }
+
+/* 자동 로그인·아이디저장 */
+.loginBox .id_save { margin: 4px 0; padding: 10px 0; }
+.loginBox .id_save label { display: inline-block; margin: 0 10px 0 0; color: #666; font-size: 16px; line-height: 16px; vertical-align: middle; cursor: pointer; }
+.loginBox .id_save input[type=checkbox] { top: 0; width: 16px; height: 16px; margin-right: 2px; border: none; border-radius: 4px; background-color: #eee; vertical-align: middle; cursor: pointer; }
+.loginBox .id_save input[type=checkbox]:hover { border: none; }
+.loginBox .id_save input[type=checkbox]:checked { background: var(--primary-default-color) url(../images/mobile_a/ico/checkbox_checked.svg) no-repeat center center; background-size: 100% auto; }
+
+/* 로그인 버튼 */
+.loginBox .login_btn .btn { width: 100%; height: 50px; border-radius: 10px; font-size: 16px; }
+
+/* SMS 인증 */
+.loginBox #auth_view { width: 100%; margin-top: -16px; margin-bottom: 10px; }
+.loginBox ul.auth { display: flex; flex-direction: column; gap: 10px; margin-top: 30px; }
+.loginBox ul.auth li { flex-grow: 1; }
+.loginBox ul.auth li:first-child { display: flex; gap: 10px; width: 100%; }
+.loginBox ul.auth li input { height: 44px; padding: 0 16px; border: 1px solid var(--input-def-border-color); border-radius: 10px; background: #fff; font-size: 15px; }
+.loginBox ul.auth li .btn { width: 100%; height: 44px; border-radius: 10px; font-size: 15px; align-items: center; justify-content: center; }
+.loginBox ul.auth li:first-child .btn { flex-shrink: 0; max-width: 130px; }
+.loginBox ul.auth li:first-child .btn span { white-space: nowrap; }
+.loginBox .comment.check-time { display: block; width: 100%; margin: 6px 0 0; padding: 0; color: var(--text-black02-color); font-size: 16px; line-height: 160%; text-align: center; }
+.loginBox .comment em.non-match { color: #f64263; }
+.loginBox .timer-value.timer-expired { color: #888; text-decoration: line-through; }
+
+/* SMS 진행 중 잠금 상태 (login.js showSmsBody) */
+.login-fields-disabled { opacity: .55; user-select: none; }
+.login-main-fields input:disabled,
+.loginBox button:disabled { cursor: not-allowed !important; }
+.loginBox .login-main-fields input:disabled { background: #f9f9f9; color: #777 !important; -webkit-text-fill-color: #777; }
+#loginBtn:disabled { background-color: #E78091 !important; }
+.btn-resend:disabled,
+.verify-btn:disabled { opacity: .55; }

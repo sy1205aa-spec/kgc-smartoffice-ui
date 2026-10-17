@@ -1,0 +1,48 @@
+@charset "utf-8";
+/*1920px이상*/
+@media screen and (min-width: 4096px) {
+  /*	 .map_box {  -webkit-transform: scale(2); -moz-transform: scale(2); transform: scale(2);  }	*/
+  /*	#zoomArea {  -webkit-transform: scale(2) !important; -moz-transform: scale(2) !important; transform: scale(2) !important;  }	*/
+}
+/*1920px이상*/
+@media screen and (min-width: 3840px) {
+  /*	 .map_box {  -webkit-transform: scale(2); -moz-transform: scale(2); transform: scale(2);  }	*/
+  /*	#zoomArea {  -webkit-transform: scale(2) !important; -moz-transform: scale(2) !important; transform: scale(2) !important;  }	*/
+}
+/*1920px이상*/
+@media screen and (min-width: 2560px) {
+  /*	 .map_box {  -webkit-transform: scale(2); -moz-transform: scale(2); transform: scale(2);  }	*/
+  /*	#zoomArea {  -webkit-transform: scale(2) !important; -moz-transform: scale(2) !important; transform: scale(2) !important;  }	*/
+}
+/*1920px이상*/
+@media screen and (min-width: 1921px) {
+  /*	 .map_box {  -webkit-transform: scale(2); -moz-transform: scale(2); transform: scale(2);  }	*/
+  /*	#zoomArea {  -webkit-transform: scale(2) !important; -moz-transform: scale(2) !important; transform: scale(2) !important;  }	*/
+}
+/*1600px이하*/
+@media screen and (max-width: 1600px) {
+}
+@media screen and (max-width: 1440px) {    
+  #logo>span {
+    display: none;
+  }
+}
+@media screen and (max-width: 1366px) {
+  #logo > span {
+    display: none
+  }
+}
+@media screen and (max-width: 1280px) {
+  .reserv_day .quickSearch_area {
+    float: left;
+  }
+}
+@media screen and (max-width: 1024px) {}
+/*ie10*/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  select {
+    padding: 0 22px 0 10px
+  }
+}
+/*ie8,9*/
+@media \0screen {}
