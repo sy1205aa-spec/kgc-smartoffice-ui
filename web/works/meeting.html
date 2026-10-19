@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+<!-- KGC Works 정적 스냅샷 (kgc_works_snapshot) / 상단 헤더 제거, PC 메인(/web/main) iframe 표시용 -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>스마트오피스 예약시스템</title>
+<link rel="icon" href="../../images/web_a/common/logo.svg" type="image/x-icon">
+<link rel="shortcut icon" href="../../images/web_a/common/logo.svg" type="image/x-icon">
+
+
+
+ 
+
+	
+	
+	
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/fonts.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/base.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/layout.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/common.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/common_eng.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/contents.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/reserv.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/tooltip.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/meetSell.css?v=2">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/colorStyle.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/response.css">	
+		<link rel="stylesheet" type="text/css" href="../../css/xeicon/xeicon.min.css">
+	
+
+
+<!-- jquery modal alert -->
+<link rel="stylesheet" type="text/css" href="../../css/web_a/jquery.modal.css">
+  
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="../common.css">
+<link rel="stylesheet" type="text/css" href="../works.css">
+<script src="../../js/jquery-3.6.0.js"></script>
+<script src="../common.js"></script>
+</head> 
+<body class="">
+
+
+
+
+
+
+
+
+
+
+<div id="wrapper">
+  <div id="container">
+    <!-- 구 스마트웍스(works.kgc.co.kr) 원본 top.jsp 공통 헤더 영역 -->
+    <div id="header">
+      <div id="head">
+        <div class="head_L">
+          <h1 id="logo">
+            <a href="../main.html"><img src="../../images/web_a/common/logo.svg" alt="스마트오피스 예약시스템" /></a><span>스마트오피스 예약시스템</span>
+          </h1>
+          <ul class="menu">
+            <li><a href="./seat.html" class="ico seat"><span>좌석예약</span></a></li>
+            <li><a href="./meeting.html" class="ico meet"><span>회의실예약</span></a></li>
+            <li><a href="./locker.html" class="ico locker"><span>사물함예약</span></a></li>
+            <li><a href="./myresv.html" class="ico myReserv"><span>나의예약</span></a></li>
+          </ul>
+        </div>
+        <div class="head_R">
+          <ul id="gnb">
+            <li class="tnb">
+              <a href="../main.html">Home</a>
+              <a href="javascript:void(0);" id="logoutBtn">Logout</a>
+            </li>
+            <li class="nm">홍길동님 환영합니다</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- ★ 구 스마트웍스 top.jsp 하단에 단 1줄 추가되는 스마트오피스 원격 메뉴 동기화 스크립트 -->
+    <script src="../menu-sync.js" defer></script>
+
+
+<form id="mtgForm" name="mtgForm" action="#" method="post"> 
+<input type="hidden" name="message" value="">
+<input type="hidden" name="cmd" value="">
+<input type="hidden" name="flag" value="day">
+<input type="hidden" name="mtgPlaceId" id="mtgPlaceId">
+<input type="hidden" name="resveId" id="resveId">
+<input type="hidden" name="resveBeginTm" id="resveBeginTm" value="">
+<input type="hidden" name="resveEndTm" id="resveEndTm" value="">
+<input type="hidden" name="selectDe" value="20261012">
+<input type="hidden" name="searchTime" value="">
+<input type="hidden" id="roomName" value="">
+
+<div id="helpbox"></div>
+	<div id="contents">		
+      <div id="sub_contents">		
+		<div class="title_area">
+          <h2>회의실 예약<!-- 회의실예약  --></h2>
+          <span>회의실 예약현황을 확인하고 예약을 합니다.</span>
+		</div>
+                  
+        <!-- information -->
+        <div class="reserv_day"> 
+          	
+
+
+
+
+
+
+
+<div class="tab_wrap"> 
+  <p class="clear"></p>
+  <ul class="tab">
+    <li><a href="./meeting_map.html">층별 현황</a></li>	  
+	<li class="on"><a href="./meeting.html">일간현황</a></li>
+	<li><a href="./meeting_week.html">주간현황</a></li>
+	<li><a href="./meeting_month.html">월간현황</a></li>	
+	 
+	
+ </ul>
+ <p class="clear"></p> 
+</div>
+
+
+
+          	<!-- 일간현황 -->
+		  	<div class="date-area">
+				<div class="calendar_area">
+				  <ul>
+					<li><a href="javascript:goSearchList('prev');"><i class="calendar-left"></i></a></li>
+					<li class="date_day"> 2026.10.12<span>(월)</span></li>
+					<li><a href="javascript:goSearchList('next');"><i class="calendar-right"></i></a></li>
+					<li>
+					  <input name="resveDe" id="resveDe" type="hidden" value="2026.10.12" class="hasDatepicker"><img class="ui-datepicker-trigger" src="../../images/web_a/ico/icm_cal.svg" alt="달력" title="달력" style="cursor: pointer;"> 
+					  <img id="icon_cal" src="../../images/web_a/ico/icm_cal.svg" alt="달력" title="달력" style="display: none;"></li>
+					<li>
+					  <div class="sBtn_01"> <a title="오늘" href="javascript:goSearchList('today');" class="btn small sec-weak"><span>오늘</span></a> </div>
+					</li>
+				  </ul>
+				</div> 
+				<div class="quickSearch_area">
+				  <ul>
+					<li class="search_title"><img src="../../images/web_a/ico/ico-finder.svg" alt="">예약가능 회의실 검색</li>
+					<li class="solid">
+					  <select id="searchBeginTm" name="searchBeginTm" title="시작시간" onchange="fnBeginTmCheck();">
+						  <option value="">시작시간</option>
+						    
+							<option value="0600">06:00</option>
+						    
+							<option value="0630">06:30</option>
+						    
+							<option value="0700">07:00</option>
+						    
+							<option value="0730">07:30</option>
+						    
+							<option value="0800">08:00</option>
+						    
+							<option value="0830">08:30</option>
+						    
+							<option value="0900">09:00</option>
+						    
+							<option value="0930">09:30</option>
+						    
+							<option value="1000">10:00</option>
+						    
+							<option value="1030">10:30</option>
+						    
+							<option value="1100">11:00</option>
+						    
+							<option value="1130">11:30</option>
+						    
+							<option value="1200">12:00</option>
+						    
+							<option value="1230">12:30</option>
+						    
+							<option value="1300">13:00</option>
+						    
+							<option value="1330">13:30</option>
+						    
+							<option value="1400">14:00</option>
+						    
+							<option value="1430">14:30</option>
+						    
+							<option value="1500">15:00</option>
+						    
+							<option value="1530">15:30</option>
+						    
+							<option value="1600">16:00</option>
+						    
+							<option value="1630">16:30</option>
+						    
+							<option value="1700">17:00</option>
+						    
+							<option value="1730">17:30</option>
+						    
+							<option value="1800">18:00</option>
+						    
+							<option value="1830">18:30</option>
+						    
+							<option value="1900">19:00</option>
+						    
+							<option value="1930">19:30</option>
+						    
+							<option value="2000">20:00</option>
+						    
+							<option value="2030">20:30</option>
+						    
+							<option value="2100">21:00</option>
+						    
+							<option value="2130">21:30</option>
+						    
+							<option value="2200">22:00</option>
+						    
+							<option value="2230">22:30</option>
+						  
+					  </select>
+					</li>
+					<li class="solid"><em class="fromTo">~</em></li>
+					<li>
+					  <select id="searchEndTm" name="searchEndTm" title="종료시간" onchange="fnEndTmCheck();">
+						  <option value="">종료시간</option>
+						    
+							<option value="0630">06:30</option>
+						    
+							<option value="0700">07:00</option>
+						    
+							<option value="0730">07:30</option>
+						    
+							<option value="0800">08:00</option>
+						    
+							<option value="0830">08:30</option>
+						    
+							<option value="0900">09:00</option>
+						    
+							<option value="0930">09:30</option>
+						    
+							<option value="1000">10:00</option>
+						    
+							<option value="1030">10:30</option>
+						    
+							<option value="1100">11:00</option>
+						    
+							<option value="1130">11:30</option>
+						    
+							<option value="1200">12:00</option>
+						    
+							<option value="1230">12:30</option>
+						    
+							<option value="1300">13:00</option>
+						    
+							<option value="1330">13:30</option>
+						    
+							<option value="1400">14:00</option>
+						    
+							<option value="1430">14:30</option>
+						    
+							<option value="1500">15:00</option>
+						    
+							<option value="1530">15:30</option>
+						    
+							<option value="1600">16:00</option>
+						    
+							<option value="1630">16:30</option>
+						    
+							<option value="1700">17:00</option>
+						    
+							<option value="1730">17:30</option>
+						    
+							<option value="1800">18:00</option>
+						    
+							<option value="1830">18:30</option>
+						    
+							<option value="1900">19:00</option>
+						    
+							<option value="1930">19:30</option>
+						    
+							<option value="2000">20:00</option>
+						    
+							<option value="2030">20:30</option>
+						    
+							<option value="2100">21:00</option>
+						    
+							<option value="2130">21:30</option>
+						    
+							<option value="2200">22:00</option>
+						    
+							<option value="2230">22:30</option>
+						    
+							<option value="2300">23:00</option>
+						  					  
+					  </select>
+					</li>
+					<li class="solid">
+					  <select id="searchNmpr" name="searchNmpr" title="수용인원">
+						<option value="">수용인원</option>
+						<option value="1">1명 이상</option>
+						<option value="5">5명 이상</option>
+						<option value="10">10명 이상</option>
+						<option value="20">20명 이상</option>
+						<option value="30">30명 이상</option>
+						<option value="40">40명 이상</option>
+						<option value="50">50명 이상</option>
+						<option value="80">80명 이상</option>
+						<option value="100">100명 이상</option>
+					  </select>
+					</li>
+					<li>
+					  <div class="sBtn_01"> <a href="javascript:goSearchList();" title="검색" class="btn small sec-weak"><i class="xi-magnifier"></i>검색</a> </div>
+					</li>
+					<li>
+					  <div class="sBtn_01"> <a href="javascript:goSearchReset();" title="초기화" class="btn small sec-weak"><i class="xi-refresh"></i>초기화</a> </div>
+					</li>
+				  </ul>
+				</div>
+			</div>
+			<p class="clear"> </p>
+			<!-- 버튼영역 Start -->
+			<div class="groupListBtn">
+			  <div class="leftblockButton">
+				<ul>
+				  <li>
+					<select id="mtgrmCl" name="mtgrmCl" title="대분류" onchange="goSearchMtgrmCl();">
+						
+						<option value="MTGCL_00000001" selected="selected">과천본사</option>
+					</select>
+				  </li>
+				  <li>
+					<select id="lcSe" name="lcSe" title="분류선택" onchange="goSearchLcSe();">
+						<option value="">분류선택</option>
+						<option value="MTGCL_00000024">2F</option><option value="MTGCL_00000002">3F</option><option value="MTGCL_00000025">6F</option><option value="MTGCL_00000003">7F</option><option value="MTGCL_00000004">8F</option>
+					</select>
+				  </li>
+				  <li>
+					<select id="searchMtgPlaceId" name="searchMtgPlaceId" title="회의실선택" onchange="goSearchList();">
+						<option value="">회의실선택</option>
+						<option value="MTGP_000000000000028">룸1</option><option value="MTGP_000000000000019">룸2</option><option value="MTGP_000000000000001">회의실 01</option><option value="MTGP_000000000000002">회의실 02</option><option value="MTGP_000000000000003">회의실 03</option><option value="MTGP_000000000000004">회의실 04</option><option value="MTGP_000000000000005">회의실 05</option><option value="MTGP_000000000000022">회의실 1</option><option value="MTGP_000000000000023">회의실 2</option><option value="MTGP_000000000000006">회의실 01</option><option value="MTGP_000000000000007">회의실 02</option><option value="MTGP_000000000000013">회의실 CEO</option><option value="MTGP_000000000000008">회의실 01</option><option value="MTGP_000000000000009">회의실 02</option><option value="MTGP_000000000000010">회의실 03</option>
+					</select>
+				  </li>  
+				</ul>
+			  </div>
+			  <div class="rightblockButton">
+				<ul>
+				  
+				  <li>                  
+					
+						<a href="javascript:goCreateView();" class="btn medium pri" title="예약하기"><span>예약하기</span></a>
+					
+					                  	
+				  </li>
+				</ul>
+			  </div>
+			</div>
+			<!-- //버튼영역 End --> 
+			<!-- 예약테이블 -->
+			<div id="fix_table">
+			  <ul class="bumrea">
+				<li><span class="meet_myReserv"><i class=""></i></span>나의예약<!-- 나의예약 --></li>
+				<!-- 결재승인 사용여부 --> 
+				<li class="margin"><span class="meet_myWait"><i class=""></i></span>나의 승인대기<!-- 나의 승인대기 --></li>
+				
+				<li><span class="meet_reserved"><i class=""></i></span>예약완료<!-- 다른 사용자 예약완료 --></li>
+				<!-- 결재승인 사용여부 --> 
+				<li><span class="meet_confirmWait"><i class=""></i></span>승인대기<!-- 승인대기 --></li>
+				
+				<li><span class="meet_end"><i class=""></i></span>회의종료<!-- 회의종료 --></li>                    
+				<!-- 예약 불가 기간 사용여부 --> 
+				<li><span class="meet_none"><i class=""></i></span>예약불가 <!-- 예약불가능 회의실 --></li>
+				
+			  </ul>
+			  
+			  <div aria-hidden="true" class="floatThead-container" style="overflow-x: hidden; position: fixed; margin-top: 0px; top: 0px; z-index: 1001; will-change: transform; transform: translateX(110px) translateY(457px); left: 0px; width: 1160.03px;"><table class="fix_table_hover reserv_dayList floatThead-table" cellspacing="0" style="border-collapse: collapse; border: 0px rgb(35, 43, 51); display: table; width: 1160.03px; margin: 0px; table-layout: fixed;"><colgroup><col style="width: 220px;"><col style="width: 60px;"><col style="width: 6.34375px;"><col style="width: 6.34375px;"><col style="width: 27.9531px;"><col style="width: 27.9844px;"><col style="width: 29.0625px;"><col style="width: 29.0625px;"><col style="width: 29.1094px;"><col style="width: 29.1094px;"><col style="width: 26.6875px;"><col style="width: 26.7031px;"><col style="width: 24.3281px;"><col style="width: 24.3594px;"><col style="width: 26.3594px;"><col style="width: 26.3906px;"><col style="width: 26.7969px;"><col style="width: 26.7969px;"><col style="width: 26.9375px;"><col style="width: 26.9375px;"><col style="width: 26.5312px;"><col style="width: 26.5625px;"><col style="width: 26.7656px;"><col style="width: 26.7969px;"><col style="width: 25.9062px;"><col style="width: 25.9062px;"><col style="width: 26.7031px;"><col style="width: 26.7031px;"><col style="width: 26.7656px;"><col style="width: 26.7969px;"><col style="width: 28.7031px;"><col style="width: 28.7344px;"><col style="width: 26.3594px;"><col style="width: 26.3906px;"><col style="width: 28.4219px;"><col style="width: 28.7188px;"></colgroup><thead>
+				  <tr>
+					<th scope="col"> 회의실 </th>
+					<th scope="col" class="roomUser"> 좌석수 </th>
+					 
+					  <th scope="col" colspan="2">
+					  	
+					  </th>
+					 
+					  <th scope="col" colspan="2">
+					  	
+					  	<span class="end">07시</span>
+					  	
+					  </th>
+					 
+					  <th scope="col" colspan="2">
+					  	
+					  	<span class="end">08시</span>
+					  	
+					  </th>
+					 
+					  <th scope="col" colspan="2">
+					  	
+					  	<span class="end">09시</span>
+					  	
+					  </th>
+					 
+					  <th scope="col" colspan="2">
+					  	
+					  	<span class="end">10시</span>
+					  	
+					  </th>
+					 
+					  <th scope="col" colspan="2">
+					  	
+					  	<span class="end">11시</span>
+					  	
+					  </th>
+					 
+					  <th scope="col" colspan="2">
+					  	
+					  	<span class="end">12시</span>
+					  	
+					  </th>
+					 
+					  <th scope="col" colspan="2">
+					  	
+					  	<span class="end">13시</span>
+					  	
+					  </th>
+					 
+					  <th scope="col" colspan="2">
+					  	
+					  	<span class="">14시</span>
+					  	
+					  </th>
+					 
+					  <th scope="col" colspan="2">
+					  	
+					  	<span class="">15시</span>
+					  	
+					  </th>
+					 
+					  <th scope="col" colspan="2">
+					  	
+					  	<span class="">16시</span>
+					  	
+					  </th>
+					 
+					  <th scope="col" colspan="2">
+					  	
+					  	<span class="">17시</span>
+					  	
+					  </th>
+					 
+					  <th scope="col" colspan="2">
+					  	
+					  	<span class="">18시</span>
+					  	
+					  </th>
+					 
+					  <th scope="col" colspan="2">
+					  	
+					  	<span class="">19시</span>
+					  	
+					  </th>
+					 
+					  <th scope="col" colspan="2">
+					  	
+					  	<span class="">20시</span>
+					  	
+					  </th>
+					 
+					  <th scope="col" colspan="2">
+					  	
+					  	<span class="">21시</span>
+					  	
+					  </th>
+					 
+					  <th scope="col" colspan="2">
+					  	
+					  	<span class="">22시</span>
+					  	
+					  </th>
+					 
+				  </tr>
+				</thead></table></div><fthfoot style="display: table-footer-group; border-spacing: 0px; height: 0px; border-collapse: collapse; visibility: hidden;"><fthtr style="display: table-row; border-spacing: 0px; height: 0px; border-collapse: collapse;"><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd><fthtd style="display: table-cell; height: 0px; width: auto;"></fthtd></fthtr></fthfoot><table cellspacing="0" id="selectable" class="fix_table_hover reserv_dayList" style="table-layout: fixed; min-width: 1160.03px;"><colgroup><col style="width: 220px;"><col style="width: 60px;"><col style="width: 6.34375px;"><col style="width: 6.34375px;"><col style="width: 27.9531px;"><col style="width: 27.9844px;"><col style="width: 29.0625px;"><col style="width: 29.0625px;"><col style="width: 29.1094px;"><col style="width: 29.1094px;"><col style="width: 26.6875px;"><col style="width: 26.7031px;"><col style="width: 24.3281px;"><col style="width: 24.3594px;"><col style="width: 26.3594px;"><col style="width: 26.3906px;"><col style="width: 26.7969px;"><col style="width: 26.7969px;"><col style="width: 26.9375px;"><col style="width: 26.9375px;"><col style="width: 26.5312px;"><col style="width: 26.5625px;"><col style="width: 26.7656px;"><col style="width: 26.7969px;"><col style="width: 25.9062px;"><col style="width: 25.9062px;"><col style="width: 26.7031px;"><col style="width: 26.7031px;"><col style="width: 26.7656px;"><col style="width: 26.7969px;"><col style="width: 28.7031px;"><col style="width: 28.7344px;"><col style="width: 26.3594px;"><col style="width: 26.3906px;"><col style="width: 28.4219px;"><col style="width: 28.7188px;"></colgroup>
+				
+				<thead><tr class="size-row" style="height: 48px;"><th class="floatThead-col" style="height: 48px;"><span aria-label=" 회의실 "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=" 좌석수 "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label="
+					  	
+					  "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label="
+					  	
+					  	07시
+					  	
+					  "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label="
+					  	
+					  	08시
+					  	
+					  "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label="
+					  	
+					  	09시
+					  	
+					  "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label="
+					  	
+					  	10시
+					  	
+					  "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label="
+					  	
+					  	11시
+					  	
+					  "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label="
+					  	
+					  	12시
+					  	
+					  "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label="
+					  	
+					  	13시
+					  	
+					  "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label="
+					  	
+					  	14시
+					  	
+					  "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label="
+					  	
+					  	15시
+					  	
+					  "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label="
+					  	
+					  	16시
+					  	
+					  "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label="
+					  	
+					  	17시
+					  	
+					  "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label="
+					  	
+					  	18시
+					  	
+					  "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label="
+					  	
+					  	19시
+					  	
+					  "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label="
+					  	
+					  	20시
+					  	
+					  "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label="
+					  	
+					  	21시
+					  	
+					  "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label="
+					  	
+					  	22시
+					  	
+					  "></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=""></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=""></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=""></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=""></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=""></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=""></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=""></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=""></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=""></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=""></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=""></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=""></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=""></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=""></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=""></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=""></span></th><th class="floatThead-col" style="height: 48px;"><span aria-label=""></span></th></tr></thead><tbody>
+				  <tr id="MTGP_000000000000028" room_name="룸1" class="ui-selectable"><th class="roomName"><p><a href="javascript:fn_mtgrum_popup('MTGP_000000000000028');" title="2F 룸1 (48 인실)"><i class="none"></i> 2F 룸1</a> </p></th><th class="roomUserCount"> <p> 48 인실 </p></th><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time meetStart_end minLine" onmouseover="msgset_list('end','[천녹팀]천녹 업무회의','08:30~09:30','황지우','룸1');"> <a href="javascript:goDetail('RESVE_00000000004521');" class="end">&nbsp;</a></td><td class="end_time meetEnd_end minLine" onmouseover="msgset_list('end','[천녹팀]천녹 업무회의','08:30~09:30','황지우','룸1');"> <a href="javascript:goDetail('RESVE_00000000004521');" class="end">&nbsp;</a></td><td class="end_time meetSell_end minLine" onmouseover="msgset_list('end','업무미팅','09:30~10:00','김경선','룸1');"> <a href="javascript:goDetail('RESVE_00000000004525');" class="end">&nbsp;</a></td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time meetStart_ing minLine" onmouseover="msgset_list('ing','점장제 교육으로인한 PC설치','13:00~17:00','최성희','룸1');"> <a href="javascript:goDetail('RESVE_00000000004523');" class="ing">&nbsp;</a></td><td class="end_time current meetIng_ing minLine" onmouseover="msgset_list('ing','점장제 교육으로인한 PC설치','13:00~17:00','최성희','룸1');"> <a href="javascript:goDetail('RESVE_00000000004523');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','점장제 교육으로인한 PC설치','13:00~17:00','최성희','룸1');"> <a href="javascript:goDetail('RESVE_00000000004523');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','점장제 교육으로인한 PC설치','13:00~17:00','최성희','룸1');"> <a href="javascript:goDetail('RESVE_00000000004523');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','점장제 교육으로인한 PC설치','13:00~17:00','최성희','룸1');"> <a href="javascript:goDetail('RESVE_00000000004523');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','점장제 교육으로인한 PC설치','13:00~17:00','최성희','룸1');"> <a href="javascript:goDetail('RESVE_00000000004523');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','점장제 교육으로인한 PC설치','13:00~17:00','최성희','룸1');"> <a href="javascript:goDetail('RESVE_00000000004523');" class="ing">&nbsp;</a></td><td class=" meetEnd_ing minLine" onmouseover="msgset_list('ing','점장제 교육으로인한 PC설치','13:00~17:00','최성희','룸1');"> <a href="javascript:goDetail('RESVE_00000000004523');" class="ing">&nbsp;</a></td><td class="selectable minLine ui-selectee" id="T17001730">&nbsp;</td><td class="selectable minLine ui-selectee" id="T17301800">&nbsp;</td><td class="selectable minLine ui-selectee" id="T18001830">&nbsp;</td><td class="selectable minLine ui-selectee" id="T18301900">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19001930">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19302000">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20002030">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20302100">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21002130">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21302200">&nbsp;</td><td class="selectable minLine ui-selectee" id="T22002230">&nbsp;</td><td class="selectable ui-selectee" id="T22302300">&nbsp;</td></tr><tr id="MTGP_000000000000019" room_name="룸2" class="ui-selectable"><th class="roomName"><p><a href="javascript:fn_mtgrum_popup('MTGP_000000000000019');" title="2F 룸2 (8 인실)"><i class="none"></i> 2F 룸2</a> </p></th><th class="roomUserCount"> <p> 8 인실 </p></th><td class="end_time fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('SIEM 교체 사업','2026.09.14 - 2026.12.31');">&nbsp;</td></tr><tr id="MTGP_000000000000001" room_name="회의실 01" class="floorIng ui-selectable"><th class="roomName"><p><a href="javascript:fn_mtgrum_popup('MTGP_000000000000001');" title="3F 회의실 01 (8 인실)"><i class="none"></i> 3F 회의실 01</a> </p></th><th class="roomUserCount"> <p> 8 인실 </p></th><td class="end_time fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('New매장 기획 및 컨텐츠 제작','2026.09.01 - 2026.12.31');">&nbsp;</td></tr><tr id="MTGP_000000000000002" room_name="회의실 02" class="floorIng ui-selectable"><th class="roomName"><p><a href="javascript:fn_mtgrum_popup('MTGP_000000000000002');" title="3F 회의실 02 (6 인실)"><i class="none"></i> 3F 회의실 02</a> </p></th><th class="roomUserCount"> <p> 6 인실 </p></th><td class="end_time fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('IMC실 광고용역 인력 상주 근무','2026.09.14 - 2027.03.26');">&nbsp;</td></tr><tr id="MTGP_000000000000003" room_name="회의실 03" class="floorIng ui-selectable"><th class="roomName"><p><a href="javascript:fn_mtgrum_popup('MTGP_000000000000003');" title="3F 회의실 03 (6 인실)"><i class="none"></i> 3F 회의실 03</a> </p></th><th class="roomUserCount"> <p> 6 인실 </p></th><td class="end_time fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('외부 컨설팅사 프로젝트 수행 위한 상주','2026.08.24 - 2026.10.31');">&nbsp;</td></tr><tr id="MTGP_000000000000004" room_name="회의실 04" class="floorIng ui-selectable"><th class="roomName"><p><a href="javascript:fn_mtgrum_popup('MTGP_000000000000004');" title="3F 회의실 04 (6 인실)"><i class="none"></i> 3F 회의실 04</a> </p></th><th class="roomUserCount"> <p> 6 인실 </p></th><td class="end_time fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('매킨지 인원 상주 인원','2026.04.09 - 2026.12.31');">&nbsp;</td></tr><tr id="MTGP_000000000000005" room_name="회의실 05" class="floorIng ui-selectable"><th class="roomName"><p><a href="javascript:fn_mtgrum_popup('MTGP_000000000000005');" title="3F 회의실 05 (21 인실)"><i class="none"></i> 3F 회의실 05</a> </p></th><th class="roomUserCount"> <p> 21 인실 </p></th><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time meetStart_ing minLine" onmouseover="msgset_list('ing','예산심의위원회','13:30~17:00','이희승','회의실 05');"> <a href="javascript:goDetail('RESVE_00000000004539');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','예산심의위원회','13:30~17:00','이희승','회의실 05');"> <a href="javascript:goDetail('RESVE_00000000004539');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','예산심의위원회','13:30~17:00','이희승','회의실 05');"> <a href="javascript:goDetail('RESVE_00000000004539');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','예산심의위원회','13:30~17:00','이희승','회의실 05');"> <a href="javascript:goDetail('RESVE_00000000004539');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','예산심의위원회','13:30~17:00','이희승','회의실 05');"> <a href="javascript:goDetail('RESVE_00000000004539');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','예산심의위원회','13:30~17:00','이희승','회의실 05');"> <a href="javascript:goDetail('RESVE_00000000004539');" class="ing">&nbsp;</a></td><td class=" meetEnd_ing minLine" onmouseover="msgset_list('ing','예산심의위원회','13:30~17:00','이희승','회의실 05');"> <a href="javascript:goDetail('RESVE_00000000004539');" class="ing">&nbsp;</a></td><td class="selectable minLine ui-selectee" id="T17001730">&nbsp;</td><td class="selectable minLine ui-selectee" id="T17301800">&nbsp;</td><td class="selectable minLine ui-selectee" id="T18001830">&nbsp;</td><td class="selectable minLine ui-selectee" id="T18301900">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19001930">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19302000">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20002030">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20302100">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21002130">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21302200">&nbsp;</td><td class="selectable minLine ui-selectee" id="T22002230">&nbsp;</td><td class="selectable ui-selectee" id="T22302300">&nbsp;</td></tr><tr id="MTGP_000000000000022" room_name="회의실 1" class="ui-selectable"><th class="roomName"><p><a href="javascript:fn_mtgrum_popup('MTGP_000000000000022');" title="6F 회의실 1 (8 인실)"><i class="none"></i> 6F 회의실 1</a> </p></th><th class="roomUserCount"> <p> 8 인실 </p></th><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time meetStart_end minLine" onmouseover="msgset_list('end','미디어팀 회의','10:00~11:00','윤연우','회의실 1');"> <a href="javascript:goDetail('RESVE_00000000004497');" class="end">&nbsp;</a></td><td class="end_time meetEnd_end minLine" onmouseover="msgset_list('end','미디어팀 회의','10:00~11:00','윤연우','회의실 1');"> <a href="javascript:goDetail('RESVE_00000000004497');" class="end">&nbsp;</a></td><td class="end_time meetStart_end minLine" onmouseover="msgset_list('end','MM팀 미팅','11:00~12:00','신은비','회의실 1');"> <a href="javascript:goDetail('RESVE_00000000004529');" class="end">&nbsp;</a></td><td class="end_time meetEnd_end minLine" onmouseover="msgset_list('end','MM팀 미팅','11:00~12:00','신은비','회의실 1');"> <a href="javascript:goDetail('RESVE_00000000004529');" class="end">&nbsp;</a></td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time meetStart_ing minLine" onmouseover="msgset_list('ing','Wellous 방한 교육 관련 미팅','13:00~14:00','곽민수','회의실 1');"> <a href="javascript:goDetail('RESVE_00000000004445');" class="ing">&nbsp;</a></td><td class="end_time meetEnd_ing minLine" onmouseover="msgset_list('ing','Wellous 방한 교육 관련 미팅','13:00~14:00','곽민수','회의실 1');"> <a href="javascript:goDetail('RESVE_00000000004445');" class="ing">&nbsp;</a></td><td class=" meetStart_reserved minLine" onmouseover="msgset_list('reserved','감사실 업무미팅','14:00~15:00','남광현','회의실 1');"> <a href="javascript:goDetail('RESVE_00000000004540');" class="reserved">&nbsp;</a></td><td class=" meetEnd_reserved minLine" onmouseover="msgset_list('reserved','감사실 업무미팅','14:00~15:00','남광현','회의실 1');"> <a href="javascript:goDetail('RESVE_00000000004540');" class="reserved">&nbsp;</a></td><td class="selectable minLine ui-selectee" id="T15001530">&nbsp;</td><td class="selectable minLine ui-selectee" id="T15301600">&nbsp;</td><td class="selectable minLine ui-selectee" id="T16001630">&nbsp;</td><td class="selectable minLine ui-selectee" id="T16301700">&nbsp;</td><td class="selectable minLine ui-selectee" id="T17001730">&nbsp;</td><td class="selectable minLine ui-selectee" id="T17301800">&nbsp;</td><td class="selectable minLine ui-selectee" id="T18001830">&nbsp;</td><td class="selectable minLine ui-selectee" id="T18301900">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19001930">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19302000">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20002030">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20302100">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21002130">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21302200">&nbsp;</td><td class="selectable minLine ui-selectee" id="T22002230">&nbsp;</td><td class="selectable ui-selectee" id="T22302300">&nbsp;</td></tr><tr id="MTGP_000000000000023" room_name="회의실 2" class="ui-selectable"><th class="roomName"><p><a href="javascript:fn_mtgrum_popup('MTGP_000000000000023');" title="6F 회의실 2 (9 인실)"><i class="none"></i> 6F 회의실 2</a> </p></th><th class="roomUserCount"> <p> 9 인실 </p></th><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time meetStart_end minLine" onmouseover="msgset_list('end','해외','08:00~09:00','채웅식','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004519');" class="end">&nbsp;</a></td><td class="end_time meetEnd_end minLine" onmouseover="msgset_list('end','해외','08:00~09:00','채웅식','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004519');" class="end">&nbsp;</a></td><td class="end_time meetStart_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class=" meetEnd_ing minLine" onmouseover="msgset_list('ing','영업본부 팀별 실별 회의(주간)','09:00~18:00','윤덕현','회의실 2');"> <a href="javascript:goDetail('RESVE_00000000004182');" class="ing">&nbsp;</a></td><td class="selectable minLine ui-selectee" id="T18001830">&nbsp;</td><td class="selectable minLine ui-selectee" id="T18301900">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19001930">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19302000">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20002030">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20302100">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21002130">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21302200">&nbsp;</td><td class="selectable minLine ui-selectee" id="T22002230">&nbsp;</td><td class="selectable ui-selectee" id="T22302300">&nbsp;</td></tr><tr id="MTGP_000000000000006" room_name="회의실 01" class="floorIng ui-selectable"><th class="roomName"><p><a href="javascript:fn_mtgrum_popup('MTGP_000000000000006');" title="7F 회의실 01 (7 인실)"><i class="none"></i> 7F 회의실 01</a> </p></th><th class="roomUserCount"> <p> 7 인실 </p></th><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time meetStart_end minLine" onmouseover="msgset_list('end','컴실회의','09:00~11:00','장우섭','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004009');" class="end">&nbsp;</a></td><td class="end_time meetIng_end minLine" onmouseover="msgset_list('end','컴실회의','09:00~11:00','장우섭','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004009');" class="end">&nbsp;</a></td><td class="end_time meetIng_end minLine" onmouseover="msgset_list('end','컴실회의','09:00~11:00','장우섭','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004009');" class="end">&nbsp;</a></td><td class="end_time meetEnd_end minLine" onmouseover="msgset_list('end','컴실회의','09:00~11:00','장우섭','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004009');" class="end">&nbsp;</a></td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class=" meetStart_reserved minLine" onmouseover="msgset_list('reserved','경영정책팀 회의','14:00~15:00','김현웅','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004538');" class="reserved">&nbsp;</a></td><td class=" meetEnd_reserved minLine" onmouseover="msgset_list('reserved','경영정책팀 회의','14:00~15:00','김현웅','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004538');" class="reserved">&nbsp;</a></td><td class=" meetStart_reserved minLine" onmouseover="msgset_list('reserved','RA','15:00~17:00','김재우','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004505');" class="reserved">&nbsp;</a></td><td class=" meetIng_reserved minLine" onmouseover="msgset_list('reserved','RA','15:00~17:00','김재우','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004505');" class="reserved">&nbsp;</a></td><td class=" meetIng_reserved minLine" onmouseover="msgset_list('reserved','RA','15:00~17:00','김재우','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004505');" class="reserved">&nbsp;</a></td><td class=" meetEnd_reserved minLine" onmouseover="msgset_list('reserved','RA','15:00~17:00','김재우','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004505');" class="reserved">&nbsp;</a></td><td class="selectable minLine ui-selectee" id="T17001730">&nbsp;</td><td class="selectable minLine ui-selectee" id="T17301800">&nbsp;</td><td class="selectable minLine ui-selectee" id="T18001830">&nbsp;</td><td class="selectable minLine ui-selectee" id="T18301900">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19001930">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19302000">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20002030">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20302100">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21002130">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21302200">&nbsp;</td><td class="selectable minLine ui-selectee" id="T22002230">&nbsp;</td><td class="selectable ui-selectee" id="T22302300">&nbsp;</td></tr><tr id="MTGP_000000000000007" room_name="회의실 02" class="floorIng ui-selectable"><th class="roomName"><p><a href="javascript:fn_mtgrum_popup('MTGP_000000000000007');" title="7F 회의실 02 (9 인실)"><i class="none"></i> 7F 회의실 02</a> </p></th><th class="roomUserCount"> <p> 9 인실 </p></th><td class="end_time fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class="end_time fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td><td class=" fixRoom" onmouseover="msgset_fixlist('2027년 사업계획 수립','2026.08.01 - 2026.10.30');">&nbsp;</td></tr><tr id="MTGP_000000000000013" room_name="회의실 CEO" class="floorIng ui-selectable"><th class="roomName"><p><a href="javascript:fn_mtgrum_popup('MTGP_000000000000013');" title="7F 회의실 CEO (13 인실)"><i class="wait_video_meeting"></i> 7F 회의실 CEO</a> </p></th><th class="roomUserCount"> <p> 13 인실 </p></th><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="selectable minLine ui-selectee" id="T14001430">&nbsp;</td><td class="selectable minLine ui-selectee" id="T14301500">&nbsp;</td><td class="selectable minLine ui-selectee" id="T15001530">&nbsp;</td><td class="selectable minLine ui-selectee" id="T15301600">&nbsp;</td><td class="selectable minLine ui-selectee" id="T16001630">&nbsp;</td><td class="selectable minLine ui-selectee" id="T16301700">&nbsp;</td><td class="selectable minLine ui-selectee" id="T17001730">&nbsp;</td><td class="selectable minLine ui-selectee" id="T17301800">&nbsp;</td><td class="selectable minLine ui-selectee" id="T18001830">&nbsp;</td><td class="selectable minLine ui-selectee" id="T18301900">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19001930">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19302000">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20002030">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20302100">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21002130">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21302200">&nbsp;</td><td class="selectable minLine ui-selectee" id="T22002230">&nbsp;</td><td class="selectable ui-selectee" id="T22302300">&nbsp;</td></tr><tr id="MTGP_000000000000008" room_name="회의실 01" class="ui-selectable"><th class="roomName"><p><a href="javascript:fn_mtgrum_popup('MTGP_000000000000008');" title="8F 회의실 01 (6 인실)"><i class="none"></i> 8F 회의실 01</a> </p></th><th class="roomUserCount"> <p> 6 인실 </p></th><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time meetStart_end minLine" onmouseover="msgset_list('end','브랜드1실 회의','08:30~09:30','박주연','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004503');" class="end">&nbsp;</a></td><td class="end_time meetEnd_end minLine" onmouseover="msgset_list('end','브랜드1실 회의','08:30~09:30','박주연','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004503');" class="end">&nbsp;</a></td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time meetStart_end minLine" onmouseover="msgset_list('end','아이패스 리바이탈 관련 회의','10:30~12:00','김도현','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004516');" class="end">&nbsp;</a></td><td class="end_time meetIng_end minLine" onmouseover="msgset_list('end','아이패스 리바이탈 관련 회의','10:30~12:00','김도현','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004516');" class="end">&nbsp;</a></td><td class="end_time meetEnd_end minLine" onmouseover="msgset_list('end','아이패스 리바이탈 관련 회의','10:30~12:00','김도현','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004516');" class="end">&nbsp;</a></td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time meetStart_ing minLine" onmouseover="msgset_list('ing','MI팀 업무 미팅','13:00~14:00','김기현','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004531');" class="ing">&nbsp;</a></td><td class="end_time meetEnd_ing minLine" onmouseover="msgset_list('ing','MI팀 업무 미팅','13:00~14:00','김기현','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004531');" class="ing">&nbsp;</a></td><td class=" meetStart_reserved minLine" onmouseover="msgset_list('reserved','[천녹] 추석 결과보고','14:00~16:00','박주희','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004515');" class="reserved">&nbsp;</a></td><td class=" meetIng_reserved minLine" onmouseover="msgset_list('reserved','[천녹] 추석 결과보고','14:00~16:00','박주희','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004515');" class="reserved">&nbsp;</a></td><td class=" meetIng_reserved minLine" onmouseover="msgset_list('reserved','[천녹] 추석 결과보고','14:00~16:00','박주희','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004515');" class="reserved">&nbsp;</a></td><td class=" meetEnd_reserved minLine" onmouseover="msgset_list('reserved','[천녹] 추석 결과보고','14:00~16:00','박주희','회의실 01');"> <a href="javascript:goDetail('RESVE_00000000004515');" class="reserved">&nbsp;</a></td><td class="selectable minLine ui-selectee" id="T16001630">&nbsp;</td><td class="selectable minLine ui-selectee" id="T16301700">&nbsp;</td><td class="selectable minLine ui-selectee" id="T17001730">&nbsp;</td><td class="selectable minLine ui-selectee" id="T17301800">&nbsp;</td><td class="selectable minLine ui-selectee" id="T18001830">&nbsp;</td><td class="selectable minLine ui-selectee" id="T18301900">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19001930">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19302000">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20002030">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20302100">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21002130">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21302200">&nbsp;</td><td class="selectable minLine ui-selectee" id="T22002230">&nbsp;</td><td class="selectable ui-selectee" id="T22302300">&nbsp;</td></tr><tr id="MTGP_000000000000009" room_name="회의실 02" class="ui-selectable"><th class="roomName"><p><a href="javascript:fn_mtgrum_popup('MTGP_000000000000009');" title="8F 회의실 02 (7 인실)"><i class="none"></i> 8F 회의실 02</a> </p></th><th class="roomUserCount"> <p> 7 인실 </p></th><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time meetStart_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class="end_time meetIng_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class=" meetIng_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class=" meetEnd_ing minLine" onmouseover="msgset_list('ing','브랜드마케팅본부 사업계획 작성','09:00~18:00','문장환','회의실 02');"> <a href="javascript:goDetail('RESVE_00000000004266');" class="ing">&nbsp;</a></td><td class="selectable minLine ui-selectee" id="T18001830">&nbsp;</td><td class="selectable minLine ui-selectee" id="T18301900">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19001930">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19302000">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20002030">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20302100">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21002130">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21302200">&nbsp;</td><td class="selectable minLine ui-selectee" id="T22002230">&nbsp;</td><td class="selectable ui-selectee" id="T22302300">&nbsp;</td></tr><tr id="MTGP_000000000000010" room_name="회의실 03" class="ui-selectable"><th class="roomName"><p><a href="javascript:fn_mtgrum_popup('MTGP_000000000000010');" title="8F 회의실 03 (9 인실)"><i class="none"></i> 8F 회의실 03</a> </p></th><th class="roomUserCount"> <p> 9 인실 </p></th><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time meetStart_end minLine" onmouseover="msgset_list('end','브랜드 2실 주간회의','08:00~10:00','송상욱','회의실 03');"> <a href="javascript:goDetail('RESVE_00000000004299');" class="end">&nbsp;</a></td><td class="end_time meetIng_end minLine" onmouseover="msgset_list('end','브랜드 2실 주간회의','08:00~10:00','송상욱','회의실 03');"> <a href="javascript:goDetail('RESVE_00000000004299');" class="end">&nbsp;</a></td><td class="end_time meetIng_end minLine" onmouseover="msgset_list('end','브랜드 2실 주간회의','08:00~10:00','송상욱','회의실 03');"> <a href="javascript:goDetail('RESVE_00000000004299');" class="end">&nbsp;</a></td><td class="end_time meetEnd_end minLine" onmouseover="msgset_list('end','브랜드 2실 주간회의','08:00~10:00','송상욱','회의실 03');"> <a href="javascript:goDetail('RESVE_00000000004299');" class="end">&nbsp;</a></td><td class="end_time meetStart_end minLine" onmouseover="msgset_list('end','[천녹팀]위클리 미팅','10:00~11:30','서민경','회의실 03');"> <a href="javascript:goDetail('RESVE_00000000004022');" class="end">&nbsp;</a></td><td class="end_time meetIng_end minLine" onmouseover="msgset_list('end','[천녹팀]위클리 미팅','10:00~11:30','서민경','회의실 03');"> <a href="javascript:goDetail('RESVE_00000000004022');" class="end">&nbsp;</a></td><td class="end_time meetEnd_end minLine" onmouseover="msgset_list('end','[천녹팀]위클리 미팅','10:00~11:30','서민경','회의실 03');"> <a href="javascript:goDetail('RESVE_00000000004022');" class="end">&nbsp;</a></td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="end_time minLine">&nbsp;</td><td class="selectable minLine ui-selectee" id="T14001430">&nbsp;</td><td class="selectable minLine ui-selectee" id="T14301500">&nbsp;</td><td class=" meetStart_reserved minLine" onmouseover="msgset_list('reserved','중국 홍삼원 디자인회의','15:00~16:00','차여연','회의실 03');"> <a href="javascript:goDetail('RESVE_00000000004522');" class="reserved">&nbsp;</a></td><td class=" meetEnd_reserved minLine" onmouseover="msgset_list('reserved','중국 홍삼원 디자인회의','15:00~16:00','차여연','회의실 03');"> <a href="javascript:goDetail('RESVE_00000000004522');" class="reserved">&nbsp;</a></td><td class="selectable minLine ui-selectee" id="T16001630">&nbsp;</td><td class="selectable minLine ui-selectee" id="T16301700">&nbsp;</td><td class="selectable minLine ui-selectee" id="T17001730">&nbsp;</td><td class="selectable minLine ui-selectee" id="T17301800">&nbsp;</td><td class="selectable minLine ui-selectee" id="T18001830">&nbsp;</td><td class="selectable minLine ui-selectee" id="T18301900">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19001930">&nbsp;</td><td class="selectable minLine ui-selectee" id="T19302000">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20002030">&nbsp;</td><td class="selectable minLine ui-selectee" id="T20302100">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21002130">&nbsp;</td><td class="selectable minLine ui-selectee" id="T21302200">&nbsp;</td><td class="selectable minLine ui-selectee" id="T22002230">&nbsp;</td><td class="selectable ui-selectee" id="T22302300">&nbsp;</td></tr> 
+				</tbody>
+			  </table>
+			</div>
+			<!-- //예약테이블 --> 
+			<!-- 버튼영역 Start -->
+			<div class="groupListBtn">
+			  <div class="rightblockButton">				
+				<ul>
+				  
+				  
+					<li><a href="javascript:goCreateView();" class="btn medium pri" title="예약하기"><span>예약하기</span></a></li>
+				  
+				   
+				</ul>
+			  </div>
+			  <div class="clear"> </div>
+			</div>
+			<!-- //버튼영역 End --> 
+		  
+		  <p class="clear"> </p>
+		  <!-- comment -->
+		  <ul class="txt_commont">
+			<li>회의실을 선택하면 회의실 상세정보를 확인할 수 있습니다.</li>
+			<li>색상이 없는 빈 칸에서 시작시간과 종료시간을 드래그하여 선택한후 예약하기 버튼을 클릭합니다.</li>
+			
+			<li>
+				회의실명 앞의 
+				<!-- 결재승인 사용여부 --> 
+				<i class="wait_approval"></i> 표시는 승인을 받아야하는 회의실
+				
+				<!-- 영상회의실 사용여부 --> 
+				, <i class="video_meeting"></i> 표시는 영상 회의실
+				 
+				
+				, <i class="wait_video_meeting"></i> 표시는 영상회의실 중 승인을 받아야하는 회의실
+				
+				입니다.
+			</li>
+			
+		  </ul>
+		  <!-- //일간현황 -->     
+            
+          <!-- -->
+          <p class="clear"> </p>
+        </div>
+        <!-- //information --> 
+      </div>
+    </div>
+</form>
+
+
+
+
+  </div>
+</div> 
+
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div><div id="modal-window" style="display: none;">
+  <div class="modal-box">
+    <p id="modal-title" class="modal-title">알림</p>
+    <div class="modal-pop">
+      <p id="modal-text" class="modal-text"></p>
+    </div>
+    <ul id="modal-buttons" class="modal-buttons"></ul>
+  </div>
+</div>
+<script src="../works.js"></script>
+</body></html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+<!-- KGC Works 정적 스냅샷 (kgc_works_snapshot) / 상단 헤더 제거, PC 메인(/web/main) iframe 표시용 -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>스마트오피스 예약시스템</title>
+<link rel="icon" href="../../images/web_a/common/logo.svg" type="image/x-icon">
+<link rel="shortcut icon" href="../../images/web_a/common/logo.svg" type="image/x-icon">
+
+
+
+ 
+
+	
+	
+	
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/fonts.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/base.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/layout.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/common.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/common_eng.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/contents.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/reserv.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/tooltip.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/meetSell.css?v=2">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/colorStyle.css">
+		<link rel="stylesheet" type="text/css" href="../../css/web_a/response.css">	
+		<link rel="stylesheet" type="text/css" href="../../css/xeicon/xeicon.min.css">
+	
+
+
+<!-- jquery modal alert -->
+<link rel="stylesheet" type="text/css" href="../../css/web_a/jquery.modal.css">
+  
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="../common.css">
+<link rel="stylesheet" type="text/css" href="../works.css">
+<script src="../../js/jquery-3.6.0.js"></script>
+<script src="../common.js"></script>
+</head>
+<body class="">  
+
+
+
+
+
+
+
+
+
+
+<div id="wrapper">
+  <div id="container">
+    <!-- 구 스마트웍스(works.kgc.co.kr) 원본 top.jsp 공통 헤더 영역 -->
+    <div id="header">
+      <div id="head">
+        <div class="head_L">
+          <h1 id="logo">
+            <a href="../main.html"><img src="../../images/web_a/common/logo.svg" alt="스마트오피스 예약시스템" /></a><span>스마트오피스 예약시스템</span>
+          </h1>
+          <ul class="menu">
+            <li><a href="./seat.html" class="ico seat"><span>좌석예약</span></a></li>
+            <li><a href="./meeting.html" class="ico meet"><span>회의실예약</span></a></li>
+            <li><a href="./locker.html" class="ico locker"><span>사물함예약</span></a></li>
+            <li><a href="./myresv.html" class="ico myReserv"><span>나의예약</span></a></li>
+          </ul>
+        </div>
+        <div class="head_R">
+          <ul id="gnb">
+            <li class="tnb">
+              <a href="../main.html">Home</a>
+              <a href="javascript:void(0);" id="logoutBtn">Logout</a>
+            </li>
+            <li class="nm">홍길동님 환영합니다</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- ★ 구 스마트웍스 top.jsp 하단에 단 1줄 추가되는 스마트오피스 원격 메뉴 동기화 스크립트 -->
+    <script src="../menu-sync.js" defer></script>
+
+
+<form id="listForm" name="listForm" action="#" method="post" onsubmit="return false;"> 
+<input type="hidden" name="cmd" value="LIST"><!-- 예약조회 구분 TODAY:당일, BEFORE:사전, LIST: 전체 -->
+
+<input type="hidden" name="ipbx" value="">
+<input type="hidden" name="ipbx_code" value="">
+<input type="hidden" name="resveId" id="resveId">
+<input type="hidden" name="resveIds">
+<input type="hidden" name="pageIndex" value="1">
+<input type="hidden" name="searchCondition" value="">
+<input type="hidden" name="searchKeyword" value="">
+<input type="hidden" name="resveSttus" value="ST02">
+<input type="hidden" name="resveTy" value="">
+
+	<div id="contents">
+      <div id="sub_contents">	
+      	<div class="title_area">
+          <h2>나의 예약 현황<!-- 나의 예약 현황  --></h2>
+          <span>나의 예약현황을 확인합니다.</span> 
+		</div>
+        <p class="clear"></p>
+        
+        <!-- contents -->
+        <div class="reserv">
+        
+          <div class="tab_wrap"> 
+			  <p class="clear"></p>
+			  
+			  <ul class="tab">
+			  	<li class="on"><a href="./myresv.html">좌석현황<!-- 좌석현황 --></a></li>
+				<li><a href="./myresv_meeting.html">회의실현황<!-- 회의실현황 --></a></li>
+					
+				  <li><a href="./myresv_locker.html">사물함현황<!-- 사물함 현황 --></a></li>
+				
+				
+			  </ul>
+			  <p class="clear"></p>
+			  
+		  </div>
+		            
+          <div class="time_boxTable_day">
+	          <!-- contents -->
+	          <div class="quickSearch_area">
+	            <ul>
+	              <li>
+	                <div class="cal-input">
+	                <input name="beginDe" id="beginDe" type="text" value="2026.10.12" title="시작일" class="cal hasDatepicker" readonly="readonly"><img class="ui-datepicker-trigger" src="../../images/web_a/ico/icm_cal.svg" alt="달력" title="달력">
+	                </div>
+	              </li>
+	              <li> ~ </li>
+	              <li>
+	                <div class="cal-input">
+	                <input name="endDe" id="endDe" type="text" value="2026.10.19" title="종료일" class="cal hasDatepicker" readonly="readonly"><img class="ui-datepicker-trigger" src="../../images/web_a/ico/icm_cal.svg" alt="달력" title="달력">
+	                </div>
+	              </li>	               
+	              <li class="search_title" style="display:none">
+	                <select name="smrtcnterCl" id="smrtcnterCl" onchange="jsonSmrtcnterCl(this);" title="건물"> 
+						
+						<option value="">전체<!-- 전체 --></option>						
+						
+							<option value="MTGCL_00000001">과천본사</option>
+						
+					</select>
+	              </li>	              
+	              <li>
+	                <select name="smrtcnterId" id="smrtcnterId" title="층">
+	                	<option value="" selected="selected">전체<!-- 전체 --></option>
+		             	
+		              		<option value="USWC_0006">2F</option>
+		              	
+		              		<option value="USWC_0008">6F</option>
+		              	
+		              		<option value="USWC_0002">7F</option>
+		              	
+		              		<option value="USWC_0003">8F</option>
+		              	
+		              		<option value="USWC_0007">10F</option>
+		              	
+	             	</select>
+	              </li>
+	              <li>
+	                <div class="sBtn_01"><a href="javascript:fncSelectSmrtCnterResveList();" title="검색" class="btn small sec-weak"><i class="xi-magnifier"></i>검색<!-- 검색 --></a></div>
+	              </li>
+	            </ul>
+	          </div>
+	          
+	          <!-- 18.05.18수정 -->
+	          <p class="clear"></p>
+	          <!-- 나의예약관리 --> 
+	          <!-- 18.05.18수정 -->
+	          <div id="fix_table">
+	            <div class="blockTable seatReservList">
+	              <table summary="이용현황" class="bbs_list fix_table_striped fix_table_hover">
+	                <caption>
+	                	이용현황
+	                </caption>
+	                <colgroup>
+	                <col width="5%">
+	                <col>
+	                <col>
+	                <col>
+	                <col>
+	                <col>
+	                <col>
+	                </colgroup>
+	                <thead>
+	                  <tr>
+	                    <th scope="col">번호<!--번호  --></th>
+	                    <th scope="col">사용일<!-- 사용일 --></th>
+	                    <th scope="col">사용시간<!-- 사용시간 --></th>
+	                    <th scope="col">위치<!-- 위치 --></th>
+	                    <th scope="col">좌석번호<!-- 좌석번호 --></th>
+	                    <th scope="col">상태<!-- 상태 --></th>
+	                    <th scope="col">위치보기<!-- 위치보기 --></th>
+	                  </tr>
+	                </thead>
+	                <tbody>
+	                  
+					  <tr> 
+						<td>1</td><td>2026.10.19</td><td>09:00 ~ 18:00</td><td>과천사옥 6층 자율석</td><td><strong>042번</strong> (자율석)</td><td><span style="color:#D71635;font-weight:700;">입실중</span></td><td><a href="./seat.html" class="btn small sec-weak">도면보기</a></td></tr><tr><td>2</td><td>2026.10.16</td><td>09:00 ~ 18:00</td><td>과천사옥 6층 자율석</td><td>038번 (자율석)</td><td>퇴실완료</td><td><a href="./seat.html" class="btn small sec-weak">도면보기</a></td>
+					  </tr>
+					  
+	                  
+	                </tbody>
+	              </table>
+	            </div>
+	          </div>
+	          <!-- Page Numbur Start -->
+	            <div class="pagination">
+	                <a class="active">1</a> 
+
+	            </div>
+	          <!-- //Page Numbur End -->
+	          
+	          <p class="clear">&nbsp;</p>
+	          <!-- //contents --> 
+          </div>
+        </div>
+        <p class="clear"></p>
+        <!-- comment --> 
+        
+        <!-- //contents --> 
+      </div>
+    </div>
+</form>
+
+
+
+  </div>
+</div> 
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div><div id="modal-window" style="display: none;">
+  <div class="modal-box">
+    <p id="modal-title" class="modal-title">알림</p>
+    <div class="modal-pop">
+      <p id="modal-text" class="modal-text"></p>
+    </div>
+    <ul id="modal-buttons" class="modal-buttons"></ul>
+  </div>
+</div>
+<script src="../works.js"></script>
+</body></html>

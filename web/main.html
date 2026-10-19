@@ -23,11 +23,12 @@
 
     <script src="../js/jquery-3.6.0.js"></script>
     <script src="./common.js"></script>
+    <script src="./menu-sync.js" defer></script>
 </head>
 
 <body class="web-dashboard-page">
 
-    <!-- PC 공통 헤더 (web_a #header/#head 구조) -->
+    <!-- PC 공통 헤더 (web_a #header/#head 구조 - menu-sync.js로 구 스마트웍스와 100% 동일 메뉴 동기화) -->
     <header id="header">
         <div id="head">
             <div class="head_L">
@@ -43,18 +44,18 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://works.kgc.co.kr/usc/swc/selectSmrtCnterResveList.do" target="_blank" rel="noopener noreferrer" class="ico seat external" data-menu="seat" title="스마트웍스 좌석예약 (새 탭)">
-                            <span>좌석예약 <i class="ext-ico">↗</i></span>
+                        <a href="./works/seat.html" class="ico seat" data-menu="seat" title="좌석예약 (현재 탭 이동)">
+                            <span>좌석예약</span>
                         </a>
                     </li>
                     <li>
-                        <a href="https://works.kgc.co.kr/usc/mtg/selectUscMtgResveDayList.do" target="_blank" rel="noopener noreferrer" class="ico meet external" data-menu="meeting" title="스마트웍스 회의실예약 (새 탭)">
-                            <span>회의실예약 <i class="ext-ico">↗</i></span>
+                        <a href="./works/meeting.html" class="ico meet" data-menu="meeting" title="회의실예약 (현재 탭 이동)">
+                            <span>회의실예약</span>
                         </a>
                     </li>
                     <li>
-                        <a href="https://works.kgc.co.kr/usc/loc/selectLockerResveList.do" target="_blank" rel="noopener noreferrer" class="ico locker external" data-menu="locker" title="스마트웍스 사물함예약 (새 탭)">
-                            <span>사물함예약 <i class="ext-ico">↗</i></span>
+                        <a href="./works/locker.html" class="ico locker" data-menu="locker" title="사물함예약 (현재 탭 이동)">
+                            <span>사물함예약</span>
                         </a>
                     </li>
                     <li>
@@ -65,6 +66,11 @@
                     <li>
                         <a href="./busReservation.html" class="ico bus" data-menu="bus" title="셔틀버스">
                             <span>셔틀버스</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./works/myresv.html" class="ico myReserv" data-menu="myReserv" title="나의예약 (현재 탭 이동)">
+                            <span>나의예약</span>
                         </a>
                     </li>
                 </ul>
@@ -110,10 +116,10 @@
                         <h3 class="section-title">나의 예약 <span class="sub-en">My Reservation</span></h3>
                     </div>
                     <div class="section-link-wrap">
-                        <a href="https://works.kgc.co.kr/usc/swc/selectSmrtCnterMyResveList.do" target="_blank" rel="noopener noreferrer" 
-                           class="btn-external-link" title="스마트웍스 나의 예약 통합 화면으로 이동 (새 탭)">
+                        <a href="./works/myresv.html" target="_self"
+                           class="btn-external-link" title="나의 예약 통합 화면으로 이동 (현재 탭)">
                             <span>나의 예약 바로가기</span>
-                            <i class="ext-arrow">↗</i>
+                            <i class="ext-arrow">→</i>
                         </a>
                     </div>
                 </div>
@@ -150,8 +156,8 @@
                             <!-- 미예약 시 (fallback) -->
                             <div class="empty-state-view" id="seatEmptyView" style="display: none;">
                                 <p class="empty-msg">오늘 예약된 좌석이 없습니다.</p>
-                                <a href="https://works.kgc.co.kr/usc/swc/selectSmrtCnterResveList.do" target="_blank" rel="noopener noreferrer" class="btn-card-action">
-                                    좌석 예약하기 ↗
+                                <a href="./works/seat.html" target="_self" class="btn-card-action">
+                                    좌석 예약하기 →
                                 </a>
                             </div>
                         </div>
@@ -190,8 +196,8 @@
                             <!-- 회의 없을 시 (fallback) -->
                             <div class="empty-state-view" id="meetingEmptyView" style="display: none;">
                                 <p class="empty-msg">오늘 예정된 회의가 없습니다.</p>
-                                <a href="https://works.kgc.co.kr/usc/mtg/selectUscMtgResveDayList.do" target="_blank" rel="noopener noreferrer" class="btn-card-action">
-                                    회의실 예약하기 ↗
+                                <a href="./works/meeting.html" target="_self" class="btn-card-action">
+                                    회의실 예약하기 →
                                 </a>
                             </div>
                         </div>
@@ -228,8 +234,8 @@
                             <!-- 미배정 시 (fallback) -->
                             <div class="empty-state-view" id="lockerEmptyView" style="display: none;">
                                 <p class="empty-msg">현재 배정된 사물함이 없습니다.</p>
-                                <a href="https://works.kgc.co.kr/usc/loc/selectLockerResveList.do" target="_blank" rel="noopener noreferrer" class="btn-card-action">
-                                    사물함 예약하기 ↗
+                                <a href="./works/locker.html" target="_self" class="btn-card-action">
+                                    사물함 예약하기 →
                                 </a>
                             </div>
                         </div>

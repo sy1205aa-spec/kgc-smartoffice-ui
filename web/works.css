@@ -1,0 +1,8 @@
+/* PC 메인 및 구 스마트웍스 스냅샷 화면(web/works/*.html) 보정 */
+html, body { background: #fff; }
+
+/* 회의실 표: 스냅샷에 jQuery floatThead 의 position:fixed 머리행이 캡처 당시 좌표로 굳어 있음
+   → 머리행을 표 바로 위 일반 흐름으로 되돌리고, 그 자리를 비워두던 size-row 는 숨김 */
+#fix_table .floatThead-container { position: static !important; transform: none !important; width: 100% !important; }
+#fix_table .floatThead-container > table { width: 100% !important; }
+#fix_table table:not(.floatThead-table) > thead > tr.size-row { display: none; }

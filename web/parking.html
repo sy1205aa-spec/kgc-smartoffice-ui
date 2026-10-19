@@ -24,11 +24,12 @@
 
     <script src="../js/jquery-3.6.0.js"></script>
     <script src="./common.js"></script>
+    <script src="./menu-sync.js" defer></script>
 </head>
 
 <body class="frame-page parking-page" style="display:flex; flex-direction:column; min-height:100vh;">
 
-    <!-- PC 공통 헤더 -->
+    <!-- PC 공통 헤더 (menu-sync.js 통합 메뉴 동기화) -->
     <header id="header">
         <div id="head">
             <div class="head_L">
@@ -44,18 +45,18 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://works.kgc.co.kr/usc/swc/selectSmrtCnterResveList.do" target="_blank" rel="noopener noreferrer" class="ico seat external" data-menu="seat" title="스마트웍스 좌석예약 (새 탭)">
-                            <span>좌석예약 <i class="ext-ico">↗</i></span>
+                        <a href="./works/seat.html" class="ico seat" data-menu="seat" title="좌석예약 (현재 탭 이동)">
+                            <span>좌석예약</span>
                         </a>
                     </li>
                     <li>
-                        <a href="https://works.kgc.co.kr/usc/mtg/selectUscMtgResveDayList.do" target="_blank" rel="noopener noreferrer" class="ico meet external" data-menu="meeting" title="스마트웍스 회의실예약 (새 탭)">
-                            <span>회의실예약 <i class="ext-ico">↗</i></span>
+                        <a href="./works/meeting.html" class="ico meet" data-menu="meeting" title="회의실예약 (현재 탭 이동)">
+                            <span>회의실예약</span>
                         </a>
                     </li>
                     <li>
-                        <a href="https://works.kgc.co.kr/usc/loc/selectLockerResveList.do" target="_blank" rel="noopener noreferrer" class="ico locker external" data-menu="locker" title="스마트웍스 사물함예약 (새 탭)">
-                            <span>사물함예약 <i class="ext-ico">↗</i></span>
+                        <a href="./works/locker.html" class="ico locker" data-menu="locker" title="사물함예약 (현재 탭 이동)">
+                            <span>사물함예약</span>
                         </a>
                     </li>
                     <li>
@@ -66,6 +67,11 @@
                     <li>
                         <a href="./busReservation.html" class="ico bus" data-menu="bus" title="셔틀버스">
                             <span>셔틀버스</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./works/myresv.html" class="ico myReserv" data-menu="myReserv" title="나의예약 (현재 탭 이동)">
+                            <span>나의예약</span>
                         </a>
                     </li>
                 </ul>
