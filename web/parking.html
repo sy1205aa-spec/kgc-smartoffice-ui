@@ -2,369 +2,528 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=1280">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>주차정산 - KGC 스마트오피스 예약시스템</title>
-    <link rel="shortcut icon" href="../images/web_a/common/logo.svg" type="image/svg+xml">
 
-    <!-- PC(web_a) 퍼블 스타일 -->
-    <link rel="stylesheet" href="../css/web_a/fonts.css">
-    <link rel="stylesheet" href="../css/web_a/base.css">
-    <link rel="stylesheet" href="../css/web_a/layout.css">
-    <link rel="stylesheet" href="../css/web_a/common.css">
-    <link rel="stylesheet" href="../css/web_a/contents.css">
-    <link rel="stylesheet" href="../css/web_a/colorStyle.css">
-    <link rel="stylesheet" href="../css/web_a/response.css">
-    <link rel="stylesheet" href="../css/web_a/jquery.modal.css">
-    <link rel="stylesheet" href="../css/xeicon/xeicon.min.css">
-    <link rel="stylesheet" href="./common.css">
-    <link rel="stylesheet" href="./frame.css">
-    <link rel="stylesheet" href="./parking.css">
+    <link rel="shortcut icon" href="../images/web_a/common/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/base.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/icons.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/layout.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/colorStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/common.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/styleLayout.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/jquery.modal.css" />
+    <link rel="stylesheet" type="text/css" href="../css/xeicon/xeicon.min.css" />
+    <!-- 웹 전용 (마지막에 링크하여 오버라이드) -->
+    <link rel="stylesheet" type="text/css" href="../css/web_a/layout.css" />
+    <link rel="stylesheet" type="text/css" href="../css/web_a/common.css" />
+    <link rel="stylesheet" type="text/css" href="./common.css" />
 
     <script src="../js/jquery-3.6.0.js"></script>
     <script src="./common.js"></script>
-    <script src="./menu-sync.js" defer></script>
 </head>
 
-<body class="frame-page parking-page" style="display:flex; flex-direction:column; min-height:100vh;">
+<body>
 
-    <!-- PC 공통 헤더 (menu-sync.js 통합 메뉴 동기화) -->
-    <header id="header">
-        <div id="head">
-            <div class="head_L">
-                <h1 id="logo">
-                    <a href="./main.html">
-                        <img src="../images/web_a/common/logo.svg" alt="스마트오피스 예약시스템">
-                    </a><span>스마트오피스 예약시스템</span>
-                </h1>
-                <ul class="menu">
-                    <li>
-                        <a href="./main.html" class="ico dashboard" data-menu="dashboard" title="대시보드">
-                            <span>대시보드</span>
+    <!-- wrap -->
+    <div id="wrap">
+        <!-- 1019 신규 GNB 헤더 -->
+        <header>
+            <div class="gnb">
+                <div class="gnbInner">
+                    <h1>
+                        <a href="./main.html">
+                            <img src="../images/mobile_a/common/logo.svg" alt="스마트오피스 로고">
                         </a>
-                    </li>
-                    <li>
-                        <a href="./works/seat.html" class="ico seat" data-menu="seat" title="좌석예약 (현재 탭 이동)">
-                            <span>좌석예약</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./works/meeting.html" class="ico meet" data-menu="meeting" title="회의실예약 (현재 탭 이동)">
-                            <span>회의실예약</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./works/locker.html" class="ico locker" data-menu="locker" title="사물함예약 (현재 탭 이동)">
-                            <span>사물함예약</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./parking.html" class="ico parking on" data-menu="parking" title="주차정산">
-                            <span>주차정산</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./busReservation.html" class="ico bus" data-menu="bus" title="셔틀버스">
-                            <span>셔틀버스</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./works/myresv.html" class="ico myReserv" data-menu="myReserv" title="나의예약 (현재 탭 이동)">
-                            <span>나의예약</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="head_R">
-                <ul id="gnb">
-                    <li class="tnb">
-                        <a href="./main.html" title="홈">Home</a>
-                        <a href="javascript:void(0);" id="logoutBtn" title="로그아웃">Logout</a>
-                    </li>
-                    <li class="nm">
-                        홍길동님 환영합니다
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </header>
-
-    <!-- 주차정산 본문 -->
-    <div id="contents" class="parking-contents" style="flex:1 0 auto;">
-        <div id="sub_contents">
-            <div class="title_area">
-                <h2>주차정산</h2>
-                <span>과천사옥 주차장 이용 차량의 주차 정산 및 할인을 등록합니다.</span>
-            </div>
-            <p class="clear"></p>
-
-            <!-- 차량 조회 -->
-            <article id="parkingSearchView" class="section">
-                <div class="search_bar">
-                    <div class="quickSearch_area">
-                        <ul>
-                            <li class="search_title">차량번호</li>
-                            <li><input id="parkingVehicleNo" type="text" value="12가 3456" placeholder="차량번호를 입력하세요." title="차량번호"></li>
-                            <li>
-                                <div class="sBtn_01"><a href="javascript:void(0);" id="parkingSearchBtn" class="btn small sec-weak" title="조회"><i class="xi-magnifier"></i>조회</a></div>
-                            </li>
-                        </ul>
+                    </h1>
+                    <div class="gnbLabel">
+                        <span class="gnbDivider"></span>
+                        <span class="gnbTitle">스마트오피스 예약시스템</span>
                     </div>
                 </div>
-                <p class="clear"></p>
 
-                <div class="guide_box">
-                    <p class="title">주차 정산 안내</p>
-                    <ul class="desc_list">
-                        <li>본 주차 정산 및 할인은 <strong>과천사옥 주차장</strong> 이용 시에만 적용 가능합니다.</li>
-                        <li>차량번호가 조회되지 않으면 과천사옥 3층 안내데스크에서 차량을 먼저 등록해 주세요.</li>
-                        <li><strong>임직원 본인 차량</strong>만 등록할 수 있으며, 등록 후 주차 정산 및 할인을 이용 할 수 있습니다.</li>
+                <div class="gnbQuick">
+                    <a href="./works/seat.html" class="gnbQuickItem" data-menu="seat">
+                        <i class="ico_quick ico_quick_seat"></i>
+                        <span>좌석예약</span>
+                    </a>
+                    <a href="./works/meeting.html" class="gnbQuickItem" data-menu="meeting">
+                        <i class="ico_quick ico_quick_meeting"></i>
+                        <span>회의실예약</span>
+                    </a>
+                    <a href="./works/locker.html" class="gnbQuickItem" data-menu="locker">
+                        <i class="ico_quick ico_quick_locker"></i>
+                        <span>사물함예약</span>
+                    </a>
+                    <a href="./works/myresv.html" class="gnbQuickItem" data-menu="myReserv">
+                        <i class="ico_quick ico_quick_myreserv"></i>
+                        <span>나의예약</span>
+                    </a>
+                    <a href="./parking.html" class="gnbQuickItem active" data-menu="parking">
+                        <i class="ico_quick ico_quick_parking"></i>
+                        <span>주차정산</span>
+                    </a>
+                </div>
+
+                <div class="gnbRight">
+                    <div class="gnbUser">
+                        <span class="gnbUserText">
+                            <em class="gnbUserName">홍길동님</em>
+                            <em class="gnbUserWelcome">환영합니다.</em>
+                        </span>
+                        <a href="javascript:;" class="btnLogout" id="logoutBtn" title="로그아웃"><i class="ico logout"></i></a>
+                    </div>
+                    <span class="gnbUserDivider"></span>
+                    <button type="button" class="btnMenuToggle" title="전체메뉴"><i></i></button>
+                </div>
+            </div>
+
+            <!-- 1019 전체 메뉴 네비게이션 드롭다운 -->
+            <nav>
+                <div class="navCon">
+                    <ul>
+                        <li>
+                            <dl>
+                                <dt>
+                                    <a href="./main.html">
+                                        <span><i class="ico_menu ico_menu_dashboard"></i>대시보드</span>
+                                    </a>
+                                </dt>
+                            </dl>
+                        </li>
+
+                        <li>
+                            <dl>
+                                <dt>
+                                    <a href="./works/seat.html">
+                                        <span><i class="ico_menu ico_menu_seat"></i>좌석예약</span>
+                                    </a>
+                                </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="./works/seat.html"><span>좌석예약</span></a></li>
+                                        <li><a href="./works/seat.html"><span>직원검색</span></a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </li>
+
+                        <li>
+                            <dl>
+                                <dt>
+                                    <a href="./works/meeting.html">
+                                        <span><i class="ico_menu ico_menu_meeting"></i>회의실예약</span>
+                                    </a>
+                                </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="./works/meeting.html"><span>시간 검색 예약</span></a></li>
+                                        <li><a href="./works/meeting_map.html"><span>회의실 검색 예약</span></a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </li>
+
+                        <li>
+                            <dl>
+                                <dt>
+                                    <a href="./works/locker.html">
+                                        <span><i class="ico_menu ico_menu_locker"></i>사물함예약</span>
+                                    </a>
+                                </dt>
+                            </dl>
+                        </li>
+
+                        <li class="on">
+                            <dl>
+                                <dt>
+                                    <a href="./parking.html">
+                                        <span><i class="ico_menu ico_menu_parking"></i>주차정산</span>
+                                    </a>
+                                </dt>
+                            </dl>
+                        </li>
+
+                        <li>
+                            <dl>
+                                <dt>
+                                    <a href="./busReservation.html">
+                                        <span><i class="ico_menu ico_menu_bus"></i>출퇴근 버스</span>
+                                    </a>
+                                </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="./busReservation.html"><span>셔틀탑승 신청</span></a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </li>
+
+                        <li>
+                            <dl>
+                                <dt>
+                                    <a href="./works/myresv.html">
+                                        <span><i class="ico_menu ico_menu_myreserv"></i>나의예약</span>
+                                    </a>
+                                </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="./works/myresv.html"><span>나의 좌석 이용현황</span></a></li>
+                                        <li><a href="./works/myresv_meeting.html"><span>나의 회의실 예약현황</span></a></li>
+                                        <li><a href="./works/myresv_locker.html"><span>나의 사물함 예약현황</span></a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </li>
                     </ul>
                 </div>
-            </article>
+            </nav>
+        </header>
 
-            <!-- 차량 상세 · 할인 등록 -->
-            <article id="parkingDetailView" class="section parking" hidden>
-                <div class="search_bar">
-                    <div class="sub_title_area">
-                        <h3 class="sub_title">차량 정보</h3>
-                        <span class="sub_desc">출차 할인은 출차 5분전 등록 바랍니다.</span>
-                    </div>
-                    <div class="search_bar_R">
-                        <a href="javascript:void(0);" id="pageBackBtn" class="btn small sec-weak" title="다른 차량 조회"><i class="xi-arrow-left"></i>다른 차량 조회</a>
-                    </div>
-                </div>
-
-                <table class="bbs_list car_info" summary="차량 정보">
-                    <caption>차량 정보</caption>
-                    <colgroup>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                    </colgroup>
-                    <thead>
-                    <tr>
-                        <th scope="col">차량번호</th>
-                        <th scope="col">입차일자</th>
-                        <th scope="col">주차시간</th>
-                        <th scope="col">총 할인시간</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td><input type="text" value="12가 3456" data-parking-field="vehicleNo" readonly title="차량번호"></td>
-                        <td><input type="text" value="2026-10-17 08:42:15" data-parking-field="inDtm" readonly title="입차일자"></td>
-                        <td><input type="text" value="2시간 30분" data-parking-field="parkingTime" readonly title="주차시간"></td>
-                        <td><input type="text" value="1시간" data-parking-field="discountTotalTime" readonly title="총 할인시간"></td>
-                    </tr>
-                    </tbody>
-                </table>
-
-                <div class="parking_detail">
-                    <div class="img_box">
-                        <div class="img_warp">
-                            <img src="../images/mobile_a/common/no_parked_car.svg"
-                                 data-parking-field="carImage"
-                                 data-fallback-src="../images/mobile_a/common/no_parked_car.svg" alt="차량 이미지">
-                        </div>
+        <!-- contents -->
+        <div id="contents">
+            <section class="section">
+                <div class="page_wrap">
+                    <div class="page_title">
+                        <h2>주차정산</h2>
+                        <p>차량 정보를 확인하고, 주차 할인을 등록하세요</p>
                     </div>
 
-                    <div class="discount_box">
-                        <div class="sub_title_area">
-                            <h3 class="sub_title">할인 등록</h3>
-                            <span class="sub_desc">적용할 할인권을 선택하세요.</span>
-                        </div>
-                        <ul class="discount_list" id="parkingDiscountCodeList"></ul>
-
-                        <div class="sub_title_area">
-                            <h3 class="sub_title">할인등록 내역</h3>
-                        </div>
-                        <div class="grid_list discount_history">
-                            <div class="grid_head">
-                                <span>구분</span>
-                                <span>등록일</span>
-                                <span>등록시간</span>
-                                <span>할인권</span>
-                                <span>관리</span>
+                    <div class="pageCont">
+                        <!-- 차량번호 조회 바 -->
+                        <div class="parking_search_bar">
+                            <span class="search_bar_label">차량번호</span>
+                            <div class="search_bar_group">
+                                <input type="text" id="parkingVehicleNo" class="search_bar_input" value="03러 2873" placeholder="예) 03러 2873" />
+                                <button type="button" id="parkingSearchBtn" class="search_bar_btn">
+                                    <i class="ico_search_white"></i>
+                                    조회
+                                </button>
                             </div>
-                            <div id="parkingDiscountHistory"></div>
+                        </div>
+
+                        <!-- [상태 1] 미조회 빈 상태 (parking_search.html) -->
+                        <div class="page_card" id="parkingSearchView">
+                            <div class="parking_empty">
+                                <div class="parking_empty_icon">
+                                    <img src="../images/web_a/ico/ico_car_empty.svg" alt="" width="32" height="32">
+                                </div>
+                                <p class="parking_empty_title">차량번호를 입력해 주세요.</p>
+                                <p class="parking_empty_desc">상단에서 차량번호를 조회하면<br>입차 정보와 할인 내역을 확인할 수 있습니다.<br>예) 03러 2873</p>
+                            </div>
+                        </div>
+
+                        <!-- [상태 2 & 3] 차량 상세 및 할인 등록 패널 (parking_detail.html & parking_detail_empty.html) -->
+                        <div class="page_card" id="parkingDetailView" style="display: none;">
+                            <!-- 좌측: 차량 정보 패널 -->
+                            <div class="car_info_panel">
+                                <div class="car_info_title">
+                                    <p class="car_info_label">차량 정보</p>
+                                    <p class="car_plate_num" id="displayPlateNum">03러 2873</p>
+                                </div>
+                                <div class="car_image_wrap">
+                                    <img src="../images/mobile_a/common/car_sample.svg" alt="차량 샘플 이미지">
+                                </div>
+                                <div class="car_info_rows">
+                                    <div class="car_info_row">
+                                        <span class="car_info_row_label">입차일자</span>
+                                        <span class="car_info_row_value" id="displayInDtm">2026.06.09&nbsp;&nbsp;07:05:22</span>
+                                    </div>
+                                    <div class="car_info_row">
+                                        <span class="car_info_row_label">주차시간</span>
+                                        <span class="car_info_row_value accent" id="displayParkingTime">2시간 23분</span>
+                                    </div>
+                                    <div class="car_info_row">
+                                        <span class="car_info_row_label">비고</span>
+                                        <span class="car_info_row_value">모바일 웹 등록</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 우측: 할인 등록 패널 -->
+                            <div class="discount_panel">
+                                <!-- 할인 등록 내역 -->
+                                <div class="discount_hist_section">
+                                    <p class="discount_hist_title">할인 등록 내역 <strong class="discount_count" id="discountCount">2</strong></p>
+                                    <div class="discountHistBody">
+                                        <!-- 내역 있음 (parking_detail.html) -->
+                                        <ul class="discount_hist_list" id="discountHistList">
+                                            <li class="discount_hist_item" data-code="free1h">
+                                                <div class="discount_hist_info">
+                                                    <p class="discount_hist_name">1시간 무료 할인 (A1500)</p>
+                                                    <p class="discount_hist_date">2026.06.09&nbsp;&nbsp;09:12</p>
+                                                </div>
+                                                <button type="button" class="trash_btn" title="삭제"><i class="ico_trash"></i></button>
+                                            </li>
+                                            <li class="discount_hist_item" data-code="pay30m">
+                                                <div class="discount_hist_info">
+                                                    <p class="discount_hist_name">30분 유료 할인 (B0500)</p>
+                                                    <p class="discount_hist_date">2026.06.09&nbsp;&nbsp;09:15</p>
+                                                </div>
+                                                <button type="button" class="trash_btn" title="삭제"><i class="ico_trash"></i></button>
+                                            </li>
+                                        </ul>
+                                        <!-- 빈 상태 (parking_detail_empty.html) -->
+                                        <div class="discount_hist_empty" id="discountHistEmpty" style="display: none;">
+                                            <div class="discount_empty_icon">
+                                                <i class="ico_doc_empty"></i>
+                                            </div>
+                                            <p class="discount_empty_text">할인 등록 내역이 없습니다.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 할인 등록 -->
+                                <div class="discount_regist_section">
+                                    <p class="discount_regist_title">할인 등록</p>
+                                    <ul class="discount_coupon_grid" id="discountCouponGrid">
+                                        <li>
+                                            <button type="button" class="discount_coupon" data-code="free1h" disabled>
+                                                <div class="coupon_top">
+                                                    <span class="coupon_name">1시간 무료 할인</span>
+                                                    <span class="coupon_radio"></span>
+                                                </div>
+                                                <div class="coupon_price">
+                                                    <strong>0</strong>
+                                                    <span>원</span>
+                                                </div>
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="discount_coupon is-on" data-code="pay30m" data-price="500" data-name="30분 유료 할인">
+                                                <div class="coupon_top">
+                                                    <span class="coupon_name">30분 유료 할인</span>
+                                                    <span class="coupon_radio"></span>
+                                                </div>
+                                                <div class="coupon_price">
+                                                    <strong>500</strong>
+                                                    <span>원</span>
+                                                </div>
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="discount_coupon" data-code="pay1h" data-price="1,000" data-name="1시간 유료 할인">
+                                                <div class="coupon_top">
+                                                    <span class="coupon_name">1시간 유료 할인</span>
+                                                    <span class="coupon_radio"></span>
+                                                </div>
+                                                <div class="coupon_price">
+                                                    <strong>1,000</strong>
+                                                    <span>원</span>
+                                                </div>
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="discount_coupon" data-code="pay24h" data-price="10,000" data-name="24시간 유료 할인">
+                                                <div class="coupon_top">
+                                                    <span class="coupon_name">24시간 유료 할인</span>
+                                                    <span class="coupon_radio"></span>
+                                                </div>
+                                                <div class="coupon_price">
+                                                    <strong>10,000</strong>
+                                                    <span>원</span>
+                                                </div>
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="discount_coupon" data-code="pay3h" data-price="3,000" data-name="3시간 유료 할인">
+                                                <div class="coupon_top">
+                                                    <span class="coupon_name">3시간 유료 할인</span>
+                                                    <span class="coupon_radio"></span>
+                                                </div>
+                                                <div class="coupon_price">
+                                                    <strong>3,000</strong>
+                                                    <span>원</span>
+                                                </div>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                    <!-- 안내 바 -->
+                                    <div class="discount_notice_bar">
+                                        <i class="ico_notice"></i>
+                                        <span>출차 5분전 반드시 등록바랍니다.</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-            </article>
+            </section>
         </div>
+        <!-- //contents -->
+
+        <!-- PC 공통 푸터 -->
+        <footer id="footer" class="web-footer">
+            <div class="footer-inner">
+                <div class="footer-info">
+                    <span class="copyright">Copyright &copy; KGC. All Rights Reserved.</span>
+                    <span class="divider">|</span>
+                    <span class="inquiry">시스템 문의: 042-530-8200</span>
+                </div>
+                <div class="footer-links">
+                    <a href="../parking_search.html" class="btn-switch-mobile" title="스마트오피스 모바일 웹 화면으로 전환">
+                        <i class="ico-mobile">📱</i> 모바일 웹으로 전환
+                    </a>
+                </div>
+            </div>
+        </footer>
     </div>
+    <!-- //wrap -->
 
-    <!-- PC 공통 푸터 -->
-    <footer id="footer" class="web-footer">
-        <div class="footer-inner">
-            <div class="footer-info">
-                <span class="copyright">Copyright &copy; KGC. All Rights Reserved.</span>
-                <span class="divider">|</span>
-                <span class="inquiry">시스템 문의: 042-530-8200</span>
-            </div>
-            <div class="footer-links">
-                <a href="../menu_versions.html" class="btn-switch-mobile" title="스마트오피스 모바일 웹 화면으로 전환">
-                    <i class="ico-mobile">📱</i> 모바일 웹으로 전환
-                </a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- 현업 시연용 상태 전환 플로팅 바 -->
+    <!-- 현업 시연용 상태 전환 플로팅 바 (1019 퍼블리싱 3개 화면 대응) -->
     <div class="demo-scenario-bar">
         <span class="demo-label">💡 시연 화면 전환:</span>
-        <button type="button" class="demo-btn active" data-view="search" onclick="switchParkingView('search')">차량 조회 (기본)</button>
-        <button type="button" class="demo-btn" data-view="detail" onclick="switchParkingView('detail')">할인 등록/상세</button>
+        <button type="button" class="demo-btn active" data-view="search" onclick="switchParkingView('search')">주차정산조회 (parking_search)</button>
+        <button type="button" class="demo-btn" data-view="detail" onclick="switchParkingView('detail')">주차정산등록 (parking_detail)</button>
+        <button type="button" class="demo-btn" data-view="detail_empty" onclick="switchParkingView('detail_empty')">주차정산등록 빈 상태 (empty)</button>
     </div>
 
-    <!-- 공통 모달 -->
+    <!-- 1019 공통 모달 팝업 -->
     <div id="modal-window" style="display: none;">
-        <div class="modal-box">
-            <p id="modal-title" class="modal-title">알림</p>
-            <div class="modal-pop">
-                <p id="modal-text" class="modal-text"></p>
+        <div class="modal-box modal-size-normal">
+            <div class="modal-inner">
+                <div class="modal-pop">
+                    <p id="modal-text" class="modal-text"></p>
+                    <ul id="modal-buttons" class="modal-buttons"></ul>
+                </div>
             </div>
-            <ul id="modal-buttons" class="modal-buttons"></ul>
         </div>
     </div>
 
     <script>
-        const DISCOUNT_CODES = [
-            { discCodeNo: '1', discName: '1시간 무료', minutes: 60 },
-            { discCodeNo: '2', discName: '30분 할인 (350원)', minutes: 30 },
-            { discCodeNo: '3', discName: '1시간 할인 (700원)', minutes: 60 },
-            { discCodeNo: '4', discName: '2시간 할인 (1,400원)', minutes: 120 },
-            { discCodeNo: '5', discName: '3시간 할인 (2,100원)', minutes: 180 },
-            { discCodeNo: '6', discName: '4시간 할인 (2,800원)', minutes: 240 }
-        ];
-
-        let discountHistory = [
-            { discountID: 'D001', date: '2026-10-17', time: '09:15:20', discCodeNo: '1', discName: '1시간 무료', minutes: 60 }
-        ];
-
-        function formatMinutes(totalMin) {
-            if (!totalMin || totalMin <= 0) return '0분';
-            const h = Math.floor(totalMin / 60);
-            const m = totalMin % 60;
-            if (h > 0 && m > 0) return `${h}시간 ${m}분`;
-            if (h > 0) return `${h}시간`;
-            return `${m}분`;
-        }
-
-        function renderDiscountCodes() {
-            const $list = $('#parkingDiscountCodeList').empty();
-            DISCOUNT_CODES.forEach(item => {
-                const $btn = $('<button/>', {
-                    type: 'button',
-                    class: 'discount_coupon'
-                })
-                .data('code', item)
-                .append($('<span/>', { class: 'title', text: item.discName }));
-
-                $btn.on('click', function () {
-                    const code = $(this).data('code');
-                    if (code.discCodeNo === '1' && discountHistory.some(h => h.discCodeNo === '1')) {
-                        soAlert('1시간 무료 할인 쿠폰은 1개만 사용할 수 있습니다.');
-                        return;
-                    }
-                    if (code.discCodeNo !== '1' && !discountHistory.some(h => h.discCodeNo === '1')) {
-                        soAlert('1시간 무료 할인 쿠폰을 먼저 등록해 주세요.');
-                        return;
-                    }
-                    soConfirmAlert(`[${code.discName}] 할인권을 등록하시겠습니까?`, function () {
-                        const now = new Date();
-                        const timeStr = [now.getHours(), now.getMinutes(), now.getSeconds()]
-                            .map(n => String(n).padStart(2, '0')).join(':');
-                        discountHistory.push({
-                            discountID: 'D' + Date.now(),
-                            date: '2026-10-17',
-                            time: timeStr,
-                            discCodeNo: code.discCodeNo,
-                            discName: code.discName,
-                            minutes: code.minutes
-                        });
-                        renderDiscountHistory();
-                        soAlert('할인권이 정상 등록되었습니다.');
-                    }, '할인 등록');
-                });
-
-                $list.append($('<li/>').append($btn));
-            });
-        }
-
-        function renderDiscountHistory() {
-            const $history = $('#parkingDiscountHistory').empty();
-            const totalMin = discountHistory.reduce((sum, item) => sum + item.minutes, 0);
-            $('[data-parking-field="discountTotalTime"]').val(formatMinutes(totalMin));
-
-            if (discountHistory.length === 0) {
-                $history.append($('<div/>', { class: 'body parking-empty', text: '할인등록 내역이 없습니다.' }));
-                return;
+        function updateDiscountCountUI() {
+            const count = $('#discountHistList li').length;
+            $('#discountCount').text(count);
+            if (count === 0) {
+                $('#discountHistList').hide();
+                $('#discountHistEmpty').show();
+            } else {
+                $('#discountHistList').show();
+                $('#discountHistEmpty').hide();
             }
 
-            discountHistory.forEach(item => {
-                const $body = $('<div/>', { class: 'body' });
-                const $info = $('<div/>', { class: 'discount_info' });
-                const $meta = $('<span/>', { class: 'info_06' })
-                    .append($('<span/>', { class: 'state reserved', text: '할인등록 내역' }))
-                    .append($('<span/>', { class: 'date', text: item.date }))
-                    .append($('<time/>', { text: item.time }));
-                const $title = $('<span/>', { class: 'info_08' })
-                    .append($('<span/>', { class: 'title', text: item.discName }));
-                const $delBtn = $('<button/>', { type: 'button', class: 'btn_del', text: '삭제' });
-
-                $delBtn.on('click', function () {
-                    soConfirmAlert('선택한 할인등록 내역을 삭제하시겠습니까?', function () {
-                        discountHistory = discountHistory.filter(h => h.discountID !== item.discountID);
-                        renderDiscountHistory();
-                        soAlert('삭제가 완료되었습니다.');
-                    }, '할인 삭제');
-                });
-
-                $info.append($meta).append($title);
-                $body.append($info).append($delBtn);
-                $history.append($body);
-            });
+            // 1시간 무료 할인 쿠폰 존재 여부에 따라 disabled 토글
+            const hasFree1h = $('#discountHistList li[data-code="free1h"]').length > 0;
+            const $freeBtn = $('#discountCouponGrid button[data-code="free1h"]');
+            $freeBtn.prop('disabled', hasFree1h);
+            if (hasFree1h) {
+                $freeBtn.removeClass('is-on');
+            }
         }
 
         function switchParkingView(view) {
             $('.demo-scenario-bar .demo-btn').removeClass('active');
             $(`.demo-scenario-bar .demo-btn[data-view="${view}"]`).addClass('active');
 
-            if (view === 'detail') {
-                const vNo = $.trim($('#parkingVehicleNo').val()) || '12가 3456';
-                $('[data-parking-field="vehicleNo"]').val(vNo);
-                $('#parkingSearchView').prop('hidden', true);
-                $('#parkingDetailView').prop('hidden', false);
-            } else {
-                $('#parkingDetailView').prop('hidden', true);
-                $('#parkingSearchView').prop('hidden', false);
+            if (view === 'search') {
+                $('#parkingSearchView').show();
+                $('#parkingDetailView').hide();
+            } else if (view === 'detail') {
+                const vNo = $.trim($('#parkingVehicleNo').val()) || '03러 2873';
+                $('#displayPlateNum').text(vNo);
+                $('#parkingSearchView').hide();
+                $('#parkingDetailView').show();
+
+                if ($('#discountHistList li').length === 0) {
+                    // 기본 2건 복원
+                    const sampleItems = `
+                        <li class="discount_hist_item" data-code="free1h">
+                            <div class="discount_hist_info">
+                                <p class="discount_hist_name">1시간 무료 할인 (A1500)</p>
+                                <p class="discount_hist_date">2026.06.09&nbsp;&nbsp;09:12</p>
+                            </div>
+                            <button type="button" class="trash_btn" title="삭제"><i class="ico_trash"></i></button>
+                        </li>
+                        <li class="discount_hist_item" data-code="pay30m">
+                            <div class="discount_hist_info">
+                                <p class="discount_hist_name">30분 유료 할인 (B0500)</p>
+                                <p class="discount_hist_date">2026.06.09&nbsp;&nbsp;09:15</p>
+                            </div>
+                            <button type="button" class="trash_btn" title="삭제"><i class="ico_trash"></i></button>
+                        </li>
+                    `;
+                    $('#discountHistList').html(sampleItems);
+                }
+                updateDiscountCountUI();
+            } else if (view === 'detail_empty') {
+                const vNo = $.trim($('#parkingVehicleNo').val()) || '03러 2873';
+                $('#displayPlateNum').text(vNo);
+                $('#parkingSearchView').hide();
+                $('#parkingDetailView').show();
+                $('#discountHistList').empty();
+                updateDiscountCountUI();
             }
         }
 
         $(function () {
-            renderDiscountCodes();
-            renderDiscountHistory();
-
+            // 조회 버튼 클릭
             $('#parkingSearchBtn').on('click', function () {
                 const vNo = $.trim($('#parkingVehicleNo').val());
                 if (!vNo) {
-                    soAlert('주차 정산을 이용하려면 차량을 먼저 등록해 주세요.\n차량 등록은 과천사옥 3층 안내데스크에서 가능합니다.');
+                    soAlert('차량번호를 입력해 주세요.\n예) 03러 2873');
                     return;
                 }
                 switchParkingView('detail');
             });
 
-            $('#pageBackBtn').on('click', function () {
-                switchParkingView('search');
+            // 엔터키 조회
+            $('#parkingVehicleNo').on('keydown', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    $('#parkingSearchBtn').trigger('click');
+                }
             });
 
+            // 할인 내역 삭제
+            $(document).on('click', '.trash_btn', function () {
+                const $item = $(this).closest('.discount_hist_item');
+                const name = $item.find('.discount_hist_name').text();
+                soConfirmAlert(`[${name}]을(를) 삭제하시겠습니까?`, function () {
+                    $item.remove();
+                    updateDiscountCountUI();
+                    soAlert('할인 내역이 삭제되었습니다.');
+                });
+            });
+
+            // 할인 쿠폰 선택 등록
+            $(document).on('click', '.discount_coupon:not(:disabled)', function () {
+                const $btn = $(this);
+                const code = $btn.data('code');
+                const name = $btn.data('name');
+                const price = $btn.data('price');
+
+                $('.discount_coupon').removeClass('is-on');
+                $btn.addClass('is-on');
+
+                if (name) {
+                    soConfirmAlert(`[${name}] (${price}원)을(를) 등록하시겠습니까?`, function () {
+                        const now = new Date();
+                        const timeStr = `${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getDate()).padStart(2,'0')}  ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+                        const newItem = `
+                            <li class="discount_hist_item" data-code="${code}">
+                                <div class="discount_hist_info">
+                                    <p class="discount_hist_name">${name}</p>
+                                    <p class="discount_hist_date">${timeStr}</p>
+                                </div>
+                                <button type="button" class="trash_btn" title="삭제"><i class="ico_trash"></i></button>
+                            </li>
+                        `;
+                        $('#discountHistList').append(newItem);
+                        updateDiscountCountUI();
+                        soAlert(`[${name}]이(가) 정상 등록되었습니다.`);
+                    });
+                }
+            });
+
+            // URL 파라미터 ?view=detail 또는 ?view=detail_empty 분기
             const params = new URLSearchParams(window.location.search);
-            if (params.get('view') === 'detail') {
-                switchParkingView('detail');
+            const viewParam = params.get('view');
+            if (viewParam && ['search', 'detail', 'detail_empty'].includes(viewParam)) {
+                switchParkingView(viewParam);
             }
         });
     </script>

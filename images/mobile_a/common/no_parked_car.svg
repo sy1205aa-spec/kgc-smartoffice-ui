@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="100%" height="100%">
+    <!-- Base matching the gray input fields from the screenshot -->
+    <rect width="320" height="200" fill="#F8F9FA" rx="6" />
+    <!-- Subtle border to define the image area -->
+    <rect width="320" height="200" fill="none" stroke="#F1F3F5" stroke-width="2" rx="6" />
+    
+    <g transform="translate(160, 75)">
+        <!-- Circle Background -->
+        <circle cx="0" cy="0" r="34" fill="#F1F3F5" />
+        
+        <!-- Minimal Image Icon (Line Art style matching the flat UI) -->
+        <g stroke="#A6ADBB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <!-- Image Frame -->
+            <rect x="-18" y="-14" width="36" height="28" rx="3.5" fill="#F8F9FA" />
+            <!-- Sun / Moon -->
+            <circle cx="-6" cy="-4" r="3.5" fill="#F8F9FA" />
+            <!-- Mountains -->
+            <path d="M-18,6 L-8,-4 L2,6" />
+            <path d="M-4,6 L6,-4 L18,8" />
+        </g>
+        
+        <!-- Exclamation Badge (Color matching the '할인등록 내역' tag in the UI) -->
+        <g transform="translate(18, -14)">
+            <!-- Outer white border for the badge -->
+            <circle cx="0" cy="0" r="10" fill="#F8F9FA" />
+            <circle cx="0" cy="0" r="8" fill="#F05060" />
+            <path d="M0,-3.5 L0,1.5 M0,4.5 L0,5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+        </g>
+    </g>
+
+    <!-- Typography matching the label styles in the UI -->
+    <text x="160" y="145" font-family="'-apple-system', 'Pretendard', 'Apple SD Gothic Neo', sans-serif" font-size="15" font-weight="600" fill="#868E96" text-anchor="middle">차량 이미지를 불러올 수 없습니다</text>
+    <text x="160" y="166" font-family="'-apple-system', 'Pretendard', 'Apple SD Gothic Neo', sans-serif" font-size="13" font-weight="400" fill="#ADB5BD" text-anchor="middle">차량 정보 및 할인 내역은 정상 조회됩니다</text>
+</svg>

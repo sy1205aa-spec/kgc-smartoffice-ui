@@ -23,71 +23,164 @@
 
     <script src="../js/jquery-3.6.0.js"></script>
     <script src="./common.js"></script>
-    <script src="./menu-sync.js" defer></script>
 </head>
 
 <body class="web-dashboard-page">
 
-    <!-- PC 공통 헤더 (web_a #header/#head 구조 - menu-sync.js로 구 스마트웍스와 100% 동일 메뉴 동기화) -->
-    <header id="header">
-        <div id="head">
-            <div class="head_L">
-                <h1 id="logo">
-                    <a href="./main.html">
-                        <img src="../images/web_a/common/logo.svg" alt="스마트오피스 예약시스템">
-                    </a><span>스마트오피스 예약시스템</span>
-                </h1>
-                <ul class="menu">
-                    <li>
-                        <a href="./main.html" class="ico dashboard on" data-menu="dashboard" title="대시보드">
-                            <span>대시보드</span>
+    <!-- wrap -->
+    <div id="wrap">
+        <!-- 1019 신규 GNB 헤더 -->
+        <header>
+            <div class="gnb">
+                <div class="gnbInner">
+                    <h1>
+                        <a href="./main.html">
+                            <img src="../images/mobile_a/common/logo.svg" alt="스마트오피스 로고">
                         </a>
-                    </li>
-                    <li>
-                        <a href="./works/seat.html" class="ico seat" data-menu="seat" title="좌석예약 (현재 탭 이동)">
-                            <span>좌석예약</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./works/meeting.html" class="ico meet" data-menu="meeting" title="회의실예약 (현재 탭 이동)">
-                            <span>회의실예약</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./works/locker.html" class="ico locker" data-menu="locker" title="사물함예약 (현재 탭 이동)">
-                            <span>사물함예약</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./parking.html" class="ico parking" data-menu="parking" title="주차정산">
-                            <span>주차정산</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./busReservation.html" class="ico bus" data-menu="bus" title="셔틀버스">
-                            <span>셔틀버스</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./works/myresv.html" class="ico myReserv" data-menu="myReserv" title="나의예약 (현재 탭 이동)">
-                            <span>나의예약</span>
-                        </a>
-                    </li>
-                </ul>
+                    </h1>
+                    <div class="gnbLabel">
+                        <span class="gnbDivider"></span>
+                        <span class="gnbTitle">스마트오피스 예약시스템</span>
+                    </div>
+                </div>
+
+                <div class="gnbQuick">
+                    <a href="./works/seat.html" class="gnbQuickItem" data-menu="seat">
+                        <i class="ico_quick ico_quick_seat"></i>
+                        <span>좌석예약</span>
+                    </a>
+                    <a href="./works/meeting.html" class="gnbQuickItem" data-menu="meeting">
+                        <i class="ico_quick ico_quick_meeting"></i>
+                        <span>회의실예약</span>
+                    </a>
+                    <a href="./works/locker.html" class="gnbQuickItem" data-menu="locker">
+                        <i class="ico_quick ico_quick_locker"></i>
+                        <span>사물함예약</span>
+                    </a>
+                    <a href="./works/myresv.html" class="gnbQuickItem" data-menu="myReserv">
+                        <i class="ico_quick ico_quick_myreserv"></i>
+                        <span>나의예약</span>
+                    </a>
+                    <a href="./parking.html" class="gnbQuickItem" data-menu="parking">
+                        <i class="ico_quick ico_quick_parking"></i>
+                        <span>주차정산</span>
+                    </a>
+                </div>
+
+                <div class="gnbRight">
+                    <div class="gnbUser">
+                        <span class="gnbUserText">
+                            <em class="gnbUserName">홍길동님</em>
+                            <em class="gnbUserWelcome">환영합니다.</em>
+                        </span>
+                        <a href="javascript:;" class="btnLogout" id="logoutBtn" title="로그아웃"><i class="ico logout"></i></a>
+                    </div>
+                    <span class="gnbUserDivider"></span>
+                    <button type="button" class="btnMenuToggle" title="전체메뉴"><i></i></button>
+                </div>
             </div>
-            <div class="head_R">
-                <ul id="gnb">
-                    <li class="tnb">
-                        <a href="./main.html" title="홈">Home</a>
-                        <a href="javascript:void(0);" id="logoutBtn" title="로그아웃">Logout</a>
-                    </li>
-                    <li class="nm">
-                        홍길동님 환영합니다
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </header>
+
+            <!-- 1019 전체 메뉴 네비게이션 드롭다운 -->
+            <nav>
+                <div class="navCon">
+                    <ul>
+                        <li class="on">
+                            <dl>
+                                <dt>
+                                    <a href="./main.html">
+                                        <span><i class="ico_menu ico_menu_dashboard"></i>대시보드</span>
+                                    </a>
+                                </dt>
+                            </dl>
+                        </li>
+
+                        <li>
+                            <dl>
+                                <dt>
+                                    <a href="./works/seat.html">
+                                        <span><i class="ico_menu ico_menu_seat"></i>좌석예약</span>
+                                    </a>
+                                </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="./works/seat.html"><span>좌석예약</span></a></li>
+                                        <li><a href="./works/seat.html"><span>직원검색</span></a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </li>
+
+                        <li>
+                            <dl>
+                                <dt>
+                                    <a href="./works/meeting.html">
+                                        <span><i class="ico_menu ico_menu_meeting"></i>회의실예약</span>
+                                    </a>
+                                </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="./works/meeting.html"><span>시간 검색 예약</span></a></li>
+                                        <li><a href="./works/meeting_map.html"><span>회의실 검색 예약</span></a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </li>
+
+                        <li>
+                            <dl>
+                                <dt>
+                                    <a href="./works/locker.html">
+                                        <span><i class="ico_menu ico_menu_locker"></i>사물함예약</span>
+                                    </a>
+                                </dt>
+                            </dl>
+                        </li>
+
+                        <li>
+                            <dl>
+                                <dt>
+                                    <a href="./parking.html">
+                                        <span><i class="ico_menu ico_menu_parking"></i>주차정산</span>
+                                    </a>
+                                </dt>
+                            </dl>
+                        </li>
+
+                        <li>
+                            <dl>
+                                <dt>
+                                    <a href="./busReservation.html">
+                                        <span><i class="ico_menu ico_menu_bus"></i>출퇴근 버스</span>
+                                    </a>
+                                </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="./busReservation.html"><span>셔틀탑승 신청</span></a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </li>
+
+                        <li>
+                            <dl>
+                                <dt>
+                                    <a href="./works/myresv.html">
+                                        <span><i class="ico_menu ico_menu_myreserv"></i>나의예약</span>
+                                    </a>
+                                </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="./works/myresv.html"><span>나의 좌석 이용현황</span></a></li>
+                                        <li><a href="./works/myresv_meeting.html"><span>나의 회의실 예약현황</span></a></li>
+                                        <li><a href="./works/myresv_locker.html"><span>나의 사물함 예약현황</span></a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
 
     <!-- 대시보드 메인 컨텐츠 -->
     <div id="contents" class="web-dashboard-container">
@@ -379,6 +472,8 @@
             </div>
         </div>
     </footer>
+    </div>
+    <!-- //wrap -->
 
     <!-- 현업 시연용 상태 전환 플로팅 바 -->
     <div class="demo-scenario-bar">
@@ -388,14 +483,19 @@
         <button type="button" class="demo-btn" data-mode="empty" onclick="applyDemoScenario('empty')">미예약 (빈 상태)</button>
     </div>
 
-    <!-- 공통 모달 -->
-    <div id="modal-window" style="display: none;">
-        <div class="modal-box">
-            <p id="modal-title" class="modal-title">알림</p>
-            <div class="modal-pop">
-                <p id="modal-text" class="modal-text"></p>
+    <!-- 1019 퍼블리싱 스타일 공통 모달 팝업 구조 (#modal-window) -->
+    <div id="modal-window" class="modal-window" style="display: none;">
+        <div class="modal-layer">
+            <header>
+                <h3 id="modal-title">알림</h3>
+                <button type="button" class="alertCloseBtn"><i class="xi-close"></i></button>
+            </header>
+            <div class="modal-content">
+                <p id="modal-text"></p>
             </div>
-            <ul id="modal-buttons" class="modal-buttons"></ul>
+            <div class="modal-buttons" id="modal-buttons">
+                <a href="javascript:void(0);" class="modal-btn btn medium pri btn-layerClose">확인</a>
+            </div>
         </div>
     </div>
 

@@ -88,54 +88,115 @@
           </ul>
         </div>
 
-        <!-- PC 2단계: PC 웹 자체 서비스 및 로그인 -->
+        <!-- PC 2단계: PC 웹 자체 서비스 & 로그인 (1019 퍼블리싱) -->
         <div class="category">
-          <div class="category-title">2단계: PC 웹 자체 서비스 & 로그인</div>
+          <div class="category-title">2단계: PC 웹 자체 서비스 & 로그인 (1019 퍼블리싱)</div>
           <ul class="page-list">
-            <li class="page-item has-sub open" data-name="PC 주차정산 web/parking.html">
+            <li class="page-item has-sub open" data-name="PC 주차정산 web/parking.html parking_search parking_detail parking_detail_empty">
               <a href="#" class="page-link highlight" onclick="loadPage('./web/parking.html', this)">
                 <div class="name-desc">
-                  <span class="name">PC 주차정산 <span class="badge-new">NEW</span></span>
+                  <span class="name">PC 주차정산 3대 화면 <span class="badge-new">1019</span></span>
                   <span class="desc">web/parking.html</span>
                 </div>
                 <i class="arrow-toggle" onclick="toggleSubMenu(event, this)" title="접기/펼치기">▼</i>
               </a>
               <ul class="sub-page-list">
-                <li class="page-item" data-name="PC 주차정산 차량조회 web/parking.html">
-                  <a href="#" class="page-link" onclick="loadPage('./web/parking.html', this)">
+                <li class="page-item" data-name="PC 주차정산 차량조회 web/parking.html?scenario=search parking_search">
+                  <a href="#" class="page-link" onclick="loadPage('./web/parking.html?scenario=search', this)">
                     <div class="name-desc">
-                      <span class="name">└ 차량번호 조회</span>
-                      <span class="desc">web/parking.html</span>
+                      <span class="name">└ 차량번호 조회 (parking_search)</span>
+                      <span class="desc">web/parking.html?scenario=search</span>
                     </div>
                   </a>
                 </li>
-                <li class="page-item" data-name="PC 주차정산 할인등록 상세 web/parking.html?view=detail">
-                  <a href="#" class="page-link" onclick="loadPage('./web/parking.html?view=detail', this)">
+                <li class="page-item" data-name="PC 주차정산 할인등록 상세 web/parking.html?scenario=detail parking_detail">
+                  <a href="#" class="page-link" onclick="loadPage('./web/parking.html?scenario=detail', this)">
                     <div class="name-desc">
-                      <span class="name">└ 차량상세 및 할인등록</span>
-                      <span class="desc">web/parking.html?view=detail</span>
+                      <span class="name">└ 차량상세 및 할인적용 (parking_detail)</span>
+                      <span class="desc">web/parking.html?scenario=detail</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="PC 주차정산 미등록 빈상태 web/parking.html?scenario=empty parking_detail_empty">
+                  <a href="#" class="page-link" onclick="loadPage('./web/parking.html?scenario=empty', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 미등록/빈 상태 (parking_detail_empty)</span>
+                      <span class="desc">web/parking.html?scenario=empty</span>
                     </div>
                   </a>
                 </li>
               </ul>
             </li>
-            <li class="page-item" data-name="PC 출퇴근 셔틀버스 web/busReservation.html">
+            <li class="page-item" data-name="PC 출퇴근 셔틀버스 web/busReservation.html shuttle_request">
               <a href="#" class="page-link highlight" onclick="loadPage('./web/busReservation.html', this)">
                 <div class="name-desc">
-                  <span class="name">PC 출퇴근 셔틀버스 <span class="badge-new">NEW</span></span>
-                  <span class="desc">web/busReservation.html</span>
+                  <span class="name">PC 출퇴근 셔틀버스 <span class="badge-new">1019</span></span>
+                  <span class="desc">web/busReservation.html (shuttle_request)</span>
                 </div>
                 <i class="arrow">★</i>
               </a>
             </li>
-            <li class="page-item" data-name="PC 웹 로그인 web/login.html">
+            <li class="page-item has-sub" data-name="PC 웹 로그인 본인인증 web/login.html login login_cert">
               <a href="#" class="page-link" onclick="loadPage('./web/login.html', this)">
                 <div class="name-desc">
-                  <span class="name">PC 웹 로그인 화면</span>
+                  <span class="name">PC 웹 로그인 & 본인인증 <span class="badge-new">1019</span></span>
                   <span class="desc">web/login.html</span>
                 </div>
-                <i class="arrow">➔</i>
+                <i class="arrow-toggle" onclick="toggleSubMenu(event, this)" title="접기/펼치기">▼</i>
               </a>
+              <ul class="sub-page-list">
+                <li class="page-item" data-name="PC 기본 로그인 web/login.html?mode=basic login">
+                  <a href="#" class="page-link" onclick="loadPage('./web/login.html?mode=basic', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 기본 로그인 (login.html)</span>
+                      <span class="desc">web/login.html?mode=basic</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="PC SMS 본인인증 web/login.html?mode=cert login_cert">
+                  <a href="#" class="page-link" onclick="loadPage('./web/login.html?mode=cert', this)">
+                    <div class="name-desc">
+                      <span class="name">└ SMS 본인인증 (login_cert.html)</span>
+                      <span class="desc">web/login.html?mode=cert</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="page-item has-sub" data-name="1019 공통 레이아웃 팝업 layout alert confirm">
+              <a href="#" class="page-link" onclick="loadPage('./web/layout.html', this)">
+                <div class="name-desc">
+                  <span class="name">1019 공통 가이드 & 팝업</span>
+                  <span class="desc">web/layout.html / alert / confirm</span>
+                </div>
+                <i class="arrow-toggle" onclick="toggleSubMenu(event, this)" title="접기/펼치기">▼</i>
+              </a>
+              <ul class="sub-page-list">
+                <li class="page-item" data-name="1019 표준 GNB 레이아웃 web/layout.html">
+                  <a href="#" class="page-link" onclick="loadPage('./web/layout.html', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 공통 헤더/GNB 레이아웃 (layout.html)</span>
+                      <span class="desc">web/layout.html</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="1019 단순 알림 팝업 web/alert.html">
+                  <a href="#" class="page-link" onclick="loadPage('./web/alert.html', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 단순 알림 팝업 (alert.html)</span>
+                      <span class="desc">web/alert.html</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="page-item" data-name="1019 확인 요청 팝업 web/confirm.html">
+                  <a href="#" class="page-link" onclick="loadPage('./web/confirm.html', this)">
+                    <div class="name-desc">
+                      <span class="name">└ 확인 요청 팝업 (confirm.html)</span>
+                      <span class="desc">web/confirm.html</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>

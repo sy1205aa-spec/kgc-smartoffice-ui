@@ -2,308 +2,463 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=1280">
-    <title>출퇴근 버스 - KGC 스마트오피스 예약시스템</title>
-    <link rel="shortcut icon" href="../images/web_a/common/logo.svg" type="image/svg+xml">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>셔틀 탑승 신청 - KGC 스마트오피스 예약시스템</title>
 
-    <!-- PC(web_a) 퍼블 스타일 -->
-    <link rel="stylesheet" href="../css/web_a/fonts.css">
-    <link rel="stylesheet" href="../css/web_a/base.css">
-    <link rel="stylesheet" href="../css/web_a/layout.css">
-    <link rel="stylesheet" href="../css/web_a/common.css">
-    <link rel="stylesheet" href="../css/web_a/contents.css">
-    <link rel="stylesheet" href="../css/web_a/colorStyle.css">
-    <link rel="stylesheet" href="../css/web_a/response.css">
-    <link rel="stylesheet" href="../css/web_a/jquery.modal.css">
-    <link rel="stylesheet" href="../css/xeicon/xeicon.min.css">
-    <link rel="stylesheet" href="./common.css">
-    <link rel="stylesheet" href="./frame.css">
-    <link rel="stylesheet" href="./busReservation.css">
+    <link rel="shortcut icon" href="../images/web_a/common/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/base.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/icons.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/layout.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/colorStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/common.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/styleLayout.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/jquery.modal.css" />
+    <link rel="stylesheet" type="text/css" href="../css/xeicon/xeicon.min.css" />
+    <!-- 웹 전용 (마지막에 링크하여 오버라이드) -->
+    <link rel="stylesheet" type="text/css" href="../css/web_a/layout.css" />
+    <link rel="stylesheet" type="text/css" href="../css/web_a/common.css" />
+    <link rel="stylesheet" type="text/css" href="./common.css" />
 
     <script src="../js/jquery-3.6.0.js"></script>
     <script src="./common.js"></script>
-    <script src="./menu-sync.js" defer></script>
 </head>
 
-<body class="frame-page bus-reservation-page" style="display:flex; flex-direction:column; min-height:100vh;">
+<body>
+<form onsubmit="return false;">
+    <div id="wrap">
+        <!-- 1019 신규 GNB 헤더 -->
+        <header>
+            <div class="gnb">
+                <div class="gnbInner">
+                    <h1>
+                        <a href="./main.html">
+                            <img src="../images/mobile_a/common/logo.svg" alt="스마트오피스 로고">
+                        </a>
+                    </h1>
+                    <div class="gnbLabel">
+                        <span class="gnbDivider"></span>
+                        <span class="gnbTitle">스마트오피스 예약시스템</span>
+                    </div>
+                </div>
 
-    <!-- PC 공통 헤더 (menu-sync.js 통합 메뉴 동기화) -->
-    <header id="header">
-        <div id="head">
-            <div class="head_L">
-                <h1 id="logo">
-                    <a href="./main.html">
-                        <img src="../images/web_a/common/logo.svg" alt="스마트오피스 예약시스템">
-                    </a><span>스마트오피스 예약시스템</span>
-                </h1>
-                <ul class="menu">
-                    <li>
-                        <a href="./main.html" class="ico dashboard" data-menu="dashboard" title="대시보드">
-                            <span>대시보드</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./works/seat.html" class="ico seat" data-menu="seat" title="좌석예약 (현재 탭 이동)">
-                            <span>좌석예약</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./works/meeting.html" class="ico meet" data-menu="meeting" title="회의실예약 (현재 탭 이동)">
-                            <span>회의실예약</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./works/locker.html" class="ico locker" data-menu="locker" title="사물함예약 (현재 탭 이동)">
-                            <span>사물함예약</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./parking.html" class="ico parking" data-menu="parking" title="주차정산">
-                            <span>주차정산</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./busReservation.html" class="ico bus on" data-menu="bus" title="셔틀버스">
-                            <span>셔틀버스</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./works/myresv.html" class="ico myReserv" data-menu="myReserv" title="나의예약 (현재 탭 이동)">
-                            <span>나의예약</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="head_R">
-                <ul id="gnb">
-                    <li class="tnb">
-                        <a href="./main.html" title="홈">Home</a>
-                        <a href="javascript:void(0);" id="logoutBtn" title="로그아웃">Logout</a>
-                    </li>
-                    <li class="nm">
-                        홍길동님 환영합니다
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </header>
+                <div class="gnbQuick">
+                    <a href="./works/seat.html" class="gnbQuickItem" data-menu="seat">
+                        <i class="ico_quick ico_quick_seat"></i>
+                        <span>좌석예약</span>
+                    </a>
+                    <a href="./works/meeting.html" class="gnbQuickItem" data-menu="meeting">
+                        <i class="ico_quick ico_quick_meeting"></i>
+                        <span>회의실예약</span>
+                    </a>
+                    <a href="./works/locker.html" class="gnbQuickItem" data-menu="locker">
+                        <i class="ico_quick ico_quick_locker"></i>
+                        <span>사물함예약</span>
+                    </a>
+                    <a href="./works/myresv.html" class="gnbQuickItem" data-menu="myReserv">
+                        <i class="ico_quick ico_quick_myreserv"></i>
+                        <span>나의예약</span>
+                    </a>
+                    <a href="./parking.html" class="gnbQuickItem" data-menu="parking">
+                        <i class="ico_quick ico_quick_parking"></i>
+                        <span>주차정산</span>
+                    </a>
+                </div>
 
-    <!-- 출퇴근 버스 본문 -->
-    <div id="contents" class="bus-reservation-contents" style="flex:1 0 auto;">
-        <div id="sub_contents">
-            <div class="title_area">
-                <h2>출퇴근 버스</h2>
-                <span>셔틀버스 탑승을 신청하고 나의 예약 내역을 확인합니다.</span>
+                <div class="gnbRight">
+                    <div class="gnbUser">
+                        <span class="gnbUserText">
+                            <em class="gnbUserName">홍길동님</em>
+                            <em class="gnbUserWelcome">환영합니다.</em>
+                        </span>
+                        <a href="javascript:;" class="btnLogout" id="logoutBtn" title="로그아웃"><i class="ico logout"></i></a>
+                    </div>
+                    <span class="gnbUserDivider"></span>
+                    <button type="button" class="btnMenuToggle" title="전체메뉴"><i></i></button>
+                </div>
             </div>
-            <p class="clear"></p>
 
-            <!-- 셔틀 탑승 신청 -->
-            <div class="search_bar">
-                <div class="quickSearch_area">
+            <!-- 1019 전체 메뉴 네비게이션 드롭다운 -->
+            <nav>
+                <div class="navCon">
                     <ul>
-                        <li class="search_title">예약일</li>
-                        <li><input type="text" id="busBoardingDate" class="boarding_date" readonly title="예약일" value="2026.10.19 (월)"></li>
-                        <li class="search_title">구분</li>
                         <li>
-                            <select id="busCommuteType" title="출퇴근 구분">
-                                <option value="">출퇴근을 선택해주세요.</option>
-                                <option value="WORK">출근</option>
-                                <option value="HOME" selected>퇴근</option>
-                            </select>
+                            <dl>
+                                <dt>
+                                    <a href="./main.html">
+                                        <span><i class="ico_menu ico_menu_dashboard"></i>대시보드</span>
+                                    </a>
+                                </dt>
+                            </dl>
                         </li>
-                        <li class="search_title">차량</li>
+
                         <li>
-                            <select id="busNumberCode" title="호차">
-                                <option value="">호차를 선택해주세요.</option>
-                                <option value="BUS_01" selected>1호차 (사당행)</option>
-                                <option value="BUS_02">2호차 (양재행)</option>
-                                <option value="BUS_03">3호차 (판교행)</option>
-                                <option value="BUS_04">4호차 (수원행)</option>
-                            </select>
+                            <dl>
+                                <dt>
+                                    <a href="./works/seat.html">
+                                        <span><i class="ico_menu ico_menu_seat"></i>좌석예약</span>
+                                    </a>
+                                </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="./works/seat.html"><span>좌석예약</span></a></li>
+                                        <li><a href="./works/seat.html"><span>직원검색</span></a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
                         </li>
-                        <li class="seat_num_area">
-                            <span class="seat_num">신청 <strong id="busCurrentCount">28</strong> / <span id="busCapacity">40</span>석</span>
-                            <span id="busAvailableCount" class="bus-available-count">12석 가능</span>
+
+                        <li>
+                            <dl>
+                                <dt>
+                                    <a href="./works/meeting.html">
+                                        <span><i class="ico_menu ico_menu_meeting"></i>회의실예약</span>
+                                    </a>
+                                </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="./works/meeting.html"><span>시간 검색 예약</span></a></li>
+                                        <li><a href="./works/meeting_map.html"><span>회의실 검색 예약</span></a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </li>
+
+                        <li>
+                            <dl>
+                                <dt>
+                                    <a href="./works/locker.html">
+                                        <span><i class="ico_menu ico_menu_locker"></i>사물함예약</span>
+                                    </a>
+                                </dt>
+                            </dl>
+                        </li>
+
+                        <li>
+                            <dl>
+                                <dt>
+                                    <a href="./parking.html">
+                                        <span><i class="ico_menu ico_menu_parking"></i>주차정산</span>
+                                    </a>
+                                </dt>
+                            </dl>
+                        </li>
+
+                        <li class="on">
+                            <dl>
+                                <dt>
+                                    <a href="./busReservation.html">
+                                        <span><i class="ico_menu ico_menu_bus"></i>출퇴근 버스</span>
+                                    </a>
+                                </dt>
+                                <dd>
+                                    <ul>
+                                        <li class="active"><a href="./busReservation.html"><span>셔틀탑승 신청</span></a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </li>
+
+                        <li>
+                            <dl>
+                                <dt>
+                                    <a href="./works/myresv.html">
+                                        <span><i class="ico_menu ico_menu_myreserv"></i>나의예약</span>
+                                    </a>
+                                </dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="./works/myresv.html"><span>나의 좌석 이용현황</span></a></li>
+                                        <li><a href="./works/myresv_meeting.html"><span>나의 회의실 예약현황</span></a></li>
+                                        <li><a href="./works/myresv_locker.html"><span>나의 사물함 예약현황</span></a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
                         </li>
                     </ul>
                 </div>
-                <div class="search_bar_R">
-                    <button type="button" id="busReservationSubmit" class="btn medium pri">예약 신청하기</button>
-                </div>
-            </div>
-            <p class="clear"></p>
+            </nav>
+        </header>
 
-            <!-- 나의 예약 내역 -->
-            <div class="sub_title_area">
-                <h3 class="sub_title">나의 예약 내역</h3>
-            </div>
-            <div class="grid_list reserv_list_area">
-                <div class="grid_head">
-                    <span>탑승일</span>
-                    <span>구분</span>
-                    <span>상태</span>
-                    <span>차량</span>
-                    <span>관리</span>
+        <!-- contents -->
+        <div id="contents">
+            <section class="section">
+                <div class="page_wrap">
+                    <div class="page_title">
+                        <h2>셔틀 탑승 신청</h2>
+                        <p>탑승 구분과 차량을 선택하고, 셔틀버스를 신청하세요</p>
+                    </div>
+                    <div class="pageCont">
+                        <div class="page_card">
+                          <!-- 좌측: 예약 신청 폼 -->
+                          <div class="booking_form">
+                              <p class="panel_title">예약 신청 정보</p>
+                              <div class="panel_tab">
+                                  <div class="row">
+                                      <div class="col col-12 title">예약일</div>
+                                      <div class="col col-12">
+                                          <input type="text" id="booking-date" readonly>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col col-12 title">구분</div>
+                                      <div class="col col-12">
+                                          <select id="type-select" class="select select02" onchange="updateBusStatus()">
+                                              <option value="work">출근</option>
+                                              <option value="home" selected>퇴근</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col col-12 title">차량선택</div>
+                                      <div class="col col-12">
+                                          <select id="bus-select" class="select select02" onchange="updateBusStatus()">
+                                              <option value="bus1">1호차 (사당행)</option>
+                                              <option value="bus2" selected>2호차 (양재행)</option>
+                                              <option value="bus3">3호차 (판교행)</option>
+                                              <option value="bus4">4호차 (수원행)</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col col-12 title">예약 신청 현황</div>
+                                      <div class="col col-12">
+                                          <div class="seat_num_area">
+                                              <span class="seat_num"><strong id="current-seats">12</strong> / <span id="total-seats">40</span>석</span>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col col-12">
+                                          <a href="javascript:;" class="btn medium pri" onclick="requestReservation()">예약신청하기</a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- 우측: 예약 내역 + 안내 -->
+                          <div class="booking_info">
+                              <div class="reserv_list_area">
+                                  <div class="sub_title_area">
+                                      <div class="left">
+                                          <h2 class="sub_title">나의 예약 내역 <strong id="reservCount" class="reserv_count_num">0</strong></h2>
+                                      </div>
+                                      <div class="right"></div>
+                                  </div>
+                                  <ul class="reserv_list" id="reservation-cards-container"></ul>
+                              </div>
+                              <div class="comment">
+                                  <p class="title">이용 안내 및 주의 사항</p>
+                                  <ul class="desc_list">
+                                      <li>셔틀버스 예약은 탑승 하루 전에만 신청이 가능합니다.</li>
+                                      <li>각 차량별 정원을 초과할 경우 예약이 제한되므로, 잔여 좌석을 사전에 꼭 확인해 주세요.</li>
+                                      <li>예약 취소는 탑승 전까지 모바일 앱 및 웹에서 자유롭게 가능합니다.</li>
+                                  </ul>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
                 </div>
-                <ul id="busReservationHistoryList" class="reserv_list"></ul>
-            </div>
-
-            <div class="guide_box">
-                <p class="title">이용 안내 및 주의 사항</p>
-                <ul class="desc_list">
-                    <li>셔틀버스 예약은 탑승 하루 전에만 신청이 가능합니다.</li>
-                    <li>각 차량별 정원을 초과할 경우 예약이 제한되므로, 잔여 좌석을 사전에 꼭 확인해 주세요.</li>
-                    <li>예약 취소는 탑승 전까지 모바일 앱에서 자유롭게 가능합니다.</li>
-                </ul>
-            </div>
+            </section>
         </div>
+        <!-- //contents -->
+
+        <!-- PC 공통 푸터 -->
+        <footer id="footer" class="web-footer">
+            <div class="footer-inner">
+                <div class="footer-info">
+                    <span class="copyright">Copyright &copy; KGC. All Rights Reserved.</span>
+                    <span class="divider">|</span>
+                    <span class="inquiry">시스템 문의: 042-530-8200</span>
+                </div>
+                <div class="footer-links">
+                    <a href="../shuttle_request.html" class="btn-switch-mobile" title="스마트오피스 모바일 웹 화면으로 전환">
+                        <i class="ico-mobile">📱</i> 모바일 웹으로 전환
+                    </a>
+                </div>
+            </div>
+        </footer>
     </div>
+    <!-- //wrap -->
+</form>
 
-    <!-- PC 공통 푸터 -->
-    <footer id="footer" class="web-footer">
-        <div class="footer-inner">
-            <div class="footer-info">
-                <span class="copyright">Copyright &copy; KGC. All Rights Reserved.</span>
-                <span class="divider">|</span>
-                <span class="inquiry">시스템 문의: 042-530-8200</span>
-            </div>
-            <div class="footer-links">
-                <a href="../menu_versions.html" class="btn-switch-mobile" title="스마트오피스 모바일 웹 화면으로 전환">
-                    <i class="ico-mobile">📱</i> 모바일 웹으로 전환
-                </a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- 공통 모달 -->
-    <div id="modal-window" style="display: none;">
-        <div class="modal-box">
-            <p id="modal-title" class="modal-title">알림</p>
+<!-- 1019 공통 모달 팝업 -->
+<div id="modal-window" style="display: none;">
+    <div class="modal-box modal-size-normal">
+        <div class="modal-inner">
             <div class="modal-pop">
                 <p id="modal-text" class="modal-text"></p>
+                <ul id="modal-buttons" class="modal-buttons"></ul>
             </div>
-            <ul id="modal-buttons" class="modal-buttons"></ul>
         </div>
     </div>
+</div>
 
-    <script>
-        const BUS_STATUS_MAP = {
-            'WORK_BUS_01': { current: 32, capacity: 40 },
-            'WORK_BUS_02': { current: 24, capacity: 40 },
-            'WORK_BUS_03': { current: 40, capacity: 40 },
-            'WORK_BUS_04': { current: 18, capacity: 40 },
-            'HOME_BUS_01': { current: 28, capacity: 40 },
-            'HOME_BUS_02': { current: 35, capacity: 40 },
-            'HOME_BUS_03': { current: 21, capacity: 40 },
-            'HOME_BUS_04': { current: 15, capacity: 40 }
+<script>
+    const busData = {
+        work: {
+            bus1: { current: 27, total: 40, name: "1호차 (사당행)" },
+            bus2: { current: 12, total: 40, name: "2호차 (양재행)" },
+            bus3: { current: 40, total: 40, name: "3호차 (판교행)" },
+            bus4: { current: 5, total: 40, name: "4호차 (수원행)" }
+        },
+        home: {
+            bus1: { current: 15, total: 40, name: "1호차 (사당행)" },
+            bus2: { current: 30, total: 40, name: "2호차 (양재행)" },
+            bus3: { current: 22, total: 40, name: "3호차 (판교행)" },
+            bus4: { current: 40, total: 40, name: "4호차 (수원행)" }
+        }
+    };
+
+    let myReservations = {
+        work: null,
+        home: null
+    };
+
+    let tomorrowStrGlobal = "";
+    let tomorrowDayOfWeekGlobal = "";
+
+    $(function () {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+
+        const yyyy = tomorrow.getFullYear();
+        const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+        const dd = String(tomorrow.getDate()).padStart(2, '0');
+
+        tomorrowStrGlobal = `${yyyy}.${mm}.${dd}`;
+        $('#booking-date').val(tomorrowStrGlobal);
+
+        const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
+        tomorrowDayOfWeekGlobal = weekDays[tomorrow.getDay()];
+
+        myReservations.work = {
+            busKey: 'bus2',
+            date: tomorrowStrGlobal,
+            busName: '2호차 (양재행)'
+        };
+        myReservations.home = {
+            busKey: 'bus2',
+            date: tomorrowStrGlobal,
+            busName: '2호차 (양재행)'
         };
 
-        let reservationHistory = [
-            { id: 'R101', date: '2026.10.19(월)', commuteType: 'HOME', commuteName: '퇴근', busCode: 'BUS_01', busName: '1호차 (사당행)', canCancel: true },
-            { id: 'R100', date: '2026.10.16(금)', commuteType: 'HOME', commuteName: '퇴근', busCode: 'BUS_01', busName: '1호차 (사당행)', canCancel: false },
-            { id: 'R099', date: '2026.10.15(목)', commuteType: 'WORK', commuteName: '출근', busCode: 'BUS_02', busName: '2호차 (양재행)', canCancel: false }
-        ];
+        updateBusStatus();
+        renderReservations();
+    });
 
-        function updateBusStatus() {
-            const commute = $('#busCommuteType').val();
-            const bus = $('#busNumberCode').val();
-            if (!commute || !bus) {
-                $('#busCurrentCount').text(0);
-                $('#busCapacity').text(0);
-                $('#busAvailableCount').text('0석 가능');
-                return;
-            }
-            const info = BUS_STATUS_MAP[`${commute}_${bus}`] || { current: 20, capacity: 40 };
-            const avail = Math.max(info.capacity - info.current, 0);
-            $('#busCurrentCount').text(info.current);
-            $('#busCapacity').text(info.capacity);
-            $('#busAvailableCount').text(`${avail}석 가능`);
+    function updateBusStatus() {
+        const typeKey = $('#type-select').val();
+        const busKey = $('#bus-select').val();
+        const bus = busData[typeKey][busKey];
+
+        $('#current-seats').text(bus.current);
+        $('#total-seats').text(bus.total);
+    }
+
+    function renderReservations() {
+        const container = $('#reservation-cards-container');
+        container.empty();
+        let count = 0;
+
+        if (myReservations.work) {
+            count++;
+            const card = `
+                <li>
+                    <div class="left">
+                        <span class="commute work">출근</span>
+                        <div class="card_info">
+                            <span class="date">${myReservations.work.date}(${tomorrowDayOfWeekGlobal})</span>
+                            <div class="status_car_area">
+                                <span class="status">확정</span>
+                                <span class="car">${myReservations.work.busName}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <button type="button" class="btn_cancel" onclick="requestCancel('work')">예약취소</button>
+                    </div>
+                </li>
+            `;
+            container.append(card);
         }
 
-        function renderHistoryList() {
-            const $list = $('#busReservationHistoryList').empty();
-            if (reservationHistory.length === 0) {
-                $list.append($('<li/>', { class: 'bus-history-empty', text: '예약 내역이 없습니다.' }));
-                return;
-            }
-
-            reservationHistory.forEach(item => {
-                const $row = $('<li/>');
-                const $left = $('<div/>', { class: 'left' });
-                const $right = $('<div/>', { class: 'right' });
-                const $dateCommute = $('<div/>', { class: 'date_commute_area' })
-                    .append($('<span/>', { class: 'date', text: item.date }))
-                    .append($('<span/>', {
-                        class: 'commute ' + (item.commuteType === 'HOME' ? 'leave' : 'work'),
-                        text: item.commuteName
-                    }));
-                const $statusCar = $('<div/>', { class: 'status_car_area' })
-                    .append($('<span/>', { class: 'status', text: '확정' }))
-                    .append($('<span/>', { class: 'car', text: item.busName }));
-
-                $left.append($dateCommute).append($statusCar);
-
-                if (item.canCancel) {
-                    const $btn = $('<button/>', {
-                        type: 'button',
-                        class: 'btn_cancel bus-reservation-delete',
-                        text: '예약취소'
-                    });
-                    $btn.on('click', function () {
-                        soConfirmAlert(`[${item.date} ${item.commuteName} - ${item.busName}] 예약을 취소하시겠습니까?`, function () {
-                            reservationHistory = reservationHistory.filter(r => r.id !== item.id);
-                            renderHistoryList();
-                            soAlert('예약이 취소되었습니다.');
-                        }, '예약 취소');
-                    });
-                    $right.append($btn);
-                }
-
-                $row.append($left).append($right);
-                $list.append($row);
-            });
+        if (myReservations.home) {
+            count++;
+            const card = `
+                <li>
+                    <div class="left">
+                        <span class="commute leave">퇴근</span>
+                        <div class="card_info">
+                            <span class="date">${myReservations.home.date}(${tomorrowDayOfWeekGlobal})</span>
+                            <div class="status_car_area">
+                                <span class="status">확정</span>
+                                <span class="car">${myReservations.home.busName}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <button type="button" class="btn_cancel" onclick="requestCancel('home')">예약취소</button>
+                    </div>
+                </li>
+            `;
+            container.append(card);
         }
 
-        $(function () {
+        if (count === 0) {
+            container.append('<li style="justify-content:center;color:#888c92;padding:24px 0;">예약 내역이 없습니다.</li>');
+        }
+
+        $('#reservCount').text(count);
+    }
+
+    function requestReservation() {
+        const typeKey = $('#type-select').val();
+        const typeName = $('#type-select option:selected').text();
+        const busKey = $('#bus-select').val();
+        const bus = busData[typeKey][busKey];
+
+        if (myReservations[typeKey]) {
+            soAlert(`이미 ${typeName} 예약 내역이 존재합니다.\n기존 예약을 취소한 후 다시 신청해 주세요.`);
+            return;
+        }
+        if (bus.current >= bus.total) {
+            soAlert('선택하신 차량의 잔여 좌석이 매진되었습니다.');
+            return;
+        }
+
+        soConfirmAlert(`[${typeName} - ${bus.name}] 차량으로 탑승 예약을 신청하시겠습니까?`, function () {
+            bus.current += 1;
+            myReservations[typeKey] = {
+                busKey: busKey,
+                date: tomorrowStrGlobal,
+                busName: bus.name
+            };
+
+            renderReservations();
             updateBusStatus();
-            renderHistoryList();
+            soAlert('예약이 정상적으로 신청되었습니다.');
+        }, '셔틀 예약 신청');
+    }
 
-            $('#busCommuteType, #busNumberCode').on('change', updateBusStatus);
+    function requestCancel(typeKey) {
+        const reservation = myReservations[typeKey];
+        if (!reservation) return;
 
-            $('#busReservationSubmit').on('click', function () {
-                const commuteType = $('#busCommuteType').val();
-                const busCode = $('#busNumberCode').val();
-                const commuteName = $('#busCommuteType option:selected').text();
-                const busName = $('#busNumberCode option:selected').text();
+        const typeName = (typeKey === 'work') ? '출근' : '퇴근';
+        soConfirmAlert(`[${typeName} - ${reservation.busName}] 예약을 취소하시겠습니까?`, function () {
+            const reservedBus = busData[typeKey][reservation.busKey];
+            reservedBus.current = Math.max(0, reservedBus.current - 1);
+            myReservations[typeKey] = null;
 
-                if (!commuteType) {
-                    soAlert('출퇴근을 선택해주세요.', null, '안내');
-                    return;
-                }
-                if (!busCode) {
-                    soAlert('호차를 선택해주세요.', null, '안내');
-                    return;
-                }
-
-                soConfirmAlert(`선택하신 ${busName} 차량으로 ${commuteName} 예약을 진행하시겠습니까?`, function () {
-                    const dateVal = $('#busBoardingDate').val().replace(/\s+/g, '');
-                    reservationHistory.unshift({
-                        id: 'R' + Date.now(),
-                        date: dateVal,
-                        commuteType: commuteType,
-                        commuteName: commuteName,
-                        busCode: busCode,
-                        busName: busName,
-                        canCancel: true
-                    });
-                    renderHistoryList();
-                    soAlert('예약이 완료되었습니다.', null, '예약 성공');
-                }, '셔틀 예약 신청');
-            });
-        });
-    </script>
+            renderReservations();
+            updateBusStatus();
+            soAlert('예약이 취소되었습니다.');
+        }, '예약 취소');
+    }
+</script>
 </body>
 
 </html>

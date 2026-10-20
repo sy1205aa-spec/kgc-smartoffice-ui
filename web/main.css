@@ -12,6 +12,10 @@ html {
     min-height: 100%;
 }
 
+body.web-dashboard-page #wrap {
+    background-color: #F8FAFC;
+}
+
 body.web-dashboard-page {
     min-height: 100vh;
     height: auto;

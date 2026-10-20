@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>스마트오피스 예약시스템</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/base.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/icons.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/layout.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/colorStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/common.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobile_a/jquery.modal.css" />
+    <link rel="stylesheet" type="text/css" href="../css/xeicon/xeicon.min.css" />
+    <!-- 웹 전용 (마지막에 링크하여 오버라이드) -->
+    <link rel="stylesheet" type="text/css" href="../css/web_a/layout.css" />
+    <link rel="stylesheet" type="text/css" href="../css/web_a/common.css" />
+
+    <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src="../js/mobile/common.js"></script>
+    <link rel="stylesheet" href="./common.css">
+</head>
+
+<body class="bg03">
+    <form>
+        <!-- wrap -->
+        <div id="wrap">
+      <header>
+        <!-- WEB 수정 START -->
+        <div class="gnb">
+          <div class="gnbInner">
+            <h1>
+              <a href="./main.html">
+                <img src="../images/mobile_a/common/logo.svg" alt="">
+              </a>
+            </h1>
+            <div class="gnbLabel">
+              <span class="gnbDivider"></span>
+              <span class="gnbTitle">스마트오피스 예약시스템</span>
+            </div>
+          </div>
+
+          <div class="gnbQuick">
+            <a href="javascript:;" class="gnbQuickItem">
+              <i class="ico_quick ico_quick_seat"></i>
+              <span>좌석예약</span>
+            </a>
+            <a href="javascript:;" class="gnbQuickItem">
+              <i class="ico_quick ico_quick_meeting"></i>
+              <span>회의실예약</span>
+            </a>
+            <a href="javascript:;" class="gnbQuickItem">
+              <i class="ico_quick ico_quick_locker"></i>
+              <span>사물함예약</span>
+            </a>
+            <a href="javascript:;" class="gnbQuickItem">
+              <i class="ico_quick ico_quick_myreserv"></i>
+              <span>나의예약</span>
+            </a>
+            <a href="./parking.html" class="gnbQuickItem">
+              <i class="ico_quick ico_quick_parking"></i>
+              <span>주차정산</span>
+            </a>
+          </div>
+
+          <div class="gnbRight">
+            <div class="gnbUser">
+              <span class="gnbUserText">
+                <em class="gnbUserName">홍길동님</em>
+                <em class="gnbUserWelcome">환영합니다.</em>
+              </span>
+              <a href="javascript:;" class="btnLogout"><i class="ico logout"></i></a>
+            </div>
+            <span class="gnbUserDivider"></span>
+            <button type="button" class="btnMenuToggle"><i></i></button>
+          </div>
+        </div>
+
+        <nav>
+          <div class="navCon">
+            <ul>
+              <li>
+                <dl>
+                  <dt>
+                    <a href="./main.html">
+                      <span><i class="ico_menu ico_menu_dashboard"></i>대시보드</span>
+                    </a>
+                  </dt>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><i class="ico_menu ico_menu_seat"></i>좌석예약</span>
+                    </a>
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li><a href="javascript:;"><span>좌석예약</span></a></li>
+                      <li><a href="javascript:;"><span>직원검색</span></a></li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><i class="ico_menu ico_menu_meeting"></i>회의실예약</span>
+                    </a>
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li><a href="javascript:;"><span>시간 검색 예약</span></a></li>
+                      <li><a href="javascript:;"><span>회의실 검색 예약</span></a></li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><i class="ico_menu ico_menu_locker"></i>사물함예약</span>
+                    </a>
+                  </dt>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="./parking.html">
+                      <span><i class="ico_menu ico_menu_parking"></i>주차정산</span>
+                    </a>
+                  </dt>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><i class="ico_menu ico_menu_bus"></i>출퇴근 버스</span>
+                    </a>
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li><a href="./busReservation.html"><span>셔틀탑승 신청</span></a></li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>
+                    <a href="javascript:;">
+                      <span><i class="ico_menu ico_menu_myreserv"></i>나의예약</span>
+                    </a>
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li><a href="javascript:;"><span>나의 좌석 이용현황</span></a></li>
+                      <li><a href="javascript:;"><span>나의 회의실 예약현황</span></a></li>
+                      <li><a href="javascript:;"><span>나의 사물함 예약현황</span></a></li>
+                    </ul>
+                  </dd>
+                </dl>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <!-- WEB 수정 END -->
+      </header>
+
+            <!-- WEB 수정 START -->
+            <!-- contents -->
+            <div id="contents">
+                <section class="section">
+                    <div class="page_wrap">
+                        <div class="page_title">
+                            <h2>확인 팝업</h2>
+                            <p>취소/확인 버튼이 있는 확인 요청 팝업입니다.</p>
+                        </div>
+                        <div class="pageCont">
+                            <button type="button" class="btn medium pri alertOpenBtn">알림 팝업 열기</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- //contents -->
+            <!-- WEB 수정 END -->
+
+        </div>
+        <!-- //wrap -->
+    </form>
+
+    <!-- WEB 수정 START -->
+    <div id="modal-window">
+        <div class="modal-box modal-size-normal">
+            <div class="modal-inner">
+                <div class="modal-pop">
+                    <p class="modal-text">예약이 불가능한 시간입니다.<br>예약시간을 확인해 주세요.</p>
+                    <ul class="modal-buttons">
+                        <a class="modal-btn btn medium sec btn-layerClose">취소</a>
+                        <a class="modal-btn btn medium pri btn-layerClose">확인</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- WEB 수정 END -->
+
+    <script type="text/javascript" src="../js/web_a/common.js"></script>
+    <script src="./common.js"></script>
+</body>
+
+</html>

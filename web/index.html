@@ -177,9 +177,9 @@
       <div class="hub-card">
         <div>
           <div class="hub-card__category">MAIN DASHBOARD</div>
-          <div class="hub-card__title"><span>PC 포털 통합 대시보드</span> <span class="tag">핵심 메인</span></div>
+          <div class="hub-card__title"><span>PC 포털 통합 대시보드</span> <span class="tag">1019 헤더 반영</span></div>
           <div class="hub-card__desc">
-            나의 예약(이용 좌석, 당일 회의실 최대 2건, 사물함) 실시간 요약과 나의 차량 등록 정보, 셔틀버스 예약, 모바일 앱 설치 QR을 한눈에 제공하는 와이드 대시보드입니다.
+            1019 신규 GNB 헤더(풀메뉴 네비게이션 드롭다운)와 나의 예약(좌석, 회의실, 사물함), 차량 등록 정보, 셔틀버스 예약 상태를 한눈에 제공하는 메인 대시보드입니다.
           </div>
         </div>
         <div class="hub-card__actions">
@@ -192,33 +192,65 @@
       <!-- 2. PC 주차정산 -->
       <div class="hub-card">
         <div>
-          <div class="hub-card__category">PARKING SERVICE</div>
-          <div class="hub-card__title"><span>PC 주차정산</span> <span class="tag">자체 서비스</span></div>
+          <div class="hub-card__category">PARKING SERVICE (1019 퍼블리싱)</div>
+          <div class="hub-card__title"><span>PC 주차정산 3대 화면</span> <span class="tag">자체 서비스</span></div>
           <div class="hub-card__desc">
-            과천사옥 주차장 이용 차량 조회, 입차 시각·주차시간 확인, 주차 할인권(1시간 무료 및 유료 할인권) 실시간 등록/취소 기능을 시연합니다.
+            1019 <code>parking_search</code>(차량조회), <code>parking_detail</code>(차량상세/할인권적용), <code>parking_detail_empty</code>(미등록 빈 상태)를 인터랙티브하게 체험할 수 있습니다.
           </div>
         </div>
         <div class="hub-card__actions">
-          <a class="button button--primary" href="./parking.html">차량 조회 화면</a>
-          <a class="button button--secondary" href="./parking.html?view=detail">할인 등록/상세 화면</a>
+          <a class="button button--primary" href="./parking.html?scenario=search">차량 조회 (search)</a>
+          <a class="button button--secondary" href="./parking.html?scenario=detail">차량 상세 & 할인 (detail)</a>
+          <a class="button button--secondary" href="./parking.html?scenario=empty">미등록 상태 (empty)</a>
         </div>
       </div>
 
       <!-- 3. PC 출퇴근 버스 -->
       <div class="hub-card">
         <div>
-          <div class="hub-card__category">SHUTTLE BUS</div>
-          <div class="hub-card__title"><span>PC 출퇴근 셔틀버스</span> <span class="tag">자체 서비스</span></div>
+          <div class="hub-card__category">SHUTTLE BUS (1019 퍼블리싱)</div>
+          <div class="hub-card__title"><span>PC 출퇴근 셔틀버스</span> <span class="tag">shuttle_request</span></div>
           <div class="hub-card__desc">
-            출퇴근 구분 및 호차별 잔여 좌석 실시간 조회, 셔틀버스 탑승 예약 신청 및 나의 예약 내역 확인·취소 기능을 시연합니다.
+            1019 <code>shuttle_request.html</code> 퍼블리싱 마크업 기반의 탑승신청 폼, 코스/호차/좌석수 선택, 나의 예약내역 조회 및 실시간 예약취소 기능을 제공합니다.
           </div>
         </div>
         <div class="hub-card__actions">
-          <a class="button button--primary" href="./busReservation.html">페이지 바로가기</a>
+          <a class="button button--primary" href="./busReservation.html">셔틀탑승 신청 바로가기</a>
         </div>
       </div>
 
-      <!-- 4. 구 스마트웍스 (menu-sync.js 원격 메뉴 동기화 시연) -->
+      <!-- 4. PC 로그인 & 본인인증 -->
+      <div class="hub-card">
+        <div>
+          <div class="hub-card__category">AUTHENTICATION (1019 퍼블리싱)</div>
+          <div class="hub-card__title"><span>PC 웹 로그인 & SMS 인증</span> <span class="tag">login & cert</span></div>
+          <div class="hub-card__desc">
+            1019 <code>login.html</code> 및 <code>login_cert.html</code> 퍼블리싱 구조 기반 화면으로, 아이디/비밀번호 로그인과 SMS 인증번호 발송/확인 모드를 자유롭게 전환할 수 있습니다.
+          </div>
+        </div>
+        <div class="hub-card__actions">
+          <a class="button button--primary" href="./login.html?mode=basic">기본 로그인</a>
+          <a class="button button--secondary" href="./login.html?mode=cert">SMS 본인인증</a>
+        </div>
+      </div>
+
+      <!-- 5. 1019 공통 레이아웃 & 팝업 컴포넌트 -->
+      <div class="hub-card">
+        <div>
+          <div class="hub-card__category">COMMON & POPUP (1019 퍼블리싱)</div>
+          <div class="hub-card__title"><span>공통 레이아웃 & 모달 팝업</span> <span class="tag">표준 가이드</span></div>
+          <div class="hub-card__desc">
+            1019 퍼블리싱 표준 GNB 헤더/네비게이션 <code>layout.html</code>과 공통 알림 레이어 <code>alert.html</code>, 확인 레이어 <code>confirm.html</code> 원본 페이지입니다.
+          </div>
+        </div>
+        <div class="hub-card__actions">
+          <a class="button button--primary" href="./layout.html">공통 레이아웃</a>
+          <a class="button button--secondary" href="./alert.html">알림 팝업</a>
+          <a class="button button--secondary" href="./confirm.html">확인 팝업</a>
+        </div>
+      </div>
+
+      <!-- 6. 구 스마트웍스 (menu-sync.js 원격 메뉴 동기화 시연) -->
       <div class="hub-card" style="border-color:#f59e0b; background:linear-gradient(180deg, #fffbeb 0%, #ffffff 45%);">
         <div>
           <div class="hub-card__category" style="color:#d97706;">LEGACY SMARTWORKS + MENU-SYNC.JS</div>
@@ -232,20 +264,6 @@
           <a class="button button--secondary" href="./works/meeting.html">회의실예약 (구)</a>
           <a class="button button--secondary" href="./works/locker.html">사물함예약 (구)</a>
           <a class="button button--secondary" href="./works/myresv.html">나의예약 (구)</a>
-        </div>
-      </div>
-
-      <!-- 5. PC 로그인 -->
-      <div class="hub-card">
-        <div>
-          <div class="hub-card__category">AUTHENTICATION</div>
-          <div class="hub-card__title"><span>PC 웹 로그인</span> <span class="tag">인증</span></div>
-          <div class="hub-card__desc">
-            PC 웹 환경 전용 로그인 및 SMS 본인인증 화면입니다. (로그인 버튼 클릭 시 인증 절차 없이 즉시 메인 대시보드로 진입합니다.)
-          </div>
-        </div>
-        <div class="hub-card__actions">
-          <a class="button button--primary" href="./login.html">페이지 바로가기</a>
         </div>
       </div>
     </div>
