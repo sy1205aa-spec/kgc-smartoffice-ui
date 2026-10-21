@@ -955,8 +955,9 @@ body:has(.loginArea)::-webkit-scrollbar-thumb {
     border-radius: 10px;
     padding: 16px;
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
     cursor: pointer;
     box-sizing: border-box;
     font-family: inherit;
@@ -973,12 +974,6 @@ body:has(.loginArea)::-webkit-scrollbar-thumb {
     background: rgba(196, 200, 203, 0.3);
     border-color: #c4c8cb;
     cursor: not-allowed;
-}
-
-.coupon_top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .coupon_name {
@@ -1004,35 +999,16 @@ body:has(.loginArea)::-webkit-scrollbar-thumb {
     box-sizing: border-box;
 }
 
+.discount_coupon.disabled .coupon_radio,
+.discount_coupon:disabled .coupon_radio {
+    background: transparent;
+}
+
 .discount_coupon.is-on .coupon_radio {
     border-color: #605dfa;
     background: url('../../images/web_a/ico/ico_radio_fill.svg') no-repeat center / 16px;
 }
 
-.coupon_price {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-}
-
-.coupon_price strong {
-    font-size: 18px;
-    font-weight: 700;
-    color: #111;
-}
-
-.coupon_price span {
-    font-size: 14px;
-    font-weight: 500;
-    color: #111;
-}
-
-.discount_coupon.disabled .coupon_price strong,
-.discount_coupon:disabled .coupon_price strong,
-.discount_coupon.disabled .coupon_price span,
-.discount_coupon:disabled .coupon_price span {
-    color: #999;
-}
 
 .discount_notice_bar {
     display: flex;

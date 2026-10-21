@@ -12,7 +12,7 @@ $(function () {
 
 /* 1019 GNB 전체 메뉴(햄버거 버튼) 토글 */
 function init1019MenuToggle() {
-    var $header = $('header');
+    var $header = $('#wrap > header').not('#portalHeader');
     var $nav = $header.find('nav');
     var $btn = $('.btnMenuToggle');
     var $navCon = $nav.find('.navCon');
@@ -59,7 +59,7 @@ function initLogoutHandler() {
     $(document).off('click.logout', '.btnLogout, #logoutBtn').on('click.logout', '.btnLogout, #logoutBtn', function (e) {
         e.preventDefault();
         soConfirmAlert('로그아웃 하시겠습니까?', function () {
-            window.location.href = './login.html';
+            window.location.href = new URL('login.html', document.querySelector('script[src*="presentation.js"]').src).href;
         }, '로그아웃');
     });
 }

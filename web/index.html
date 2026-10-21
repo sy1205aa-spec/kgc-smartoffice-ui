@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KGC 스마트오피스 PC 웹 시안 리스트 & 시연 허브</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <title>KGC 스마트오피스 PC 웹 · 화면 검토</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="../images/web_a/common/logo.svg" type="image/svg+xml">
   <style>
@@ -156,16 +155,18 @@
       background: #e2e8f0;
       color: var(--ink);
     }
-  </style>
+  @font-face{font-family:Pretendard;src:url(../fonts/Pretendard-Medium.woff) format("woff")}
+.menu-preview{margin-top:32px;background:#fff;padding:28px;border:1px solid var(--line);border-radius:16px}.menu-preview h2{margin:0 0 10px;font-size:20px}.menu-preview p{color:var(--muted);font-size:14px;line-height:1.7}.menu-edit-row{display:flex;gap:16px;align-items:center;padding:10px 0;border-bottom:1px solid #eee}.menu-edit-row input[type=text]{padding:9px;border:1px solid #ddd;border-radius:6px;font:inherit}.menu-edit-row span{font-size:13px;color:#888}.menu-preview-actions{display:flex;gap:12px;margin-top:20px}
+</style>
 </head>
 
 <body>
   <div class="hub-container">
     <div class="hub-header">
       <div>
-        <div class="status-badge"><i></i> <span>무인증(로그인 불필요) 현업 시연용 PC Web 목업</span></div>
-        <h1>KGC 스마트오피스 PC (Web) 포털 시연 허브</h1>
-        <p>신규 개발된 스마트오피스 PC 웹 통합 대시보드 및 자체 서비스(주차정산, 셔틀버스) 화면을 로그인 없이 즉시 확인할 수 있습니다.</p>
+        <div class="status-badge"><i></i> <span>10월 20일 퍼블리싱 반영 · 화면 검토용</span></div>
+        <h1>스마트오피스 PC 웹 화면 검토</h1>
+        <p>통합 메뉴와 대시보드, 주차·셔틀 이용 흐름을 확인하세요. 표시되는 데이터와 인증·예약 처리는 시연용입니다.</p>
       </div>
       <div>
         <a class="button button--secondary" href="../index.html">← 통합 퍼블리싱 뷰어로 돌아가기</a>
@@ -177,9 +178,9 @@
       <div class="hub-card">
         <div>
           <div class="hub-card__category">MAIN DASHBOARD</div>
-          <div class="hub-card__title"><span>PC 포털 통합 대시보드</span> <span class="tag">1019 헤더 반영</span></div>
+          <div class="hub-card__title"><span>나의 하루를 한눈에, 대시보드</span> <span class="tag">1020 헤더 반영</span></div>
           <div class="hub-card__desc">
-            1019 신규 GNB 헤더(풀메뉴 네비게이션 드롭다운)와 나의 예약(좌석, 회의실, 사물함), 차량 등록 정보, 셔틀버스 예약 상태를 한눈에 제공하는 메인 대시보드입니다.
+            오늘의 좌석, 회의실, 사물함 이용 현황과 차량·셔틀 정보를 한눈에 확인합니다. 이용중·회의 다건·미예약 상태를 비교할 수 있습니다.
           </div>
         </div>
         <div class="hub-card__actions">
@@ -192,26 +193,26 @@
       <!-- 2. PC 주차정산 -->
       <div class="hub-card">
         <div>
-          <div class="hub-card__category">PARKING SERVICE (1019 퍼블리싱)</div>
-          <div class="hub-card__title"><span>PC 주차정산 3대 화면</span> <span class="tag">자체 서비스</span></div>
+          <div class="hub-card__category">PARKING SERVICE (1020 퍼블리싱)</div>
+          <div class="hub-card__title"><span>차량 조회와 주차 할인</span> <span class="tag">자체 서비스</span></div>
           <div class="hub-card__desc">
-            1019 <code>parking_search</code>(차량조회), <code>parking_detail</code>(차량상세/할인권적용), <code>parking_detail_empty</code>(미등록 빈 상태)를 인터랙티브하게 체험할 수 있습니다.
+            1020 <code>parking_search</code>(차량조회), <code>parking_detail</code>(차량상세/할인권적용), <code>parking_detail_empty</code>(미등록 빈 상태)를 인터랙티브하게 체험할 수 있습니다.
           </div>
         </div>
         <div class="hub-card__actions">
-          <a class="button button--primary" href="./parking.html?scenario=search">차량 조회 (search)</a>
-          <a class="button button--secondary" href="./parking.html?scenario=detail">차량 상세 & 할인 (detail)</a>
-          <a class="button button--secondary" href="./parking.html?scenario=empty">미등록 상태 (empty)</a>
+          <a class="button button--primary" href="./parking.html?scenario=search">차량 조회</a>
+          <a class="button button--secondary" href="./parking.html?scenario=detail">차량 상세·할인</a>
+          <a class="button button--secondary" href="./parking.html?scenario=empty">조회 내역 없음</a>
         </div>
       </div>
 
       <!-- 3. PC 출퇴근 버스 -->
       <div class="hub-card">
         <div>
-          <div class="hub-card__category">SHUTTLE BUS (1019 퍼블리싱)</div>
-          <div class="hub-card__title"><span>PC 출퇴근 셔틀버스</span> <span class="tag">shuttle_request</span></div>
+          <div class="hub-card__category">SHUTTLE BUS (1020 퍼블리싱)</div>
+          <div class="hub-card__title"><span>출퇴근 셔틀버스</span> <span class="tag">shuttle_request</span></div>
           <div class="hub-card__desc">
-            1019 <code>shuttle_request.html</code> 퍼블리싱 마크업 기반의 탑승신청 폼, 코스/호차/좌석수 선택, 나의 예약내역 조회 및 실시간 예약취소 기능을 제공합니다.
+            1020 <code>shuttle_request.html</code> 퍼블리싱 마크업 기반의 탑승신청 폼, 코스/호차/좌석수 선택, 나의 예약내역 조회 및 예약취소 시연 기능을 제공합니다.
           </div>
         </div>
         <div class="hub-card__actions">
@@ -222,10 +223,10 @@
       <!-- 4. PC 로그인 & 본인인증 -->
       <div class="hub-card">
         <div>
-          <div class="hub-card__category">AUTHENTICATION (1019 퍼블리싱)</div>
-          <div class="hub-card__title"><span>PC 웹 로그인 & SMS 인증</span> <span class="tag">login & cert</span></div>
+          <div class="hub-card__category">AUTHENTICATION (1020 퍼블리싱)</div>
+          <div class="hub-card__title"><span>로그인과 본인인증</span> <span class="tag">login & cert</span></div>
           <div class="hub-card__desc">
-            1019 <code>login.html</code> 및 <code>login_cert.html</code> 퍼블리싱 구조 기반 화면으로, 아이디/비밀번호 로그인과 SMS 인증번호 발송/확인 모드를 자유롭게 전환할 수 있습니다.
+            1020 <code>login.html</code> 및 <code>login_cert.html</code> 퍼블리싱 구조 기반 화면으로, 아이디/비밀번호 로그인과 SMS 인증번호 발송/확인 모드를 자유롭게 전환할 수 있습니다.
           </div>
         </div>
         <div class="hub-card__actions">
@@ -234,13 +235,13 @@
         </div>
       </div>
 
-      <!-- 5. 1019 공통 레이아웃 & 팝업 컴포넌트 -->
+      <!-- 5. 1020 공통 레이아웃 & 팝업 컴포넌트 -->
       <div class="hub-card">
         <div>
-          <div class="hub-card__category">COMMON & POPUP (1019 퍼블리싱)</div>
+          <div class="hub-card__category">COMMON & POPUP (1020 퍼블리싱)</div>
           <div class="hub-card__title"><span>공통 레이아웃 & 모달 팝업</span> <span class="tag">표준 가이드</span></div>
           <div class="hub-card__desc">
-            1019 퍼블리싱 표준 GNB 헤더/네비게이션 <code>layout.html</code>과 공통 알림 레이어 <code>alert.html</code>, 확인 레이어 <code>confirm.html</code> 원본 페이지입니다.
+            1020 퍼블리싱 표준 GNB 헤더/네비게이션 <code>layout.html</code>과 공통 알림 레이어 <code>alert.html</code>, 확인 레이어 <code>confirm.html</code> 원본 페이지입니다.
           </div>
         </div>
         <div class="hub-card__actions">
@@ -253,21 +254,21 @@
       <!-- 6. 구 스마트웍스 (menu-sync.js 원격 메뉴 동기화 시연) -->
       <div class="hub-card" style="border-color:#f59e0b; background:linear-gradient(180deg, #fffbeb 0%, #ffffff 45%);">
         <div>
-          <div class="hub-card__category" style="color:#d97706;">LEGACY SMARTWORKS + MENU-SYNC.JS</div>
-          <div class="hub-card__title"><span>구 스마트웍스 통합 메뉴 동기화</span> <span class="tag" style="background:#fef3c7;color:#b45309;border-color:#fde68a;">_self 단일탭</span></div>
+          <div class="hub-card__category" style="color:#d97706;">CONNECTED SERVICES</div>
+          <div class="hub-card__title"><span>공간예약과 통합 메뉴</span> <span class="tag" style="background:#fef3c7;color:#b45309;border-color:#fde68a;">동일 탭 이동</span></div>
           <div class="hub-card__desc">
-            구 스마트웍스(<code>top.jsp</code>)에 <code>menu-sync.js</code> 단 1줄만 주입하여 신규 메뉴(대시보드, 주차정산, 셔틀버스)가 동일하게 노출되고, 새 탭 없이 현재 탭(<code>_self</code>)에서 이동 및 실시간 메뉴 추가/변경이 반영되는 화면을 시연합니다.
+            좌석·회의실·사물함·나의 예약 화면에서도 동일한 상단 메뉴를 사용합니다. 새 탭을 열지 않고 대시보드·주차·셔틀 화면으로 이동하는 흐름을 확인하세요. 예약 본문은 정적 화면입니다.
           </div>
         </div>
         <div class="hub-card__actions">
-          <a class="button button--primary" style="background:#d97706;border-color:#d97706;" href="./works/seat.html">좌석예약 (구)</a>
-          <a class="button button--secondary" href="./works/meeting.html">회의실예약 (구)</a>
-          <a class="button button--secondary" href="./works/locker.html">사물함예약 (구)</a>
-          <a class="button button--secondary" href="./works/myresv.html">나의예약 (구)</a>
+          <a class="button button--primary" style="background:#d97706;border-color:#d97706;" href="./works/seat.html">좌석예약</a>
+          <a class="button button--secondary" href="./works/meeting.html">회의실예약</a>
+          <a class="button button--secondary" href="./works/locker.html">사물함예약</a>
+          <a class="button button--secondary" href="./works/myresv.html">나의예약</a>
         </div>
       </div>
     </div>
   </div>
-</body>
+<section class="hub-container menu-preview"><h2>통합 메뉴 변경 체험</h2><p>메뉴 이름과 표시 여부를 바꾼 후 대시보드 → 좌석예약 → 주차정산으로 이동해 보세요.<br>이 시안은 같은 브라우저·출처의 저장소로 공통 메뉴를 재현합니다. 실제 원격 메뉴 API와 SSO 연동은 포함하지 않습니다.</p><div id="menuPreviewRows"></div><div class="menu-preview-actions"><button class="button button--primary" id="savePreviewMenus">메뉴 반영</button><button class="button button--secondary" id="resetPreviewMenus">기본 메뉴 복원</button><a class="button button--secondary" href="./main.html">대시보드에서 확인 →</a></div><p id="menuSaveStatus" role="status" aria-live="polite"></p></section><script src="./presentation.js" defer></script></body>
 
 </html>

@@ -1,0 +1,79 @@
+/* 1020 퍼블리싱의 KGC 색상·아이콘을 사용하는 시안 공통 셸 */
+@font-face{font-family:PortalPretendard;src:url('../fonts/Pretendard-Medium.woff') format('woff');font-weight:400 500;font-display:swap}
+@font-face{font-family:PortalPretendard;src:url('../fonts/Pretendard-Bold.woff') format('woff');font-weight:600 900;font-display:swap}
+.portal-preview body{min-width:0!important;font-family:PortalPretendard,Pretendard,sans-serif}
+.portal-preview #wrap,.portal-preview #wrapper{min-width:0}
+.portal-preview .portal-header{position:sticky!important;top:0;z-index:500;display:block!important;width:100%;height:auto!important;min-height:88px;padding:0!important;background:#fff;border-bottom:1px solid #e7e7e9;flex-shrink:0}
+.portal-header *{box-sizing:border-box}
+.portal-header a{text-decoration:none;color:#303238}
+.portal-header-inner{max-width:1600px;min-height:88px;margin:auto;padding:0 32px;display:flex;align-items:center;gap:28px}
+.portal-brand{display:flex;gap:15px;align-items:center;flex-shrink:0;font-size:19px;font-weight:700;white-space:nowrap}
+.portal-brand img{width:56px;height:42px;object-fit:contain}
+.portal-brand span{border-left:1px solid #ddd;padding-left:15px}
+.portal-menu{display:flex!important;position:static!important;min-height:0!important;align-items:center;justify-content:center;flex:1;gap:2px;background:none!important;box-shadow:none!important;height:88px;width:auto!important;padding:0!important}
+.portal-menu-link{display:flex;align-items:center;gap:7px;height:88px;padding:0 12px;font-size:14px;font-weight:600;position:relative;white-space:nowrap}
+.portal-menu-link img{width:21px;height:21px}
+.portal-menu-link[aria-current],.portal-menu-link:hover{color:#bd1732}
+.portal-menu-link[aria-current]:after{content:'';position:absolute;bottom:0;left:12px;right:12px;height:3px;background:#c81736;border-radius:3px 3px 0 0}
+.portal-user{display:flex;align-items:center;gap:16px;font-size:13px;white-space:nowrap}
+.portal-user button{display:flex;align-items:center;justify-content:center;width:30px;height:34px;padding:4px;border:0;background:none;cursor:pointer}
+.portal-logout img{width:24px;height:24px}
+.portal-user .portal-all{display:flex;flex-direction:column;gap:4px;border-left:1px solid #ddd;padding-left:15px;width:40px}
+.portal-all span{width:19px;height:2px;background:#35373c;display:block}
+.portal-all-panel{position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid #ddd;box-shadow:0 18px 24px #18233213}
+.portal-all-panel[hidden]{display:none!important}
+.portal-panel-inner{max-width:1440px;padding:30px 32px 38px;margin:auto}
+.portal-panel-title{display:flex;gap:20px;align-items:center;margin-bottom:22px}.portal-panel-title strong{font-size:20px}.portal-panel-title span{color:#777;font-size:14px}
+.portal-menu-grid{display:grid!important;grid-template-columns:repeat(7,1fr);gap:12px;position:static!important;min-height:0!important;height:auto!important;width:auto!important;background:none!important;padding:0!important}
+.portal-menu-tile{padding:22px 8px;background:#f7f8fa;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:12px;font-size:15px;font-weight:600}
+.portal-menu-tile img{width:25px;height:25px}.portal-menu-tile:hover,.portal-menu-tile[aria-current]{background:#fff0f2;color:#bd1732}
+.portal-preview a:focus-visible,.portal-preview button:focus-visible,.portal-preview input:focus-visible{outline:3px solid #c81736;outline-offset:4px}
+.portal-preview body.web-dashboard-page{background:#f5f6f8;color:#25272d}
+.portal-preview body.web-dashboard-page #wrap{background:#f5f6f8}
+.portal-preview #contents.web-dashboard-container{max-width:1440px;padding:42px 40px 40px}
+.portal-preview .dashboard-wrapper{width:100%}.portal-preview .dashboard-hero{padding:0 0 28px;border:0;background:transparent;box-shadow:none;margin:0;min-height:0}
+.portal-eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;color:#b11932;margin:0 0 12px}
+.portal-preview .hero-title{font-size:29px;letter-spacing:-1.1px;color:#26282e}
+.portal-preview .hero-sub{font-size:14px;color:#7a7d84;margin-top:12px}
+.portal-preview .section-my-reservation{border:0;border-radius:20px;background:#fff;padding:28px;box-shadow:0 3px 12px #14203004}
+.portal-preview .section-title{font-size:20px}.portal-preview .section-title .sub-en{display:none}
+.portal-preview .section-badge{background:#fff0f2;color:#b71935;font-size:11px;border-radius:6px;padding:5px 8px}
+.portal-preview .reservation-cards-grid{gap:20px}.portal-preview .reservation-card{border:1px solid #e9eaee;border-radius:14px;box-shadow:none;background:#fff;min-height:242px}
+.portal-preview .card-head{border-bottom:1px solid #f0f0f3;padding:18px 20px;gap:10px}
+.portal-preview .card-icon{background:#f7f7f9!important;border-radius:10px;width:34px;height:34px;display:flex;align-items:center;justify-content:center}
+.portal-preview .card-icon img{width:22px;height:22px}.portal-preview .card-title{font-size:16px}
+.portal-preview .card-body{padding:20px}.portal-preview .seat-no,.portal-preview .locker-no{font-size:38px;color:#24272d;font-weight:700;letter-spacing:-1px}
+.portal-preview .status-badge,.portal-preview .count-badge{font-size:11px;border-radius:5px}.portal-preview .badge-active{color:#168264;background:#edf8f4}
+.portal-preview .meeting-subject{font-size:13px}.portal-preview .time-range{font-size:14px}.portal-preview .place-badge{font-size:11px}
+.portal-preview .dashboard-grid-bottom{gap:20px;margin-top:24px}.portal-preview .sub-service-card{border:1px solid #e9eaee;border-radius:16px;box-shadow:none;background:#fff}
+.portal-preview .sub-service-card .service-card-head{background:#fff}.portal-preview .btn-external-link{color:#676b73;font-size:13px}
+.portal-preview .btn-dashboard-refresh{font-size:12px;background:#fff;border-color:#e2e4e8;box-shadow:none}
+.portal-preview .web-footer{background:transparent;border-top:1px solid #e5e6e9;padding-bottom:50px}
+.portal-preview .demo-scenario-bar{position:static!important;transform:none!important;box-shadow:none!important;max-width:900px;margin:20px auto!important;border:1px solid #e3e5ea!important;background:#fff!important;justify-content:center;flex-wrap:wrap}
+.portal-preview-note{position:fixed;bottom:12px;right:18px;z-index:501;padding:7px 12px;border-radius:6px;background:#fff;color:#85878c;font-size:11px;border:1px solid #e5e7eb;text-decoration:none}
+.portal-preview #modal-window .modal-layer{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:380px;max-width:calc(100vw - 40px);background:#fff;border-radius:16px;padding:24px;box-shadow:0 20px 70px #0003}
+.portal-preview #modal-window .modal-layer header{display:flex;justify-content:space-between;align-items:center;font-size:18px}.portal-preview #modal-window .modal-content{padding:24px 0}
+.portal-qr-placeholder{width:108px;height:108px;background:#f7f8fa;border:1px dashed #c7cbd1;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#777b82}.portal-qr-placeholder span{font-size:24px;font-weight:700;letter-spacing:2px}.portal-qr-placeholder small{font-size:10px}
+.portal-preview .qr-guide-text small{font-size:11px;color:#8a8e95}
+.portal-preview #wrapper #container{width:100%;min-width:0}.portal-preview #wrapper #contents{min-width:0}
+@media(max-width:1390px){.portal-header-inner{gap:12px;padding:0 22px}.portal-brand span{font-size:17px;padding-left:10px}.portal-brand{gap:10px}.portal-menu-link{font-size:13px;padding:0 8px;gap:5px}.portal-menu-link img{width:18px;height:18px}.portal-user{gap:9px}.portal-brand img{width:48px}}
+@media(max-width:1150px){.portal-header-inner{flex-wrap:wrap;padding-top:15px;gap:0;min-height:110px}.portal-menu{order:3;flex-basis:100%;height:50px}.portal-menu-link{height:50px;flex:1;justify-content:center}.portal-user{margin-left:auto}.portal-menu-grid{grid-template-columns:repeat(4,1fr)}.portal-preview #contents.web-dashboard-container{padding:28px 22px}.portal-preview .reservation-cards-grid{gap:12px}.portal-preview .section-my-reservation{padding:22px}}
+@media(max-width:760px){.portal-menu{overflow:auto;justify-content:flex-start}.portal-menu-link{flex:none}.portal-menu-link img{display:none}.portal-preview .reservation-cards-grid,.portal-preview .dashboard-grid-bottom{grid-template-columns:1fr}.portal-preview .hero-title{font-size:23px}.portal-preview .hero-actions{margin-top:16px}.portal-preview .dashboard-hero{flex-wrap:wrap;gap:14px}.portal-menu-grid{grid-template-columns:repeat(2,1fr)}.portal-preview .section-my-reservation{padding:18px}.portal-panel-title span{display:none}.portal-preview .web-footer .footer-inner{flex-wrap:wrap;gap:15px}.portal-preview .demo-scenario-bar{border-radius:10px;margin:12px!important}.portal-preview .section-title{font-size:17px}.portal-preview .sub-en{display:none}}
+
+.portal-preview #wrap{height:auto;min-height:100vh;overflow:visible}
+.portal-preview .dashboard-hero::after,.portal-preview .section-my-reservation::before{display:none}
+.portal-preview .dashboard-hero{overflow:visible}
+.portal-preview .hero-actions{position:relative;z-index:1}
+.portal-preview .demo-scenario-bar .demo-btn:not(.active){color:#626873}
+.portal-preview .reservation-card{padding:0;min-height:270px}
+.portal-preview .reservation-card .card-body{padding:24px 20px}
+.portal-preview .web-footer .footer-inner{max-width:1360px;margin:auto;width:100%;display:flex;align-items:center;justify-content:space-between}
+.portal-preview .web-footer .footer-info{display:flex;align-items:center;gap:12px;white-space:nowrap}
+.portal-preview .web-footer .footer-links{white-space:nowrap}
+.portal-preview #contents:not(.web-dashboard-container){height:auto;overflow:visible;min-height:600px}
+
+.portal-preview .btn-dashboard-refresh{color:#525964}
+.portal-preview .hero-title .user-greeting{color:#bd1732;text-decoration:none}
+.portal-preview .web-footer{padding-left:32px;padding-right:32px;box-sizing:border-box}
+.portal-preview .service-card-body p,.portal-preview .qr-guide-text{word-break:keep-all}
+.portal-preview .card-head{margin-bottom:0}

@@ -24,164 +24,15 @@
 
     <script src="../js/jquery-3.6.0.js"></script>
     <script src="./common.js"></script>
+<script src="./presentation.js" defer></script>
 </head>
 
 <body>
 
     <!-- wrap -->
     <div id="wrap">
-        <!-- 1019 신규 GNB 헤더 -->
-        <header>
-            <div class="gnb">
-                <div class="gnbInner">
-                    <h1>
-                        <a href="./main.html">
-                            <img src="../images/mobile_a/common/logo.svg" alt="스마트오피스 로고">
-                        </a>
-                    </h1>
-                    <div class="gnbLabel">
-                        <span class="gnbDivider"></span>
-                        <span class="gnbTitle">스마트오피스 예약시스템</span>
-                    </div>
-                </div>
-
-                <div class="gnbQuick">
-                    <a href="./works/seat.html" class="gnbQuickItem" data-menu="seat">
-                        <i class="ico_quick ico_quick_seat"></i>
-                        <span>좌석예약</span>
-                    </a>
-                    <a href="./works/meeting.html" class="gnbQuickItem" data-menu="meeting">
-                        <i class="ico_quick ico_quick_meeting"></i>
-                        <span>회의실예약</span>
-                    </a>
-                    <a href="./works/locker.html" class="gnbQuickItem" data-menu="locker">
-                        <i class="ico_quick ico_quick_locker"></i>
-                        <span>사물함예약</span>
-                    </a>
-                    <a href="./works/myresv.html" class="gnbQuickItem" data-menu="myReserv">
-                        <i class="ico_quick ico_quick_myreserv"></i>
-                        <span>나의예약</span>
-                    </a>
-                    <a href="./parking.html" class="gnbQuickItem active" data-menu="parking">
-                        <i class="ico_quick ico_quick_parking"></i>
-                        <span>주차정산</span>
-                    </a>
-                </div>
-
-                <div class="gnbRight">
-                    <div class="gnbUser">
-                        <span class="gnbUserText">
-                            <em class="gnbUserName">홍길동님</em>
-                            <em class="gnbUserWelcome">환영합니다.</em>
-                        </span>
-                        <a href="javascript:;" class="btnLogout" id="logoutBtn" title="로그아웃"><i class="ico logout"></i></a>
-                    </div>
-                    <span class="gnbUserDivider"></span>
-                    <button type="button" class="btnMenuToggle" title="전체메뉴"><i></i></button>
-                </div>
-            </div>
-
-            <!-- 1019 전체 메뉴 네비게이션 드롭다운 -->
-            <nav>
-                <div class="navCon">
-                    <ul>
-                        <li>
-                            <dl>
-                                <dt>
-                                    <a href="./main.html">
-                                        <span><i class="ico_menu ico_menu_dashboard"></i>대시보드</span>
-                                    </a>
-                                </dt>
-                            </dl>
-                        </li>
-
-                        <li>
-                            <dl>
-                                <dt>
-                                    <a href="./works/seat.html">
-                                        <span><i class="ico_menu ico_menu_seat"></i>좌석예약</span>
-                                    </a>
-                                </dt>
-                                <dd>
-                                    <ul>
-                                        <li><a href="./works/seat.html"><span>좌석예약</span></a></li>
-                                        <li><a href="./works/seat.html"><span>직원검색</span></a></li>
-                                    </ul>
-                                </dd>
-                            </dl>
-                        </li>
-
-                        <li>
-                            <dl>
-                                <dt>
-                                    <a href="./works/meeting.html">
-                                        <span><i class="ico_menu ico_menu_meeting"></i>회의실예약</span>
-                                    </a>
-                                </dt>
-                                <dd>
-                                    <ul>
-                                        <li><a href="./works/meeting.html"><span>시간 검색 예약</span></a></li>
-                                        <li><a href="./works/meeting_map.html"><span>회의실 검색 예약</span></a></li>
-                                    </ul>
-                                </dd>
-                            </dl>
-                        </li>
-
-                        <li>
-                            <dl>
-                                <dt>
-                                    <a href="./works/locker.html">
-                                        <span><i class="ico_menu ico_menu_locker"></i>사물함예약</span>
-                                    </a>
-                                </dt>
-                            </dl>
-                        </li>
-
-                        <li class="on">
-                            <dl>
-                                <dt>
-                                    <a href="./parking.html">
-                                        <span><i class="ico_menu ico_menu_parking"></i>주차정산</span>
-                                    </a>
-                                </dt>
-                            </dl>
-                        </li>
-
-                        <li>
-                            <dl>
-                                <dt>
-                                    <a href="./busReservation.html">
-                                        <span><i class="ico_menu ico_menu_bus"></i>출퇴근 버스</span>
-                                    </a>
-                                </dt>
-                                <dd>
-                                    <ul>
-                                        <li><a href="./busReservation.html"><span>셔틀탑승 신청</span></a></li>
-                                    </ul>
-                                </dd>
-                            </dl>
-                        </li>
-
-                        <li>
-                            <dl>
-                                <dt>
-                                    <a href="./works/myresv.html">
-                                        <span><i class="ico_menu ico_menu_myreserv"></i>나의예약</span>
-                                    </a>
-                                </dt>
-                                <dd>
-                                    <ul>
-                                        <li><a href="./works/myresv.html"><span>나의 좌석 이용현황</span></a></li>
-                                        <li><a href="./works/myresv_meeting.html"><span>나의 회의실 예약현황</span></a></li>
-                                        <li><a href="./works/myresv_locker.html"><span>나의 사물함 예약현황</span></a></li>
-                                    </ul>
-                                </dd>
-                            </dl>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
+        <!-- 1020 신규 GNB 헤더 -->
+        <header id="portalHeader"></header>
 
         <!-- contents -->
         <div id="contents">
@@ -374,7 +225,7 @@
     </div>
     <!-- //wrap -->
 
-    <!-- 현업 시연용 상태 전환 플로팅 바 (1019 퍼블리싱 3개 화면 대응) -->
+    <!-- 현업 시연용 상태 전환 플로팅 바 (1020 퍼블리싱 3개 화면 대응) -->
     <div class="demo-scenario-bar">
         <span class="demo-label">💡 시연 화면 전환:</span>
         <button type="button" class="demo-btn active" data-view="search" onclick="switchParkingView('search')">주차정산조회 (parking_search)</button>
@@ -382,7 +233,7 @@
         <button type="button" class="demo-btn" data-view="detail_empty" onclick="switchParkingView('detail_empty')">주차정산등록 빈 상태 (empty)</button>
     </div>
 
-    <!-- 1019 공통 모달 팝업 -->
+    <!-- 1020 공통 모달 팝업 -->
     <div id="modal-window" style="display: none;">
         <div class="modal-box modal-size-normal">
             <div class="modal-inner">
@@ -521,7 +372,8 @@
 
             // URL 파라미터 ?view=detail 또는 ?view=detail_empty 분기
             const params = new URLSearchParams(window.location.search);
-            const viewParam = params.get('view');
+            const aliases = {search:'search', detail:'detail', empty:'detail_empty'};
+            const viewParam = params.get('view') || aliases[params.get('scenario')];
             if (viewParam && ['search', 'detail', 'detail_empty'].includes(viewParam)) {
                 switchParkingView(viewParam);
             }

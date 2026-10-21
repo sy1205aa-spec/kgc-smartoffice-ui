@@ -47,6 +47,7 @@
 <link rel="stylesheet" type="text/css" href="../works.css">
 <script src="../../js/jquery-3.6.0.js"></script>
 <script src="../common.js"></script>
+<script src="../presentation.js" defer></script>
 </head> 
 <body class="">
 
@@ -62,32 +63,9 @@
 <div id="wrapper">
   <div id="container">
     <!-- 구 스마트웍스(works.kgc.co.kr) 원본 top.jsp 공통 헤더 영역 -->
-    <div id="header">
-      <div id="head">
-        <div class="head_L">
-          <h1 id="logo">
-            <a href="../main.html"><img src="../../images/web_a/common/logo.svg" alt="스마트오피스 예약시스템" /></a><span>스마트오피스 예약시스템</span>
-          </h1>
-          <ul class="menu">
-            <li><a href="./seat.html" class="ico seat"><span>좌석예약</span></a></li>
-            <li><a href="./meeting.html" class="ico meet"><span>회의실예약</span></a></li>
-            <li><a href="./locker.html" class="ico locker"><span>사물함예약</span></a></li>
-            <li><a href="./myresv.html" class="ico myReserv"><span>나의예약</span></a></li>
-          </ul>
-        </div>
-        <div class="head_R">
-          <ul id="gnb">
-            <li class="tnb">
-              <a href="../main.html">Home</a>
-              <a href="javascript:void(0);" id="logoutBtn">Logout</a>
-            </li>
-            <li class="nm">홍길동님 환영합니다</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!-- ★ 구 스마트웍스 top.jsp 하단에 단 1줄 추가되는 스마트오피스 원격 메뉴 동기화 스크립트 -->
-    <script src="../menu-sync.js" defer></script>
+    <header id="portalHeader"></header>
+<!-- ★ 구 스마트웍스 top.jsp 하단에 단 1줄 추가되는 스마트오피스 원격 메뉴 동기화 스크립트 -->
+    
 
 
 <form id="mtgForm" name="mtgForm" action="#" method="post"> 

@@ -166,6 +166,7 @@ body {
     gap: 5px;
     text-decoration: none;
     width: 70px;
+    outline: none;
 }
 
 #wrap > header .gnb .gnbQuick .gnbQuickItem .ico_quick {
@@ -456,6 +457,7 @@ body {
     padding: 10px 20px;
     border-radius: 10px;
     transition: all .3s;
+    outline: none;
 }
 
 #wrap > header > nav .navCon > ul > li > dl > dd ul li a span {
@@ -469,7 +471,10 @@ body {
     color: #D71635;
     background: #f8f8f8;
 }
-
+a:focus, 
+button:focus {
+    outline: none;
+}
 
 /* -------------------------------------------------------
    footerNav
