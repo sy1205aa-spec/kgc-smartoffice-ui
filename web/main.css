@@ -114,9 +114,9 @@ body.web-dashboard-page {
 }
 
 .hero-title .user-greeting {
-    color: #F87171;
+    color: inherit;
     font-weight: 800;
-    text-decoration: underline;
+    text-decoration: none;
     text-underline-offset: 4px;
 }
 
@@ -542,7 +542,20 @@ body.web-dashboard-page {
 }
 
 .service-icon {
-    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: #F7F7F9;
+}
+
+.service-icon img {
+    display: block;
+    width: 22px;
+    height: 22px;
 }
 
 .service-title {

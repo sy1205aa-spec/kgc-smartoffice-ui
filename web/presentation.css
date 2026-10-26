@@ -73,7 +73,7 @@
 .portal-preview #contents:not(.web-dashboard-container){height:auto;overflow:visible;min-height:600px}
 
 .portal-preview .btn-dashboard-refresh{color:#525964}
-.portal-preview .hero-title .user-greeting{color:#bd1732;text-decoration:none}
+.portal-preview .hero-title .user-greeting{color:inherit;text-decoration:none}
 .portal-preview .web-footer{padding-left:32px;padding-right:32px;box-sizing:border-box}
 .portal-preview .service-card-body p,.portal-preview .qr-guide-text{word-break:keep-all}
 .portal-preview .card-head{margin-bottom:0}
