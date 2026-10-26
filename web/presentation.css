@@ -77,3 +77,97 @@
 .portal-preview .web-footer{padding-left:32px;padding-right:32px;box-sizing:border-box}
 .portal-preview .service-card-body p,.portal-preview .qr-guide-text{word-break:keep-all}
 .portal-preview .card-head{margin-bottom:0}
+
+/* 카드 영역의 경계와 상하 3열 정렬을 통일한다. */
+body.web-dashboard-page .dashboard-wrapper { gap: 24px; }
+body.web-dashboard-page .section-my-reservation,
+body.web-dashboard-page .dashboard-grid-bottom {
+    padding: 28px;
+    margin-top: 0;
+    border: 1px solid #D6DDE7;
+    border-radius: 18px;
+    background: #FFF;
+    box-shadow: 0 4px 16px rgba(30, 41, 59, 0.06);
+    box-sizing: border-box;
+}
+body.web-dashboard-page .reservation-cards-grid,
+body.web-dashboard-page .dashboard-grid-bottom {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
+}
+body.web-dashboard-page .reservation-card,
+body.web-dashboard-page .sub-service-card {
+    min-width: 0;
+    padding: 0;
+    border: 1px solid #CDD6E2;
+    border-radius: 12px;
+    background: #FFF;
+    box-shadow: 0 2px 6px rgba(30, 41, 59, 0.04);
+    justify-content: flex-start;
+}
+body.web-dashboard-page .reservation-card:hover,
+body.web-dashboard-page .sub-service-card:hover {
+    transform: none;
+    border-color: #AEBCCD;
+    box-shadow: 0 3px 10px rgba(30, 41, 59, 0.08);
+}
+body.web-dashboard-page .card-head,
+body.web-dashboard-page .card-header-simple {
+    box-sizing: border-box;
+    min-height: 72px;
+    padding: 18px 20px;
+    margin: 0;
+    gap: 10px;
+    background: #F3F5F8;
+    border-bottom: 1px solid #D6DDE7;
+    border-radius: 12px 12px 0 0;
+    flex-shrink: 0;
+}
+body.web-dashboard-page .reservation-card .card-body {
+    padding: 24px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+body.web-dashboard-page .sub-service-card .service-card-body {
+    padding: 20px;
+    justify-content: flex-start;
+}
+body.web-dashboard-page .service-card-foot {
+    padding: 0 20px 20px;
+    margin-top: 0;
+}
+body.web-dashboard-page .section-header {
+    border-bottom-color: #D6DDE7;
+}
+body.web-dashboard-page .seat-no,
+body.web-dashboard-page .locker-no {
+    color: #245A81;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+    font-variant-numeric: tabular-nums;
+}
+body.web-dashboard-page .plate-number {
+    color: #245A81;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0;
+    font-variant-numeric: tabular-nums;
+}
+@media (max-width: 1150px) {
+    body.web-dashboard-page .section-my-reservation,
+    body.web-dashboard-page .dashboard-grid-bottom { padding: 22px; }
+    body.web-dashboard-page .reservation-cards-grid,
+    body.web-dashboard-page .dashboard-grid-bottom { gap: 12px; }
+}
+@media (max-width: 760px) {
+    body.web-dashboard-page .section-my-reservation,
+    body.web-dashboard-page .dashboard-grid-bottom { padding: 18px; }
+    body.web-dashboard-page .reservation-cards-grid,
+    body.web-dashboard-page .dashboard-grid-bottom { grid-template-columns: 1fr; }
+}
