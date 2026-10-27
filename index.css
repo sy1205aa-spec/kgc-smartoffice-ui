@@ -541,3 +541,46 @@ body {
   box-shadow: none;
 }
 
+/* Keep the menu toggle available in both expanded and collapsed layouts. */
+.sidebar[hidden] {
+  display: none;
+}
+
+.main-view {
+  min-width: 0;
+}
+
+.control-bar {
+  flex-shrink: 0;
+  gap: 12px;
+  overflow-x: auto;
+}
+
+.sidebar-toggle {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.sidebar-toggle:focus-visible {
+  outline: 2px solid var(--text-main);
+  outline-offset: 3px;
+}
+
+.sidebar-toggle[aria-expanded="false"] .sidebar-toggle-arrow {
+  transform: translateX(28px) scaleX(-1);
+}
+
+.current-path {
+  min-width: 80px;
+  flex: 1;
+}
+
+.current-path strong {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.actions {
+  flex-shrink: 0;
+}

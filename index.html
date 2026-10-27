@@ -12,7 +12,7 @@
 <body>
   <div class="dashboard">
     <!-- Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="main-sidebar" aria-label="화면 목록">
       <div class="brand">
         <div class="brand-logo">K</div>
         <div class="brand-info">
@@ -887,6 +887,16 @@
     <main class="main-view">
       <!-- Control Bar -->
       <div class="control-bar">
+        <button type="button" class="btn sidebar-toggle" id="sidebar-toggle"
+          aria-controls="main-sidebar" aria-expanded="true" title="왼쪽 메뉴 접기" onclick="toggleSidebar()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+            <path d="M9 4v16"></path>
+            <path class="sidebar-toggle-arrow" d="m16 9-3 3 3 3"></path>
+          </svg>
+          <span id="sidebar-toggle-label">메뉴 접기</span>
+        </button>
         <div class="current-path" id="current-path">
           호스트 주소: <strong id="simulated-url">loading...</strong>
         </div>
@@ -933,6 +943,17 @@
   </div>
 
   <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('main-sidebar');
+      const button = document.getElementById('sidebar-toggle');
+      const collapsed = !sidebar.hidden;
+
+      sidebar.hidden = collapsed;
+      button.setAttribute('aria-expanded', String(!collapsed));
+      button.title = collapsed ? '왼쪽 메뉴 펼치기' : '왼쪽 메뉴 접기';
+      document.getElementById('sidebar-toggle-label').textContent = collapsed ? '메뉴 펼치기' : '메뉴 접기';
+    }
+
     let currentUrl = './web/main.html';
 
     function getSimulatedUrl(url) {
