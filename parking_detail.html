@@ -852,12 +852,13 @@
           });
 
           var coupon = AVAILABLE_COUPONS.find(function (c) { return c.discCodeNo === h.discCodeNo; });
-          var $info = $('<div>', { 'class': 'discount_info' })
-            .append($('<span>', { 'class': 'pd-history-name' }).text(coupon ? coupon.discName : h.discName))
-            .append($('<span>', { 'class': 'pd-history-date' }).text(h.date + ' ' + h.time));
+          var $nameRow = $('<span>', { 'class': 'pd-history-name' }).text(coupon ? coupon.discName : h.discName);
           if (annotation.needsDelete) {
-            $info.append($('<span>', { 'class': 'badge-delete-needed' }).text('삭제 필요'));
+            $nameRow.append($('<span>', { 'class': 'badge-delete-needed' }).text('삭제 필요'));
           }
+          var $info = $('<div>', { 'class': 'discount_info' })
+            .append($nameRow)
+            .append($('<span>', { 'class': 'pd-history-date' }).text(h.date + ' ' + h.time));
 
           var $delBtn = $('<button>', { type: 'button', 'class': 'btn_del', title: '삭제' }).text('삭제');
           $body.append($info).append($delBtn);

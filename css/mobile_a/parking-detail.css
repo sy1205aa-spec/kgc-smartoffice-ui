@@ -65,15 +65,21 @@
 .parking-detail .pd-history > summary { gap: 8px; padding: 0 0 12px; }
 .parking-detail .pd-history-title { font-size: 16px; }
 .parking-detail .pd-history-count { color: #8c929d; font-size: 12px; font-weight: 500; }
-.parking-detail .pd-delete-count { color: #a71936; font-size: 11px; }
-.parking-detail .pd-history-list .body { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px; margin-bottom: 7px; border: 1px solid #e5e6eb; border-radius: 9px; background: #fff; }
+.parking-detail .pd-delete-count { color: #a71936; font-size: 11px; font-weight: 600; }
+.parking-detail .pd-history-list .body { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px; margin-bottom: 7px; border: 1px solid #e5e6eb; border-radius: 9px; background: #fff; transition: all 0.2s ease; }
 .parking-detail .pd-history-list .body.is-delete-needed { border-color: #e6bac4; background: #fff8f9; }
 .parking-detail .pd-history-list .discount_info { min-width: 0; }
-.parking-detail .pd-history-name { display: block; font-size: 13px; font-weight: 650; }
-.parking-detail .pd-history-date { display: block; margin-top: 5px; color: #8e949e; font-size: 10px; }
-.parking-detail .badge-delete-needed { display: inline-block; margin-top: 6px; padding: 2px 5px; border-radius: 4px; background: #f8e8ec; color: #a71936; font-size: 10px; }
-.parking-detail .pd-history-list .btn_del { position: static; flex-shrink: 0; width: auto; height: auto; padding: 7px 11px; border: 1px solid #d7dbe2; border-radius: 6px; background: #fff; color: #737985; font-size: 11px; text-indent: 0; }
-.parking-detail .is-delete-needed .btn_del { border-color: #dca7b4; color: #a71936; }
+.parking-detail .pd-history-name { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 13px; font-weight: 650; }
+.parking-detail .pd-history-date { display: block; margin-top: 4px; color: #8e949e; font-size: 11px; }
+.parking-detail .badge-delete-needed { display: inline-block; padding: 2px 6px; border-radius: 4px; background: #f8e8ec; color: #a71936; font-size: 11px; font-weight: 700; line-height: 1.2; }
+.parking-detail .pd-history-list .btn_del { position: static; flex-shrink: 0; width: auto; height: auto; padding: 7px 12px; border: 1px solid #d7dbe2; border-radius: 6px; background: #fff; color: #737985; font-size: 12px; font-weight: 600; text-indent: 0; cursor: pointer; }
+.parking-detail .is-delete-needed .btn_del { border-color: #dca7b4; color: #a71936; background: #fff; }
+@keyframes parkingDeletePulse {
+  0%, 100% { transform: translateX(0); box-shadow: 0 0 0 0 rgba(167, 25, 54, 0.25); }
+  25% { transform: translateX(-3px); box-shadow: 0 0 0 4px rgba(167, 25, 54, 0.14); }
+  75% { transform: translateX(3px); box-shadow: 0 0 0 4px rgba(167, 25, 54, 0.14); }
+}
+.parking-detail .pd-history-list .body.pulse-focus { animation: parkingDeletePulse 0.45s ease-in-out 2; }
 .parking-detail .parking-empty { color: #969ca6; font-size: 12px; justify-content: center !important; }
 .parking-detail .pd-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
 .parking-detail .pd-feedback { position: fixed; bottom: 94px; left: 50%; transform: translateX(-50%); z-index: 1100; width: max-content; max-width: 85vw; padding: 11px 18px; border-radius: 22px; color: #fff; background: #30333aeb; font-size: 12px; box-shadow: 0 3px 12px #0002; pointer-events: none; }
