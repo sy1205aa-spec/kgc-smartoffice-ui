@@ -1,0 +1,55 @@
+.parking-detail { padding-bottom: 16px; color: #30333a; }
+.parking-detail [hidden] { display: none !important; }
+.parking-detail .pd-notice { margin: 8px 0 20px; padding: 11px 12px; background: #f6f6f7; border-radius: 8px; color: #6d727b; font-size: 12px; }
+.parking-detail .pd-notice strong { color: #9e1732; }
+.parking-detail .pd-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; }
+.parking-detail .pd-heading h2, .parking-detail .pd-history-title { margin: 0; padding-left: 10px; border-left: 3px solid #a71936; font-size: 17px; font-weight: 700; line-height: 1.2; }
+.parking-detail .pd-duration { font-size: 12px; color: #757b85; white-space: nowrap; }
+.parking-detail .pd-metrics { display: grid; grid-template-columns: 1fr 1fr; margin: 0; padding: 19px 10px; border: 1px solid #e3e4e8; border-radius: 10px; background: #fafafb; }
+.parking-detail .pd-metrics > div { padding: 0 12px; }
+.parking-detail .pd-metrics > div + div { border-left: 1px solid #e0e2e6; }
+.parking-detail .pd-metrics dt { margin-bottom: 8px; color: #737985; font-size: 12px; }
+.parking-detail .pd-metrics dd { margin: 0; font-size: clamp(22px, 6.4vw, 29px); font-weight: 750; line-height: 1.2; white-space: nowrap; letter-spacing: -1px; }
+.parking-detail .pd-unit { font-size: 13px; font-weight: 500; letter-spacing: 0; margin: 0 2px; }
+.parking-detail .pd-remaining { color: #ac1735; }
+.parking-detail .is-complete .pd-metrics { border-color: #d7e6de; background: #f5faf7; }
+.parking-detail .is-complete .pd-remaining, .parking-detail .pd-complete { color: #26704c; }
+.parking-detail .pd-complete { display: flex; gap: 7px; align-items: center; margin-top: 10px; font-size: 13px; }
+.parking-detail .pd-complete-icon { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: #26704c; color: white; font-size: 11px; }
+.parking-detail summary { display: flex; align-items: center; cursor: pointer; list-style: none; }
+.parking-detail summary::-webkit-details-marker { display: none; }
+.parking-detail summary::after { content: ''; width: 6px; height: 6px; border-right: 1.5px solid #969aa3; border-bottom: 1.5px solid #969aa3; transform: rotate(45deg); margin: 0 3px 3px auto; flex-shrink: 0; }
+.parking-detail details[open] > summary::after { transform: rotate(225deg); margin-bottom: -3px; }
+.parking-detail .pd-entry { margin-top: 13px; border: 1px solid #e6e7eb; border-radius: 9px; }
+.parking-detail .pd-entry summary { padding: 12px; font-size: 12px; color: #6d737e; }
+.parking-detail .pd-entry-content { display: flex; align-items: center; gap: 10px; padding: 0 12px 12px; }
+.parking-detail .pd-entry-content img { width: 84px; height: 65px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+.parking-detail .pd-entry-content dl { min-width: 0; margin: 0; }
+.parking-detail .pd-entry-content dl > div + div { margin-top: 8px; }
+.parking-detail .pd-entry-content dt { color: #868c96; font-size: 10px; margin-bottom: 3px; }
+.parking-detail .pd-entry-content dd { margin: 0; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.parking-detail .pd-registration { margin-top: 24px; }
+.parking-detail .pd-cleanup-link { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 9px; padding: 10px 12px; border: 1px solid #ebd2d8; border-radius: 7px; background: #fff7f8; color: #a71936; font-size: 12px; font-weight: 600; }
+.parking-detail .pd-coupon-list { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; padding: 0; margin: 0; list-style: none; }
+.parking-detail .pd-coupon-list li:last-child { grid-column: 1 / -1; }
+.parking-detail .pd-coupon-list .discount_coupon { display: flex; align-items: center; justify-content: center; gap: 5px; width: 100%; min-height: 52px; padding: 10px 5px; border: 1px solid #cda1ab; border-radius: 9px; color: #98203a; background: #fff; font-size: 13px; font-weight: 650; line-height: 1.3; }
+.parking-detail .discount_coupon .title { color: inherit; font: inherit; }
+.parking-detail .pd-coupon-list .discount_coupon:disabled { border-color: #e7e9ee; background: #f3f4f7; color: #a2aab6; cursor: default; }
+.parking-detail .pd-coupon-list .discount_coupon.is-recommended { border-color: #a91535; background: linear-gradient(120deg, #a91535, #bd1735); color: #fff; box-shadow: 0 3px 8px #a9153524; }
+.parking-detail .discount_coupon .badge-recommend { position: static; padding: 3px 6px; border-radius: 12px; background: #fff; color: #a71936; font-size: 10px; font-weight: 700; line-height: 1; white-space: nowrap; }
+.parking-detail .pd-history { margin-top: 25px; }
+.parking-detail .pd-history > summary { gap: 8px; padding: 0 0 12px; }
+.parking-detail .pd-history-title { font-size: 16px; }
+.parking-detail .pd-history-count { color: #8c929d; font-size: 12px; font-weight: 500; }
+.parking-detail .pd-delete-count { color: #a71936; font-size: 11px; }
+.parking-detail .pd-history-list .body { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px; margin-bottom: 7px; border: 1px solid #e5e6eb; border-radius: 9px; background: #fff; }
+.parking-detail .pd-history-list .body.is-delete-needed { border-color: #e6bac4; background: #fff8f9; }
+.parking-detail .pd-history-list .discount_info { min-width: 0; }
+.parking-detail .pd-history-name { display: block; font-size: 13px; font-weight: 650; }
+.parking-detail .pd-history-date { display: block; margin-top: 5px; color: #8e949e; font-size: 10px; }
+.parking-detail .badge-delete-needed { display: inline-block; margin-top: 6px; padding: 2px 5px; border-radius: 4px; background: #f8e8ec; color: #a71936; font-size: 10px; }
+.parking-detail .pd-history-list .btn_del { position: static; flex-shrink: 0; width: auto; height: auto; padding: 7px 11px; border: 1px solid #d7dbe2; border-radius: 6px; background: #fff; color: #737985; font-size: 11px; text-indent: 0; }
+.parking-detail .is-delete-needed .btn_del { border-color: #dca7b4; color: #a71936; }
+.parking-detail .parking-empty { color: #969ca6; font-size: 12px; justify-content: center !important; }
+.parking-detail .pd-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+.parking-detail .pd-feedback { position: fixed; bottom: 94px; left: 50%; transform: translateX(-50%); z-index: 1100; width: max-content; max-width: 85vw; padding: 11px 18px; border-radius: 22px; color: #fff; background: #30333aeb; font-size: 12px; box-shadow: 0 3px 12px #0002; pointer-events: none; }
