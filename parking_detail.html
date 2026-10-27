@@ -825,6 +825,8 @@
         ? (remainderTargetMinutes + DISCOUNT_GRACE_MINUTES)
         : 0;
       var hasAnyFreeInHistory = list.some(function (h) { return h.discCodeNo === 1; });
+      var hasPaidWithoutFree = remainderTargetMinutes > 0 && !hasAnyFreeInHistory
+        && list.some(function (item) { return item.discCodeNo !== 1 && item.discCodeNo !== 4 && item.minutes < DAY_MINUTES; });
 
       var historyAnnotations = list.map(function (item) {
         var is24h = item.discCodeNo === 4 || item.minutes >= DAY_MINUTES;
@@ -886,6 +888,7 @@
         remainderTargetMinutes: remainderTargetMinutes,
         valid24hCount: valid24hCount,
         hasValidFree: hasValidFree,
+        hasPaidWithoutFree: hasPaidWithoutFree,
         accNon24hMinutes: accNon24hMinutes,
         uncoveredRemainderMinutes: uncoveredRemainderMinutes,
         remainingAdditionalNon24hLimit: remainingAdditionalNon24hLimit,
@@ -896,6 +899,19 @@
         isFullyCovered: isFullyCovered,
         canAddGraceCoupon: canAddGraceCoupon
       };
+    }
+
+    function getDeleteNeededAlertMessage(rule) {
+      if (rule.hasPaidWithoutFree && rule.valid24hCount >= rule.required24hCount) {
+        return '무료 1시간권이 없어 남아 있는 유료 시간권을 사용할 수 없습니다.\n[삭제 필요] 유료 시간권을 삭제한 뒤 무료 1시간권부터 다시 등록해 주세요.';
+      }
+      if (rule.required24hCount === 0) {
+        return '현재 주차시간 기준에 맞지 않는 할인권이 있습니다.\n목록에서 [삭제 필요] 표시된 할인권만 삭제해 주세요.';
+      }
+      if (rule.zoneType === 'ZONE_3') {
+        return '잔여 한도를 초과한 할인권을 먼저 삭제해야 24시간 이용권을 등록할 수 있습니다.\n목록에서 [삭제 필요] 표시된 할인권만 삭제해 주세요.';
+      }
+      return '기존에 등록된 할인권을 먼저 삭제해야 24시간 이용권을 등록할 수 있습니다.\n목록에서 [삭제 필요] 할인권을 삭제해 주세요.';
     }
 
     function focusFirstDeleteNeededItem() {
@@ -932,10 +948,28 @@
       if (rule.hasDeleteNeeded) {
         $guide.addClass('state-warning');
         $badge.text('삭제 필요 ' + rule.deleteNeededCount + '건');
-        $msg.html(
-          '현재 <strong>' + parkTimeText + '</strong> 주차 중입니다. <strong>24시간 이용권</strong> 대상입니다.<br>' +
-          '기존 등록된 <strong>[삭제 필요]</strong> 할인권을 삭제하신 후 24시간권을 등록해 주세요.'
-        );
+        if (rule.hasPaidWithoutFree && rule.valid24hCount >= rule.required24hCount) {
+          $msg.html(
+            '현재 <strong>' + parkTimeText + '</strong> 주차 중입니다. 무료 1시간권이 없어 남아 있는 유료 시간권을 사용할 수 없습니다.<br>' +
+            '<strong>[삭제 필요]</strong> 유료 시간권을 삭제한 뒤 <strong>무료 1시간권부터 다시 등록</strong>해 주세요.'
+          );
+        } else if (rule.zoneType === 'ZONE_3') {
+          $msg.html(
+            '현재 <strong>' + parkTimeText + '</strong> 다일 주차 중입니다. (24시간권 <strong>' + rule.required24hCount + '장</strong> + 잔여 <strong>' +
+            formatMinutesText(rule.remainderTargetMinutes) + '</strong> 대상)<br>' +
+            '잔여 한도를 초과한 <strong>[삭제 필요]</strong> 할인권만 삭제해 주세요. (유효한 할인권은 유지됩니다)'
+          );
+        } else if (rule.required24hCount > 0 && rule.remainderTargetMinutes === 0) {
+          $msg.html(
+            '현재 <strong>' + parkTimeText + '</strong> 주차 중입니다. <strong>24시간 이용권</strong> 대상입니다.<br>' +
+            '기존 등록된 <strong>[삭제 필요]</strong> 할인권을 삭제하신 후 24시간권을 등록해 주세요.'
+          );
+        } else {
+          $msg.html(
+            '현재 주차시간(<strong>' + parkTimeText + '</strong>) 기준에 맞지 않는 할인권이 있습니다.<br>' +
+            '목록에서 <strong>[삭제 필요]</strong> 표시된 할인권만 삭제해 주세요.'
+          );
+        }
       } else if (rule.isFullyCovered) {
         $guide.addClass('state-complete');
         $badge.text('정산 준비 완료');
@@ -1173,7 +1207,7 @@
         // 4.3: 11시간 이상인데 기존 쿠폰이 남아있는 상태에서 [24시간유료할인] 클릭 시 삭제 유도 팝업 + 스크롤 포커스
         if (requiresDelete) {
           parkAlert(
-            '기존에 등록된 할인권을 먼저 삭제해야 24시간 이용권을 등록할 수 있습니다.\n목록에서 [삭제 필요] 할인권을 삭제해 주세요.',
+            getDeleteNeededAlertMessage(evaluateModularRule(currentParkingMinutes, currentHistoryList)),
             function () {
               focusFirstDeleteNeededItem();
             }
