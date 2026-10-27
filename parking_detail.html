@@ -537,6 +537,24 @@
   min-width: 0; padding: 0; font-size: 14px; line-height: 1.35; overflow-wrap: anywhere;
 }
 #contents .section.parking .panel.discount .badge-recommend { padding: 2px 5px; font-size: 10px; }
+
+/* 같은 상단 화살표 바로 시연 영역을 접고 펼친다. */
+.demo-toggle-row { margin: 4px 0 6px; }
+.demo-toggle-row[hidden], .demo-scenario-bar[hidden] { display: none !important; }
+.demo-toggle-btn {
+  display: flex; align-items: center; justify-content: center; width: 100%; min-height: 28px;
+  padding: 6px; border: 1px solid #E2E8F0; border-radius: 6px;
+  background: #F8FAFC; color: #64748B; cursor: pointer;
+}
+.demo-toggle-btn:hover { background: #F1F5F9; }
+.demo-toggle-chevron {
+  display: block; flex: 0 0 16px; width: 16px; height: 16px; transform: rotate(0deg);
+  transition: transform .15s ease;
+}
+.demo-toggle-btn[aria-expanded="true"] .demo-toggle-chevron { transform: rotate(180deg); }
+.demo-toggle-btn:focus-visible { outline: 2px solid #4A6FA5; outline-offset: 2px; }
+.demo-scenario-head { gap: 6px; flex-wrap: wrap; }
+.demo-head-right { display: inline-flex; gap: 8px; align-items: center; }
   </style>
 
   <script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
@@ -564,10 +582,15 @@
       <article class="section table_list parking">
 
         <!-- 시연용 시나리오 전환 바 (목업 뷰어에서 5가지 주차 구간 테스트 지원) -->
-        <div class="demo-scenario-bar">
+        <div id="demoBarToggleRow" class="demo-toggle-row">
+          <button type="button" class="demo-toggle-btn" data-demo-bar-toggle aria-controls="demoScenarioBar" aria-expanded="true" aria-label="시연 바 접기"><svg class="demo-toggle-chevron" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div id="demoScenarioBar" class="demo-scenario-bar">
           <div class="demo-scenario-head">
             <span>🧪 <strong>24시간 모듈러 룰 시나리오 시연</strong></span>
-            <span id="demoRuleFormula">N=0일, R=13h 30m</span>
+            <span class="demo-head-right">
+              <span id="demoRuleFormula">N=0일, R=13h 30m</span>
+            </span>
           </div>
           <div class="demo-scenario-chips">
             <button type="button" class="demo-chip active" data-scenario="case2">사례2: 13.5시간(삭제유도)</button>
@@ -778,6 +801,7 @@
     var currentParkingMinutes = 810;
     var currentHistoryList = [];
     var nextIdSeq = 100;
+    var isDemoBarCollapsed = false;
 
     var _parkAlertCallback = null;
     var _parkConfirmCallback = null;
@@ -1189,6 +1213,13 @@
     }
 
     function initParking() {
+      $('[data-demo-bar-toggle]').off('click.demoBar').on('click.demoBar', function () {
+        isDemoBarCollapsed = !isDemoBarCollapsed;
+        $('#demoScenarioBar').prop('hidden', isDemoBarCollapsed);
+        $('[data-demo-bar-toggle]').attr('aria-expanded', String(!isDemoBarCollapsed))
+          .attr('aria-label', isDemoBarCollapsed ? '시연 바 펼치기' : '시연 바 접기');
+        $('#demoBarToggleRow button').trigger('focus');
+      });
       // URL 파라미터(?scenario=case1a 등) 지원
       var params = new URLSearchParams(window.location.search);
       var initialScenario = params.get('scenario') || 'case2';
