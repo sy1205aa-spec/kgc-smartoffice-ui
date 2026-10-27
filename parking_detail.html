@@ -279,7 +279,7 @@
 .demo-scenario-head { gap: 6px; flex-wrap: wrap; }
 .demo-head-right { display: inline-flex; gap: 8px; align-items: center; }
   </style>
-  <link rel="stylesheet" href="css/mobile_a/parking-detail.css">
+  <link rel="stylesheet" href="css/mobile_a/parking-detail.css?v=20261027-4">
 
   <script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
   <script type="text/javascript" src="./js/mobile/common.js"></script>
@@ -951,12 +951,38 @@
           .attr('aria-label', isDemoBarCollapsed ? '시연 바 펼치기' : '시연 바 접기');
         $('#demoBarToggleRow button').trigger('focus');
       });
+      var tooltipAutoOpenTimer = null;
+      var tooltipAutoCloseTimer = null;
+
+      function clearTooltipTimers() {
+        clearTimeout(tooltipAutoOpenTimer);
+        clearTimeout(tooltipAutoCloseTimer);
+      }
+
+      function openParkingTooltip() {
+        $('#parkingTooltipWrap').addClass('is-open');
+        $('#parkingTooltipBtn').attr('aria-expanded', 'true');
+      }
+
       function closeParkingTooltip() {
+        clearTooltipTimers();
         $('#parkingTooltipWrap').removeClass('is-open');
         $('#parkingTooltipBtn').attr('aria-expanded', 'false');
       }
+
+      function showInitialTooltipGuide() {
+        clearTooltipTimers();
+        tooltipAutoOpenTimer = setTimeout(function () {
+          openParkingTooltip();
+          tooltipAutoCloseTimer = setTimeout(function () {
+            closeParkingTooltip();
+          }, 2800);
+        }, 250);
+      }
+
       $('#parkingTooltipBtn').on('click', function (e) {
         e.stopPropagation();
+        clearTooltipTimers();
         var $wrap = $('#parkingTooltipWrap');
         var nextOpen = !$wrap.hasClass('is-open');
         $wrap.toggleClass('is-open', nextOpen);
@@ -984,6 +1010,7 @@
       var params = new URLSearchParams(window.location.search);
       var initialScenario = params.get('scenario') || 'needed';
       applyScenario(initialScenario);
+      showInitialTooltipGuide();
 
       // 시나리오 전환 칩 클릭
       $(document).on('click', '.demo-chip', function () {
