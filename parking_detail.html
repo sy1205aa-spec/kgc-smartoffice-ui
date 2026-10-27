@@ -328,27 +328,49 @@
           </div>
         </div>
 
-        <p class="pd-notice">출차 할인은 <strong>출차 5분 전</strong> 등록해 주세요.</p>
+        <p class="pd-notice">
+          <svg class="pd-notice-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+          </svg>
+          <span>출차 할인은 <strong>출차 5분 전</strong> 등록해 주세요.</span>
+        </p>
 
         <section id="parkingOverview" class="pd-overview" aria-label="나의 주차 현황">
           <div class="pd-heading">
             <h2>나의 주차 현황</h2>
-            <span class="pd-duration">주차 <output id="fieldParkingTime">13시간 30분</output></span>
+            <div class="pd-tooltip-wrap" id="parkingTooltipWrap">
+              <button type="button" id="parkingTooltipBtn" class="pd-tooltip-btn" aria-label="주차 할인 안내" aria-describedby="parkingGuideBubble" aria-expanded="false">?</button>
+              <div id="parkingGuideBubble" class="pd-tooltip-bubble" role="tooltip">
+                <strong id="parkingGuideTitle" class="pd-tooltip-title">주차 할인 안내</strong>
+                <p id="parkingGuideMessage" class="pd-tooltip-desc" aria-live="polite"></p>
+              </div>
+            </div>
           </div>
-          <dl class="pd-metrics">
-            <div><dt>총 할인시간</dt><dd><output id="fieldDiscountTotalTime">2시간</output></dd></div>
-            <div><dt>추가 할인 필요</dt><dd class="pd-remaining"><output id="fieldRemainingTime">11시간 30분</output></dd></div>
-          </dl>
-          <div id="parkingCompleteNotice" class="pd-complete" role="status" hidden>
-            <span class="pd-complete-icon" aria-hidden="true">✓</span><strong>할인 등록 완료</strong>
+          <div class="pd-metrics-card">
+            <dl class="pd-metrics">
+              <div><dt>총 주차시간</dt><dd><output id="fieldParkingTime">13시간 30분</output></dd></div>
+              <div><dt>총 할인시간</dt><dd><output id="fieldDiscountTotalTime">2시간</output></dd></div>
+              <div>
+                <dt>추가 할인 필요</dt>
+                <dd class="pd-remaining">
+                  <output id="fieldRemainingTime">11시간 30분</output>
+                  <span id="parkingCompleteNotice" class="pd-complete-badge" role="status" hidden>
+                    <span aria-hidden="true">✓</span><span>등록완료</span>
+                  </span>
+                </dd>
+              </div>
+            </dl>
+            <div class="pd-progress" aria-hidden="true">
+              <div id="parkingProgressBar" class="pd-progress-bar" style="width: 15%;"></div>
+            </div>
           </div>
           <details class="pd-entry">
             <summary>입차 정보 및 차량 사진</summary>
             <div class="pd-entry-content">
               <img src="images/mobile_a/common/car_sample.svg" alt="입차 차량 사진">
               <dl>
-                <div><dt>입차일시</dt><dd><time id="fieldInDtm" datetime="2026-07-15T07:00:00">2026.07.15 07:00</time></dd></div>
                 <div><dt>차량번호</dt><dd><span id="fieldVehicleNo">03라 2873</span></dd></div>
+                <div><dt>입차일시</dt><dd><time id="fieldInDtm" datetime="2026-07-15T07:00:00">2026.07.15 07:00</time></dd></div>
               </dl>
             </div>
           </details>
@@ -369,7 +391,6 @@
           </summary>
           <div id="parkingDiscountHistory" class="pd-history-list"></div>
         </details>
-        <p id="parkingGuideMessage" class="pd-sr-only" aria-live="polite"></p>
         <p id="parkingFeedback" class="pd-feedback" role="status" hidden></p>
 
         <div style="height: 90px; clear: both;">&nbsp;</div>
@@ -739,15 +760,21 @@
 
     function renderAll() {
       var rule = evaluateModularRule(currentParkingMinutes, currentHistoryList);
-      var parkTimeText = formatParkingDuration(currentParkingMinutes);
+      var remainingMinutes = Math.max(0, currentParkingMinutes - rule.totalDiscountMinutes);
+      var progressPct = rule.isFullyCovered
+        ? 100
+        : (currentParkingMinutes > 0
+          ? Math.min(100, Math.round((rule.totalDiscountMinutes / currentParkingMinutes) * 100))
+          : 0);
 
-      $('#fieldParkingTime').text(parkTimeText);
+      $('#fieldParkingTime').html(formatMetricMinutes(currentParkingMinutes));
       $('#fieldDiscountTotalTime').html(formatMetricMinutes(rule.totalDiscountMinutes));
       $('#demoRuleFormula').text(
         'N=' + rule.completedDays + '일, R=' + formatMinutesText(rule.remainderMinutes)
       );
 
-      $('#fieldRemainingTime').html(formatMetricMinutes(Math.max(0, currentParkingMinutes - rule.totalDiscountMinutes)));
+      $('#fieldRemainingTime').html(formatMetricMinutes(remainingMinutes));
+      $('#parkingProgressBar').css('width', progressPct + '%');
       $('#parkingOverview').toggleClass('is-complete', rule.isFullyCovered);
       $('#parkingCompleteNotice').prop('hidden', !rule.isFullyCovered);
       $('#parkingCleanupLink').prop('hidden', !rule.hasDeleteNeeded);
@@ -756,26 +783,59 @@
       $('#parkingDeleteCount').text('삭제 필요 ' + rule.deleteNeededCount + '건').prop('hidden', !rule.hasDeleteNeeded);
       if (rule.hasDeleteNeeded) $('#parkingHistorySection').prop('open', true);
 
+      var recommendedHourlyCodeNo = null;
+      if (
+        !rule.hasDeleteNeeded &&
+        rule.valid24hCount >= rule.required24hCount &&
+        rule.remainderTargetMinutes > 0 &&
+        rule.hasValidFree &&
+        rule.uncoveredRemainderMinutes > 0
+      ) {
+        if (rule.uncoveredRemainderMinutes >= 120 && 180 <= rule.remainingAdditionalNon24hLimit) {
+          recommendedHourlyCodeNo = 5; // 3시간 유료할인 추천
+        } else if (rule.uncoveredRemainderMinutes > 30 && 60 <= rule.remainingAdditionalNon24hLimit) {
+          recommendedHourlyCodeNo = 3; // 1시간 유료할인 추천
+        } else if (30 <= rule.remainingAdditionalNon24hLimit) {
+          recommendedHourlyCodeNo = 2; // 30분 유료할인 추천
+        }
+      }
+
+      var guideTitle;
       var guide;
       if (rule.hasDeleteNeeded) {
+        guideTitle = (rule.required24hCount > 0 && rule.remainderTargetMinutes === 0)
+          ? '24시간 이용권 대상입니다'
+          : '기존 할인권 정리가 필요합니다';
         if (rule.hasPaidWithoutFree && rule.valid24hCount >= rule.required24hCount) {
           guide = '초과 쿠폰만 삭제한 뒤 무료 1시간권을 다시 등록해 주세요. 정상 쿠폰은 유지됩니다.';
         } else if (rule.zoneType === 'ZONE_3') {
           guide = '초과 쿠폰만 삭제해 주세요. 유효한 할인권은 유지됩니다.';
         } else if (rule.required24hCount > 0 && rule.remainderTargetMinutes === 0) {
-          guide = '24시간 이용권 대상입니다. 삭제 필요 쿠폰을 삭제한 뒤 등록해 주세요.';
+          guide = '기존 등록된 쿠폰 ' + rule.deleteNeededCount + '건을 먼저 삭제한 뒤 [24시간 유료할인]을 등록해 주세요.';
         } else {
           guide = '기준에 맞지 않는 할인권을 삭제해 주세요.';
         }
       } else if (rule.isFullyCovered) {
-        guide = '할인 등록 완료' + (rule.canAddGraceCoupon ? '. 출차 여유시간으로 30분 유료할인을 추가 등록할 수 있습니다.' : '');
+        guideTitle = '할인 등록이 완료되었습니다';
+        guide = rule.canAddGraceCoupon
+          ? '출차 여유 시간이 필요하면 [30분 유료할인]을 추가 등록할 수 있습니다.'
+          : '모든 주차시간에 대한 할인이 정상 적용되었습니다.';
       } else if (rule.valid24hCount < rule.required24hCount) {
-        guide = '24시간 이용권을 등록해 주세요.';
+        guideTitle = formatMinutesText(remainingMinutes) + ' 추가 할인이 필요합니다';
+        guide = '추천 표시된 [24시간 유료할인]을 선택하면 정산이 진행됩니다.';
       } else if (!rule.hasValidFree) {
-        guide = rule.hasPaidWithoutFree ? '기존 유료권은 유지됩니다. 무료 1시간권을 다시 등록해 주세요.' : '1시간 무료할인을 등록해 주세요.';
+        guideTitle = formatMinutesText(remainingMinutes) + ' 추가 할인이 필요합니다';
+        guide = rule.hasPaidWithoutFree
+          ? '기존 유료권은 유지됩니다. [1시간 무료할인]을 다시 등록해 주세요.'
+          : '추천 표시된 [1시간 무료할인]을 먼저 등록해 주세요.';
       } else {
-        guide = '남은 시간에 맞춰 추천 할인권을 등록해 주세요.';
+        guideTitle = formatMinutesText(remainingMinutes) + ' 추가 할인이 필요합니다';
+        var recCoupon = AVAILABLE_COUPONS.find(function (c) { return c.discCodeNo === recommendedHourlyCodeNo; });
+        guide = recCoupon
+          ? '추천 표시된 [' + recCoupon.discName + ']을 선택하면 정산이 완료됩니다.'
+          : '남은 시간에 맞춰 추천 할인권을 등록해 주세요.';
       }
+      $('#parkingGuideTitle').text(guideTitle);
       $('#parkingGuideMessage').html(guide);
 
       // 2. 할인등록 내역 리스트 렌더링
@@ -805,25 +865,8 @@
         });
       }
 
-      // 3. 사용 가능한 할인권 렌더링 (2열 버튼과 추천 뱃지 표시)
+      // 3. 사용 가능한 할인권 렌더링 (2열 버튼과 우측 상단 코너탭 추천 뱃지 표시)
       var $couponList = $('#parkingDiscountCodeList').empty();
-
-      var recommendedHourlyCodeNo = null;
-      if (
-        !rule.hasDeleteNeeded &&
-        rule.valid24hCount >= rule.required24hCount &&
-        rule.remainderTargetMinutes > 0 &&
-        rule.hasValidFree &&
-        rule.uncoveredRemainderMinutes > 0
-      ) {
-        if (rule.uncoveredRemainderMinutes >= 120 && 180 <= rule.remainingAdditionalNon24hLimit) {
-          recommendedHourlyCodeNo = 5; // 3시간 유료할인 추천
-        } else if (rule.uncoveredRemainderMinutes > 30 && 60 <= rule.remainingAdditionalNon24hLimit) {
-          recommendedHourlyCodeNo = 3; // 1시간 유료할인 추천
-        } else if (30 <= rule.remainingAdditionalNon24hLimit) {
-          recommendedHourlyCodeNo = 2; // 30분 유료할인 추천
-        }
-      }
 
       AVAILABLE_COUPONS.forEach(function (coupon) {
         var isEnabled = false;
@@ -903,6 +946,31 @@
         $('[data-demo-bar-toggle]').attr('aria-expanded', String(!isDemoBarCollapsed))
           .attr('aria-label', isDemoBarCollapsed ? '시연 바 펼치기' : '시연 바 접기');
         $('#demoBarToggleRow button').trigger('focus');
+      });
+      function closeParkingTooltip() {
+        $('#parkingTooltipWrap').removeClass('is-open');
+        $('#parkingTooltipBtn').attr('aria-expanded', 'false');
+      }
+      $('#parkingTooltipBtn').on('click', function (e) {
+        e.stopPropagation();
+        var $wrap = $('#parkingTooltipWrap');
+        var nextOpen = !$wrap.hasClass('is-open');
+        $wrap.toggleClass('is-open', nextOpen);
+        $(this).attr('aria-expanded', String(nextOpen));
+      });
+      $('#parkingGuideBubble').on('click', function (e) {
+        e.stopPropagation();
+        closeParkingTooltip();
+      });
+      $(document).on('click', function (e) {
+        if (!$(e.target).closest('#parkingTooltipWrap').length) {
+          closeParkingTooltip();
+        }
+      });
+      $('#contents').add(window).on('scroll', function () {
+        if ($('#parkingTooltipWrap').hasClass('is-open')) {
+          closeParkingTooltip();
+        }
       });
       $('#parkingCleanupLink').on('click', function () {
         $('#parkingHistorySection').prop('open', true);
