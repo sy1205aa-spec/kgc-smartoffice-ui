@@ -1077,6 +1077,7 @@
         var coupon = AVAILABLE_COUPONS.find(function (c) { return c.discCodeNo === codeNo; });
         if (!coupon) return;
 
+        var wasFullyCovered = evaluateModularRule(currentParkingMinutes, currentHistoryList).isFullyCovered;
         var ts = getTimestamp();
         nextIdSeq += 1;
         currentHistoryList.push({
@@ -1089,10 +1090,10 @@
         });
 
         renderAll();
-        var registrationMessage = coupon.discName + ' 등록 완료';
-        parkAlert(coupon.discName + '이 등록되었습니다.', function () {
-          showParkingFeedback(registrationMessage);
-        });
+        showParkingFeedback(coupon.discName + ' 등록 완료');
+        if (!wasFullyCovered && evaluateModularRule(currentParkingMinutes, currentHistoryList).isFullyCovered) {
+          parkAlert('쿠폰 등록이 완료되어 출차 가능합니다.');
+        }
       });
     }
 
