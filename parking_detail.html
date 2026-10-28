@@ -825,18 +825,18 @@
           : '모든 주차시간에 대한 할인이 정상 적용되었습니다.';
       } else if (rule.valid24hCount < rule.required24hCount) {
         guideTitle = formatMinutesText(remainingMinutes) + ' 추가 할인이 필요합니다';
-        guide = '추천 표시된 [24시간 유료할인]을 선택하면 정산이 진행됩니다.';
+        guide = '우선선택 표시된 [24시간 유료할인]을 선택하면 정산이 진행됩니다.';
       } else if (!rule.hasValidFree) {
         guideTitle = formatMinutesText(remainingMinutes) + ' 추가 할인이 필요합니다';
         guide = rule.hasPaidWithoutFree
           ? '기존 유료권은 유지됩니다. [1시간 무료할인]을 다시 등록해 주세요.'
-          : '추천 표시된 [1시간 무료할인]을 먼저 등록해 주세요.';
+          : '우선선택 표시된 [1시간 무료할인]을 먼저 등록해 주세요.';
       } else {
         guideTitle = formatMinutesText(remainingMinutes) + ' 추가 할인이 필요합니다';
         var recCoupon = AVAILABLE_COUPONS.find(function (c) { return c.discCodeNo === recommendedHourlyCodeNo; });
         guide = recCoupon
-          ? '추천 표시된 [' + recCoupon.discName + ']을 선택하면 정산이 완료됩니다.'
-          : '남은 시간에 맞춰 추천 할인권을 등록해 주세요.';
+          ? '우선선택 표시된 [' + recCoupon.discName + ']을 선택하면 정산이 완료됩니다.'
+          : '남은 시간에 맞춰 우선선택 할인권을 등록해 주세요.';
       }
       $('#parkingGuideTitle').text(guideTitle);
       $('#parkingGuideMessage').html(guide);
@@ -923,7 +923,7 @@
 
         $btn.append($('<span>', { 'class': 'title' }).text(coupon.discName));
         if (isRecommended) {
-          $btn.append($('<span>', { 'class': 'badge-recommend' }).text('추천'));
+          $btn.append($('<span>', { 'class': 'badge-recommend' }).text('우선선택'));
         }
 
         $couponList.append($('<li>').append($btn));
