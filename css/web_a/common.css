@@ -1127,6 +1127,14 @@ body:has(.loginArea)::-webkit-scrollbar-thumb {
     margin: 0;
 }
 
+/* PC 주차조회 메시지 하단 안내 */
+#parkingSearchView .parking_empty { flex: 1; justify-content: center; }
+.parking_search_guide { width: 100%; margin-top: 24px; padding: 16px 20px; border-radius: 8px; background: #f5f5f5; color: #7c8795; text-align: left; }
+.parking_search_guide h3 { margin: 0 0 8px; font-size: 13px; font-weight: 600; line-height: 1.5; }
+.parking_search_guide ul { margin: 0; padding-left: 16px; list-style: disc; }
+.parking_search_guide li { font-size: 12px; line-height: 1.7; overflow-wrap: break-word; }
+.parking_search_guide strong { font-weight: 700; }
+
 /* ================================================================
    공통 모달
 ================================================================ */
