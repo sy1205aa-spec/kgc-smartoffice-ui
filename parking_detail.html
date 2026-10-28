@@ -446,10 +446,10 @@
   <!-- //wrap -->
 
   <!-- 주차정산 알림 모달 -->
-  <div id="parkAlertModal" class="parking-modal-overlay" style="display:none;">
+  <div id="parkAlertModal" class="parking-modal-overlay" role="alertdialog" aria-modal="true" aria-labelledby="parkAlertTitle" aria-describedby="parkAlertText" style="display:none;">
     <div class="modal-box modal-size-normal">
       <div class="modal-inner">
-        <p class="modal-title">알림</p>
+        <p class="modal-title" id="parkAlertTitle">알림</p>
         <div class="modal-pop">
           <p class="modal-text" id="parkAlertText"></p>
           <div class="hr"></div>
@@ -561,7 +561,7 @@
     function parkAlert(msg, cb) {
       $('#parkAlertText').text(msg);
       _parkAlertCallback = cb || null;
-      $('#parkAlertModal').fadeIn(150);
+      $('#parkAlertModal').fadeIn(150, function () { $('#parkAlertOk').trigger('focus'); });
     }
 
     function parkConfirm(msg, cb) {
@@ -1089,7 +1089,10 @@
         });
 
         renderAll();
-        showParkingFeedback(coupon.discName + ' 등록 완료');
+        var registrationMessage = coupon.discName + ' 등록 완료';
+        parkAlert(coupon.discName + '이 등록되었습니다.', function () {
+          showParkingFeedback(registrationMessage);
+        });
       });
     }
 
