@@ -13,6 +13,7 @@
     '  <div class="clear"></div>' +
     '  <ul>' +
     '    <li><dl><dt><a href="./remote_config.html"><span>Remote Config 시연</span></a></dt></dl></li>' +
+    '    <li><dl><dt><a href="./mobile_features.html"><span>모바일웹·앱 기능 시연</span></a></dt></dl></li>' +
     '    <li><dl><dt><a href="./menu_versions.html"><span><img src="./images/mobile_a/common/ic_dashboard.svg" alt="" />대시보드</span></a></dt></dl></li>' +
     '    <li><dl><dt><a href="./booking.html?resveYn=N"><span><img src="./images/mobile_a/common/ic_chair.svg" alt="" />좌석예약</span></a><button type="button" class="btn_menu_toggle">접고 펼치기</button></dt>' +
     '      <dd><ul>' +

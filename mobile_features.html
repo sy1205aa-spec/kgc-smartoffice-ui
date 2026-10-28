@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>모바일웹·앱 기능 시연 | 스마트오피스</title>
+  <link rel="stylesheet" href="css/mobile_a/fonts.css">
+  <link rel="stylesheet" href="css/remote-config-demo.css">
+  <link rel="stylesheet" href="css/mobile-features-demo.css">
+  <script src="js/mobile-features-demo.js" defer></script>
+</head>
+<body>
+  <header class="page-header"><a href="index.html" aria-label="화면 목록으로">‹</a><span>스마트오피스 <strong>시연</strong></span><span class="demo-label">모바일웹 / 앱</span></header>
+  <main>
+    <div class="intro"><span class="eyebrow">MOBILE EXPERIENCE</span><h1>접속 환경에 맞게,<br>QR 인증과 생체인증</h1><p>FO에 구현된 모바일웹·앱 동작을 화면에서 비교해 보세요.</p></div>
+    <div class="demo-layout">
+      <section class="demo-panel" aria-label="모바일 기능 시연">
+        <div class="mode-tabs" role="group" aria-label="접속 환경"><button type="button" data-env="web" aria-pressed="true">모바일웹</button><button type="button" data-env="app" aria-pressed="false">모바일앱</button></div>
+        <div class="quick-scenarios" aria-label="시연 바로가기"><button type="button" data-scenario="qr">웹 QR 안내</button><button type="button" data-scenario="menu">웹 메뉴 확인</button><button type="button" data-scenario="bio">앱 생체인증 토글</button></div>
+        <div class="feature-phone" id="featurePhone">
+          <div class="status-bar"><span>10:00</span><span aria-hidden="true">▮▮▮ &nbsp; ◉ &nbsp; ▰</span></div>
+          <div id="browserBar" class="browser-bar">⌂ &nbsp; smartworks.kgc.co.kr &nbsp; ⋮</div>
+          <div class="feature-screen">
+            <div class="feature-header"><img src="images/mobile_a/common/logo.svg" alt="KGC"><strong>스마트오피스</strong><button type="button" id="menuOpen" aria-label="전체 메뉴 열기" aria-expanded="false" aria-controls="featureMenu">☰</button></div>
+            <section id="featureHome" class="feature-home">
+              <span class="home-date">2026년 10월 28일 수요일</span><h2>안녕하세요,<br><strong>오연서</strong>님</h2><p>오늘도 스마트하게 시작하세요.</p>
+              <div class="reservation-card"><span>나의 좌석 예약</span><strong>과천사옥 · 3층</strong><small>A-031 &nbsp; 09:00 ~ 18:00</small><span class="reservation-state">이용 중</span></div>
+              <div class="home-services"><span>좌석예약</span><span>회의실예약</span><span>주차정산</span><span>나의예약</span></div>
+            </section>
+            <section id="featureDownload" class="feature-download" hidden><img src="images/mobile_a/common/logo.svg" alt="KGC"><h2>앱 다운로드</h2><p>QR 인증은 스마트오피스<br>전용 앱에서 이용해 주세요.</p><div class="download-platforms"><span>Android 다운로드</span><span>iOS 앱스토어</span></div><small>다운로드 페이지 이동 예시입니다.<br>실제 다운로드는 진행하지 않습니다.</small><button type="button" id="downloadBack">시연 화면으로 돌아가기</button></section>
+            <nav class="feature-footer" aria-label="하단 메뉴"><span>좌석예약</span><span>회의실예약</span><button type="button" id="qrOpen"><img src="images/mobile_a/common/ico_qr.svg" alt=""><span>QR 인증</span></button><span>나의예약</span><span>주차정산</span></nav>
+            <section id="featureMenu" class="feature-menu" aria-label="전체 메뉴" hidden>
+              <div class="drawer-head"><span>전체 메뉴</span><button type="button" id="menuClose" aria-label="전체 메뉴 닫기">×</button></div>
+              <div class="drawer-user"><strong>오연서 <small>관리자</small></strong><span>KGC인삼공사</span></div>
+              <ul class="drawer-items"><li>대시보드</li><li>좌석예약 <span>⌄</span></li><li>회의실예약 <span>⌄</span></li><li>사물함예약</li><li>주차정산</li><li>출퇴근 버스</li><li>나의예약</li><li id="bioMenu" hidden><span>생체인증 사용</span><label class="bio-switch"><input id="bioToggle" type="checkbox" role="switch" aria-label="생체인증 사용"><span aria-hidden="true"></span></label></li><li>로그아웃</li></ul>
+              <p id="menuEnvironment" class="drawer-environment">모바일웹 접속</p>
+            </section>
+            <section id="featureModal" class="feature-modal" role="dialog" aria-modal="true" aria-labelledby="featureModalTitle" aria-describedby="featureModalMessage" hidden><div class="feature-modal-card"><h2 id="featureModalTitle">알림</h2><p id="featureModalMessage"></p><div id="featureModalActions"></div></div></section>
+          </div>
+        </div>
+        <div class="feature-demo-bottom"><span id="environmentBadge">모바일웹 접속</span><button type="button" id="featureReset">시연 초기화</button></div>
+        <p class="simulation-note">로그인된 사용자를 가정한 시연입니다. QR 카메라·단말 생체인증·다운로드는 모의 동작이며 실제 인증이나 설정을 변경하지 않습니다.</p>
+      </section>
+      <section class="explanation" aria-label="FO 구현 동작 설명">
+        <div class="explanation-card"><span class="eyebrow">FO IMPLEMENTATION</span><h2 id="featureExplainTitle">모바일웹에서는<br>앱 이용을 안내합니다</h2><p id="featureExplainCopy">하단 QR 인증을 누르면 앱 전용 기능임을 안내하고, 앱 다운로드 페이지로 이동할지 확인합니다.</p><p class="step-description" id="featureStatus" role="status" aria-live="polite">하단 QR 인증 또는 상단 햄버거 메뉴를 눌러 보세요.</p></div>
+        <div class="feature-behaviors"><h2>시연할 주요 동작</h2><article><b>01</b><div><h3>모바일웹 QR 인증</h3><p>앱 전용 기능 안내 → 취소 또는 다운로드 페이지 이동</p></div></article><article><b>02</b><div><h3>모바일웹 생체인증 메뉴 미노출</h3><p>햄버거 메뉴에서 생체인증 사용 항목을 숨깁니다.</p></div></article><article><b>03</b><div><h3>모바일앱 생체인증 토글</h3><p>ON: 단말 인증 성공 후 활성화<br>OFF: 해제 확인 후 비활성화<br>실패·취소: 기존 상태 유지</p></div></article></div>
+        <div class="feature-caution">시연 환경 전환은 실제 접속 환경을 바꾸지 않습니다. 앱 모드의 인증 상태는 이 페이지 안에서만 유지되며 초기화하면 해제됩니다.</div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
