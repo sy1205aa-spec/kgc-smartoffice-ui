@@ -57,15 +57,15 @@
     $('menuEnvironment').textContent = label;
     document.querySelectorAll('[data-env]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.env === next)));
     $('featureExplainTitle').innerHTML = next === 'app' ? '앱에서 바로 사용하는<br>QR·생체인증' : '모바일웹에서는<br>앱 이용을 안내합니다';
-    $('featureExplainCopy').textContent = next === 'app' ? 'QR 인증은 앱의 카메라를 호출합니다. 햄버거 메뉴에는 생체인증 사용 토글이 표시되며, 인증 성공 시에만 ON 상태로 바뀝니다.' : '하단 QR 인증을 누르면 앱 전용 기능임을 안내하고, 앱 다운로드 페이지로 이동할지 확인합니다. 생체인증 메뉴는 표시하지 않습니다.';
+    $('featureExplainCopy').textContent = next === 'app' ? 'QR 인증은 앱의 카메라를 호출합니다. 햄버거 메뉴에는 생체인증 사용 토글이 표시되며, 인증 성공 시에만 ON 상태로 바뀝니다.' : '하단 QR 인증을 누르면 이미 설치한 사용자는 앱을 열어 이용하도록 안내하고, 설치 전인 사용자는 앱 다운로드 페이지로 이동할 수 있습니다. 생체인증 메뉴는 표시하지 않습니다.';
     syncBio(); status('하단 QR 인증 또는 상단 햄버거 메뉴를 눌러 보세요.');
   }
   function openQr() {
     if (environment === 'web') {
-      status('모바일웹 QR 인증: 앱 전용 기능 안내 후 다운로드 이동 여부를 확인합니다.');
-      showModal('앱 안내', 'QR 스캔은 스마트오피스 전용 앱에서만 지원됩니다.\n\n앱 다운로드 페이지로 이동하시겠습니까?', [
-        { label: '취소', run: () => status('다운로드 이동을 취소했습니다. 모바일웹 화면을 유지합니다.') },
-        { label: '확인', primary: true, run: () => { $('featureDownload').hidden = false; status('FO의 앱 다운로드 페이지 이동을 시연 화면으로 표시했습니다.'); } }
+      status('모바일웹 QR 인증: 설치한 사용자는 앱 이용을, 설치 전인 사용자는 앱 다운로드를 안내합니다.');
+      showModal('앱 안내', 'QR 스캔은 스마트오피스 앱에서만 사용할 수 있습니다.\n이미 앱을 설치하셨나요?\n설치하셨다면 앱을 열어 QR 스캔을 이용해 주세요.\n설치 전이라면 아래 버튼으로 다운로드 페이지로 이동해 주세요.', [
+        { label: '닫기', run: () => status('앱 안내를 닫았습니다. 모바일웹 화면을 유지합니다.') },
+        { label: '앱 다운로드', primary: true, run: () => { $('featureDownload').hidden = false; status('FO의 앱 다운로드 페이지 이동을 시연 화면으로 표시했습니다.'); } }
       ]);
     } else {
       status('모바일앱 QR 인증: 네이티브 QR 스캐너 호출을 모의 표시합니다.');
