@@ -1,50 +1,49 @@
-/* PC 주차정산 (templates/web/parking.html) : parking.js 가 그리는 요소 포함 */
-
-/* 차량번호 입력: 일반 사용자는 parking.js 가 readonly 로 고정 (나의예약 날짜 입력칸과 같은 회색 칸) */
-.parking-page #parkingVehicleNo[readonly] { background: #f9f9f9; color: var(--text-black02-color); }
-
-/* 차량 정보 (bbs_list 1행) */
-.parking-page .bbs_list.car_info td { padding: 10px 0; }
-.parking-page .bbs_list.car_info td input { width: 100%; height: 30px; padding: 0; border: none; background: transparent; color: #232323; font-size: 16px; text-align: center; cursor: default; }
-.parking-page .bbs_list.car_info td input:focus { outline: none; }
-
-/* 차량 이미지 + 할인 영역 */
-.parking-page .parking_detail { display: grid; grid-template-columns: minmax(320px, 420px) 1fr; gap: 40px; align-items: start; margin-top: 30px; }
-.parking-page .img_warp { display: flex; align-items: center; justify-content: center; aspect-ratio: 4 / 3; overflow: hidden; border: 1px solid #e5e5e5; border-radius: 14px; background: #f9f9f9; }
-.parking-page .img_warp img { max-width: 100%; max-height: 100%; object-fit: contain; }
-
-/* 할인 쿠폰 (parking.js renderDiscountCodes) */
-.parking-page .discount_list { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
-.parking-page .discount_list li.parking-empty { width: 100%; }
-.parking-page .discount_coupon { display: inline-flex; min-width: 150px; height: 44px; padding: 0 20px; border: 1px solid var(--primary-default-color); border-radius: 10px; background: #fff; color: var(--primary-default-color); font-size: 15px; align-items: center; justify-content: center; cursor: pointer; transition: .1s ease-in-out; }
-.parking-page .discount_coupon:not(:disabled):hover { background: var(--primary-default-color); color: #fff; }
-.parking-page .discount_coupon:disabled { border-color: #e4e7eb; background: #f6f7f8; color: #999; cursor: default; }
-.parking-page li.parking-empty .discount_coupon { width: 100%; }
-.parking-page .discount_coupon .discount_amount:empty,
-.parking-page .discount_coupon .discount_amount strong:empty { display: none; }
-
-/* 할인등록 내역 (parking.js renderDiscountHistory) : 구분 | 등록일 | 등록시간 | 할인권 | 관리 */
-.parking-page .discount_history .grid_head,
-.parking-page #parkingDiscountHistory .body { display: grid; grid-template-columns: 1.2fr 1fr .8fr 1.4fr .8fr; align-items: center; }
-.parking-page #parkingDiscountHistory .body { border-bottom: 1px solid #d9d9d9; color: var(--text-black02-color); text-align: center; }
-.parking-page #parkingDiscountHistory .discount_info,
-.parking-page #parkingDiscountHistory .info_06,
-.parking-page #parkingDiscountHistory .info_08 { display: contents; }
-.parking-page #parkingDiscountHistory .body > * > * > *,
-.parking-page #parkingDiscountHistory .btn_del { justify-self: center; }
-.parking-page #parkingDiscountHistory .info_06 > *,
-.parking-page #parkingDiscountHistory .info_08 > * { padding: 14px 8px; }
-.parking-page #parkingDiscountHistory .state { display: inline-block; padding: 4px 10px; border-radius: 6px; background: var(--accWeak-default-color); color: #1c77ff; font-size: 13px; }
-.parking-page #parkingDiscountHistory .info_08 .title { color: #232323; }
-.parking-page #parkingDiscountHistory .body.parking-empty { display: block; padding: 16px 0; }
-.parking-page .btn_del { height: 32px; padding: 0 14px; border: 1px solid rgba(0, 0, 0, .1); border-radius: 6px; background: #f6f7f8; color: var(--text-black02-color); font-size: 13px; cursor: pointer; transition: .1s ease-in-out; }
-.parking-page .btn_del:hover { border-color: var(--primary-default-color); color: var(--primary-default-color); }
-
-.parking-page .discount_coupon:focus-visible,
-.parking-page .btn_del:focus-visible,
-.parking-page #parkingSearchBtn:focus-visible { outline: 2px solid #D71635; outline-offset: 2px; }
-
-@media screen and (max-width: 1200px) {
-  .parking-page .parking_detail { grid-template-columns: 1fr; }
-  .parking-page .img_box { max-width: 420px; }
+/* PC frame and vehicle panel follow the existing web design; detail states match mobile. */
+.parking-page .parking-desktop { display: flex; align-items: flex-start; gap: 32px; }
+.parking-page .parking-desktop .car_info_panel { width: 340px; position: sticky; top: 24px; }
+.parking-page .parking-desktop .discount_panel { gap: 0; padding: 0; }
+.parking-page .parking-desktop .pd-heading { margin-bottom: 16px; }
+.parking-page .parking-desktop .pd-heading h2,
+.parking-page .parking-desktop .pd-history-title { padding: 0; border: 0; color: #111; font-size: 18px; }
+.parking-page .parking-desktop .pd-metrics-card { padding: 24px 18px 20px; border-radius: 12px; }
+.parking-page .parking-desktop .pd-metrics dt { font-size: 14px; margin-bottom: 10px; }
+.parking-page .parking-desktop .pd-metrics dd { font-size: 25px; }
+.parking-page .parking-desktop .pd-unit { font-size: 14px; }
+.parking-page .parking-desktop .pd-remaining { flex-wrap: wrap; }
+.parking-page .parking-desktop .pd-progress { margin-top: 22px; }
+.parking-page .parking-desktop .pd-registration { margin-top: 30px; }
+.parking-page .parking-desktop .pd-coupon-list { gap: 10px; }
+.parking-page .parking-desktop .pd-coupon-list .discount_coupon { min-height: 68px; font-size: 15px; cursor: pointer; }
+.parking-page .parking-desktop .pd-coupon-list .discount_coupon:disabled { cursor: default; }
+.parking-page .parking-desktop .pd-coupon-list .discount_coupon:not(:disabled):hover { box-shadow: 0 3px 10px #a7193620; border-color: #a71936; }
+.parking-page .parking-desktop .discount_coupon .badge-recommend { padding: 4px 9px; font-size: 11px; }
+.parking-page .parking-desktop .pd-history { margin-top: 30px; }
+.parking-page .parking-desktop .pd-history-list .body { padding: 16px; }
+.parking-page .parking-desktop .pd-history-name { font-size: 15px; }
+.parking-page .parking-desktop .pd-history-date { margin-top: 6px; font-size: 13px; }
+.parking-page .parking-desktop .pd-history-list .btn_del { padding: 8px 14px; font-size: 13px; }
+.parking-page .parking-desktop .pd-history-count { font-size: 14px; color: #d71635; }
+.parking-page .parking-desktop .pd-notice { margin: 16px 0 0; padding: 14px; font-size: 13px; }
+.parking-page .parking-desktop .pd-tooltip-bubble { width: 300px; font-size: 13px; }
+.parking-page .parking-desktop .pd-cleanup-link { padding: 14px; font-size: 14px; cursor: pointer; }
+.parking-page .parking-desktop .pd-feedback { bottom: 32px; font-size: 14px; }
+.parking-page button:focus-visible,
+.parking-page input:focus-visible,
+.parking-page summary:focus-visible { outline: 2px solid #a71936; outline-offset: 3px; }
+.parking-page .parking-demo { position: static; transform: none; margin: 20px auto; max-width: 1200px; flex-wrap: wrap; box-sizing: border-box; }
+.parking-page .parking-demo .demo-chip { padding: 7px 12px; border: 1px solid #d8dce2; border-radius: 6px; background: #fff; color: #626873; cursor: pointer; font-size: 12px; }
+.parking-page .parking-demo .demo-chip.active { background: #a71936; color: #fff; border-color: #a71936; }
+@media (max-width: 1200px) {
+  .parking-page .parking-desktop { gap: 24px; }
+  .parking-page .parking-desktop .car_info_panel { width: 280px; }
+  .parking-page .parking-desktop .pd-metrics dd { font-size: 21px; }
+  .parking-page .parking-desktop .car_info_row { flex-wrap: wrap; gap: 6px; }
+}
+@media (max-width: 900px) {
+  .parking-page .parking-desktop { flex-direction: column; }
+  .parking-page .parking-desktop .car_info_panel { width: 100%; position: static; }
+  .parking-page .parking-desktop .car_image_wrap { max-width: 360px; }
+  .parking-page .parking-desktop .discount_panel { width: 100%; }
+  .parking-page .search_bar_group { flex: 1; min-width: 0; }
+  .parking-page .search_bar_input[type=text] { width: 100%; min-width: 0; }
 }
