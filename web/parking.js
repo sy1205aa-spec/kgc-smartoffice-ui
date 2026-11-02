@@ -158,7 +158,7 @@
       // 무료권이 마지막에 재등록되거나 누락되어 있어도 60분을 먼저 확보한다.
       var reservedFreeMinutes = requiresFreeCoupon ? 60 : 0;
       var maxNon24hAllowed = needsRemainderCoverage
-        ? (remainderTargetMinutes + DISCOUNT_GRACE_MINUTES)
+        ? Math.max(safeMinutes - plannedDailyMinutes + DISCOUNT_GRACE_MINUTES + DISCOUNT_EARLY_GRACE_MINUTES, 0)
         : 0;
       var hasAnyFreeInHistory = list.some(function (h) { return h.discCodeNo === 1; });
       var hasPaidWithoutFree = requiresFreeCoupon && !hasAnyFreeInHistory
@@ -224,7 +224,7 @@
       // 현재 시간이 모두 정산되어도 사전 등록을 위한 30분 여유권은 허용한다.
       var canAddGraceCoupon = isFullyCovered && (!requiresFreeCoupon || hasValidFree)
         && totalDiscountMinutes - safeMinutes <= DISCOUNT_EARLY_GRACE_MINUTES
-        && remainingAdditionalNon24hLimit >= DISCOUNT_GRACE_MINUTES - DISCOUNT_EARLY_GRACE_MINUTES;
+        && remainingAdditionalNon24hLimit >= DISCOUNT_GRACE_MINUTES;
 
       return {
         parkingMinutes: safeMinutes,
@@ -250,6 +250,18 @@
         isFullyCovered: isFullyCovered,
         canAddGraceCoupon: canAddGraceCoupon
       };
+    }
+
+    function isCouponRegistrationAllowed(rule, coupon) {
+      if (!coupon || rule.hasDeleteNeeded) return false;
+      if (coupon.is24h) return rule.canAdd24hCoupon && rule.totalDiscountMinutes + coupon.minutes <= rule.maxTotalDiscountMinutes;
+      if (rule.valid24hCount < rule.required24hCount) return false;
+      if (coupon.isFree) return rule.requiresFreeCoupon && !rule.hasValidFree;
+      var early = coupon.minutes === DISCOUNT_GRACE_MINUTES && rule.canAddGraceCoupon;
+      return rule.needsRemainderCoverage && (!rule.requiresFreeCoupon || rule.hasValidFree)
+        && (rule.uncoveredRemainderMinutes > 0 || early)
+        && (early || (coupon.minutes <= rule.remainingAdditionalNon24hLimit
+          && rule.totalDiscountMinutes + coupon.minutes <= rule.maxTotalDiscountMinutes));
     }
 
     function getDeleteNeededAlertMessage(rule) {
@@ -510,10 +522,8 @@
 
         // 화면 표시 후 시간이 바뀌어도 등록 직전의 내역으로 한도를 다시 확인한다.
         var currentRule = evaluateModularRule(currentParkingMinutes, currentHistoryList);
-        var earlyGrace = !coupon.isFree && !coupon.is24h
-          && coupon.minutes === DISCOUNT_GRACE_MINUTES && currentRule.canAddGraceCoupon;
         if (currentRule.hasDeleteNeeded || (coupon.is24h && !currentRule.canAdd24hCoupon)
-          || (!coupon.isFree && !earlyGrace && currentRule.totalDiscountMinutes + coupon.minutes > currentRule.maxTotalDiscountMinutes)) {
+          || !isCouponRegistrationAllowed(currentRule, coupon)) {
           renderAll();
           parkAlert('허용 할인시간을 초과하여 등록할 수 없습니다. 할인 등록 내역을 확인해 주세요.');
           return;

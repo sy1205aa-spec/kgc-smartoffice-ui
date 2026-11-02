@@ -202,6 +202,39 @@ var parkingAutoDemo = (function () {
     clearTimeout(syncTimer);
     syncTimer = setTimeout(synchronizeHistory, 300);
   }
+  async function prepareRegistration() {
+    if (isAutoFreeBusy || !currentContext) return false;
+    clearTimeout(syncTimer);
+    var context = currentContext;
+    context.outcome = $('#parkingAutoResponse').val() || 'success';
+    isAutoFreeBusy = true;
+    isAutoFreeDataReady = false;
+    setStatus('checking', '등록 전 최신 할인 내역을 확인하고 있습니다.', '다른 세션에서 등록한 쿠폰을 반영해 등록 가능 여부를 다시 계산합니다.');
+    trace('쿠폰 등록 전 내역 1회 조회 · 등록 조건 재검증');
+    syncControls();
+    try {
+      var latest = await readHistory(context, true);
+      if (context !== currentContext) return false;
+      currentHistoryList = latest;
+      currentParkingMinutes = context.baseMinutes + Math.max(0, Math.floor((Date.now() - context.startedAt) / 60000));
+      isAutoFreeDataReady = true;
+      if (context.revision !== context.lastReadRevision) {
+        syncQueued = true;
+        trace('등록 전 조회 중 추가 변경 감지 · 등록 중단 후 다시 조회');
+        return false;
+      }
+      setStatus('checked', '', '', true);
+      return true;
+    } catch (error) {
+      if (context !== currentContext) return false;
+      isAutoFreeDataReady = false;
+      setStatus('query-error', '할인 내역을 확인하지 못했습니다.', '쿠폰을 등록하지 않았습니다. 최신 내역을 다시 조회한 후 이용해 주세요.');
+      trace('등록 전 조회 실패 · 등록 요청 없음');
+      return false;
+    } finally {
+      if (context === currentContext) { isAutoFreeBusy = false; syncControls(); finishPendingSync(); }
+    }
+  }
   function changeOtherSession(remove) {
     if (!currentContext) return;
     var coupon = AVAILABLE_COUPONS.find(function (item) { return item.discCodeNo === Number($('#parkingOtherCoupon').val()); });
@@ -213,6 +246,12 @@ var parkingAutoDemo = (function () {
       currentContext.history.splice(index, 1);
     } else {
       if (coupon.isFree && hasFree(currentContext.history, coupon)) { $('#parkingOtherStatus').text('무료권은 이미 등록되어 있습니다.'); return; }
+      var latestParkingMinutes = currentContext.baseMinutes + Math.max(0, Math.floor((Date.now() - currentContext.startedAt) / 60000));
+      if (!isCouponRegistrationAllowed(evaluateModularRule(latestParkingMinutes, currentContext.history), coupon)) {
+        $('#parkingOtherStatus').text('최신 할인 내역 기준으로 등록 조건 또는 주차시간 +35분 한도를 초과하여 등록할 수 없습니다.');
+        trace('다른 세션 쿠폰 등록 차단 · 합산 내역으로 등록 조건 재검증');
+        return;
+      }
       currentContext.history.push(freeRecord(coupon));
     }
     currentContext.revision += 1;
@@ -234,5 +273,5 @@ var parkingAutoDemo = (function () {
     window.addEventListener('focus', function () { if (wasAway) { wasAway = false; requestSync(); } });
     window.addEventListener('pageshow', function (event) { if (event.persisted) requestSync(); });
   }
-  return { init: init, enter: enter, refresh: refresh, manualChanged: manualChanged, synchronize: synchronizeHistory };
+  return { init: init, enter: enter, refresh: refresh, manualChanged: manualChanged, synchronize: synchronizeHistory, prepareRegistration: prepareRegistration };
 })();
