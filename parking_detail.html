@@ -512,6 +512,7 @@
     var DAY_MINUTES = 1440;               // 24시간 (1,440분)
     var LONG_TERM_THRESHOLD_MINUTES = 660; // 11시간 (660분)
     var DISCOUNT_GRACE_MINUTES = 30;      // 30분 여유 한도
+    var DISCOUNT_EARLY_GRACE_MINUTES = 5; // 만료 5분 전부터 30분권만 사전 등록
 
     // 외부 연동 API에서 내려오는 5종 할인권 명칭 그대로 유지
     var AVAILABLE_COUPONS = [
@@ -519,7 +520,7 @@
       { discCodeNo: 2, discName: '30분 유료할인', minutes: 30, isFree: false, is24h: false },
       { discCodeNo: 3, discName: '1시간 유료할인', minutes: 60, isFree: false, is24h: false },
       { discCodeNo: 5, discName: '3시간 유료할인', minutes: 180, isFree: false, is24h: false },
-      { discCodeNo: 4, discName: '24시간 유료할인', minutes: 1440, isFree: false, is24h: true }
+      { discCodeNo: 4, discName: '24시간 유료할인', minutes: 1410, isFree: false, is24h: true }
     ];
 
     // 개발방향서 5장 주차 시나리오별 프리셋
@@ -563,7 +564,7 @@
         ]
       },
       case3: {
-        label: '사례 3 · 25시간 주차 (24h 1장 + 잔여 1h 무료권)',
+      label: '사례 3 · 25시간 주차 (24시간권 1장 + 무료 1시간 + 유료 30분)',
         inDtm: '2026.07.14 17:30:00',
         parkingMinutes: 1500, // 25시간 (N=1, R=1h < 11h)
         history: []
@@ -573,7 +574,7 @@
         inDtm: '2026.07.14 07:30:00',
         parkingMinutes: 2100, // 35시간 (N=1, R=11h >= 11h)
         history: [
-          { id: 'H-40', discCodeNo: 4, discName: '24시간 유료할인', minutes: 1440, date: '26.07.14', time: '18:00' }
+          { id: 'H-40', discCodeNo: 4, discName: '24시간 유료할인', minutes: 1410, date: '26.07.14', time: '18:00' }
         ]
       }
     };
@@ -665,17 +666,26 @@
         remainderTargetMinutes = 0;
       }
 
+      var requiresFreeCoupon = remainderTargetMinutes > 0;
+      var dailyCoupon = AVAILABLE_COUPONS.find(function (coupon) { return coupon.is24h; });
+      var dailyCouponMinutes = dailyCoupon ? dailyCoupon.minutes : DAY_MINUTES;
+      var registeredDaily = list.filter(function (item) { return item.discCodeNo === 4 || item.minutes >= DAY_MINUTES; }).slice(0, required24hCount);
+      var plannedDailyMinutes = registeredDaily.reduce(function (sum, item) { return sum + item.minutes; }, 0)
+        + (required24hCount - registeredDaily.length) * dailyCouponMinutes;
+      remainderTargetMinutes = Math.max(safeMinutes - plannedDailyMinutes, 0);
+      var needsRemainderCoverage = requiresFreeCoupon || (required24hCount > 0
+        && safeMinutes >= plannedDailyMinutes - DISCOUNT_EARLY_GRACE_MINUTES);
       var seen24h = 0;
       var seenFree = 0;
       var accNon24hMinutes = 0;
       var acceptedPaidMinutes = 0;
       // 무료권이 마지막에 재등록되거나 누락되어 있어도 60분을 먼저 확보한다.
-      var reservedFreeMinutes = remainderTargetMinutes > 0 ? 60 : 0;
-      var maxNon24hAllowed = remainderTargetMinutes > 0
+      var reservedFreeMinutes = requiresFreeCoupon ? 60 : 0;
+      var maxNon24hAllowed = needsRemainderCoverage
         ? (remainderTargetMinutes + DISCOUNT_GRACE_MINUTES)
         : 0;
       var hasAnyFreeInHistory = list.some(function (h) { return h.discCodeNo === 1; });
-      var hasPaidWithoutFree = remainderTargetMinutes > 0 && !hasAnyFreeInHistory
+      var hasPaidWithoutFree = requiresFreeCoupon && !hasAnyFreeInHistory
         && list.some(function (item) { return item.discCodeNo !== 1 && item.discCodeNo !== 4 && item.minutes < DAY_MINUTES; });
 
       var historyAnnotations = list.map(function (item) {
@@ -690,7 +700,7 @@
             needsDelete = true;
           }
         } else {
-          if (remainderTargetMinutes === 0) {
+          if (!needsRemainderCoverage || (isFree && !requiresFreeCoupon)) {
             needsDelete = true;
           } else if (isFree) {
             seenFree += 1;
@@ -700,7 +710,11 @@
               accNon24hMinutes += mins;
             }
           } else {
-            if (reservedFreeMinutes + acceptedPaidMinutes + mins > maxNon24hAllowed) {
+            var previousDiscountMinutes = plannedDailyMinutes + reservedFreeMinutes + acceptedPaidMinutes;
+            var earlyGrace = mins === DISCOUNT_GRACE_MINUTES
+              && previousDiscountMinutes >= safeMinutes
+              && previousDiscountMinutes - safeMinutes <= DISCOUNT_EARLY_GRACE_MINUTES;
+            if (reservedFreeMinutes + acceptedPaidMinutes + mins > maxNon24hAllowed && !earlyGrace) {
               needsDelete = true;
             } else {
               acceptedPaidMinutes += mins;
@@ -718,18 +732,23 @@
       var deleteNeededCount = historyAnnotations.filter(function (a) { return a.needsDelete; }).length;
       var hasDeleteNeeded = deleteNeededCount > 0;
       var valid24hCount = Math.min(seen24h, required24hCount);
-      var hasValidFree = seenFree >= 1 && remainderTargetMinutes > 0;
+      var hasValidFree = seenFree >= 1 && requiresFreeCoupon;
       var uncoveredRemainderMinutes = Math.max(remainderTargetMinutes - accNon24hMinutes, 0);
       var remainingAdditionalNon24hLimit = Math.max(maxNon24hAllowed - reservedFreeMinutes - acceptedPaidMinutes, 0);
       var totalDiscountMinutes = list.reduce(function (sum, item) { return sum + (Number(item.minutes) || 0); }, 0);
+      // 11시간 이상은 필요한 24시간권 수량으로 환산하고 잔여 시간권은 +30분까지만 허용한다.
+      var maxTotalDiscountMinutes = plannedDailyMinutes + maxNon24hAllowed;
+      var canAdd24hCoupon = !hasDeleteNeeded && valid24hCount < required24hCount
+        && totalDiscountMinutes + dailyCouponMinutes <= maxTotalDiscountMinutes;
       var isFullyCovered = !hasDeleteNeeded
         && (valid24hCount >= required24hCount)
-        && (remainderTargetMinutes === 0 || hasValidFree)
+        && (!requiresFreeCoupon || hasValidFree)
         && (uncoveredRemainderMinutes <= 0)
         && (totalDiscountMinutes >= safeMinutes);
       // 현재 시간이 모두 정산되어도 사전 등록을 위한 30분 여유권은 허용한다.
-      var canAddGraceCoupon = isFullyCovered && hasValidFree
-        && remainingAdditionalNon24hLimit >= DISCOUNT_GRACE_MINUTES;
+      var canAddGraceCoupon = isFullyCovered && (!requiresFreeCoupon || hasValidFree)
+        && totalDiscountMinutes - safeMinutes <= DISCOUNT_EARLY_GRACE_MINUTES
+        && remainingAdditionalNon24hLimit >= DISCOUNT_GRACE_MINUTES - DISCOUNT_EARLY_GRACE_MINUTES;
 
       return {
         parkingMinutes: safeMinutes,
@@ -738,6 +757,8 @@
         zoneType: zoneType,
         required24hCount: required24hCount,
         remainderTargetMinutes: remainderTargetMinutes,
+        requiresFreeCoupon: requiresFreeCoupon,
+        needsRemainderCoverage: needsRemainderCoverage,
         valid24hCount: valid24hCount,
         hasValidFree: hasValidFree,
         hasPaidWithoutFree: hasPaidWithoutFree,
@@ -748,6 +769,8 @@
         deleteNeededCount: deleteNeededCount,
         hasDeleteNeeded: hasDeleteNeeded,
         totalDiscountMinutes: totalDiscountMinutes,
+        maxTotalDiscountMinutes: maxTotalDiscountMinutes,
+        canAdd24hCoupon: canAdd24hCoupon,
         isFullyCovered: isFullyCovered,
         canAddGraceCoupon: canAddGraceCoupon
       };
@@ -822,7 +845,7 @@
         !rule.hasDeleteNeeded &&
         rule.valid24hCount >= rule.required24hCount &&
         rule.remainderTargetMinutes > 0 &&
-        rule.hasValidFree &&
+        (!rule.requiresFreeCoupon || rule.hasValidFree) &&
         rule.uncoveredRemainderMinutes > 0
       ) {
         if (rule.uncoveredRemainderMinutes >= 120 && 180 <= rule.remainingAdditionalNon24hLimit) {
@@ -857,7 +880,7 @@
       } else if (rule.valid24hCount < rule.required24hCount) {
         guideTitle = formatMinutesText(remainingMinutes) + ' 추가 할인이 필요합니다';
         guide = '우선선택 표시된 [24시간 유료할인]을 선택하면 정산이 진행됩니다.';
-      } else if (!rule.hasValidFree) {
+      } else if (rule.requiresFreeCoupon && !rule.hasValidFree) {
         guideTitle = formatMinutesText(remainingMinutes) + ' 추가 할인이 필요합니다';
         guide = rule.hasPaidWithoutFree
           ? '기존 유료권은 유지됩니다. [1시간 무료할인]을 다시 등록해 주세요.'
@@ -915,7 +938,7 @@
         if (coupon.is24h) {
           if (rule.valid24hCount < rule.required24hCount) {
             requiresDeleteBeforeUse = rule.hasDeleteNeeded;
-            isEnabled = !requiresDeleteBeforeUse;
+            isEnabled = rule.canAdd24hCoupon;
             isRecommended = isEnabled;
           } else {
             isEnabled = false;
@@ -924,7 +947,7 @@
           if (
             !rule.hasDeleteNeeded &&
             rule.valid24hCount >= rule.required24hCount &&
-            rule.remainderTargetMinutes > 0 &&
+            rule.requiresFreeCoupon &&
             !rule.hasValidFree
           ) {
             isEnabled = true;
@@ -936,10 +959,11 @@
           if (
             !rule.hasDeleteNeeded &&
             rule.valid24hCount >= rule.required24hCount &&
-            rule.remainderTargetMinutes > 0 &&
-            rule.hasValidFree &&
+            rule.needsRemainderCoverage &&
+            (!rule.requiresFreeCoupon || rule.hasValidFree) &&
             (rule.uncoveredRemainderMinutes > 0 || (coupon.discCodeNo === 2 && rule.canAddGraceCoupon)) &&
-            coupon.minutes <= rule.remainingAdditionalNon24hLimit
+            ((coupon.minutes === DISCOUNT_GRACE_MINUTES && rule.canAddGraceCoupon)
+              || coupon.minutes <= rule.remainingAdditionalNon24hLimit)
           ) {
             isEnabled = true;
             isRecommended = (coupon.discCodeNo === recommendedHourlyCodeNo);
@@ -1119,6 +1143,17 @@
         var codeNo = Number($btn.data('disc-code-no'));
         var coupon = AVAILABLE_COUPONS.find(function (c) { return c.discCodeNo === codeNo; });
         if (!coupon) return;
+
+        // 화면 표시 후 시간이 바뀌어도 등록 직전의 내역으로 한도를 다시 확인한다.
+        var currentRule = evaluateModularRule(currentParkingMinutes, currentHistoryList);
+        var earlyGrace = !coupon.isFree && !coupon.is24h
+          && coupon.minutes === DISCOUNT_GRACE_MINUTES && currentRule.canAddGraceCoupon;
+        if (currentRule.hasDeleteNeeded || (coupon.is24h && !currentRule.canAdd24hCoupon)
+          || (!coupon.isFree && !earlyGrace && currentRule.totalDiscountMinutes + coupon.minutes > currentRule.maxTotalDiscountMinutes)) {
+          renderAll();
+          parkAlert('허용 할인시간을 초과하여 등록할 수 없습니다. 할인 등록 내역을 확인해 주세요.');
+          return;
+        }
 
         var wasFullyCovered = evaluateModularRule(currentParkingMinutes, currentHistoryList).isFullyCovered;
         var ts = getTimestamp();

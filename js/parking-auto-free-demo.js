@@ -42,7 +42,7 @@ var parkingAutoDemo = (function () {
   }
   function needsFree(rule) {
     return !rule.hasDeleteNeeded && rule.valid24hCount >= rule.required24hCount
-      && rule.remainderTargetMinutes > 0 && !rule.hasValidFree;
+      && rule.requiresFreeCoupon && !rule.hasValidFree;
   }
   function freeRecord(coupon) {
     var ts = getTimestamp();
