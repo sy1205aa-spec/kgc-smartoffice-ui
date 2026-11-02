@@ -146,7 +146,15 @@
       var requiresFreeCoupon = true;
       var dailyCoupon = AVAILABLE_COUPONS.find(function (coupon) { return coupon.is24h; });
       var dailyCouponMinutes = dailyCoupon ? dailyCoupon.minutes : DAY_MINUTES;
-      var registeredDaily = list.filter(function (item) { return item.discCodeNo === 4 || item.minutes >= DAY_MINUTES; }).slice(0, required24hCount);
+      // 기존 유료권은 유지한다. 이미 확보한 시간권을 제외한 잔여 시간으로 신규 24시간권만 추천한다.
+      var registeredDaily = list.filter(function (item) { return item.discCodeNo === 4 || item.minutes >= DAY_MINUTES; });
+      var registeredHourlyMinutes = list.reduce(function (sum, item) {
+        return sum + (item.discCodeNo !== 1 && item.discCodeNo !== 4 && item.minutes < DAY_MINUTES ? Number(item.minutes) || 0 : 0);
+      }, 0);
+      var paidTargetMinutes = Math.max(safeMinutes - 60 - registeredHourlyMinutes, 0);
+      var economicalDailyCount = Math.floor(paidTargetMinutes / DAY_MINUTES)
+        + (paidTargetMinutes % DAY_MINUTES >= LONG_TERM_THRESHOLD_MINUTES - 60 ? 1 : 0);
+      required24hCount = Math.max(registeredDaily.length, economicalDailyCount);
       var plannedDailyMinutes = registeredDaily.reduce(function (sum, item) { return sum + item.minutes; }, 0)
         + (required24hCount - registeredDaily.length) * dailyCouponMinutes;
       remainderTargetMinutes = Math.max(safeMinutes - plannedDailyMinutes, 0);
@@ -159,7 +167,7 @@
       // 무료권이 마지막에 재등록되거나 누락되어 있어도 60분을 먼저 확보한다.
       var reservedFreeMinutes = requiresFreeCoupon ? 60 : 0;
       var maxNon24hAllowed = needsRemainderCoverage
-        ? Math.max(reservedFreeMinutes, safeMinutes - plannedDailyMinutes + DISCOUNT_GRACE_MINUTES + DISCOUNT_EARLY_GRACE_MINUTES)
+        ? Math.max(reservedFreeMinutes + registeredHourlyMinutes, safeMinutes - plannedDailyMinutes + DISCOUNT_GRACE_MINUTES + DISCOUNT_EARLY_GRACE_MINUTES)
         : 0;
       var hasAnyFreeInHistory = list.some(function (h) { return h.discCodeNo === 1; });
       var hasPaidWithoutFree = requiresFreeCoupon && !hasAnyFreeInHistory
@@ -187,16 +195,9 @@
               accNon24hMinutes += mins;
             }
           } else {
-            var previousDiscountMinutes = plannedDailyMinutes + reservedFreeMinutes + acceptedPaidMinutes;
-            var earlyGrace = mins === DISCOUNT_GRACE_MINUTES
-              && previousDiscountMinutes >= safeMinutes
-              && previousDiscountMinutes - safeMinutes <= DISCOUNT_EARLY_GRACE_MINUTES;
-            if (reservedFreeMinutes + acceptedPaidMinutes + mins > maxNon24hAllowed && !earlyGrace) {
-              needsDelete = true;
-            } else {
-              acceptedPaidMinutes += mins;
-              accNon24hMinutes += mins;
-            }
+            // 기존 시간권은 유지하고 추가 등록 시점에만 남은 시간과 한도를 검증한다.
+            acceptedPaidMinutes += mins;
+            accNon24hMinutes += mins;
           }
         }
 
@@ -461,8 +462,6 @@
         });
 
         $btn.append($('<span>', { 'class': 'coupon_name' }).text(coupon.discName));
-        var price = { 1: 0, 2: 500, 3: 1000, 4: 10000, 5: 3000 }[coupon.discCodeNo];
-        $btn.append($('<span>', { 'class': 'coupon_price' }).append($('<strong>').text(price.toLocaleString('ko-KR'))).append($('<span>').text('원')));
         if (isRecommended) {
           $btn.append($('<span>', { 'class': 'badge-recommend' }).text('우선선택'));
         }
