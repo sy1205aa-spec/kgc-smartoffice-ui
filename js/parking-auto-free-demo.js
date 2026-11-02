@@ -41,8 +41,7 @@ var parkingAutoDemo = (function () {
     return list.some(function (item) { return item.discCodeNo === coupon.discCodeNo; });
   }
   function needsFree(rule) {
-    return !rule.hasDeleteNeeded && rule.valid24hCount >= rule.required24hCount
-      && rule.requiresFreeCoupon && !rule.hasValidFree;
+    return !rule.hasDeleteNeeded && rule.requiresFreeCoupon && !rule.hasValidFree;
   }
   function freeRecord(coupon) {
     var ts = getTimestamp();
@@ -91,7 +90,6 @@ var parkingAutoDemo = (function () {
         var reason = !coupon ? '무료 60분권을 명확히 확인할 수 없어 자동등록 제외'
           : hasFree(history, coupon) ? '무료권이 이미 등록되어 있어 추가 호출 없음'
           : rule.hasDeleteNeeded ? '삭제 필요 쿠폰이 있어 자동등록 제외'
-          : rule.valid24hCount < rule.required24hCount ? '필요한 24시간권을 먼저 등록해야 하므로 자동등록 제외'
           : '무료권 대상 주차 구간이 아니므로 자동등록 제외';
         trace(reason);
         setStatus('skipped', '', '', true);
@@ -159,6 +157,7 @@ var parkingAutoDemo = (function () {
     }
     setStatus('manual-change', '', '', true);
     trace(action === 'delete' ? '사용자가 쿠폰 삭제 · 내부 갱신에서는 자동등록하지 않음' : '사용자가 쿠폰 등록 · 내부 갱신에서는 자동등록하지 않음');
+    return false;
   }
   // 복귀 동기화는 읽기만 수행한다. 명시적 차량 재조회와 자동등록 경로를 분리한다.
   function synchronizeHistory() {

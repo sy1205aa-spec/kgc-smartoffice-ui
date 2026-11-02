@@ -666,7 +666,8 @@
         remainderTargetMinutes = 0;
       }
 
-      var requiresFreeCoupon = remainderTargetMinutes > 0;
+      // 무료 1시간권은 모든 구간에서 1장 필수이며, 필요한 24시간권보다 먼저 등록한다.
+      var requiresFreeCoupon = true;
       var dailyCoupon = AVAILABLE_COUPONS.find(function (coupon) { return coupon.is24h; });
       var dailyCouponMinutes = dailyCoupon ? dailyCoupon.minutes : DAY_MINUTES;
       var registeredDaily = list.filter(function (item) { return item.discCodeNo === 4 || item.minutes >= DAY_MINUTES; }).slice(0, required24hCount);
@@ -682,7 +683,7 @@
       // 무료권이 마지막에 재등록되거나 누락되어 있어도 60분을 먼저 확보한다.
       var reservedFreeMinutes = requiresFreeCoupon ? 60 : 0;
       var maxNon24hAllowed = needsRemainderCoverage
-        ? Math.max(safeMinutes - plannedDailyMinutes + DISCOUNT_GRACE_MINUTES + DISCOUNT_EARLY_GRACE_MINUTES, 0)
+        ? Math.max(reservedFreeMinutes, safeMinutes - plannedDailyMinutes + DISCOUNT_GRACE_MINUTES + DISCOUNT_EARLY_GRACE_MINUTES)
         : 0;
       var hasAnyFreeInHistory = list.some(function (h) { return h.discCodeNo === 1; });
       var hasPaidWithoutFree = requiresFreeCoupon && !hasAnyFreeInHistory
@@ -736,9 +737,9 @@
       var uncoveredRemainderMinutes = Math.max(remainderTargetMinutes - accNon24hMinutes, 0);
       var remainingAdditionalNon24hLimit = Math.max(maxNon24hAllowed - reservedFreeMinutes - acceptedPaidMinutes, 0);
       var totalDiscountMinutes = list.reduce(function (sum, item) { return sum + (Number(item.minutes) || 0); }, 0);
-      // 11시간 이상은 필요한 24시간권 수량으로 환산하고 잔여 시간권은 +30분까지만 허용한다.
+      // 필요한 24시간권 수량에 필수 무료 60분을 별도로 확보한다. 유료 시간권 한도는 유지한다.
       var maxTotalDiscountMinutes = plannedDailyMinutes + maxNon24hAllowed;
-      var canAdd24hCoupon = !hasDeleteNeeded && valid24hCount < required24hCount
+      var canAdd24hCoupon = !hasDeleteNeeded && hasValidFree && valid24hCount < required24hCount
         && totalDiscountMinutes + dailyCouponMinutes <= maxTotalDiscountMinutes;
       var isFullyCovered = !hasDeleteNeeded
         && (valid24hCount >= required24hCount)
@@ -779,8 +780,8 @@
     function isCouponRegistrationAllowed(rule, coupon) {
       if (!coupon || rule.hasDeleteNeeded) return false;
       if (coupon.is24h) return rule.canAdd24hCoupon && rule.totalDiscountMinutes + coupon.minutes <= rule.maxTotalDiscountMinutes;
-      if (rule.valid24hCount < rule.required24hCount) return false;
       if (coupon.isFree) return rule.requiresFreeCoupon && !rule.hasValidFree;
+      if (rule.valid24hCount < rule.required24hCount) return false;
       var early = coupon.minutes === DISCOUNT_GRACE_MINUTES && rule.canAddGraceCoupon;
       return rule.needsRemainderCoverage && (!rule.requiresFreeCoupon || rule.hasValidFree)
         && (rule.uncoveredRemainderMinutes > 0 || early)
@@ -889,7 +890,7 @@
         guide = rule.canAddGraceCoupon
           ? '출차 여유 시간이 필요하면 [30분 유료할인]을 추가 등록할 수 있습니다.'
           : '모든 주차시간에 대한 할인이 정상 적용되었습니다.';
-      } else if (rule.valid24hCount < rule.required24hCount) {
+      } else if (rule.hasValidFree && rule.valid24hCount < rule.required24hCount) {
         guideTitle = formatMinutesText(remainingMinutes) + ' 추가 할인이 필요합니다';
         guide = '우선선택 표시된 [24시간 유료할인]을 선택하면 정산이 진행됩니다.';
       } else if (rule.requiresFreeCoupon && !rule.hasValidFree) {
@@ -958,7 +959,6 @@
         } else if (coupon.isFree) {
           if (
             !rule.hasDeleteNeeded &&
-            rule.valid24hCount >= rule.required24hCount &&
             rule.requiresFreeCoupon &&
             !rule.hasValidFree
           ) {
