@@ -111,7 +111,7 @@ var parkingAutoDemo = (function () {
       if (context !== currentContext) return;
       isAutoFreeDataReady = false;
       trace('할인 내역 조회 실패 · 미등록으로 간주하지 않고 등록 중단');
-      setStatus('query-error', '할인 내역을 확인하지 못했습니다.', '차량을 다시 조회한 후 이용해 주세요.');
+      setStatus('query-error', '할인 내역을 확인하지 못했습니다.', '쿠폰 등록·삭제는 차량을 다시 조회한 후 이용해 주세요.');
     } finally {
       if (context === currentContext) { isAutoFreeBusy = false; syncControls(); }
     }

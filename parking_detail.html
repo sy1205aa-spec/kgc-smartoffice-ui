@@ -279,7 +279,7 @@
 .demo-scenario-head { gap: 6px; flex-wrap: wrap; }
 .demo-head-right { display: inline-flex; gap: 8px; align-items: center; }
   </style>
-  <link rel="stylesheet" href="css/mobile_a/parking-detail.css?v=20261102-auto-free">
+  <link rel="stylesheet" href="css/mobile_a/parking-detail.css?v=20261102-auto-free-2">
 
   <script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
   <script type="text/javascript" src="./js/mobile/common.js"></script>
@@ -885,7 +885,11 @@
             .append($nameRow)
             .append($('<span>', { 'class': 'pd-history-date' }).text(h.date + ' ' + h.time));
 
-          var $delBtn = $('<button>', { type: 'button', 'class': 'btn_del', title: '삭제' }).text('삭제');
+          var deleteBlocked = isAutoFreeBusy || !isAutoFreeDataReady;
+          var $delBtn = $('<button>', {
+            type: 'button', 'class': 'btn_del', disabled: deleteBlocked,
+            title: deleteBlocked ? '할인 내역 확인 후 삭제할 수 있습니다.' : '삭제'
+          }).text('삭제');
           $body.append($info).append($delBtn);
           $history.append($body);
         });
