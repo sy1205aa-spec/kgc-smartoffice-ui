@@ -742,11 +742,9 @@
       var maxTotalDiscountMinutes = plannedDailyMinutes + maxNon24hAllowed;
       var canAdd24hCoupon = !hasDeleteNeeded && hasValidFree && valid24hCount < required24hCount
         && totalDiscountMinutes + dailyCouponMinutes <= maxTotalDiscountMinutes;
-      var isFullyCovered = !hasDeleteNeeded
-        && (valid24hCount >= required24hCount)
-        && (!requiresFreeCoupon || hasValidFree)
-        && (uncoveredRemainderMinutes <= 0)
-        && (totalDiscountMinutes >= safeMinutes);
+      // 무료권 선등록과 출차 가능 판정은 분리한다. 등록 시간만으로 충분하면 완료다.
+      var isFullyCovered = !hasDeleteNeeded && totalDiscountMinutes >= safeMinutes
+        && (safeMinutes > 0 || totalDiscountMinutes > 0);
       // 현재 시간이 모두 정산되어도 사전 등록을 위한 30분 여유권은 허용한다.
       var canAddGraceCoupon = isFullyCovered && (!requiresFreeCoupon || hasValidFree)
         && totalDiscountMinutes - safeMinutes <= DISCOUNT_EARLY_GRACE_MINUTES
@@ -964,7 +962,7 @@
             !rule.hasValidFree
           ) {
             isEnabled = true;
-            isRecommended = true;
+            isRecommended = !rule.isFullyCovered;
           } else {
             isEnabled = false;
           }
