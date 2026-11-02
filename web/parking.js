@@ -13,7 +13,7 @@
       { discCodeNo: 1, discName: '1시간 무료할인', minutes: 60, isFree: true, is24h: false },
       { discCodeNo: 2, discName: '30분 유료할인', minutes: 30, isFree: false, is24h: false },
       { discCodeNo: 3, discName: '1시간 유료할인', minutes: 60, isFree: false, is24h: false },
-      { discCodeNo: 4, discName: '24시간 유료할인', minutes: 1410, isFree: false, is24h: true },
+      { discCodeNo: 4, discName: '24시간 유료할인', minutes: 1440, isFree: false, is24h: true },
       { discCodeNo: 5, discName: '3시간 유료할인', minutes: 180, isFree: false, is24h: false }
     ];
 
@@ -56,7 +56,7 @@
         ]
       },
       case3: {
-      label: '사례 3 · 25시간 주차 (24시간권 1장 + 무료 1시간 + 유료 30분)',
+      label: '사례 3 · 25시간 주차 (24시간권 1장 + 무료 1시간)',
         inDtm: '2026.07.14 17:30:00',
         parkingMinutes: 1500, // 25시간 (N=1, R=1h < 11h)
         history: []
@@ -66,7 +66,7 @@
         inDtm: '2026.07.14 07:30:00',
         parkingMinutes: 2100, // 35시간 (N=1, R=11h >= 11h)
         history: [
-          { id: 'H-40', discCodeNo: 4, discName: '24시간 유료할인', minutes: 1410, date: '26.07.14', time: '18:00' }
+          { id: 'H-40', discCodeNo: 4, discName: '24시간 유료할인', minutes: 1440, date: '26.07.14', time: '18:00' }
         ]
       }
     };
