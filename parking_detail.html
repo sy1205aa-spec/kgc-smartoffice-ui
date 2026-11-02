@@ -697,6 +697,13 @@
       var hasPaidWithoutFree = requiresFreeCoupon && !hasAnyFreeInHistory
         && list.some(function (item) { return item.discCodeNo !== 1 && item.discCodeNo !== 4 && item.minutes < DAY_MINUTES; });
 
+      // 시간권만으로 이미 충족했다면 유지하고, 24시간권 전환 시 겹치는 유료권만 정리한다.
+      var registeredTotalMinutes = list.reduce(function (sum, item) { return sum + (Number(item.minutes) || 0); }, 0);
+      var reconcileHourly = registeredDaily.length > 0
+        || (registeredTotalMinutes < safeMinutes && required24hCount > registeredDaily.length);
+      var hourlyLimitAfterDaily = Math.max(0, safeMinutes - plannedDailyMinutes - reservedFreeMinutes
+        + DISCOUNT_GRACE_MINUTES + DISCOUNT_EARLY_GRACE_MINUTES);
+
       var historyAnnotations = list.map(function (item) {
         var is24h = item.discCodeNo === 4 || item.minutes >= DAY_MINUTES;
         var isFree = item.discCodeNo === 1;
@@ -719,9 +726,12 @@
               accNon24hMinutes += mins;
             }
           } else {
-            // 기존 시간권은 유지하고 추가 등록 시점에만 남은 시간과 한도를 검증한다.
-            acceptedPaidMinutes += mins;
-            accNon24hMinutes += mins;
+            if (reconcileHourly && acceptedPaidMinutes + mins > hourlyLimitAfterDaily) {
+              needsDelete = true;
+            } else {
+              acceptedPaidMinutes += mins;
+              accNon24hMinutes += mins;
+            }
           }
         }
 
@@ -733,6 +743,7 @@
 
       var deleteNeededCount = historyAnnotations.filter(function (a) { return a.needsDelete; }).length;
       var hasDeleteNeeded = deleteNeededCount > 0;
+      var hourlyDeleteCount = historyAnnotations.filter(function (a) { return a.needsDelete && a.item.discCodeNo !== 1 && a.item.discCodeNo !== 4 && a.item.minutes < DAY_MINUTES; }).length;
       var valid24hCount = Math.min(seen24h, required24hCount);
       var hasValidFree = seenFree >= 1 && requiresFreeCoupon;
       var uncoveredRemainderMinutes = Math.max(remainderTargetMinutes - accNon24hMinutes, 0);
@@ -767,6 +778,7 @@
         remainingAdditionalNon24hLimit: remainingAdditionalNon24hLimit,
         historyAnnotations: historyAnnotations,
         deleteNeededCount: deleteNeededCount,
+        hourlyDeleteCount: hourlyDeleteCount,
         hasDeleteNeeded: hasDeleteNeeded,
         totalDiscountMinutes: totalDiscountMinutes,
         maxTotalDiscountMinutes: maxTotalDiscountMinutes,
@@ -788,7 +800,14 @@
           && rule.totalDiscountMinutes + coupon.minutes <= rule.maxTotalDiscountMinutes));
     }
 
+    function getHourlyCleanupMessage(rule) {
+      return rule.valid24hCount < rule.required24hCount
+        ? '겹치는 유료 시간권 ' + rule.hourlyDeleteCount + '건을 먼저 삭제한 뒤 [24시간 유료할인]을 등록해 주세요. 무료권은 유지됩니다.'
+        : '24시간권과 겹치는 유료 시간권 ' + rule.hourlyDeleteCount + '건을 삭제해 주세요. 무료권과 24시간권은 유지됩니다.';
+    }
+
     function getDeleteNeededAlertMessage(rule) {
+      if (rule.hourlyDeleteCount > 0) return getHourlyCleanupMessage(rule);
       if (rule.hasPaidWithoutFree && rule.valid24hCount >= rule.required24hCount) {
         return '무료 1시간권을 포함하면 할인 한도를 초과합니다.\n[삭제 필요] 표시된 초과 쿠폰만 삭제한 뒤 무료 1시간권을 다시 등록해 주세요. 정상 쿠폰은 유지됩니다.';
       }
@@ -875,7 +894,9 @@
         guideTitle = (rule.required24hCount > 0 && rule.remainderTargetMinutes === 0)
           ? '24시간 이용권 대상입니다'
           : '기존 할인권 정리가 필요합니다';
-        if (rule.hasPaidWithoutFree && rule.valid24hCount >= rule.required24hCount) {
+        if (rule.hourlyDeleteCount > 0) {
+          guide = getHourlyCleanupMessage(rule);
+        } else if (rule.hasPaidWithoutFree && rule.valid24hCount >= rule.required24hCount) {
           guide = '초과 쿠폰만 삭제한 뒤 무료 1시간권을 다시 등록해 주세요. 정상 쿠폰은 유지됩니다.';
         } else if (rule.zoneType === 'ZONE_3') {
           guide = '초과 쿠폰만 삭제해 주세요. 유효한 할인권은 유지됩니다.';
