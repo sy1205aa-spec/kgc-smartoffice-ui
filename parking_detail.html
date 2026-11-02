@@ -279,7 +279,7 @@
 .demo-scenario-head { gap: 6px; flex-wrap: wrap; }
 .demo-head-right { display: inline-flex; gap: 8px; align-items: center; }
   </style>
-  <link rel="stylesheet" href="css/mobile_a/parking-detail.css?v=20261102-auto-free-2">
+  <link rel="stylesheet" href="css/mobile_a/parking-detail.css?v=20261102-session-sync">
 
   <script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
   <script type="text/javascript" src="./js/mobile/common.js"></script>
@@ -339,6 +339,15 @@
               <option value="failure">등록 오류 · 미등록</option>
             </select>
             <div class="demo-auto-buttons"><button type="button" id="parkingAutoRestart">선택 응답으로 처음부터</button><button type="button" id="parkingVehicleRefresh">현재 차량 재조회</button></div>
+            <details class="demo-session-sync"><summary>다른 세션 변경 · 화면 복귀 동기화</summary>
+              <label for="parkingOtherCoupon">다른 세션에서 변경할 쿠폰</label>
+              <select id="parkingOtherCoupon"><option value="3">1시간 유료할인</option><option value="5">3시간 유료할인</option><option value="2">30분 유료할인</option><option value="1">1시간 무료할인</option><option value="4">24시간 유료할인</option></select>
+              <div class="demo-auto-buttons"><button type="button" id="parkingOtherAdd">다른 세션 등록</button><button type="button" id="parkingOtherDelete">다른 세션 삭제</button></div>
+              <p id="parkingOtherStatus" role="status">다른 세션 변경 후 화면 복귀를 눌러 확인하세요.</p>
+              <div class="demo-auto-buttons"><button type="button" id="parkingResumeDemo">화면 복귀 시연</button></div>
+              <p class="demo-sync-counts">모의 조회: 내역 <b id="parkingSyncHistoryCount">0</b>회 / 할인 코드 <b id="parkingSyncCodeCount">0</b>회 / 현재 세션 등록·삭제 <b id="parkingSyncWriteCount">0</b>회</p>
+              <p>다른 세션 버튼은 가상 서버 내역만 변경합니다. 복귀 동기화는 내역만 1회 조회하며 무료권을 자동등록하지 않습니다.</p>
+            </details>
             <details class="demo-auto-trace"><summary>처리 흐름 확인</summary><ol id="parkingAutoTrace" aria-live="polite"></ol></details>
             <p>가상 프리셋 시연입니다. 실제 API 호출 없이 무료권 등록 및 내역 재조회를 재현합니다.</p>
           </div>
@@ -1136,7 +1145,7 @@
       initParking();
     });
   </script>
-  <script src="js/parking-auto-free-demo.js?v=20261102"></script>
+  <script src="js/parking-auto-free-demo.js?v=20261102-session-sync"></script>
 </body>
 
 </html>

@@ -3,6 +3,11 @@ var parkingAutoDemo = (function () {
   'use strict';
   var currentContext = null;
   var sequence = 0;
+  var syncPromise = null;
+  var syncTimer = null;
+  var syncQueued = false;
+  var wasAway = false;
+  var wasHidden = false;
   var delay = function () { return new Promise(function (resolve) { setTimeout(resolve, 400); }); };
   var clone = function (list) { return list.map(function (item) { return Object.assign({}, item); }); };
   function trace(message) { $('#parkingAutoTrace').append($('<li>').text(message)); }
@@ -15,6 +20,16 @@ var parkingAutoDemo = (function () {
     $('.demo-chip, #parkingAutoRestart, #parkingVehicleRefresh, #parkingAutoResponse').prop('disabled', isAutoFreeBusy);
     $('#parkingDetailView, #parkingOverview').attr('aria-busy', String(isAutoFreeBusy));
     renderAll();
+    updateCounts();
+  }
+  function updateCounts() {
+    if (!currentContext) return;
+    $('#parkingSyncHistoryCount').text(currentContext.reads);
+    $('#parkingSyncCodeCount').text(currentContext.codeReads);
+    $('#parkingSyncWriteCount').text(currentContext.writes);
+  }
+  function finishPendingSync() {
+    if (syncQueued) { syncQueued = false; requestSync(); }
   }
   function getFreeCoupon() {
     var matches = AVAILABLE_COUPONS.filter(function (coupon) {
@@ -36,11 +51,17 @@ var parkingAutoDemo = (function () {
       minutes: coupon.minutes, date: ts.date, time: ts.time };
   }
   async function readHistory(context, initialRead) {
+    context.reads += 1;
+    context.lastReadRevision = context.revision;
+    var snapshot = clone(context.history);
+    updateCounts();
     await delay();
     if (initialRead && context.outcome === 'query_error') throw new Error('HISTORY_UNAVAILABLE');
-    return clone(context.history);
+    return snapshot;
   }
   async function registerFree(context, coupon) {
+    context.writes += 1;
+    updateCounts();
     await delay();
     // 다른 탭이 먼저 등록한 상태를 재현한다. 같은 입차 건의 무료권은 1건만 허용한다.
     if (context.outcome === 'duplicate' && !hasFree(context.history, coupon)) context.history.push(freeRecord(coupon));
@@ -113,11 +134,15 @@ var parkingAutoDemo = (function () {
       trace('할인 내역 조회 실패 · 미등록으로 간주하지 않고 등록 중단');
       setStatus('query-error', '할인 내역을 확인하지 못했습니다.', '쿠폰 등록·삭제는 차량을 다시 조회한 후 이용해 주세요.');
     } finally {
-      if (context === currentContext) { isAutoFreeBusy = false; syncControls(); }
+      if (context === currentContext) { isAutoFreeBusy = false; syncControls(); finishPendingSync(); }
     }
   }
   function enter() {
-    currentContext = { id: ++sequence, history: clone(currentHistoryList), outcome: $('#parkingAutoResponse').val() || 'success' };
+    clearTimeout(syncTimer);
+    syncQueued = false;
+    currentContext = { id: ++sequence, history: clone(currentHistoryList), outcome: $('#parkingAutoResponse').val() || 'success',
+      reads: 0, codeReads: 1, writes: 0, revision: 0, baseMinutes: currentParkingMinutes, startedAt: Date.now() };
+    $('#parkingOtherStatus').text('다른 세션 변경 후 화면 복귀를 눌러 확인하세요.');
     return queryAndAutoRegister(currentContext);
   }
   function refresh() {
@@ -126,13 +151,88 @@ var parkingAutoDemo = (function () {
     return queryAndAutoRegister(currentContext);
   }
   function manualChanged(action) {
-    if (currentContext) currentContext.history = clone(currentHistoryList);
+    if (currentContext) {
+      currentContext.history = clone(currentHistoryList);
+      currentContext.revision += 1;
+      currentContext.writes += 1;
+      updateCounts();
+    }
     setStatus('manual-change', '', '', true);
     trace(action === 'delete' ? '사용자가 쿠폰 삭제 · 내부 갱신에서는 자동등록하지 않음' : '사용자가 쿠폰 등록 · 내부 갱신에서는 자동등록하지 않음');
+  }
+  // 복귀 동기화는 읽기만 수행한다. 명시적 차량 재조회와 자동등록 경로를 분리한다.
+  function synchronizeHistory() {
+    if (syncPromise) return syncPromise;
+    if (!currentContext) return Promise.resolve();
+    if (isAutoFreeBusy) { syncQueued = true; return Promise.resolve(); }
+    var context = currentContext;
+    context.outcome = $('#parkingAutoResponse').val() || 'success';
+    var wasFullyCovered = evaluateModularRule(currentParkingMinutes, currentHistoryList).isFullyCovered;
+    isAutoFreeBusy = true;
+    isAutoFreeDataReady = false;
+    setStatus('syncing', '최신 할인 내역을 확인하고 있습니다.', '화면 복귀 시 등록 내역과 주차현황을 함께 갱신합니다.');
+    trace('화면 복귀 · 할인 코드 재조회 없이 등록 내역 1회 조회');
+    syncControls();
+    syncPromise = readHistory(context, true).then(function (history) {
+      if (context !== currentContext) return;
+      currentHistoryList = history;
+      currentParkingMinutes = context.baseMinutes + Math.max(0, Math.floor((Date.now() - context.startedAt) / 60000));
+      isAutoFreeDataReady = true;
+      setStatus('synced', '최신 할인 내역을 반영했습니다.', '주차현황과 등록 가능한 할인권을 함께 갱신했습니다.');
+      trace('동일 조회 결과로 내역·주차현황·추천·삭제 필요·등록 버튼 재계산 · 무료권 자동등록 없음');
+      if (context.revision !== context.lastReadRevision) {
+        syncQueued = true;
+        trace('조회 중 추가 변경 감지 · 완료 후 최신 내역 1회 추가 확인');
+      } else {
+        $('#parkingOtherStatus').text('현재 화면에 다른 세션의 최신 변경을 반영했습니다.');
+        if (!wasFullyCovered && evaluateModularRule(currentParkingMinutes, history).isFullyCovered) parkAlert('쿠폰 등록이 완료되어 출차 가능합니다.');
+      }
+    }).catch(function () {
+      if (context !== currentContext) return;
+      isAutoFreeDataReady = false;
+      setStatus('query-error', '할인 내역을 확인하지 못했습니다.', '등록·삭제는 최신 내역 확인 후 이용해 주세요. 화면 복귀 시연으로 다시 조회할 수 있습니다.');
+      trace('동기화 조회 실패 · 기존 내역 유지 및 등록·삭제 비활성화');
+    }).finally(function () {
+      syncPromise = null;
+      if (context === currentContext) { isAutoFreeBusy = false; syncControls(); finishPendingSync(); }
+    });
+    return syncPromise;
+  }
+  function requestSync() {
+    clearTimeout(syncTimer);
+    syncTimer = setTimeout(synchronizeHistory, 300);
+  }
+  function changeOtherSession(remove) {
+    if (!currentContext) return;
+    var coupon = AVAILABLE_COUPONS.find(function (item) { return item.discCodeNo === Number($('#parkingOtherCoupon').val()); });
+    if (!coupon) return;
+    if (remove) {
+      var index = -1;
+      currentContext.history.forEach(function (item, i) { if (item.discCodeNo === coupon.discCodeNo) index = i; });
+      if (index < 0) { $('#parkingOtherStatus').text('다른 세션에도 선택한 쿠폰이 없습니다.'); return; }
+      currentContext.history.splice(index, 1);
+    } else {
+      if (coupon.isFree && hasFree(currentContext.history, coupon)) { $('#parkingOtherStatus').text('무료권은 이미 등록되어 있습니다.'); return; }
+      currentContext.history.push(freeRecord(coupon));
+    }
+    currentContext.revision += 1;
+    $('#parkingOtherStatus').text('다른 세션에서 ' + coupon.discName + (remove ? ' 삭제' : ' 등록') + ' 완료. 화면 복귀 시 최신 내역을 조회합니다.');
+    // 읽기 진행 중에 발생한 변경은 해당 조회 종료 후 한 번 더 확인한다.
+    if (isAutoFreeBusy) syncQueued = true;
   }
   function init() {
     $('#parkingVehicleRefresh').on('click', refresh);
     $('#parkingAutoRestart').on('click', function () { if (!isAutoFreeBusy) applyScenario(currentScenarioKey); });
+    $('#parkingOtherAdd').on('click', function () { changeOtherSession(false); });
+    $('#parkingOtherDelete').on('click', function () { changeOtherSession(true); });
+    $('#parkingResumeDemo').on('click', requestSync);
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) wasHidden = true;
+      else if (wasHidden) { wasHidden = false; requestSync(); }
+    });
+    window.addEventListener('blur', function () { wasAway = true; });
+    window.addEventListener('focus', function () { if (wasAway) { wasAway = false; requestSync(); } });
+    window.addEventListener('pageshow', function (event) { if (event.persisted) requestSync(); });
   }
-  return { init: init, enter: enter, refresh: refresh, manualChanged: manualChanged };
+  return { init: init, enter: enter, refresh: refresh, manualChanged: manualChanged, synchronize: synchronizeHistory };
 })();

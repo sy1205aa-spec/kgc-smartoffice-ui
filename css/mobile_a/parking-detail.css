@@ -88,3 +88,8 @@
 
 /* 조회 실패·조회 중에는 삭제 필요 내역도 동일한 비활성 버튼으로 표시한다. */
 .parking-detail .pd-history-list button.btn_del:disabled { color: #a0a6af; border-color: #e1e4e9; background: #f1f3f6; opacity: 1; cursor: not-allowed; }
+
+.parking-detail .demo-session-sync { margin-top: 10px; padding-top: 10px; border-top: 1px solid #dce3ed; font-size: 11px; color: #5d6b80; }
+.parking-detail .demo-session-sync summary { margin-bottom: 8px; }
+.parking-detail .demo-sync-counts { font-variant-numeric: tabular-nums; }
+.parking-detail .pd-auto-status[data-state=syncing] { color: #526a86; border-color: #dce5ef; background: #f5f8fc; }
