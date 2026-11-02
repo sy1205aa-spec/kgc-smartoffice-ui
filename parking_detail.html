@@ -279,7 +279,7 @@
 .demo-scenario-head { gap: 6px; flex-wrap: wrap; }
 .demo-head-right { display: inline-flex; gap: 8px; align-items: center; }
   </style>
-  <link rel="stylesheet" href="css/mobile_a/parking-detail.css?v=20261030-2">
+  <link rel="stylesheet" href="css/mobile_a/parking-detail.css?v=20261102-auto-free">
 
   <script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
   <script type="text/javascript" src="./js/mobile/common.js"></script>
@@ -317,6 +317,8 @@
             </span>
           </div>
           <div class="demo-scenario-chips">
+            <button type="button" class="demo-chip" data-scenario="auto_free">무료권 자동등록 · 5시간</button>
+            <button type="button" class="demo-chip" data-scenario="auto_complete">무료권으로 출차 가능 · 30분</button>
             <button type="button" class="demo-chip" data-scenario="needed">할인권 등록 필요</button>
             <button type="button" class="demo-chip" data-scenario="complete">할인 등록 완료</button>
             <button type="button" class="demo-chip" data-scenario="exchange">삭제 후 24시간 등록</button>
@@ -325,6 +327,20 @@
             <button type="button" class="demo-chip" data-scenario="case1b">사례1-B: 10시간(다건)</button>
             <button type="button" class="demo-chip" data-scenario="case3">사례3: 25시간(다일+1h)</button>
             <button type="button" class="demo-chip" data-scenario="case4">사례4: 35시간(다일장기)</button>
+          </div>
+          <div class="demo-auto-controls">
+            <label for="parkingAutoResponse">자동등록 응답 시연</label>
+            <select id="parkingAutoResponse">
+              <option value="success">정상 등록</option>
+              <option value="duplicate">동시 조회로 중복 오류</option>
+              <option value="timeout_committed">시간 초과 · 실제 등록됨</option>
+              <option value="timeout_empty">시간 초과 · 미등록</option>
+              <option value="query_error">할인 내역 조회 실패</option>
+              <option value="failure">등록 오류 · 미등록</option>
+            </select>
+            <div class="demo-auto-buttons"><button type="button" id="parkingAutoRestart">선택 응답으로 처음부터</button><button type="button" id="parkingVehicleRefresh">현재 차량 재조회</button></div>
+            <details class="demo-auto-trace"><summary>처리 흐름 확인</summary><ol id="parkingAutoTrace" aria-live="polite"></ol></details>
+            <p>가상 프리셋 시연입니다. 실제 API 호출 없이 무료권 등록 및 내역 재조회를 재현합니다.</p>
           </div>
         </div>
 
@@ -378,6 +394,8 @@
             </div>
           </details>
         </section>
+
+        <div id="parkingAutoStatus" class="pd-auto-status" role="status" aria-live="polite" hidden><strong id="parkingAutoStatusTitle"></strong><p id="parkingAutoStatusText"></p></div>
 
         <section class="pd-registration" aria-label="할인권 등록">
           <div class="pd-heading"><h2>할인권 등록</h2></div>
@@ -497,6 +515,8 @@
 
     // 개발방향서 5장 주차 시나리오별 프리셋
     var SCENARIOS = {
+      auto_free: { inDtm: '2026.11.02 09:00:00', parkingMinutes: 300, history: [] },
+      auto_complete: { inDtm: '2026.11.02 13:30:00', parkingMinutes: 30, history: [] },
       needed: { inDtm: '2026.10.27 05:00:00', parkingMinutes: 300, history: [
         { id: 'N-1', discCodeNo: 1, minutes: 60, date: '26.10.27', time: '09:00' },
         { id: 'N-2', discCodeNo: 5, minutes: 180, date: '26.10.27', time: '09:01' }
@@ -554,6 +574,8 @@
     var currentHistoryList = [];
     var nextIdSeq = 100;
     var isDemoBarCollapsed = false;
+    var isAutoFreeBusy = false;
+    var isAutoFreeDataReady = true;
 
     var _parkAlertCallback = null;
     var _parkConfirmCallback = null;
@@ -928,6 +950,8 @@
 
         $couponList.append($('<li>').append($btn));
       });
+      $('#parkingDiscountHistory .btn_del').prop('disabled', isAutoFreeBusy || !isAutoFreeDataReady);
+      if (isAutoFreeBusy || !isAutoFreeDataReady) $('#parkingDiscountCodeList .discount_coupon').prop('disabled', true);
     }
 
     function applyScenario(key) {
@@ -941,6 +965,7 @@
       $('.demo-chip').removeClass('active');
       $('.demo-chip[data-scenario="' + currentScenarioKey + '"]').addClass('active');
       renderAll();
+      if (typeof parkingAutoDemo !== 'undefined') parkingAutoDemo.enter();
     }
 
     function initParking() {
@@ -1008,12 +1033,14 @@
       });
       // URL 파라미터(?scenario=case1a 등) 지원
       var params = new URLSearchParams(window.location.search);
-      var initialScenario = params.get('scenario') || 'needed';
+      var initialScenario = params.get('scenario') || 'auto_free';
+      parkingAutoDemo.init();
       applyScenario(initialScenario);
       showInitialTooltipGuide();
 
       // 시나리오 전환 칩 클릭
       $(document).on('click', '.demo-chip', function () {
+        if (isAutoFreeBusy) return;
         var key = $(this).data('scenario');
         applyScenario(key);
       });
@@ -1046,12 +1073,14 @@
 
       // 할인등록 내역 삭제 버튼
       $(document).on('click', '.btn_del', function () {
+        if (isAutoFreeBusy || !isAutoFreeDataReady) return;
         var $body = $(this).closest('.body');
         var historyId = $body.data('history-id');
         parkConfirm('선택한 할인등록 내역을 삭제하시겠습니까?', function () {
           currentHistoryList = currentHistoryList.filter(function (item) {
             return String(item.id) !== String(historyId);
           });
+          parkingAutoDemo.manualChanged('delete');
           renderAll();
           showParkingFeedback('할인권이 삭제되었습니다.');
         });
@@ -1059,6 +1088,7 @@
 
       // 사용 가능한 할인권 클릭
       $(document).on('click', '.discount_coupon:not(:disabled)', function () {
+        if (isAutoFreeBusy || !isAutoFreeDataReady) return;
         var $btn = $(this);
         var requiresDelete = $btn.attr('data-requires-delete') === 'true';
 
@@ -1089,6 +1119,7 @@
           time: ts.time
         });
 
+        parkingAutoDemo.manualChanged('register');
         renderAll();
         showParkingFeedback(coupon.discName + ' 등록 완료');
         if (!wasFullyCovered && evaluateModularRule(currentParkingMinutes, currentHistoryList).isFullyCovered) {
@@ -1101,6 +1132,7 @@
       initParking();
     });
   </script>
+  <script src="js/parking-auto-free-demo.js?v=20261102"></script>
 </body>
 
 </html>
